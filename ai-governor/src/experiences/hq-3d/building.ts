@@ -132,7 +132,8 @@ export function buildHQ(stage: Stage3D, b: Building, opts: BuildOptions): HQScen
     const d = s.rect.z1 - s.rect.z0;
     root.add(staticMesh(kit.box(w, 0.06, d), kit.matte(floorColor(kit, s), 0.8), [s.center.x, -0.03, s.center.z], { cast: false }));
   }
-  const oak = kit.wood('oak');
+  // corridors: light oak; a deeper, quieter wood tone on dark themes
+  const oak = kit.dark ? kit.matte(pal.slab.clone().lerp(new THREE.Color('#9a6a44'), 0.42), 0.7) : kit.wood('oak');
   for (const c of b.corridors) root.add(staticMesh(kit.box(c.rect.x1 - c.rect.x0, 0.06, CORRIDOR), oak, [(c.rect.x0 + c.rect.x1) / 2, -0.03, c.z], { cast: false }));
   for (const pa of b.passages) root.add(staticMesh(kit.box(CORRIDOR, 0.06, pa.rect.z1 - pa.rect.z0), oak, [pa.x, -0.03, (pa.rect.z0 + pa.rect.z1) / 2], { cast: false }));
   // forecourt in front of the entrance

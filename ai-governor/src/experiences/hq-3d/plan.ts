@@ -178,7 +178,7 @@ export function planBuilding(catalog: Pick<Catalog, 'departments' | 'nodes'>): B
   }
   const commons: Draft[] = [
     { id: 'meeting', role: 'meeting', name: 'Salle de réunion', caption: 'Collaborations sur une même tâche', wing: COMMONS_WING, tone: 'p3', equipment: ['meeting', 'board'], weight: 1 },
-    { id: 'lounge', role: 'lounge', name: 'Salon', caption: 'Agents disponibles (statut réel : au repos)', wing: COMMONS_WING, tone: 'p4', equipment: [], weight: 1 },
+    { id: 'lounge', role: 'lounge', name: 'Salon', caption: 'Agents disponibles', wing: COMMONS_WING, tone: 'p4', equipment: [], weight: 1 },
   ];
   if (modelNode) commons.push({ id: 'models', role: 'models', name: 'Salle des modèles', caption: 'Arrivée des appels de modèles', wing: COMMONS_WING, nodeId: modelNode.id, tone: 'p2', equipment: ['server'], weight: 1 });
   if (gymDept) commons.push({ id: `d-${gymDept.id}`, role: 'gym', name: 'Salle d’essais', caption: gymDept.name, wing: COMMONS_WING, dept: gymDept, tone: gymDept.tone, equipment: gymDept.equipment, weight: 1 });

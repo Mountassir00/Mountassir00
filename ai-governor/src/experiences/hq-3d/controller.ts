@@ -110,7 +110,6 @@ export class HQController {
   private lastViewKey = '';
   private lastViewAt = 0;
   private hidden = new THREE.Vector3();
-  private evening = false;
 
   constructor(stage: Stage3D, events: ControllerEvents) {
     this.stage = stage;
@@ -132,7 +131,6 @@ export class HQController {
     this.frames = { hover: null, select: null };
     const firstBuild = !this.b || this.b.width !== b.width || this.b.depth !== b.depth;
     this.b = b;
-    this.evening = opts.evening;
     const scene = (this.scene = buildHQ(stage, b, opts));
     stage.root.add(scene.root);
 
@@ -205,20 +203,60 @@ export class HQController {
     box.min.y = 0;
     box.max.y = 2;
     this.overviewOpts = { minDistance: 6, maxDistance: 150, minPolar: 6, maxPolar: 74, bounds: box };
+    if (firstBuild && this.mode === 'visit') {
+      this.mode = 'overview';
+      this.events.onMode('overview');
+    }
     if (firstBuild || !this.home) {
-      const rig = stage.rig;
-      Object.assign(rig.opts, this.overviewOpts);
+      Object.assign(stage.rig.opts, this.overviewOpts);
       this.setFov(OVERVIEW_FOV, true);
-      rig.setView({ azimuth: 36, polar: 50 }, true);
-      rig.fit(new THREE.Box3(new THREE.Vector3(b.bounds.x0, 0, b.bounds.z0), new THREE.Vector3(b.bounds.x1, 0, b.bounds.z1)), true);
-      rig.setView({ distance: rig.view.distance * 0.9, target: [0, 0, b.depth * 0.04] }, true);
-      this.home = rig.view;
-      rig.setHome(this.home);
-      if (this.mode === 'visit') this.applyVisitOpts();
+      this.frameHome(this.insets, true);
     }
     this.applyWalls();
     this.offAnimator = stage.addAnimator((t, dt) => this.animate(t, dt));
     stage.updateShadows();
+  }
+
+  private insets = { left: 0, top: 0 };
+
+  /**
+   * Computes the overview "home" (whole building, iso 3/4) so that it sits in
+   * the part of the canvas not covered by overlays (`left`/`top` in px), and
+   * goes there when `go` (instant on first build).
+   */
+  frameHome(insets: { left: number; top: number }, go: boolean | 'animate' = false) {
+    this.insets = insets;
+    const b = this.b;
+    if (!b) return;
+    const rig = this.stage.rig;
+    const saved = rig.view;
+    const savedOpts = { ...rig.opts };
+    if (this.overviewOpts) Object.assign(rig.opts, this.overviewOpts);
+    const cam = this.stage.camera as THREE.PerspectiveCamera;
+    const fov = cam.fov;
+    cam.fov = OVERVIEW_FOV;
+    const box = new THREE.Box3(new THREE.Vector3(b.bounds.x0, 0, b.bounds.z0), new THREE.Vector3(b.bounds.x1, 0, b.bounds.z1));
+    rig.setView({ azimuth: 36, polar: 50 }, true);
+    rig.fit(box, true);
+    const w = Math.max(1, this.stage.size.w);
+    const free = Math.max(0.45, (w - insets.left) / w);
+    rig.setView({ distance: Math.min(rig.opts.maxDistance, rig.view.distance * (0.97 / Math.sqrt(free))), target: [0, 0, b.depth * 0.03] }, true);
+    rig.panBy(insets.left / 2, insets.top / 2);
+    rig.setView(rig.view, true);
+    this.home = rig.view;
+    rig.setHome(this.home);
+    cam.fov = fov;
+    cam.updateProjectionMatrix();
+    if (!go || this.mode !== 'overview') {
+      Object.assign(rig.opts, savedOpts);
+      rig.setView(saved, true);
+      return;
+    }
+    if (go === 'animate') {
+      rig.setView(saved, true);
+      rig.opts.tweenMs = this.flightMs();
+      rig.setView(this.home, this.flightMs() === 0);
+    }
   }
 
   /* ================================================================ */
@@ -318,7 +356,7 @@ export class HQController {
       const start = { x: a.inner.x, z: a.inner.z - a.doorSide * 0.9 };
       const end = { x: c.inner.x, z: c.inner.z - c.doorSide * 0.9 };
       const poly = route(this.b!, start, end);
-      specs.push({ id: p.key, points: roundCorners(poly).map((q) => new THREE.Vector3(q.x + lane, 0.32 + Math.abs(lane) * 0.4, q.z + lane)), color: p.color, active: true, level: p.level });
+      specs.push({ id: p.key, points: roundCorners(poly).map((q) => new THREE.Vector3(q.x + lane, 0.42 + Math.abs(lane) * 0.4, q.z + lane)), color: p.color, active: true, level: p.level, radius: 0.085 });
     });
     const rebuilt = this.flows.set(specs);
     this.flows.setVisible(visible);
@@ -480,6 +518,13 @@ export class HQController {
     return this.figs.get(id)?.object.position ?? null;
   }
 
+  /** Where a figure is going (end of its walk), else where it stands. */
+  figureTarget(id: string): THREE.Vector3 | null {
+    const f = this.figs.get(id);
+    if (!f) return null;
+    return f.path ? f.path[f.path.length - 1] : f.object.position;
+  }
+
   /* ================================================================ */
   /* Highlights                                                        */
   /* ================================================================ */
@@ -582,7 +627,6 @@ export class HQController {
 
   /** Evening: lower exposure, dusk-tinted background (re-applied after theme/quality changes, which reset them). */
   applyAmbience(evening: boolean) {
-    this.evening = evening;
     const stage = this.stage;
     const dark = stage.palette.scheme === 'dark';
     stage.renderer.toneMappingExposure = evening ? (dark ? 0.84 : 0.76) : 1;
@@ -608,8 +652,9 @@ export class HQController {
       const into = -s.doorSide;
       this.fp = { x: s.inner.x, z: s.inner.z + into * 0.5, az: s.doorSide > 0 ? 0 : Math.PI, polar: 86 * DEG };
     } else if (b.reception?.entrance) {
+      // on the forecourt, facing the entrance
       const e = b.reception.entrance;
-      this.fp = { x: e.x, z: e.z - 0.9, az: 0, polar: 87 * DEG };
+      this.fp = { x: e.x, z: e.z + 1.7, az: 0, polar: 87 * DEG };
     } else {
       const c = b.corridors[0];
       this.fp = { x: 0, z: c.z, az: Math.PI / 2, polar: 87 * DEG };
@@ -640,19 +685,33 @@ export class HQController {
     this.events.onMode('overview');
   }
 
+  /** Overview flight that keeps the point centred in the area not covered by overlays. */
+  private flyTo(x: number, z: number, distance: number, polar?: number) {
+    const rig = this.stage.rig;
+    const v = rig.view;
+    const az = v.azimuth * DEG;
+    const pol = (polar ?? v.polar) * DEG;
+    const perPx = (2 * distance * Math.tan((OVERVIEW_FOV * DEG) / 2)) / Math.max(1, this.stage.size.h);
+    const sx = (this.insets.left / 2) * perPx;
+    const sy = ((this.insets.top / 2) * perPx) / Math.max(0.35, Math.cos(pol * 0.6));
+    const tx = x - Math.cos(az) * sx - Math.sin(az) * sy;
+    const tz = z + Math.sin(az) * sx - Math.cos(az) * sy;
+    rig.opts.tweenMs = this.flightMs();
+    rig.setView({ target: [tx, 0, tz], distance, polar: polar ?? v.polar }, this.flightMs() === 0);
+  }
+
   /** "Go to" a room: overview → soft flight above it; visit → walk there through the doors. */
   goToSpace(spaceId: string) {
     const b = this.b;
     const s = b?.byId.get(spaceId);
     if (!b || !s) return;
     if (this.mode === 'overview') {
-      const rig = this.stage.rig;
-      rig.opts.tweenMs = this.flightMs();
-      rig.setView({ target: [s.center.x, 0, s.center.z], distance: 17, polar: 48 }, this.flightMs() === 0);
+      this.flyTo(s.center.x, s.center.z, 17, 48);
       return;
     }
-    const inside = { x: s.center.x, z: s.center.z + s.doorSide * 0.6 };
-    this.walkTo(inside, s.doorSide > 0 ? 0 : Math.PI);
+    // stop just inside the door, looking at the room
+    const inside = { x: s.inner.x, z: s.inner.z - s.doorSide * 0.35 };
+    this.walkTo(inside, Math.atan2(-(s.center.x - inside.x), -(s.center.z - s.doorSide * 0.8 - inside.z)));
   }
 
   /** Visit: walks to a floor point (route through doors); overview: flies above it. */
@@ -662,10 +721,7 @@ export class HQController {
     if (this.mode === 'overview') {
       const s = spaceAt(b, p);
       if (s) this.goToSpace(s.id);
-      else {
-        this.stage.rig.opts.tweenMs = this.flightMs();
-        this.stage.rig.setView({ target: [p.x, 0, p.z], distance: 17 }, this.flightMs() === 0);
-      }
+      else this.flyTo(p.x, p.z, 17);
       return;
     }
     this.walkTo(collide(b, p, 0.45), null);
@@ -675,10 +731,8 @@ export class HQController {
     const f = this.figs.get(id);
     if (!f || !this.b) return;
     const p = f.object.position;
-    if (this.mode === 'overview') {
-      this.stage.rig.opts.tweenMs = this.flightMs();
-      this.stage.rig.setView({ target: [p.x, 0.4, p.z], distance: 11 }, this.flightMs() === 0);
-    } else {
+    if (this.mode === 'overview') this.flyTo(p.x, p.z, 11);
+    else {
       // stop 1.3 m before the agent, facing it
       const s = spaceAt(this.b, p);
       const back = s ? { x: s.center.x - p.x, z: s.center.z - p.z } : { x: 0, z: 1 };
