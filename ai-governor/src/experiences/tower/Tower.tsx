@@ -95,10 +95,9 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
   }, [floorId]);
 
   const togglePanel = () => {
-    setPanelOpen((v) => {
-      host.setLocal('panel', !v);
-      return !v;
-    });
+    const next = !panelOpen;
+    setPanelOpen(next);
+    host.setLocal('panel', next);
   };
 
   /* ---------- live data ---------- */

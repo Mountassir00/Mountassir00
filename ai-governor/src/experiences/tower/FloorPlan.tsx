@@ -120,13 +120,32 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
       live.decisions ? `${live.decisions} décision${live.decisions > 1 ? 's' : ''} en attente` : '',
       live.incidents ? `${live.incidents} incident${live.incidents > 1 ? 's' : ''} ouvert${live.incidents > 1 ? 's' : ''}` : '',
     ].filter(Boolean).join(', ');
-    const [lx, ly] = iso(r.x + 0.15, r.y + r.d - 0.1, 0);
+    // Room sign painted on the corridor along the room's front edge (never over the desks).
+    const [lx, ly] = iso(r.x + 0.2, r.y + r.d + 0.5, 0);
+    // Live counters sit just inside the room's front corner.
+    const [fx0, fy0] = iso(r.x + r.w - 0.1, r.y + r.d - 0.1, 0);
     const chips: Array<{ k: string; t: string }> = [];
     if (live.running) chips.push({ k: 'run', t: `▶ ${live.running}` });
     if (live.pending) chips.push({ k: 'pend', t: `… ${live.pending}` });
     if (live.decisions) chips.push({ k: 'dec', t: `◆ ${live.decisions}` });
     if (live.incidents) chips.push({ k: 'inc', t: `▲ ${live.incidents}` });
+    const label = (
+      <g key={`label-${d.id}`} className="tw-roomlabel" aria-hidden data-selected={selected || undefined} data-dimmed={dimmed || undefined}>
+        <text className="tw-roomlabel__name" x={0} y={4} transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(26.565)`}>
+          {d.name}
+        </text>
+        {chips.map((c, i) => (
+          <g key={c.k} transform={`translate(${(fx0 - (chips.length * 40 - 4) / 2 + i * 40).toFixed(1)} ${(fy0 - 30).toFixed(1)})`} className="tw-roomchip" data-k={c.k}>
+            <rect width={36} height={18} rx={9} />
+            <text x={18} y={13} textAnchor="middle">
+              {c.t}
+            </text>
+          </g>
+        ))}
+      </g>
+    );
     return (
+      { body: (
       <g key={d.id} className="tw-room" data-dimmed={dimmed || undefined} style={{ ['--tone' as string]: tone }}>
         <IsoFloor x={r.x} y={r.y} w={r.w} d={r.d} fill="var(--tw-room)" grid={!p.night} className="tw-room__floor" />
         {p.pools &&
@@ -151,7 +170,7 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
           <IsoBackWalls x={r.x} y={r.y} w={r.w} d={r.d} h={0.55} fill="var(--tw-wall)" />
           {equipment[0] && <Equipment kind={equipment[0]} x={r.x + 0.35} y={r.y + 0.25} active={anyActive} tone={tone} />}
           {equipment[1] && <Equipment kind={equipment[1]} x={r.x + r.w - 1.6} y={r.y + 0.25} active={anyActive} tone={tone} />}
-          <Plant x={r.x + r.w - 0.45} y={r.y + r.d - 0.5} />
+          <Plant x={r.x + 0.4} y={r.y + r.d - 0.55} />
           {slots.map((s, i) =>
             s.agent.kind === 'script' || s.agent.kind === 'service' ? null : (
               <Workstation key={`desk-${s.agent.id}`} x={positions[i].x} y={positions[i].y} tone={tone} lit={!s.here ? 'off' : isActive(s.status) ? 'on' : s.status === 'waiting' ? 'wait' : s.status === 'error' ? 'error' : 'off'} />
@@ -198,21 +217,8 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
             </g>
           );
         })}
-        <g className="tw-roomlabel" aria-hidden data-selected={selected || undefined} transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)})`}>
-          <text className="tw-roomlabel__name" x={0} y={18}>
-            {d.name}
-          </text>
-          {chips.map((c, i) => (
-            <g key={c.k} transform={`translate(${i * 40} 25)`} className="tw-roomchip" data-k={c.k}>
-              <rect width={36} height={18} rx={9} />
-              <text x={18} y={13} textAnchor="middle">
-                {c.t}
-              </text>
-            </g>
-          ))}
-        </g>
       </g>
-    );
+      ), label });
   };
 
   const L = G.landing;
@@ -221,7 +227,15 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
     <g className="tw-plan">
       <IsoFloor x={G.slab.x} y={G.slab.y} w={G.slab.w} d={G.slab.d} fill="var(--tw-slab)" thickness={0.35} grid={false} />
       <IsoBackWalls x={G.slab.x} y={G.slab.y} w={G.slab.w} d={G.slab.d} h={0.9} fill="var(--tw-facade)" />
-      {ordered.map(room)}
+      {(() => {
+        const built = ordered.map(room);
+        return (
+          <>
+            {built.map((b) => b.body)}
+            {built.map((b) => b.label)}
+          </>
+        );
+      })()}
       <g aria-hidden className="tw-landing-area">
         <IsoFloor x={L.x} y={L.y} w={L.w} d={L.d} fill="var(--tw-landing-floor)" thickness={0.35} grid={false} />
         <IsoBox x={L.x + 0.25} y={L.y + 0.2} w={1.0} d={1.0} h={1.8} fill="var(--tw-glass)" className="tw-lift" />

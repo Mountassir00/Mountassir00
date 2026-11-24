@@ -72,7 +72,7 @@ export function baySpans(count: number, x0: number, width: number): Array<[numbe
 
 export const RW = 5;
 export const RD = 4.4;
-const CORR = 1.5;
+const CORR = 1.7;
 const M = 0.5;
 const FRONT = 2.4;
 
