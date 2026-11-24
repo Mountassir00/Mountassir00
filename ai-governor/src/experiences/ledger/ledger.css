@@ -1,0 +1,18 @@
+.ledger { position: absolute; inset: 0; overflow: auto; container-type: inline-size; container-name: ledger; padding: 20px clamp(14px, 3vw, 32px) 96px; background: var(--c-paper); }
+.ledger__inner { max-width: 880px; margin: 0 auto; display: grid; gap: 14px; }
+.ledger__group { background: var(--c-raised); border: var(--stroke) solid var(--c-line); border-radius: var(--radius-lg); padding: 6px 14px 8px; }
+.ledger__gh { font-size: 0.82rem; font-weight: 640; font-stretch: 85%; color: var(--c-ink-soft); margin: 6px 0; }
+.ledger__list { list-style: none; margin: 0; padding: 0; }
+.ledger__row { display: grid; grid-template-columns: 70px 130px 1fr auto; gap: 10px; align-items: baseline; padding: 7px 0; border-top: var(--stroke) solid color-mix(in oklab, var(--c-line) 50%, transparent); font-size: 0.9rem; }
+.ledger__row:first-child { border-top: 0; }
+.ledger__row[data-failed] .ledger__type { color: var(--st-error); font-weight: 620; }
+.ledger__row[data-selected] { background: color-mix(in oklab, var(--c-accent) 6%, transparent); }
+.ledger__type { color: var(--c-ink-soft); font-size: 0.82rem; }
+.ledger__text { min-width: 0; overflow-wrap: anywhere; }
+.ledger__who { border: 0; background: none; padding: 0; color: var(--c-accent); font: inherit; font-size: 0.84rem; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+@container ledger (max-width: 600px) {
+  .ledger__row { grid-template-columns: 56px 1fr; }
+  .ledger__type { grid-column: 2; }
+  .ledger__text { grid-column: 1 / -1; }
+  .ledger__row .nat { grid-column: 1 / -1; }
+}

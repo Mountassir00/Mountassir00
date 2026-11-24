@@ -1,0 +1,57 @@
+/* AI Office — experience-scoped styles (prefix .ao). */
+.ao { position: absolute; inset: 0; --ao-plate: color-mix(in oklab, var(--c-sunken) 75%, var(--c-paper)); }
+
+.ao-toolbar { position: absolute; top: 12px; left: 12px; z-index: 6; display: flex; gap: 8px; align-items: center; }
+.ao-toolbar .btn { background: var(--c-raised); }
+.ao-legend { position: absolute; top: 54px; left: 12px; z-index: 6; width: 264px; padding: 10px 12px; display: grid; gap: 7px; font-size: 0.8rem;
+  background: color-mix(in oklab, var(--c-raised) 94%, transparent); border: var(--stroke) solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--shadow); color: var(--c-ink-soft); }
+.ao-legend__row { display: flex; align-items: center; gap: 8px; }
+.ao-legend__row svg { color: var(--c-ink); flex: none; }
+.ao-legend__muted { color: var(--c-ink-muted); font-size: 0.76rem; }
+.ao-legend__statuses { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.ao-legend__statuses .status { font-size: 0.76rem; }
+
+/* scene */
+.ao .iso-label { font-size: 12.5px; }
+.ao .iso-label--small { font-size: 11px; }
+.ao-room { cursor: pointer; }
+.ao-room[data-dimmed] { opacity: 0.34; }
+.ao-room-focus { cursor: pointer; }
+.ao-room-focus .iso-room__outline { pointer-events: stroke; }
+.ao-room-label { font: 700 16px/1 var(--font-ui); font-stretch: 80%; fill: var(--c-ink); letter-spacing: 0.01em; }
+.ao-room-count { font: 560 12.5px/1 var(--font-ui); font-stretch: 86%; fill: var(--c-ink-muted); }
+.ao-room-alert { fill: var(--st-error); font: 680 12.5px/1 var(--font-ui); font-stretch: 86%; }
+.ao-group-label { font: 620 13px/1 var(--font-ui); font-stretch: 78%; fill: var(--c-ink-muted); letter-spacing: 0.04em; pointer-events: none; }
+.ao-collab { stroke: var(--st-collaborating); stroke-width: 1.6; stroke-dasharray: 4 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+html[data-motion='ambient'] .ao-collab { animation: ao-dash 1.2s linear infinite; }
+@keyframes ao-dash { to { stroke-dashoffset: -16; } }
+.ao-board { cursor: pointer; outline: none; }
+.ao-board:focus-visible polygon { stroke: var(--c-focus); stroke-width: 2; }
+.ao-board__count { font: 750 22px/1 var(--font-ui); font-stretch: 80%; fill: var(--st-waiting); }
+.ao-board__text { font: 620 9px/1 var(--font-ui); font-stretch: 84%; fill: var(--c-ink-soft); }
+.ao-overflow text { fill: var(--c-ink-soft); }
+
+/* list */
+.ao-list { padding: 64px 16px 96px; }
+.ao-list__inner { max-width: 1100px; margin: 0 auto; display: grid; gap: 22px; }
+.ao-list__group-title { margin: 0 0 8px; color: var(--c-ink-soft); }
+.ao-list__cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.ao-card { background: var(--c-raised); border: var(--stroke) solid var(--c-line); border-left: 4px solid var(--tone); border-radius: var(--radius-lg); padding: 10px 12px 12px; display: grid; gap: 6px; }
+.ao-card[data-selected] { border-color: var(--c-accent); box-shadow: 0 0 0 1px var(--c-accent); }
+.ao-card__head { display: flex; gap: 10px; align-items: flex-start; text-align: left; background: none; border: 0; padding: 4px 0; border-radius: var(--radius); }
+.ao-card__head b { display: block; font-weight: 650; font-stretch: 90%; }
+.ao-card__swatch { width: 14px; height: 14px; margin-top: 2px; border-radius: 3px; background: var(--tone); border: var(--stroke) solid color-mix(in oklab, var(--c-ink) 40%, transparent); flex: none; }
+.ao-card__mission { display: block; }
+.ao-card__counts { margin: 0; }
+.ao-card__agents { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.ao-agent { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; text-align: left; padding: 8px; min-height: 44px; border-radius: var(--radius); border: var(--stroke) solid transparent; background: var(--c-paper); }
+.ao-agent:hover { border-color: var(--c-line); }
+.ao-agent[aria-pressed='true'] { border-color: var(--c-accent); }
+.ao-agent__name { font-weight: 560; min-width: 0; }
+.ao-agent__task { grid-column: 1 / -1; }
+
+@media (max-width: 719px) {
+  .ao-toolbar { top: 8px; left: 8px; }
+  .ao-legend { top: 48px; left: 8px; width: min(264px, calc(100% - 16px)); }
+  .ao-list { padding: 56px 12px 80px; }
+}
