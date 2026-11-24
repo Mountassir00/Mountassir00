@@ -139,8 +139,21 @@ export function observeTheme(cb: () => void, el: HTMLElement = document.document
 /** React hook: the current scene palette, refreshed on theme change. */
 export function useScenePalette(): ScenePalette {
   const [p, setP] = useState<ScenePalette>(() => readScenePalette());
-  useEffect(() => observeTheme(() => setP(readScenePalette())), []);
+  useEffect(
+    () =>
+      observeTheme(() => {
+        const next = readScenePalette();
+        // keep the same object when nothing visible changed (avoids rebuilding scenes)
+        setP((prev) => (paletteSignature(prev) === paletteSignature(next) ? prev : next));
+      }),
+    [],
+  );
   return p;
+}
+
+/** Stable string identifying a palette (scheme + every CSS colour used). */
+export function paletteSignature(p: ScenePalette): string {
+  return `${p.scheme}|${JSON.stringify(p.css)}`;
 }
 
 /** Toy-plastic body colour from a catalog avatar hue (0–360). */

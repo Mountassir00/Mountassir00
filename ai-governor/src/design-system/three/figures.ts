@@ -12,6 +12,14 @@ import type { AgentStatus } from '@sdk';
 import type { ColorLike, MaterialKit } from './materials';
 import { mergeColoredParts, mergeParts, type Part } from './optimize';
 
+/** Each figure remembers the kit that built it, so status setters only need the figure. */
+const KITS = new WeakMap<Object3D, MaterialKit>();
+const kitOf = (o: Object3D): MaterialKit => {
+  const k = KITS.get(o);
+  if (!k) throw new Error('Figure créée hors du kit 3D');
+  return k;
+};
+
 /* ------------------------------------------------------------------ */
 /* Glow ring                                                           */
 /* ------------------------------------------------------------------ */
@@ -33,11 +41,13 @@ export function createGlowRing(kit: MaterialKit, color: ColorLike, opts: { radiu
   glow.renderOrder = 2;
   g.add(glow, ring);
   g.userData = { ring, glow, color: String(color), strength: 1 };
+  KITS.set(g, kit);
   return g;
 }
 
 /** Re-colours a glow ring (materials are shared through the kit cache). */
-export function setGlowRing(kit: MaterialKit, ring: GlowRing, color: Color, strength = 1) {
+export function setGlowRing(ring: GlowRing, color: Color, strength = 1) {
+  const kit = kitOf(ring);
   const k = `#${color.getHexString()}`;
   const s = Math.round(strength * 20) / 20;
   if (ring.userData.color === k && ring.userData.strength === s) return;
@@ -191,6 +201,7 @@ export function createRobot(kit: MaterialKit, opts: RobotOptions): Robot {
   figure.scale.setScalar(s);
   ring.scale.setScalar(Math.max(0.8, s));
   root.userData = { kind: 'robot', parts: { figure, body: torso, head, eyes, armL, armR, ring }, status: null, statusAt: 0 };
+  KITS.set(root, kit);
   return root;
 }
 
@@ -212,7 +223,8 @@ const _w = new Vector3();
  * (hands on the keyboard, head turned, arm raised…). Returns true while it
  * wants more frames.
  */
-export function setRobotStatus(kit: MaterialKit, robot: Robot, status: AgentStatus, t: number, m: StatusMotion = {}): boolean {
+export function setRobotStatus(robot: Robot, status: AgentStatus, t: number, m: StatusMotion = {}): boolean {
+  const kit = kitOf(robot);
   const ud = robot.userData;
   const p = ud.parts;
   if (ud.status !== status) {
@@ -304,7 +316,7 @@ export function setRobotStatus(kit: MaterialKit, robot: Robot, status: AgentStat
   }
   p.eyes.material = kit.emissive(eye);
   const rc = status === 'offline' ? pal.status.offline : pal.status[status];
-  setGlowRing(kit, p.ring, rc, ringStrength);
+  setGlowRing(p.ring, rc, ringStrength);
   p.ring.scale.setScalar(ringScale * Math.max(0.8, p.figure.scale.x));
   const flashing = status === 'error' && i > 0 && since < 1.7;
   return flashing || (MOVING.includes(status) && (a > 0 || ((status === 'working' || status === 'validating') && i > 0)));
@@ -348,6 +360,7 @@ export function createConsole(kit: MaterialKit, opts: { color: ColorLike }): Dev
   ring.renderOrder = 2;
   g.add(led, ring);
   g.userData = { kind: 'console', led, ring, status: null };
+  KITS.set(g, kit);
   return g;
 }
 
@@ -391,11 +404,13 @@ export function createDrone(kit: MaterialKit, opts: { color: ColorLike }): Devic
   ring.renderOrder = 2;
   g.add(ring);
   g.userData = { kind: 'drone', led, ring, rotor, hover, status: null };
+  KITS.set(g, kit);
   return g;
 }
 
 /** Status for consoles and drones: LED + ring colour; rotor spin and hover only with motion. */
-export function setDeviceStatus(kit: MaterialKit, d: Device, status: AgentStatus, t: number, m: StatusMotion = {}): boolean {
+export function setDeviceStatus(d: Device, status: AgentStatus, t: number, m: StatusMotion = {}): boolean {
+  const kit = kitOf(d);
   const pal = kit.palette;
   const a = m.figure ?? 0;
   const i = m.indicator ?? 0;

@@ -71,6 +71,18 @@ export default function SpatialWorkspace({ host, config, quality, device }: Expe
   const setFlows = persist('showFlows', setShowFlows);
   const setLabels = persist('showLabels', setShowLabels);
   const setCam = persist('preset', setPreset);
+  // Studio changes to the defaults apply live (and replace a previous local toggle).
+  const firstConfig = useRef(true);
+  useEffect(() => {
+    if (firstConfig.current) {
+      firstConfig.current = false;
+      return;
+    }
+    setFlows(config.showFlows !== false);
+    setLabels(config.showLabels !== false);
+    if (typeof config.cameraPreset === 'string') setCam(config.cameraPreset as CameraPreset);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config.showFlows, config.showLabels, config.cameraPreset]);
 
   // command palette entries
   const live = useRef({ showFlows, showLabels });

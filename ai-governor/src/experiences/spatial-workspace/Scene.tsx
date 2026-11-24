@@ -190,7 +190,7 @@ export function SpatialScene3D({
       let wants = false;
       for (const f of L.figures.values()) {
         if (f.kind !== 'robot' && f.kind !== 'drone') {
-          if (f.kind === 'console') wants = setDeviceStatus(kit, f.object as Device, f.status, t, { figure: fig, indicator: ind }) || wants;
+          if (f.kind === 'console') wants = setDeviceStatus(f.object as Device, f.status, t, { figure: fig, indicator: ind }) || wants;
           continue;
         }
         if (f.kind === 'robot') {
@@ -207,8 +207,8 @@ export function SpatialScene3D({
           stage.contact.set(`fig:${f.def.id}`, f.object.position.x, f.object.position.z, 0.34 * f.scale);
           const partnerId = f.status === 'collaborating' ? state.agents[f.def.id]?.collaboratingWith : undefined;
           const partner = partnerId ? L.figures.get(partnerId) : undefined;
-          wants = setRobotStatus(kit, f.object as Robot, f.status, t, { figure: fig, indicator: ind, partner: partner ? partnerPos.copy(partner.object.position) : null }) || wants;
-        } else wants = setDeviceStatus(kit, f.object as Device, f.status, t, { figure: fig, indicator: ind }) || wants;
+          wants = setRobotStatus(f.object as Robot, f.status, t, { figure: fig, indicator: ind, partner: partner ? partnerPos.copy(partner.object.position) : null }) || wants;
+        } else wants = setDeviceStatus(f.object as Device, f.status, t, { figure: fig, indicator: ind }) || wants;
       }
       wants = L.flows.update(t, flow) || wants;
       return wants;
@@ -454,13 +454,27 @@ export function SpatialScene3D({
         const pp = worldToPlan(reconciled, f.to);
         items.push({ id: `ag:${f.def.id}`, kind: 'agent', x: pp.x, y: pp.y, color: `var(--st-${f.status})`, label: f.def.name });
       }
+    else {
+      // no 3D scene (WebGL unavailable): place dots from the layout itself
+      const perPrim = new Map<string, number>();
+      for (const a of catalog.agents) {
+        if (a.kind !== 'llm' && a.kind !== 'human') continue;
+        const dept = a.kind === 'llm' ? placements.get(a.id)?.dept : a.departmentIds[0];
+        const prim = reconciled.primitives.find((p) => p.binding?.kind === 'department' && p.binding.id === dept);
+        if (!prim) continue;
+        const n = perPrim.get(prim.id) ?? 0;
+        perPrim.set(prim.id, n + 1);
+        items.push({ id: `ag:${a.id}`, kind: 'agent', x: prim.position.x + 0.9 * (n % 2 ? -1 : 1), y: prim.position.y + 0.9 + 0.5 * Math.floor(n / 2), color: `var(--st-${statusOf(state, a.id)})`, label: a.name });
+      }
+    }
     return items;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reconciled, buildVersion, placements, state]);
 
   /* ---------------- hover card ---------------- */
   const hoverFig = hover ? live.current?.figures.get(hover) : undefined;
-  const hoverCtx = useMemo(() => (hover ? lastContext(g.allEvents(), hover, now) : null), [hover, g, now]);
+  const hoverIsLlm = hover ? catalog.agents.find((a) => a.id === hover)?.kind === 'llm' : false;
+  const hoverCtx = useMemo(() => (hover && hoverIsLlm ? lastContext(g.allEvents(), hover, now) : null), [hover, hoverIsLlm, g, now]);
   const hoverTask = hover ? state.tasks[state.agents[hover]?.currentTaskId ?? ''] : undefined;
 
   const robots = catalog.agents.filter((a) => a.kind === 'llm');

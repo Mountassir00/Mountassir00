@@ -417,9 +417,11 @@ export function createEquipment(kit: MaterialKit, kind: EquipmentKind, tone: Col
         { geometry: kit.roundedBox(0.7, 0.36, 0.55, 0.08), position: [0, 0.18, 0] },
         { geometry: kit.cylinder(0.06, 0.08, 0.8, 14), position: [0, 0.75, 0] },
       ]);
-      add(g, kit.sphere(0.5, 28, 12, 0, Math.PI * 2, 0, Math.PI * 0.34), accent, [0, 1.2, 0.1], [0.85, 0, 0]);
-      add(g, kit.cylinder(0.025, 0.025, 0.34, 8), kit.metal('dark'), [0, 1.36, 0.22], [0.85, 0, 0]);
-      add(g, kit.sphere(0.06, 12, 8), led, [0, 1.5, 0.34], [0, 0, 0], { cast: false });
+      // satellite dish: shallow truncated cone tilted towards the front, feed arm and LED
+      add(g, kit.cylinder(0.52, 0.16, 0.14, 36), accent, [0, 1.18, 0.06], [0.95, 0, 0]);
+      add(g, kit.cylinder(0.42, 0.42, 0.012, 36), shell, [0, 1.18 + Math.cos(0.95) * 0.077, 0.06 + Math.sin(0.95) * 0.077], [0.95, 0, 0], { cast: false });
+      add(g, kit.cylinder(0.022, 0.022, 0.42, 8), kit.metal('dark'), [0, 1.33, 0.24], [0.95, 0, 0]);
+      add(g, kit.sphere(0.055, 12, 8), led, [0, 1.46, 0.41], [0, 0, 0], { cast: false });
       break;
     case 'gauge':
       add(g, kit.roundedBox(0.9, 1.15, 0.42, 0.1), shell, [0, 0.575, 0]);
@@ -660,7 +662,8 @@ export function createModelHub(kit: MaterialKit, tones: ColorLike[] = ['#9b7bff'
       { geometry: kit.roundedBox(0.05, h * 0.7, 0.02, 0.02, 1), position: [0.16, h * 0.5, 0.315] },
     ])), kit.emissive(tones[i % tones.length]), [x, 0, z], [0, 0, 0], { cast: false });
   });
-  add(g, kit.sphere(0.2, 20, 14), kit.emissive(kit.palette.glow), [0, 0.42, 0.55], [0, 0, 0], { cast: false });
+  add(g, kit.cylinder(0.16, 0.2, 0.3, 24), kit.plastic('#f2f3f6', { roughness: 0.4 }), [0, 0.25, 0.62]);
+  add(g, kit.sphere(0.1, 18, 12), kit.emissive(kit.palette.glow), [0, 0.47, 0.62], [0, 0, 0], { cast: false });
   const halo = add(g, kit.disc(1.6, 40), kit.glowDisc(kit.palette.glow, 0.7), [0, 0.012, 0.2], [0, 0, 0], { cast: false, receive: false });
   halo.renderOrder = 2;
   return g;

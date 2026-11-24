@@ -94,7 +94,7 @@ function localSpots(p: SpatialPrimitive): { device: [number, number]; agents: Ar
     case 'board':
       return { device: [w / 2 + 0.6, 0.55], agents: [[-w / 2 + 0.35, 1.0], [w / 2 - 0.35, 1.05], [0, 1.4], [-w / 2 - 0.4, 0.6]], anchorY: 0.12 + p.scale.y + 0.38 };
     case 'desk':
-      return { device: [1.55, -0.85], agents: [[-1.55, 0.25], [1.6, 0.45], [0.2, -1.0], [-1.5, -0.9]], anchorY: 1.6, seat: [-0.15, 0.86] };
+      return { device: [1.6, -0.9], agents: [[-1.75, 0.05], [1.75, 0.35], [0.2, -1.05], [-1.6, -0.95]], anchorY: 1.6, seat: [-0.15, 0.86] };
     case 'models':
       return { device: [1.6, 0.9], agents: [[-1.5, 1.05], [1.5, 1.1], [0, 1.5]], anchorY: 2.55 };
     default:
