@@ -90,5 +90,6 @@ Idées de transposition [`ideas[]`] (logique uniquement — jamais de reprise de
 ---
 
 > **EXEMPLE FICTIF** (ne pas réutiliser) — ligne d'affirmation correctement qualifiée :
-> | « L'édition a réuni 400 participants » | estimation | 0 |
-> Justification du statut : chiffre annoncé par l'organisateur (source 0, type officiel, mais déclaratif non recoupé) → `estimation`, et fiabilité de la fiche limitée à C tant qu'aucune seconde source ne le confirme.
+> | « L'organisateur annonce 400 participants » | fait_verifie | 0 |
+> | « 400 participants étaient présents » | estimation | 0 |
+> Justification du statut (règle de 06 §7) : l'**annonce** est un fait vérifié si la page officielle (source 0) a été lue ; la **présence réelle** reste une estimation tant qu'aucune mesure indépendante ne la confirme. La fiche peut être A si la source officielle a été lue.

@@ -1,22 +1,40 @@
 # EVENT LAB
 
-Système de recherche et développement événementiel : veille internationale, analyse des réussites et des échecs, innovation intersectorielle, génération et notation de concepts, simulation, et production de dossiers **EVENT BLUEPRINT** exécutables par une équipe tierce.
+Studio de recherche et développement événementiel, multisectoriel : veille internationale, analyse des réussites et des échecs, innovation par transposition de briques entre secteurs, génération et notation de concepts, simulation, et production de dossiers **EVENT BLUEPRINT** exécutables par une équipe tierce.
 
-> Statut : en construction. Voir [CHANGELOG.md](CHANGELOG.md) pour l'état exact de chaque version.
+> Statut : en construction. L'état exact de chaque version (opérationnel, simulé, externe requis) est dans [CHANGELOG.md](CHANGELOG.md).
+
+## Livrables
+
+| # | Livrable (brief §18) | Où | Version |
+|---|---|---|---|
+| 1 | Cahier des charges fonctionnel | [docs/01](docs/01-cahier-des-charges.md) | 0.1.0 |
+| 2 | Architecture technique | [docs/02](docs/02-architecture-technique.md) | 0.1.0 |
+| 3 | Modèle de données | [docs/03](docs/03-modele-de-donnees.md), [schemas/](schemas/) | 0.1.0 |
+| 4 | Maquettes UX/UI | [docs/04](docs/04-maquettes-ux-ui.md) | 0.1.0 |
+| 5 | Workflows utilisateurs | [docs/05](docs/05-workflows-utilisateurs.md) | 0.1.0 |
+| 6 | Système de veille | [docs/06](docs/06-systeme-de-veille.md), [knowledge/veille/](knowledge/veille/) | 0.1.0 |
+| 7 | Algorithmes de génération et d'évaluation | [docs/07](docs/07-algorithmes.md) | 0.1.0 |
+| 8 | Modèles documentaires | [docs/08](docs/08-modeles-documentaires.md), [templates/](templates/) | 0.1.0 |
+| 9 | Roadmap MVP, V1, V2 | [docs/09](docs/09-roadmap.md) | 0.1.0 |
+| 10 | Coûts de développement et d'exploitation | [docs/10](docs/10-couts.md) | 0.1.0 |
+| 11 | Portefeuille de dix concepts | `portfolio/` | 0.2.0 (à venir) |
+| 12 | Premier EVENT BLUEPRINT | `blueprints/` | 0.2.0 (à venir) |
 
 ## Arborescence
 
 | Dossier | Contenu |
 |---|---|
-| `docs/` | Spécifications (cahier des charges, architecture, modèle de données, UX, workflows, veille, algorithmes, modèles documentaires, roadmap, coûts) |
-| `schemas/` | Schémas JSON des objets métier (configuration d'événement, fiche de veille, erreur, notation) |
-| `knowledge/` | Base de connaissances : briques fonctionnelles, registre des erreurs, fiches de veille |
-| `portfolio/` | Portefeuille de concepts originaux notés |
-| `blueprints/` | Dossiers EVENT BLUEPRINT complets (sources, exports, tableaux, visuels) |
-| `app/` | Application MVP (web statique, sans serveur) |
-| `scripts/` | Outils : versionnement, génération des exports |
+| `docs/` | Spécifications et brief d'origine |
+| `schemas/` | Schémas JSON des objets métier |
+| `templates/` | Modèles de documents, CSV et checklists prêts à l'emploi |
+| `knowledge/` | Base de connaissances : veille (sources, fiches), briques, registre des erreurs |
+| `portfolio/` | Portefeuille de concepts notés |
+| `blueprints/` | Dossiers EVENT BLUEPRINT (configuration, documents, exports) |
+| `app/` | Moteur et application MVP |
+| `scripts/` | Outils : versionnement, génération et exports |
 | `archives/` | Versions figées (zip + empreintes SHA-256) |
 
 ## Versionnement
 
-Chaque version est documentée, archivée et étiquetée avant de poursuivre : `scripts/release.sh X.Y.Z "Titre"`.
+Chaque version est documentée dans le journal, archivée et étiquetée avant de poursuivre : `scripts/release.sh X.Y.Z "Titre"`.

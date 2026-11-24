@@ -20,19 +20,19 @@
 
 ```mermaid
 flowchart LR
-  EC[event.json\nEventConfig validé] --> G
-  V[venues/<id>.json\nVenue] --> G
-  K[knowledge/\nveille · erreurs · briques] --> G
-  SRC[blueprint.src.md\nmodèle rempli :\nnarratif + champs {{…}}] --> G
-  RP[data/retroplanning.csv\ncolonnes de suivi\nhors schéma] --> G
-  G[build-blueprint\nrésolution des champs\n+ simulations 07\n+ contrôles §5] --> MD[blueprint.md\nMarkdown résolu]
+  EC[event.json<br/>EventConfig validé] --> G
+  V[venues/<id>.json<br/>Venue] --> G
+  K[knowledge/<br/>veille · erreurs · briques] --> G
+  SRC["blueprint.src.md<br/>modèle rempli :<br/>narratif + champs {{…}}"] --> G
+  RP[data/retroplanning.csv<br/>colonnes de suivi<br/>hors schéma] --> G
+  G[build-blueprint<br/>résolution des champs<br/>+ simulations 07<br/>+ contrôles §5] --> MD[blueprint.md<br/>Markdown résolu]
   G --> QA[checks/qa-report.md]
   MD --> PDF[PDF]
   MD --> DOCX[DOCX]
-  G --> XLSX[XLSX\ntableaux à formules]
-  G --> PPTX[PPTX\nsponsoring · pitch]
+  G --> XLSX[XLSX<br/>tableaux à formules]
+  G --> PPTX[PPTX<br/>sponsoring · pitch]
   G --> CSV[CSV]
-  G --> SVG[SVG\nplans · matrice]
+  G --> SVG[SVG<br/>plans · matrice]
 ```
 
 1. **La donnée chiffrée et tabulaire vit dans `event.json`** (EventConfig). Elle n'est jamais ressaisie dans un document : le document la lit.

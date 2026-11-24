@@ -275,7 +275,7 @@
         },
         "arrival_profile": {
           "type": "array",
-          "description": "Part des arrivées par créneau, en minutes depuis l'ouverture des portes.",
+          "description": "Part des arrivées par créneau, en minutes depuis l'ouverture des portes (doors_open_min).",
           "items": {
             "type": "object",
             "properties": {
@@ -303,6 +303,10 @@
           "type": "integer",
           "minimum": 1,
           "description": "Files de contrôle prévues à l'entrée (sinon dimensionnées par le simulateur, 07 §5)."
+        },
+        "doors_open_min": {
+          "type": "number",
+          "description": "Ouverture des portes, en minutes depuis 00:00 de J : origine de arrival_profile."
         }
       }
     },
@@ -342,7 +346,7 @@
     },
     "program": {
       "type": "array",
-      "description": "Séquences horodatées (minutes relatives au début de J). Sert au conducteur, aux simulations et au rétroplanning.",
+      "description": "Séquences horodatées en minutes depuis 00:00 du jour J (600 = 10:00 ; négatif = J-1). Sert au conducteur, aux simulations et au rétroplanning.",
       "items": {
         "type": "object",
         "required": [
@@ -373,7 +377,8 @@
             ]
           },
           "start_min": {
-            "type": "number"
+            "type": "number",
+            "description": "Minutes depuis 00:00 du jour J (négatif = veille)."
           },
           "duration_min": {
             "type": "number",
@@ -401,6 +406,17 @@
           "critical": {
             "type": "boolean",
             "default": false
+          },
+          "stage_ref": {
+            "type": "string",
+            "description": "Lien vers competition.stages[].id quand la séquence correspond à une étape de compétition."
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Intervenants (rôles, pas de noms au stade blueprint)."
           }
         }
       }
@@ -737,6 +753,9 @@
                   "null"
                 ],
                 "description": "Montant réel encaissé (bilan post-événement)."
+              },
+              "source_ref": {
+                "type": "string"
               }
             }
           }
@@ -828,6 +847,9 @@
               "traite",
               "accepte"
             ]
+          },
+          "source_ref": {
+            "type": "string"
           }
         }
       }
@@ -870,6 +892,13 @@
           },
           "source_ref": {
             "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "evidence_ref": {
+            "type": "string",
+            "description": "Pièce justificative (convention, attestation, récépissé)."
           }
         }
       }
@@ -915,6 +944,9 @@
               "string",
               "null"
             ]
+          },
+          "source_ref": {
+            "type": "string"
           }
         }
       }
@@ -1109,13 +1141,30 @@
           "go_no_go": {
             "type": "string",
             "description": "Critère de décision si le jalon est un go/no-go."
+          },
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "a_faire",
+              "en_cours",
+              "fait",
+              "bloque"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
     },
     "sponsor_packages": {
       "type": "array",
-      "description": "Offres partenaires ; le prix doit correspondre à une ligne de recettes (revenue_ref).",
+      "description": "Offres partenaires. Règle : price × quantity = unit_amount de la recette fixe liée (revenue_ref) ; un pack en nature (price = 0) n'a pas de recette liée.",
       "items": {
         "type": "object",
         "required": [
@@ -1231,6 +1280,35 @@
       "items": {
         "$ref": "evaluation.schema.json"
       }
+    },
+    "organizer": {
+      "type": "object",
+      "description": "Structure organisatrice (sans données personnelles).",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "confidentiality": {
+      "enum": [
+        "prive",
+        "partenaires",
+        "public"
+      ],
+      "default": "prive"
     }
   },
   "$defs": {

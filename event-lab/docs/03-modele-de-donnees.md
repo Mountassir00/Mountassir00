@@ -59,7 +59,7 @@ erDiagram
 L'interface et les exports affichent toujours ces niveaux (voir `08-modeles-documentaires.md`).
 
 ### 3.2 Temps
-- `program[].start_min` : minutes depuis 00:00 du jour J (ex. 600 = 10:00).
+- `program[].start_min` : minutes depuis 00:00 du jour J (ex. 600 = 10:00 ; négatif = veille). `audience.arrival_profile` est relatif à `audience.doors_open_min`.
 - `*_offset_days` : jours relatifs à J (négatif = avant).
 - Dates absolues au format ISO 8601.
 

@@ -27,14 +27,14 @@ flowchart LR
   end
   subgraph App[app/ — navigateur, hors ligne]
     UI[Écrans] --> E[engine/ fonctions pures]
-    UI <--> LS[(localStorage\nbrouillons, versions locales)]
+    UI <--> LS[(localStorage<br/>brouillons, versions locales)]
   end
   subgraph Scripts[scripts/ — Node + Python]
-    G[build-blueprint\nconfig → tableaux + Markdown]
-    X[exports\npandoc · LibreOffice · openpyxl · python-pptx]
-    R[release.sh\nversion figée]
+    G[build-blueprint<br/>config → tableaux + Markdown]
+    X[exports<br/>pandoc · LibreOffice · openpyxl · python-pptx]
+    R[release.sh<br/>version figée]
   end
-  T[Tâches planifiées\nClaude Code] -->|fiches JSON + digest| K
+  T[Tâches planifiées<br/>Claude Code] -->|fiches JSON + digest| K
   Depot -->|données| App
   App -->|export JSON| Depot
   Depot --> G --> X
@@ -72,14 +72,14 @@ Comptes, collaboration simultanée, notifications, intégrations tierces, analys
 flowchart TB
   C[Clients : app web · scripts · partenaires] -->|HTTPS + JWT| API[API REST /v1 — OpenAPI]
   API --> AUTH[Auth + rôles]
-  API --> DB[(PostgreSQL\nRLS par organisation/projet)]
-  API --> OBJ[(Stockage objet\nplans, photos, exports)]
+  API --> DB[(PostgreSQL<br/>RLS par organisation/projet)]
+  API --> OBJ[(Stockage objet<br/>plans, photos, exports)]
   API --> Q[File de tâches]
-  Q --> W1[Worker veille\nrecherche → extraction LLM → dédup]
-  Q --> W2[Worker exports\nPDF · DOCX · XLSX · PPTX]
-  Q --> W3[Worker intégrations\nbilletterie · CRM · compta · emailing]
+  Q --> W1[Worker veille<br/>recherche → extraction LLM → dédup]
+  Q --> W2[Worker exports<br/>PDF · DOCX · XLSX · PPTX]
+  Q --> W3[Worker intégrations<br/>billetterie · CRM · compta · emailing]
   W1 --> VAL[File de validation humaine]
-  API --> AUD[(Journal d'audit\nappend-only)]
+  API --> AUD[(Journal d'audit<br/>append-only)]
 ```
 
 ### 3.1 Choix recommandé

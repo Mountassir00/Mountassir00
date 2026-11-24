@@ -158,7 +158,7 @@
           },
           "unites_de_passage": {
             "type": "integer",
-            "description": "UP déclarées (1 UP = 0,60 m ; 2 UP = 1,40 m en réglementation ERP française)."
+            "description": "Unités de passage déclarées par l'exploitant (définition et largeurs à vérifier dans le règlement de sécurité ERP en vigueur)."
           },
           "x_m": {
             "type": "number"
