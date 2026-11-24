@@ -110,6 +110,7 @@ export default function ModularOffice({ host, config, quality, device }: Experie
 
   /* ---------- selection & centring ---------- */
   const selKey = selection ? `${selection.kind}:${selection.id}` : '';
+  const pendingCenter = useRef<string | null>(null);
   useEffect(() => {
     if (!selection) return;
     if (selfSelect.current) {
@@ -117,13 +118,34 @@ export default function ModularOffice({ host, config, quality, device }: Experie
       return;
     }
     const deptId = selection.kind === 'department' ? selection.id : selection.kind === 'agent' ? live.standing.get(selection.id) : undefined;
-    const key = deptId ? deptItemKey.get(deptId) : undefined;
-    const p = key ? byKey.get(key) : undefined;
-    if (!p) return;
-    const t = setTimeout(() => zp.current?.centerOn(p.sx, p.sy), 60);
-    return () => clearTimeout(t);
+    if (!deptId) return;
+    pendingCenter.current = deptId;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selKey]);
+
+  // The selected department stays visible: its group unfolds when folding kicks in (search, zoom-out, resize).
+  const selectedGroup = useMemo(() => {
+    const deptId = selection?.kind === 'department' ? selection.id : selection?.kind === 'agent' ? live.standing.get(selection.id) : undefined;
+    return deptId ? catalog.departments.find((d) => d.id === deptId)?.group : undefined;
+  }, [selection, live.standing, catalog]);
+  const foldedByUser = useRef<string | null>(null);
+  useEffect(() => {
+    foldedByUser.current = null;
+  }, [selKey]);
+  useEffect(() => {
+    if (selectedGroup && groupingActive && !expanded.has(selectedGroup) && foldedByUser.current !== selectedGroup) setExpanded((s) => new Set(s).add(selectedGroup));
+  }, [selectedGroup, groupingActive, expanded]);
+
+  useEffect(() => {
+    const deptId = pendingCenter.current;
+    if (!deptId) return;
+    const key = deptItemKey.get(deptId);
+    const p = key ? byKey.get(key) : undefined;
+    if (!p || p.item.kind !== 'dept') return;
+    pendingCenter.current = null;
+    const t = setTimeout(() => zp.current?.centerOn(p.sx, p.sy), 80);
+    return () => clearTimeout(t);
+  }, [selKey, deptItemKey, byKey]);
 
   const select = (sel: Parameters<typeof host.select>[0]) => {
     selfSelect.current = true;
@@ -359,6 +381,7 @@ export default function ModularOffice({ host, config, quality, device }: Experie
                 thickness={thickness}
                 shadows={quality.shadows}
                 dimmed={filters.departments.length > 0 && it.depts.every((d) => deptFiltered(d.id))}
+                selected={!!selectedDept && it.depts.some((d) => d.id === selectedDept)}
                 ariaLabel={`Groupe ${it.group} : ${plural(it.depts.length, 'département', 'départements')} (${it.depts.map((d) => d.name).join(', ')}), ${plural(active, 'agent actif', 'agents actifs')}${errors ? `, ${plural(errors, 'agent en erreur', 'agents en erreur')}` : ''}${decisions ? `, ${plural(decisions, 'décision en attente', 'décisions en attente')}` : ''}. Entrée pour déplier.`}
                 hitRef={(el) => void hitRefs.current.set(it.key, el)}
                 onActivate={() => toggleCluster(it.group)}
@@ -455,6 +478,7 @@ export default function ModularOffice({ host, config, quality, device }: Experie
                 className="btn btn--sm"
                 onClick={() => {
                   const fold = expanded.size > 0;
+                  if (fold) foldedByUser.current = selectedGroup ?? null;
                   setExpanded(fold ? new Set() : new Set(groups));
                   host.announce(fold ? 'Groupes repliés.' : 'Tous les groupes dépliés.');
                 }}

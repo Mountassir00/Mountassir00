@@ -100,7 +100,7 @@ export function Desk({ x, y, screen, active }: { x: number; y: number; screen?: 
   return (
     <g className="iso-desk">
       <IsoBox x={x} y={y} w={0.9} d={0.55} h={0.42} fill={WOOD} />
-      <IsoBox x={x + 0.25} y={y + 0.06} z={0.42} w={0.42} d={0.07} h={0.32} fill="var(--c-ink-soft)" shadeL={0} shadeR={10} />
+      <IsoBox x={x + 0.25} y={y + 0.06} z={0.42} w={0.42} d={0.07} h={0.32} fill="var(--iso-device)" shadeL={0} shadeR={10} />
       <polygon
         className={active ? 'iso-screen iso-screen--on' : 'iso-screen'}
         points={poly([iso(x + 0.27, y + 0.13, 0.45), iso(x + 0.65, y + 0.13, 0.45), iso(x + 0.65, y + 0.13, 0.72), iso(x + 0.27, y + 0.13, 0.72)])}
@@ -142,7 +142,7 @@ export function ServerRack({ x, y, active }: { x: number; y: number; active?: bo
   });
   return (
     <g>
-      <IsoBox x={x} y={y} w={0.55} d={0.55} h={1.15} fill="var(--c-ink-soft)" shadeL={8} shadeR={16} />
+      <IsoBox x={x} y={y} w={0.55} d={0.55} h={1.15} fill="var(--iso-device)" shadeL={8} shadeR={16} />
       {leds}
     </g>
   );
@@ -180,7 +180,7 @@ export function Antenna({ x, y, active }: { x: number; y: number; active?: boole
     <g>
       <IsoBox x={x - 0.18} y={y - 0.18} w={0.36} d={0.36} h={0.12} fill="var(--c-sunken)" />
       <line x1={bx} y1={by - 4} x2={tx} y2={ty} className="iso-mast" />
-      <circle cx={tx} cy={ty} r={3} style={{ fill: 'var(--c-ink-soft)' }} />
+      <circle cx={tx} cy={ty} r={3} style={{ fill: 'var(--iso-device)' }} />
       <g className={active ? 'iso-waves iso-waves--on' : 'iso-waves'}>
         <path d={`M${tx + 7},${ty - 6} a9,9 0 0 1 0,12`} />
         <path d={`M${tx + 12},${ty - 10} a15,15 0 0 1 0,20`} />
@@ -217,7 +217,7 @@ export function Shelf({ x, y }: { x: number; y: number }) {
     <g>
       <IsoBox x={x} y={y} w={1.2} d={0.35} h={1.0} fill="var(--c-raised)" />
       {[0.3, 0.62].map((z) => (
-        <IsoBox key={z} x={x + 0.05} y={y + 0.36} z={z} w={1.1} d={0.02} h={0.02} fill="var(--c-ink-soft)" stroke={false} />
+        <IsoBox key={z} x={x + 0.05} y={y + 0.36} z={z} w={1.1} d={0.02} h={0.02} fill="var(--iso-device)" stroke={false} />
       ))}
       {[0.1, 0.32, 0.55, 0.8].map((o, i) => (
         <IsoBox key={o} x={x + o} y={y + 0.28} z={i % 2 ? 0.66 : 0.34} w={0.16} d={0.06} h={0.24} fill={`var(--p${(i % 8) + 1})`} />
@@ -348,7 +348,7 @@ export const IsoFigure = memo(function IsoFigure(p: FigureProps) {
       <g className="iso-figure__body">
         {machine ? (
           <g>
-            <path className="iso-edge" d="M-11 -4 L0 1.5 L11 -4 L11 -22 L0 -16.5 L-11 -22 Z" style={{ fill: 'var(--c-ink-soft)' }} />
+            <path className="iso-edge" d="M-11 -4 L0 1.5 L11 -4 L11 -22 L0 -16.5 L-11 -22 Z" style={{ fill: 'var(--iso-device)' }} />
             <path className="iso-edge" d="M-11 -22 L0 -27.5 L11 -22 L0 -16.5 Z" style={{ fill: shade(body, 0) }} />
             <path className="iso-figure__screen" d="M-8.5 -8 L-1.5 -4.6 L-1.5 -14 L-8.5 -17.4 Z" />
             <circle className="iso-figure__led" cx={5.5} cy={-9.5} r={1.8} />

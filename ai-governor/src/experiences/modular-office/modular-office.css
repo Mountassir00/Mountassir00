@@ -11,7 +11,7 @@ html[data-scheme='dark'] .mo-shadow { fill: rgb(0 0 0 / 0.32); }
 .mo-hit__area { fill: transparent; stroke: none; }
 .mo-decor, .mo-caption, .mo-tokens { pointer-events: none; }
 .mo-agents[data-reorganizing] { pointer-events: none; }
-.mo-cluster .iso-room__outline { stroke: transparent; }
+.mo-cluster .mo-hit:not([data-selected]) .iso-room__outline { stroke: transparent; }
 .mo-hit:hover:not([data-selected]) .iso-room__outline { stroke: color-mix(in oklab, var(--c-ink) 35%, transparent); stroke-width: 1.5; stroke-dasharray: 5 4; }
 .mo-cluster .mo-hit:hover .iso-room__outline { stroke: color-mix(in oklab, var(--c-accent) 60%, transparent); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .mo-platform[data-picked] .iso-room__outline { stroke: var(--c-accent); stroke-width: 3; stroke-dasharray: none; fill: color-mix(in oklab, var(--c-accent) 12%, transparent); }

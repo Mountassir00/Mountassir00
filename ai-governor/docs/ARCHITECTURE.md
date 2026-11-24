@@ -67,7 +67,7 @@ Le replay est une **lecture** de l'historique : la chronologie déplace une têt
 
 ## Sobriété graphique
 
-- **Niveaux de rendu** : minimaliste (aucune animation), économique (transitions sur changement d'état, 15 i/s), standard (animations de statut, 30 i/s), haute qualité (tout, 60 i/s). Mode automatique selon l'appareil (mémoire, cœurs, économie de données).
+- **Niveaux de rendu** : minimaliste (aucune animation), économique (repères ponctuels sur changement d'état), standard (pictogrammes de statut et flux actifs, par paliers), haute qualité (personnages, voyants, équipements). Mode automatique selon l'appareil (mémoire, cœurs, économie de données). Mesures : `docs/TESTING.md`.
 - **Une seule horloge d'animation** (`engine/runtime.ts`) plafonnée en images/s, arrêtée sans abonné.
 - **Mise en veille** : onglet masqué ou 90 s d'inactivité ⇒ `html[data-anim=paused]` suspend toutes les animations CSS et l'horloge.
 - **Préférence système « réduire les animations »** respectée (et réglable).

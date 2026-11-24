@@ -52,11 +52,12 @@
 /* Ambient status motion — only when the quality level allows it. Motion encodes the recorded state. */
 html[data-motion='ambient'] .iso-figure[data-status='working'] .iso-figure__body { animation: iso-work 1.6s ease-in-out infinite; }
 html[data-motion='ambient'] .iso-figure[data-status='researching'] .iso-figure__glyph { animation: iso-scan 2.4s ease-in-out infinite; }
-html[data-motion='ambient'] .iso-figure[data-status='waiting'] .iso-figure__glyph circle { animation: iso-dots 1.4s ease-in-out infinite; }
-html[data-motion='ambient'] .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(2) { animation-delay: 0.2s; }
-html[data-motion='ambient'] .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(3) { animation-delay: 0.4s; }
-html[data-motion='ambient'] .iso-figure[data-status='collaborating'] .iso-figure__glyph { animation: iso-pulse 1.8s ease-in-out infinite; }
-html[data-motion='ambient'] .iso-figure[data-status='validating'] .iso-figure__glyph { animation: iso-pulse 2.2s ease-in-out infinite; }
+/* 'subtle' (standard quality) animates only the status pictograms, in coarse steps. */
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle { animation: iso-dots 1.4s steps(3, jump-none) infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(2) { animation-delay: 0.2s; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(3) { animation-delay: 0.4s; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='collaborating'] .iso-figure__glyph { animation: iso-pulse 1.8s steps(4, jump-none) infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='validating'] .iso-figure__glyph { animation: iso-pulse 2.2s steps(4, jump-none) infinite; }
 html[data-motion='ambient'] .iso-figure[data-kind='script'][data-status='working'] .iso-figure__led,
 html[data-motion='ambient'] .iso-figure[data-kind='service'][data-status='working'] .iso-figure__led { animation: iso-blink 0.9s steps(2, jump-none) infinite; }
 html[data-motion='ambient'] .iso-led--on { animation: iso-blink 1.2s steps(2, jump-none) infinite; }
@@ -86,7 +87,8 @@ html:not([data-motion='none']) .iso-figure[data-status='error'] .iso-figure__gly
 .iso-flow[data-state='dim'] { opacity: 0.25; }
 .iso-flow[data-selected] .iso-flow__base { stroke: var(--c-accent); stroke-width: 3; }
 .iso-flow:focus-visible .iso-flow__base { stroke: var(--c-focus); stroke-width: 3; }
-html[data-motion='ambient'] .iso-flow[data-state='active'] .iso-flow__dash { animation: iso-flow 0.9s linear infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-flow[data-state='active'] .iso-flow__dash { animation: iso-flow 0.9s linear infinite; }
+html[data-motion='subtle'] .iso-flow[data-state='active'] .iso-flow__dash { animation-timing-function: steps(6, jump-none); }
 html[data-quality='minimal'] .iso-flow__dash, html[data-quality='eco'] .iso-flow__dash { stroke-dasharray: none; stroke-width: 2; }
 @keyframes iso-flow { to { stroke-dashoffset: -11; } }
 

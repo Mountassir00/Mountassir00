@@ -3,6 +3,7 @@ import { activeFilterCount, CATEGORY_LABEL, EMPTY_FILTERS, type EventCategory, t
 import { IconFilter, IconPresent, IconSearch } from '@ds';
 import { modelLabel, useGovernor } from '@sdk';
 import { ui, useUi } from './uiStore';
+import { togglePresentation } from './App';
 
 /** Data-mode banner + filters + search + presentation. */
 export function TopBarControls() {
@@ -31,7 +32,7 @@ export function TopBarControls() {
       <button type="button" className="btn btn--icon" onClick={() => ui.set({ searchOpen: true })} aria-label="Rechercher un agent ou un département (Ctrl+K)" title="Rechercher (Ctrl+K)">
         <IconSearch size={16} />
       </button>
-      <button type="button" className="btn btn--icon hide-mobile" onClick={() => ui.set({ presentation: true })} aria-label="Mode présentation (P)" title="Mode présentation (P)">
+      <button type="button" className="btn btn--icon hide-mobile" onClick={() => togglePresentation(true)} aria-label="Mode présentation plein écran (P)" title="Mode présentation (P)">
         <IconPresent size={16} />
       </button>
       {filtersOpen && <FiltersPopover anchor={btn} />}

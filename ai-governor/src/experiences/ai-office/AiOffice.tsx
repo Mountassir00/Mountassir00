@@ -566,7 +566,7 @@ function Legend() {
       </div>
       <div className="ao-legend__row">
         <svg width="18" height="22" viewBox="-12 -30 24 34" aria-hidden>
-          <path d="M-11 -4 L0 1.5 L11 -4 L11 -22 L0 -16.5 L-11 -22 Z" fill="var(--c-ink-soft)" />
+          <path d="M-11 -4 L0 1.5 L11 -4 L11 -22 L0 -16.5 L-11 -22 Z" fill="var(--iso-device)" />
           <path d="M-11 -22 L0 -27.5 L11 -22 L0 -16.5 Z" fill="hsl(205 46% 62%)" />
         </svg>
         <span>Console : script ou service, sans modèle</span>

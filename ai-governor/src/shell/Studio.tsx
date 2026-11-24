@@ -195,6 +195,7 @@ export function Studio({ entries, quality }: { entries: RegistryEntry[]; quality
                 <Range label="Épaisseur des contours" value={theme.shape.stroke} min={0.5} max={2} step={0.25} unit="px" onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, stroke: v } }))} />
                 <Select label="Ombres" value={theme.shape.shadow} options={[['none', 'Aucune'], ['soft', 'Douces'], ['crisp', 'Nettes (décalées)']]} onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, shadow: v as Theme['shape']['shadow'] } }))} />
                 <Select label="Fond" value={theme.surface.grid} options={[['plan', 'Papier millimétré'], ['lines', 'Quadrillage simple'], ['dots', 'Points'], ['none', 'Uni']]} onChange={(v) => setTheme((t) => ({ ...t, surface: { ...t.surface, grid: v as Theme['surface']['grid'] } }))} />
+                <Select label="Texture" value={theme.surface.texture ?? 'none'} options={[['none', 'Aucune'], ['paper', 'Grain de papier']]} onChange={(v) => setTheme((t) => ({ ...t, surface: { ...t.surface, texture: v as 'none' | 'paper' } }))} />
                 <Range label="Taille du quadrillage" value={theme.surface.gridSize} min={8} max={64} step={2} unit="px" onChange={(v) => setTheme((t) => ({ ...t, surface: { ...t.surface, gridSize: v } }))} />
                 <Select label="Densité" value={theme.density} options={[['compact', 'Compacte'], ['comfortable', 'Confortable'], ['spacious', 'Aérée']]} onChange={(v) => setTheme((t) => ({ ...t, density: v as Theme['density'] }))} />
               </div>

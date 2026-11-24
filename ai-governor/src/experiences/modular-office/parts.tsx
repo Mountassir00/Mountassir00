@@ -295,6 +295,7 @@ export const ClusterPlate = memo(function ClusterPlate(p: {
   thickness: number;
   shadows: boolean;
   dimmed: boolean;
+  selected?: boolean;
   ariaLabel: string;
   hitRef?: Ref<SVGGElement>;
   onActivate: () => void;
@@ -309,7 +310,7 @@ export const ClusterPlate = memo(function ClusterPlate(p: {
     <g className="mo-platform mo-cluster" data-dimmed={p.dimmed || undefined}>
       {p.shadows && <polygon className="mo-shadow" points={topFace(p.x - 0.1, p.y - 0.1, -th - 0.8)} />}
       <IsoFloor x={p.x} y={p.y} w={PW} d={PD} thickness={th} fill="var(--c-raised)" grid={false} />
-      <g ref={p.hitRef} className="iso-room mo-hit" role="button" tabIndex={0} aria-label={p.ariaLabel} aria-expanded={false} onClick={p.onActivate} onKeyDown={p.onKey}>
+      <g ref={p.hitRef} className="iso-room mo-hit" role="button" tabIndex={0} aria-label={p.ariaLabel} aria-expanded={false} data-selected={p.selected || undefined} onClick={p.onActivate} onKeyDown={p.onKey}>
         <polygon className="mo-hit__area" points={silhouette(p.x, p.y, th)} />
         <polygon className="iso-room__outline" points={topFace(p.x, p.y)} />
       </g>

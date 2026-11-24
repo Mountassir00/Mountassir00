@@ -177,24 +177,33 @@ export function Gallery({ entries, activeId }: { entries: RegistryEntry[]; activ
                 <button type="button" className="btn btn--sm" onClick={() => guard(() => setPrefs((p) => ops.setEnabled(p, e.id, !e.enabled)))}>
                   {e.enabled ? 'Désactiver' : 'Activer'}
                 </button>
-                {e.origin !== 'builtin' && (
-                  <button
-                    type="button"
-                    className="btn btn--sm btn--icon btn--danger"
-                    aria-label="Supprimer la variante"
-                    title="Supprimer"
-                    onClick={() => {
-                      if (window.confirm(`Supprimer « ${e.manifest.name} » ? Les données et les autres vues ne sont pas affectées.`)) guard(() => setPrefs((p) => ops.remove(p, e)));
-                    }}
-                  >
-                    <IconTrash size={15} />
-                  </button>
-                )}
+                {e.origin !== 'builtin' && <DeleteButton name={e.manifest.name} onConfirm={() => guard(() => setPrefs((p) => ops.remove(p, e)))} />}
               </div>
             </article>
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+/** Two-step delete inside the page (native confirm dialogs are not reliable in every host). */
+function DeleteButton({ name, onConfirm }: { name: string; onConfirm: () => void }) {
+  const [armed, setArmed] = useState(false);
+  if (!armed)
+    return (
+      <button type="button" className="btn btn--sm btn--icon btn--danger" aria-label={`Supprimer la variante ${name}`} title="Supprimer" onClick={() => setArmed(true)}>
+        <IconTrash size={15} />
+      </button>
+    );
+  return (
+    <span style={{ display: 'inline-flex', gap: 4 }} role="group" aria-label="Confirmer la suppression">
+      <button type="button" className="btn btn--sm btn--danger" onClick={onConfirm} autoFocus>
+        Supprimer « {name} »
+      </button>
+      <button type="button" className="btn btn--sm" onClick={() => setArmed(false)}>
+        Annuler
+      </button>
+    </span>
   );
 }

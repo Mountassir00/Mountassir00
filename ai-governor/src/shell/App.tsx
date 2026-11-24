@@ -56,7 +56,10 @@ function boot() {
 function useAppearance(themeOverride?: string) {
   const prefs = useUi((s) => s.prefs);
   const [suspended, setSuspended] = useState(false);
-  const [systemDark, setSystemDark] = useState(() => window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false);
+  // A host may force the theme with data-theme on <html>; otherwise follow the OS.
+  const hostTheme = () => document.documentElement.getAttribute('data-theme');
+  const isDark = () => (hostTheme() === 'dark' ? true : hostTheme() === 'light' ? false : window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false);
+  const [systemDark, setSystemDark] = useState(isDark);
   const [env, setEnv] = useState(detectEnvironment);
 
   useEffect(() => activity.start(), []);
@@ -67,13 +70,16 @@ function useAppearance(themeOverride?: string) {
   useEffect(() => {
     const m = window.matchMedia('(prefers-color-scheme: dark)');
     const r = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const a = () => setSystemDark(m.matches);
+    const a = () => setSystemDark(isDark());
+    const mo = new MutationObserver(a);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     const b = () => setEnv(detectEnvironment());
     m.addEventListener('change', a);
     r.addEventListener('change', b);
     return () => {
       m.removeEventListener('change', a);
       r.removeEventListener('change', b);
+      mo.disconnect();
     };
   }, []);
 
@@ -185,8 +191,11 @@ function AppInner() {
       } else if (e.key === 'd' || e.key === 'D') ui.set((s) => ({ drawer: s.drawer === 'decisions' ? null : 'decisions' }));
       else if (e.key === 'i' || e.key === 'I') ui.set((s) => ({ drawer: s.drawer === 'inspector' ? null : 'inspector' }));
       else if (e.key === 'l' || e.key === 'L') goLive();
-      else if (e.key === 'p' || e.key === 'P') ui.set((s) => ({ presentation: !s.presentation }));
-      else if (e.key === 'Escape') ui.set((s) => (s.presentation ? { presentation: false } : s.drawer ? { drawer: null } : { selection: null }));
+      else if (e.key === 'p' || e.key === 'P') togglePresentation();
+      else if (e.key === 'Escape') {
+        if (ui.get().presentation) togglePresentation(false);
+        else ui.set((s) => (s.drawer ? { drawer: null } : { selection: null }));
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -241,7 +250,7 @@ function AppInner() {
               {route === 'settings' && <Settings entries={entries} />}
             </Suspense>
             {presentation && (
-              <button type="button" className="btn present-exit" onClick={() => ui.set({ presentation: false })}>
+              <button type="button" className="btn present-exit" onClick={() => togglePresentation(false)}>
                 <IconClose size={16} /> Quitter la présentation
               </button>
             )}
@@ -281,6 +290,26 @@ function RailButton({ route, label, icon: Icon, current, desktopOnly }: { route:
 export function switchTo(id: string) {
   ui.set({ active: id, route: 'stage' });
   setPrefs((p) => ({ ...p, lastExperience: id }));
+}
+
+/** Presentation mode hides the chrome and, when the browser allows it, goes full screen. */
+let enteredFullscreen = false;
+export function togglePresentation(on = !ui.get().presentation) {
+  ui.set({ presentation: on });
+  if (on && !document.fullscreenElement) {
+    document.documentElement.requestFullscreen?.().then(() => (enteredFullscreen = true)).catch(() => undefined);
+  } else if (!on && document.fullscreenElement && enteredFullscreen) {
+    void document.exitFullscreen?.();
+    enteredFullscreen = false;
+  }
+}
+if (typeof document !== 'undefined') {
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && enteredFullscreen) {
+      enteredFullscreen = false;
+      ui.set({ presentation: false });
+    }
+  });
 }
 
 export function goLive() {

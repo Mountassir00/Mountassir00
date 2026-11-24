@@ -44,7 +44,7 @@ Troisième thème intégré : **Contraste élevé** (AAA visé). Le Studio contr
 ## Mouvement
 
 - Le mouvement **encode un état enregistré**, jamais une décoration : un agent ne s'anime que si son statut l'indique.
-- `html[data-motion]` : `none` (minimaliste), `state` (transitions ponctuelles — économique ou réduction des mouvements), `ambient` (boucles de statut — standard, haute qualité).
+- `html[data-motion]` : `none` (minimaliste), `state` (repères ponctuels — économique ou réduction des mouvements), `subtle` (pictogrammes de statut et flux, par paliers — standard), `ambient` (scène complète — haute qualité).
 - `html[data-anim=paused]` : tout est suspendu (onglet masqué, inactivité).
 
 ## Mise en page

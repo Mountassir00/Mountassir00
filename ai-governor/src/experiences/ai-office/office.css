@@ -23,7 +23,7 @@
 .ao-room-alert { fill: var(--st-error); font: 680 12.5px/1 var(--font-ui); font-stretch: 86%; }
 .ao-group-label { font: 620 13px/1 var(--font-ui); font-stretch: 78%; fill: var(--c-ink-muted); letter-spacing: 0.04em; pointer-events: none; }
 .ao-collab { stroke: var(--st-collaborating); stroke-width: 1.6; stroke-dasharray: 4 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-html[data-motion='ambient'] .ao-collab { animation: ao-dash 1.2s linear infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .ao-collab { animation: ao-dash 1.2s linear infinite; }
 @keyframes ao-dash { to { stroke-dashoffset: -16; } }
 .ao-board { cursor: pointer; outline: none; }
 .ao-board:focus-visible polygon { stroke: var(--c-focus); stroke-width: 2; }

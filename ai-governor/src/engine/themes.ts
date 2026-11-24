@@ -47,6 +47,8 @@ export const themeSchema = z.object({
   surface: z.object({
     grid: z.enum(['none', 'dots', 'lines', 'plan']),
     gridSize: z.number().min(8).max(64),
+    /** Subtle paper grain, drawn once by the browser (skipped at minimal/eco quality). */
+    texture: z.enum(['none', 'paper']).optional(),
   }),
   density: z.enum(['compact', 'comfortable', 'spacious']),
 });
@@ -148,6 +150,7 @@ export function applyTheme(t: Theme, el: HTMLElement) {
   for (const [k, val] of Object.entries(themeToCssVars(t))) el.style.setProperty(k, val);
   el.dataset.scheme = t.scheme;
   el.dataset.grid = t.surface.grid;
+  el.dataset.texture = t.surface.texture ?? 'none';
   el.dataset.density = t.density;
   el.style.colorScheme = t.scheme;
 }

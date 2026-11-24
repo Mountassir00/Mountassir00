@@ -33,4 +33,5 @@ Les données affichées par défaut sont **des données de démonstration** (ban
 - [Sources de données et limites de visibilité](docs/DATA_SOURCES.md)
 - [Créer une nouvelle expérience](docs/CREATING_AN_EXPERIENCE.md)
 - [Tests de performance et d'accessibilité](docs/TESTING.md)
+- [Maquettes haute fidélité (captures)](docs/SCREENS.md)
 - [Audit critique et arbitrages GO / NO GO / TEST](docs/AUDIT.md)

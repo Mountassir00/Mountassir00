@@ -99,6 +99,7 @@ export const ZoomPan = forwardRef<ZoomPanHandle, Props>(function ZoomPan(
     },
     fit,
     zoomBy(f) {
+      userMoved.current = true;
       zoomAt(f, size.current.w / 2, size.current.h / 2);
     },
   }));
@@ -255,13 +256,13 @@ export const ZoomPan = forwardRef<ZoomPanHandle, Props>(function ZoomPan(
         <g ref={layer}>{children}</g>
       </svg>
       <div className="zp-controls">
-        <button type="button" className="btn btn--icon btn--sm" onClick={() => zoomAt(1.25, size.current.w / 2, size.current.h / 2)} aria-label="Zoomer">
+        <button type="button" className="btn btn--icon btn--sm" onClick={() => { userMoved.current = true; zoomAt(1.25, size.current.w / 2, size.current.h / 2); }} aria-label="Zoomer">
           <IconZoomIn size={16} />
         </button>
-        <button type="button" className="btn btn--icon btn--sm" onClick={() => zoomAt(0.8, size.current.w / 2, size.current.h / 2)} aria-label="Dézoomer">
+        <button type="button" className="btn btn--icon btn--sm" onClick={() => { userMoved.current = true; zoomAt(0.8, size.current.w / 2, size.current.h / 2); }} aria-label="Dézoomer">
           <IconZoomOut size={16} />
         </button>
-        <button type="button" className="btn btn--icon btn--sm" onClick={fit} aria-label="Recadrer la scène">
+        <button type="button" className="btn btn--icon btn--sm" onClick={() => { userMoved.current = false; fit(); }} aria-label="Recadrer la scène">
           <IconFit size={16} />
         </button>
       </div>
