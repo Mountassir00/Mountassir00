@@ -5,7 +5,7 @@
  * Glows are pre-rendered radial sprites blended additively (dark themes only).
  */
 import type { NodeType } from './model';
-import type { BgParticles, Vec3 } from './layout';
+import type { BgParticles, EventParticles, Vec3 } from './layout';
 import { rgba, rgbKey, type Palette, type Rgb } from './palette';
 
 export interface RNode {
@@ -59,6 +59,10 @@ export interface Scene {
   dust: BgParticles | null;
   dustCss: string[];
   dustNeutralCss: string;
+  /** Real events of the period as particles (burst only). */
+  events: EventParticles | null;
+  /** Colours for EventParticles.colour: p1…p8, neutral, error. */
+  eventCss: string[];
 }
 
 export interface Camera {
@@ -74,7 +78,7 @@ export interface View {
   pal: Palette;
   cam: Camera;
   time: number;
-  /** Flow particles and pulses (only when motion is allowed and not suspended). */
+  /** Flow particles and status pulses (overlay only; motion allowed and not suspended). */
   animate: boolean;
   /** Glow intensity setting (0..1); ignored on light themes. */
   glow: number;
@@ -94,6 +98,13 @@ export interface Projection {
   y: Float32Array;
   z: Float32Array;
   r: Float32Array;
+  /** Projected flow paths of the last base draw (reused by the overlay). */
+  flows: Array<{ px: number[]; py: number[]; dz: number; dim: boolean }>;
+}
+
+/** Overlay bookkeeping: what to erase before the next overlay frame. */
+export interface OverlayState {
+  rects: number[];
 }
 
 const DIST = 3.6;
@@ -121,14 +132,16 @@ function sprite(c: Rgb): HTMLCanvasElement {
 }
 
 export function createProjection(): Projection {
-  return { n: 0, x: new Float32Array(0), y: new Float32Array(0), z: new Float32Array(0), r: new Float32Array(0) };
+  return { n: 0, x: new Float32Array(0), y: new Float32Array(0), z: new Float32Array(0), r: new Float32Array(0), flows: [] };
 }
 
 const clamp = (v: number, a: number, b: number) => (v < a ? a : v > b ? b : v);
 const depthOf = (z: number) => clamp((z + 1.25) / 2.5, 0, 1);
 
 export function sceneUnit(w: number, h: number, form: Scene['form'], zoom: number) {
-  return Math.min(w, h) * (form === 'sphere' ? 0.37 : 0.34) * zoom;
+  // Narrow (phone) stages: the width is the constraint, so use more of it.
+  const k = w < 560 ? (form === 'sphere' ? 0.4 : 0.4) : form === 'sphere' ? 0.32 : 0.35;
+  return Math.min(w, h) * k * zoom;
 }
 
 export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj: Projection): Projection {
@@ -139,7 +152,8 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
   ctx.globalAlpha = 1;
   ctx.clearRect(0, 0, w, h);
 
-  const cx = w / 2;
+  // Wide stages: nudge the scene right, away from the HUD and legend on the left.
+  const cx = w / 2 + (w > 900 ? w * 0.035 : 0);
   const cy = h / 2;
   const unit = sceneUnit(w, h, scene.form, cam.zoom);
   const cyw = Math.cos(cam.yaw), syw = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
@@ -162,37 +176,134 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
   }
   proj.n = n;
   const sizeK = clamp(Math.min(w, h) / 820, 0.72, 1.2) * (0.7 + 0.3 * cam.zoom);
-  const t = v.time;
   for (let i = 0; i < n; i++) {
     const nd = nodes[i];
     const [x, y, z, k] = project(nd.p);
     proj.x[i] = x;
     proj.y[i] = y;
     proj.z[i] = z;
-    let r = nd.base * sizeK * k;
-    if (v.animate && nd.pulse) r *= 1 + 0.16 * (0.5 + 0.5 * Math.sin(t / 380 + i * 1.7));
-    proj.r[i] = r;
+    proj.r[i] = nd.base * sizeK * k;
   }
   const { x: X, y: Y, z: Z, r: R } = proj;
   const sel = v.related;
 
-  /* 1. decorative dust (burst only, no data) */
+  /* 0. sphere body: a faint glass ball so the surface reads as a volume (no data) */
+  if (scene.form === 'sphere') {
+    const k0 = DIST / Math.sqrt(DIST * DIST - 1);
+    const rad = unit * k0;
+    const grd = ctx.createRadialGradient(cx - rad * 0.25, cy - rad * 0.3, rad * 0.1, cx, cy, rad);
+    if (dark) {
+      grd.addColorStop(0, rgba(pal.accent, 0.1));
+      grd.addColorStop(0.7, rgba(pal.accent, 0.04));
+      grd.addColorStop(1, rgba(pal.accent, 0.12));
+    } else {
+      grd.addColorStop(0, rgba(pal.raised, 0.9));
+      grd.addColorStop(0.75, rgba(pal.raised, 0.5));
+      grd.addColorStop(1, rgba(pal.line, 0.55));
+    }
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = rgba(dark ? pal.accent : pal.line, dark ? 0.22 : 0.9);
+    ctx.stroke();
+  }
+
+  /* 1. decorative dust (burst only, no data): faint radial streaks, batched by colour and depth */
   const dust = scene.dust;
   if (dust && dust.count) {
     ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
-    let cur = -1;
-    const base = dark ? 0.5 : 0.22;
-    for (let i = 0; i < dust.count; i++) {
-      const arm = dust.arm[i];
-      if (arm !== cur) {
-        cur = arm;
-        ctx.fillStyle = arm === 255 ? scene.dustNeutralCss : scene.dustCss[arm % scene.dustCss.length];
+    ctx.lineCap = 'round';
+    const base = dark ? 0.55 : 0.3;
+    for (let band = 0; band < 3; band++) {
+      ctx.globalAlpha = base * [0.35, 0.65, 1][band];
+      let cur = -1;
+      let open = false;
+      for (let i = 0; i < dust.count; i++) {
+        const o = i * 3;
+        const [x, y, z, k] = project(dust.xyz, o);
+        const b = z < -0.4 ? 0 : z < 0.4 ? 1 : 2;
+        if (b !== band) continue;
+        const arm = dust.arm[i];
+        if (arm !== cur) {
+          if (open) ctx.stroke();
+          cur = arm;
+          ctx.strokeStyle = arm === 255 ? scene.dustNeutralCss : scene.dustCss[arm % scene.dustCss.length];
+          ctx.lineWidth = dark ? 0.9 : 0.8;
+          ctx.beginPath();
+          open = true;
+        }
+        const f = 1 + dust.len[i];
+        const e = [dust.xyz[o] * f, dust.xyz[o + 1] * f, dust.xyz[o + 2] * f] as Vec3;
+        const [x2, y2] = project(e);
+        ctx.moveTo(x, y);
+        ctx.lineTo(x2 + (x2 === x && y2 === y ? 0.5 * k : 0), y2);
       }
-      const [x, y, z, k] = project(dust.xyz, i * 3);
-      const s = dust.size[i] * k;
-      ctx.globalAlpha = dust.alpha[i] * base * (0.35 + 0.65 * depthOf(z));
-      ctx.fillRect(x - s / 2, y - s / 2, s, s);
+      if (open) ctx.stroke();
     }
+    ctx.lineCap = 'butt';
+  }
+
+  /* 1b. one particle per real event of the period (burst): a head and a short trail toward the core */
+  const ev = scene.events;
+  if (ev && ev.count) {
+    ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
+    ctx.lineCap = 'round';
+    const hx = new Float32Array(ev.count);
+    const hy = new Float32Array(ev.count);
+    const hb = new Uint8Array(ev.count);
+    const hs = new Float32Array(ev.count);
+    const tmp: Vec3 = [0, 0, 0];
+    for (let band = 0; band < 3; band++) {
+      const bandA = [0.35, 0.65, 1][band] * (sel ? 0.45 : 1);
+      // trails
+      ctx.lineWidth = dark ? 1 : 0.9;
+      let cur = -1;
+      let open = false;
+      for (let i = 0; i < ev.count; i++) {
+        const o = i * 3;
+        if (band === 0) {
+          const [x, y, z, k] = project(ev.xyz, o);
+          hx[i] = x;
+          hy[i] = y;
+          hb[i] = z < -0.4 ? 0 : z < 0.4 ? 1 : 2;
+          hs[i] = ev.size[i] * k;
+        }
+        if (hb[i] !== band) continue;
+        const c = ev.colour[i];
+        if (c !== cur) {
+          if (open) ctx.stroke();
+          cur = c;
+          ctx.strokeStyle = scene.eventCss[c] ?? scene.dustNeutralCss;
+          ctx.globalAlpha = bandA * (dark ? 0.32 : 0.22);
+          ctx.beginPath();
+          open = true;
+        }
+        const f = 0.9;
+        tmp[0] = ev.xyz[o] * f;
+        tmp[1] = ev.xyz[o + 1] * f;
+        tmp[2] = ev.xyz[o + 2] * f;
+        const [tx, ty] = project(tmp);
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(hx[i], hy[i]);
+      }
+      if (open) ctx.stroke();
+      // heads
+      cur = -1;
+      for (let i = 0; i < ev.count; i++) {
+        if (hb[i] !== band) continue;
+        const c = ev.colour[i];
+        if (c !== cur) {
+          cur = c;
+          ctx.fillStyle = scene.eventCss[c] ?? scene.dustNeutralCss;
+          ctx.globalAlpha = bandA * (c === 9 ? 1 : dark ? 0.9 : 0.7);
+        }
+        const sz = hs[i] * (dark ? 1.1 : 1.2);
+        ctx.fillRect(hx[i] - sz / 2, hy[i] - sz / 2, sz, sz);
+      }
+    }
+    ctx.lineCap = 'butt';
   }
 
   /* 2. catalog links (thin, discreet), batched by colour and depth band */
@@ -200,7 +311,7 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
   const hl = v.hover >= 0 ? v.hover : v.focus >= 0 ? v.focus : v.sel;
   if (v.showLinks && scene.links.length) {
     ctx.lineWidth = dark ? 0.7 : 0.8;
-    const bandAlpha = [0.4, 0.7, 1];
+    const bandAlpha = dark ? [0.35, 0.7, 1] : [0.25, 0.6, 1];
     for (let band = 0; band < 3; band++) {
       let cur = '';
       ctx.globalAlpha = bandAlpha[band] * (sel ? 0.55 : 1);
@@ -236,16 +347,15 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
     ctx.stroke();
   }
 
-  /* 3. real flows of the window: lit paths (+ travelling particles when motion is allowed) */
+  /* 3. real flows of the window: lit paths (particles are drawn by the overlay) */
+  proj.flows.length = 0;
   if (scene.flows.length) {
     ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
     ctx.lineCap = 'round';
-    const px: number[] = [];
-    const py: number[] = [];
     for (const f of scene.flows) {
-      const dim = sel && !(sel.has(f.a) && sel.has(f.b));
-      px.length = 0;
-      py.length = 0;
+      const dim = !!sel && !(sel.has(f.a) && sel.has(f.b));
+      const px: number[] = [];
+      const py: number[] = [];
       let zsum = 0;
       for (const p of f.path) {
         const [x, y, z] = project(p);
@@ -254,41 +364,14 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
         zsum += z;
       }
       const dz = depthOf(zsum / f.path.length);
-      ctx.globalAlpha = (dark ? 0.5 : 0.75) * (0.45 + 0.55 * dz) * (dim ? 0.3 : 1);
+      proj.flows.push({ px, py, dz, dim });
+      ctx.globalAlpha = (dark ? 0.55 : 0.6) * (0.35 + 0.65 * dz) * (dim ? 0.3 : 1);
       ctx.strokeStyle = f.css;
-      ctx.lineWidth = Math.min(3, 0.9 + Math.log2(1 + f.count) * 0.55);
+      ctx.lineWidth = Math.min(dark ? 3 : 2.4, (dark ? 0.9 : 0.8) + Math.log2(1 + f.count) * 0.5);
       ctx.beginPath();
       ctx.moveTo(px[0], py[0]);
       for (let i = 1; i < px.length; i++) ctx.lineTo(px[i], py[i]);
       ctx.stroke();
-      if (!v.animate || dim) continue;
-      const m = Math.min(4, 1 + Math.floor(Math.log2(f.count)));
-      const segs = px.length - 1;
-      for (let j = 0; j < m; j++) {
-        const ph = (t / 2600 + j / m + f.seed) % 1;
-        const fi = ph * segs;
-        const i0 = Math.floor(fi);
-        const fr = fi - i0;
-        const x = px[i0] + (px[Math.min(segs, i0 + 1)] - px[i0]) * fr;
-        const y = py[i0] + (py[Math.min(segs, i0 + 1)] - py[i0]) * fr;
-        const fade = Math.sin(Math.PI * ph);
-        if (dark) {
-          const s = 16 * (0.6 + 0.4 * dz);
-          ctx.globalAlpha = 0.9 * fade * (0.5 + 0.5 * v.glow);
-          ctx.drawImage(sprite(f.rgb), x - s / 2, y - s / 2, s, s);
-          ctx.globalAlpha = fade;
-          ctx.fillStyle = 'rgba(255,255,255,0.9)';
-          ctx.beginPath();
-          ctx.arc(x, y, 1.3, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          ctx.globalAlpha = 0.95 * fade;
-          ctx.fillStyle = f.css;
-          ctx.beginPath();
-          ctx.arc(x, y, 2.4, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
     }
     ctx.lineCap = 'butt';
   }
@@ -297,13 +380,23 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => Z[a] - Z[b]);
   if (dark && v.glow > 0) {
     ctx.globalCompositeOperation = 'lighter';
+    // Core bloom around the governor (the brightest point of the scene).
+    const gi = nodes.findIndex((nd) => nd.type === 'governor');
+    if (gi >= 0) {
+      const big = unit * (scene.form === 'burst' ? 1.5 : 0.9);
+      ctx.globalAlpha = 0.28 * (0.4 + v.glow) * (sel && !sel.has(gi) ? 0.4 : 1);
+      ctx.drawImage(sprite(pal.accent), X[gi] - big / 2, Y[gi] - big / 2, big, big);
+      const mid = unit * 0.32;
+      ctx.globalAlpha = 0.45 * (0.4 + v.glow);
+      ctx.drawImage(sprite(pal.type.governor), X[gi] - mid / 2, Y[gi] - mid / 2, mid, mid);
+    }
     for (const i of order) {
       const nd = nodes[i];
       if (nd.glow <= 0.02 && !nd.error) continue;
-      const g = (nd.error ? Math.max(0.5, nd.glow) : nd.glow) * v.glow;
+      const g = nd.glow * v.glow;
       const dz = depthOf(Z[i]);
-      const s = R[i] * (nd.type === 'governor' ? 13 : nd.type === 'task' ? 7 : 5 + 5 * g);
-      ctx.globalAlpha = Math.min(1, g * (0.3 + 0.7 * dz) * (sel && !sel.has(i) ? 0.25 : 1));
+      const s = R[i] * (nd.type === 'governor' ? 20 : nd.type === 'task' ? 8 : 7 + 7 * g);
+      ctx.globalAlpha = Math.min(1, (nd.error ? Math.max(0.5, nd.glow) : nd.glow) * (0.45 + 0.55 * dz) * (0.35 + v.glow) * (sel && !sel.has(i) ? 0.25 : 1));
       ctx.drawImage(sprite(nd.error ? pal.error : nd.color), X[i] - s / 2, Y[i] - s / 2, s, s);
     }
   }
@@ -315,7 +408,7 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
     const dz = depthOf(Z[i]);
     const faded = sel && !sel.has(i) ? 0.3 : 1;
     const r = R[i];
-    ctx.globalAlpha = (dark ? 0.3 + 0.7 * dz : 0.5 + 0.5 * dz) * faded;
+    ctx.globalAlpha = (dark ? 0.3 + 0.7 * dz : 0.3 + 0.7 * dz) * faded;
     ctx.beginPath();
     ctx.arc(X[i], Y[i], Math.max(0.6, r), 0, Math.PI * 2);
     if (dark) {
@@ -407,6 +500,81 @@ export function draw(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj:
   }
   ctx.globalAlpha = 1;
   return proj;
+}
+
+/**
+ * Overlay layer (separate canvas above the base): only what moves — particles
+ * travelling on REAL flows and breathing rings on busy agents / running tasks.
+ * Erases just the rectangles it painted last time, so a frame costs very little.
+ */
+export function drawOverlay(ctx: CanvasRenderingContext2D, scene: Scene, v: View, proj: Projection, st: OverlayState) {
+  const { dpr, pal } = v;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+  const r0 = st.rects;
+  for (let i = 0; i < r0.length; i += 4) ctx.clearRect(r0[i], r0[i + 1], r0[i + 2], r0[i + 3]);
+  r0.length = 0;
+  if (!v.animate) return;
+  const dark = pal.dark;
+  const t = v.time;
+  const mark = (x: number, y: number, s: number) => r0.push(x - s - 2, y - s - 2, 2 * s + 4, 2 * s + 4);
+
+  ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
+  scene.flows.forEach((f, fi) => {
+    const pf = proj.flows[fi];
+    if (!pf || pf.dim || pf.px.length < 2) return;
+    const m = Math.min(4, 1 + Math.floor(Math.log2(f.count)));
+    const segs = pf.px.length - 1;
+    for (let j = 0; j < m; j++) {
+      const ph = (t / 2600 + j / m + f.seed) % 1;
+      const fi2 = ph * segs;
+      const i0 = Math.floor(fi2);
+      const fr = fi2 - i0;
+      const i1 = Math.min(segs, i0 + 1);
+      const x = pf.px[i0] + (pf.px[i1] - pf.px[i0]) * fr;
+      const y = pf.py[i0] + (pf.py[i1] - pf.py[i0]) * fr;
+      const fade = Math.sin(Math.PI * ph);
+      if (dark) {
+        const s = 16 * (0.6 + 0.4 * pf.dz);
+        ctx.globalAlpha = 0.9 * fade * (0.5 + 0.5 * v.glow);
+        ctx.drawImage(sprite(f.rgb), x - s / 2, y - s / 2, s, s);
+        ctx.globalAlpha = fade;
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.beginPath();
+        ctx.arc(x, y, 1.3, 0, Math.PI * 2);
+        ctx.fill();
+        mark(x, y, s / 2);
+      } else {
+        ctx.globalAlpha = 0.95 * fade;
+        ctx.fillStyle = f.css;
+        ctx.beginPath();
+        ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+        ctx.fill();
+        mark(x, y, 3);
+      }
+    }
+  });
+
+  // Status pulses: a ring that expands and fades (real status only).
+  ctx.globalCompositeOperation = 'source-over';
+  const sel = v.related;
+  for (let i = 0; i < proj.n; i++) {
+    const nd = scene.nodes[i];
+    if (!nd.pulse || (sel && !sel.has(i))) continue;
+    const dz = depthOf(proj.z[i]);
+    if (dz < 0.15) continue;
+    const ph = (t / 1700 + i * 0.37) % 1;
+    const rr = proj.r[i] + 1.5 + (nd.type === 'task' ? 4 : 8) * ph;
+    ctx.globalAlpha = (1 - ph) * (dark ? 0.75 : 0.6) * (0.4 + 0.6 * dz);
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = nd.css;
+    ctx.beginPath();
+    ctx.arc(proj.x[i], proj.y[i], rr, 0, Math.PI * 2);
+    ctx.stroke();
+    mark(proj.x[i], proj.y[i], rr + 1);
+  }
+  ctx.globalAlpha = 1;
 }
 
 /** Index of the node under (mx, my), preferring hubs and nodes nearer the viewer. */

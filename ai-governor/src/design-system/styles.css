@@ -302,7 +302,7 @@ input[type='color'] { width: 34px; height: 28px; padding: 0; border: 1px solid v
 .demo-banner { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px; border-radius: 999px; font-size: 0.76rem; font-weight: 650; color: color-mix(in oklab, var(--nat-demo) 78%, var(--c-ink)); background: repeating-linear-gradient(135deg, color-mix(in oklab, var(--nat-demo) 14%, var(--c-raised)) 0 6px, var(--c-raised) 6px 12px); white-space: nowrap; }
 .replay-banner { color: color-mix(in oklab, var(--st-waiting) 70%, var(--c-ink)); background: color-mix(in oklab, var(--st-waiting) 16%, var(--c-raised)); }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--st-validating); box-shadow: 0 0 0 3px color-mix(in oklab, var(--st-validating) 22%, transparent); }
-html:is([data-motion='ambient'], [data-motion='subtle']) .live-dot { animation: live-pulse 2s steps(4, jump-none) infinite; }
+html[data-motion='ambient'] .live-dot { animation: live-pulse 2s steps(4, jump-none) infinite; }
 @keyframes live-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--st-validating) 0%, transparent); } }
 
 /* ---------- tables ---------- */
