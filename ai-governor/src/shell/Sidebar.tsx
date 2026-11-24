@@ -174,14 +174,24 @@ export function MobileNav({ pendingDecisions }: { pendingDecisions: number }) {
     <nav className="mobile-nav" aria-label="Navigation rapide">
       {MOBILE.map(({ route: r, label, icon: Icon }) => {
         const current = r === 'decisions' ? drawer === 'decisions' : route === r && drawer !== 'decisions';
+        // Tapping "Vue" while a view is already shown opens the launcher: on a phone,
+        // juggling between presentations stays one tap away, even in immersive views.
+        const opensLauncher = r === 'stage' && current;
         return (
           <button
             key={r}
             type="button"
             className="mobile-nav__item"
             aria-current={current ? 'page' : undefined}
-            aria-label={r === 'decisions' ? `${label}, ${pendingDecisions} en attente` : label}
-            onClick={() => (r === 'decisions' ? ui.set((s) => ({ drawer: s.drawer === 'decisions' ? null : 'decisions' })) : ui.set({ route: r, drawer: null }))}
+            aria-haspopup={opensLauncher ? 'dialog' : undefined}
+            aria-label={r === 'decisions' ? `${label}, ${pendingDecisions} en attente` : opensLauncher ? 'Vue, changer de vue' : label}
+            onClick={() =>
+              r === 'decisions'
+                ? ui.set((s) => ({ drawer: s.drawer === 'decisions' ? null : 'decisions' }))
+                : opensLauncher
+                  ? ui.set({ launcherOpen: true })
+                  : ui.set({ route: r, drawer: null })
+            }
           >
             <Icon size={20} />
             <span className="mobile-nav__label">{label}</span>

@@ -60,14 +60,17 @@ export function SceneLabels({
   const live = useRef(labels);
   live.current = labels;
   const sizes = useRef(new Map<string, { w: number; h: number }>());
+  const placeRef = useRef<(() => void) | null>(null);
 
-  // measure once per content change
+  // Measure once per content change, then re-place the labels directly: new text
+  // does not need a WebGL frame (the camera did not move).
   useLayoutEffect(() => {
     const el = layer.current;
     if (!el) return;
     sizes.current.clear();
     el.querySelectorAll<HTMLElement>('[data-label-id]').forEach((n) => sizes.current.set(n.dataset.labelId!, { w: n.offsetWidth, h: n.offsetHeight }));
-    stage?.invalidate();
+    if (placeRef.current) placeRef.current();
+    else stage?.invalidate();
   }, [labels, stage]);
 
   useEffect(() => {
@@ -117,9 +120,13 @@ export function SceneLabels({
         n.style.zIndex = String(10 + Math.round((1 - it.depth) * 1000));
       }
     };
+    placeRef.current = place;
     const off = stage.onFrame(place);
     stage.invalidate();
-    return off;
+    return () => {
+      off();
+      placeRef.current = null;
+    };
   }, [stage, farDistance]);
 
   return (
@@ -166,6 +173,7 @@ export function Anchored({ stage, position, children, offsetY = 12, className, s
   const ref = useRef<HTMLDivElement>(null);
   const posRef = useRef(position);
   posRef.current = position;
+  const placeRef = useRef<(() => void) | null>(null);
   useEffect(() => {
     if (!stage) return;
     const out = { x: 0, y: 0, visible: false, depth: 0 };
@@ -187,12 +195,18 @@ export function Anchored({ stage, position, children, offsetY = 12, className, s
       if (y < 8) y = out.y + offsetY + 24;
       el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
     };
+    placeRef.current = place;
     const off = stage.onFrame(place);
     stage.invalidate();
-    return off;
+    return () => {
+      off();
+      placeRef.current = null;
+    };
   }, [stage, offsetY]);
+  // A new anchor point is placed directly; no WebGL frame needed.
   useLayoutEffect(() => {
-    stage?.invalidate();
+    if (placeRef.current) placeRef.current();
+    else stage?.invalidate();
   }, [position, stage]);
   return (
     <div ref={ref} className={`t3-anchored ${className ?? ''}`} style={{ visibility: 'hidden', ...style }}>

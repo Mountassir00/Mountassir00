@@ -85,7 +85,10 @@ try {
 
   for (let i = 0; i < EXPERIENCES.length; i++) {
     const [id, name, renderer] = EXPERIENCES[i];
-    const B = renderer === 'webgl' ? BUDGET_3D : BUDGET;
+    // Leaving a WebGL scene includes releasing its context; with the software rasteriser used here
+    // (SwiftShader) the frame in flight alone takes ~300 ms, so the 3D switch budget applies.
+    const afterWebgl = i > 0 && EXPERIENCES[i - 1][2] === 'webgl';
+    const B = renderer === 'webgl' || afterWebgl ? BUDGET_3D : BUDGET;
     await page.keyboard.press('g');
     await page.getByRole('textbox', { name: 'Rechercher une vue' }).fill(name);
     const t0 = Date.now();
@@ -118,7 +121,7 @@ try {
     const cpu = Math.round(((m1.TaskDuration - m0.TaskDuration) / (m1.Timestamp - m0.Timestamp)) * 100);
     await cdp.detach();
     results.perf.push({ id, wallSwitchMs: wall, ...sample, cpuBusyPct: cpu });
-    check(`${name} : bascule < ${B.switchMs} ms`, wall < B.switchMs, `${wall} ms (mesure interne ${sample.switchMs ?? '—'} ms)`);
+    check(`${name} : bascule < ${B.switchMs} ms${afterWebgl && renderer !== 'webgl' ? ' (depuis une scène 3D)' : ''}`, wall < B.switchMs, `${wall} ms (mesure interne ${sample.switchMs ?? '—'} ms)`);
     check(`${name} : DOM < ${B.domNodes} nœuds`, sample.dom < B.domNodes, `${sample.dom}`);
     check(`${name} : tâches longues ≤ ${B.longTasks} sur 3 s`, sample.long <= B.longTasks, `${sample.long}, CPU ${cpu} %`);
     await page.screenshot({ path: join(OUT, `desktop-${id}.png`) });
@@ -216,7 +219,8 @@ try {
   pm.on('pageerror', (e) => errors.push(`[mobile] ${e.message}`));
   await pm.goto(URL, { waitUntil: 'networkidle' });
   for (const [id, name] of EXPERIENCES) {
-    await pm.getByRole('button', { name: 'Toutes les vues (G)' }).click();
+    // The bottom bar's current "Vue" tab opens the launcher in every view (immersive ones hide the header switcher).
+    await pm.locator('.mobile-nav').getByRole('button', { name: 'Vue, changer de vue' }).click();
     await pm.getByRole('textbox', { name: 'Rechercher une vue' }).fill(name);
     await pm.locator('.launcher__open').first().click();
     await pm.waitForFunction((n) => !document.querySelector('.stage__loading') && document.querySelector('main')?.getAttribute('aria-label')?.includes(n), name, { timeout: 8000 });

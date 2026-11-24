@@ -97,6 +97,8 @@ export function SpatialScene3D({
       .sort((a, b) => (b.endedAt ?? 0) - (a.endedAt ?? 0))[0];
     return { active, pendingInstructions: pending, lastAudit: last?.endedAt ? fmtRelative(last.endedAt, now) : 'aucun sur la période' };
   }, [flows, state, now]);
+  /** What the boards and flows last showed: redraw only when it changes (the clock ticks every second). */
+  const drawn = useRef({ boards: '', flowsVisible: '' });
   const boardData = useRef({ kanban, arch, catalog });
   boardData.current = { kanban, arch, catalog };
 
@@ -284,7 +286,7 @@ export function SpatialScene3D({
       const b = center(p.to);
       if (!a || !b) continue;
       const color = p.failed > 0 && p.failed >= p.count / 2 ? FLOW_COLORS.failed : p.llm >= p.tools && p.llm >= p.data ? FLOW_COLORS.llm : p.tools >= p.data ? FLOW_COLORS.tools : FLOW_COLORS.data;
-      specs.push({ id: p.key, points: routeBetween(a, b, { bend: activeKeys.has(`${p.to}>${p.from}`) ? 0.22 : 0.12 }), color, active: true, level: Math.min(1, 0.35 + Math.log10(1 + p.count) / 1.6) });
+      specs.push({ id: p.key, points: routeBetween(a, b, { bend: activeKeys.has(`${p.to}>${p.from}`) ? 0.22 : 0.12 }), color, active: true, level: Math.round(5 * Math.min(1, 0.35 + Math.log10(1 + p.count) / 1.6)) / 5 }); // quantised: one more call does not rebuild the tubes
     }
     if (!simplified) {
       // idle "pipes": catalog edges between stations without flows in the window
@@ -303,12 +305,22 @@ export function SpatialScene3D({
       }
     }
     // New flows only need a redraw: a burst (figures moving at eco) is reserved for status changes.
-    L.flows.set(specs);
-    L.flows.setVisible(showFlows);
-    // boards
-    for (const b of L.scene.prims.values()) b.board?.userData.redraw();
+    let redraw = L.flows.set(specs);
+    const visKey = `${buildVersion}:${showFlows}`;
+    if (drawn.current.flowsVisible !== visKey) {
+      drawn.current.flowsVisible = visKey;
+      L.flows.setVisible(showFlows);
+      redraw = true;
+    }
+    // boards: redrawn only when what they show changed
+    const sig = JSON.stringify([kanban, [...arch.active].sort(), arch.pendingInstructions, arch.lastAudit, buildVersion]);
+    if (sig !== drawn.current.boards) {
+      drawn.current.boards = sig;
+      for (const b of L.scene.prims.values()) b.board?.userData.redraw();
+      redraw = true;
+    }
     if (changed) stage.burst(1600);
-    else stage.invalidate();
+    else if (redraw) stage.invalidate();
   }, [stage, buildVersion, state, placements, flows, showFlows, simplified, catalog, quality.motion, quality.reducedMotion, kanban, arch]);
 
   /* ---------------- selection halo ---------------- */

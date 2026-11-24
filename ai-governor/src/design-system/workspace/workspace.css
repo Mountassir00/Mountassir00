@@ -55,7 +55,7 @@
 .term__tag { display: inline-flex; align-items: center; gap: 6px; color: var(--tag); flex: none; min-width: 96px; }
 .term__tag i { width: 7px; height: 7px; border-radius: 50%; background: var(--tag); }
 .term__lvl { flex: none; color: var(--c-ink-muted); }
-.term__line[data-level='success'] .term__lvl { color: var(--st-validating); }
+.term__line[data-level='success'] .term__lvl { color: color-mix(in srgb, var(--st-validating) 78%, var(--c-ink)); }
 .term__line[data-level='warn'] .term__lvl { color: var(--st-waiting); }
 .term__line[data-level='error'] .term__lvl, .term__line[data-level='error'] .term__text { color: var(--st-error); }
 .term__text { color: var(--c-ink-soft); overflow: hidden; text-overflow: ellipsis; }

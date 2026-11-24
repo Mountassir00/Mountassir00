@@ -39,6 +39,7 @@ export function ThreeStage({ quality, label, help = DEFAULT_3D_HELP, camera, env
   const host = useRef<HTMLDivElement>(null);
   const [stage, setStage] = useState<Stage3D | null>(null);
   const [failure, setFailure] = useState<null | 'unavailable' | 'lost' | 'error'>(null);
+  const [slow, setSlow] = useState<null | { reason: 'software' | 'slow'; shown: boolean }>(null);
   const helpId = useId();
   const cb = useRef({ onStage, onHover, onClick, onPalette });
   cb.current = { onStage, onHover, onClick, onPalette };
@@ -61,6 +62,8 @@ export function ThreeStage({ quality, label, help = DEFAULT_3D_HELP, camera, env
     s.onHover = (h) => cb.current.onHover?.(h);
     s.onClick = (h, e) => cb.current.onClick?.(h, e);
     s.onContextLost = () => setFailure('lost');
+    s.onSlow = (reason) => setSlow({ reason, shown: true });
+    if (s.slow) setSlow({ reason: s.slow, shown: true });
     const offTheme = observeTheme(() => {
       const p = readScenePalette();
       s.setPalette(p);
@@ -84,6 +87,13 @@ export function ThreeStage({ quality, label, help = DEFAULT_3D_HELP, camera, env
     stage?.canvas.setAttribute('aria-label', label);
   }, [stage, label]);
 
+  // The notice stays readable a few seconds, then remains for screen readers only.
+  useEffect(() => {
+    if (!slow?.shown) return;
+    const t = setTimeout(() => setSlow((v) => (v ? { ...v, shown: false } : v)), 8000);
+    return () => clearTimeout(t);
+  }, [slow?.shown]);
+
   return (
     <div ref={host} className={`t3-stage ${className ?? ''}`}>
       <p id={helpId} className="sr-only">
@@ -104,6 +114,13 @@ export function ThreeStage({ quality, label, help = DEFAULT_3D_HELP, camera, env
         </div>
       )}
       {stage && !failure && (typeof children === 'function' ? children(stage) : children)}
+      {slow && !failure && (
+        <p className={slow.shown ? 't3-note' : 'sr-only'} role="status">
+          {slow.reason === 'software'
+            ? 'Rendu 3D sans accélération graphique : la scène ne s’anime qu’aux changements d’état, pour ménager le processeur.'
+            : 'Rendu 3D trop lent sur cet appareil : animations limitées aux changements d’état.'}
+        </p>
+      )}
     </div>
   );
 }

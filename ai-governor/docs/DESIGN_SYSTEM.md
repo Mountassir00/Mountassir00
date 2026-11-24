@@ -86,6 +86,7 @@ Toutes les présentations lisent le même journal, la même sélection, la même
 - `html[data-anim=paused]` : tout est suspendu (onglet masqué, inactivité).
 - **Horloge partagée** (`useAnimationFrame`) : une seule boucle pour toute l'application, plafonnée par le niveau de qualité (15 / 30 / 60 images/s), active seulement en mouvement `subtle` ou `ambient` et seulement tant qu'une vue y est abonnée. Les scènes 3D ne redessinent qu'à la demande.
 - La pastille « En direct » ne pulse qu'en haute qualité : en standard elle reste fixe, pour ne rien coûter au repos.
+- **Sobriété adaptative en 3D** : sans accélération graphique (rendu logiciel) ou si la boucle ne tient pas sa cadence, une scène 3D ne s'anime plus qu'aux changements d'état réels, rend en ratio de pixels 1 et sans ombres portées ; un message l'annonce.
 
 ## Mise en page
 

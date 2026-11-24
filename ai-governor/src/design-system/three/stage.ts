@@ -49,7 +49,18 @@ export interface StageStats {
   shadows: boolean;
   environment: boolean;
   looping: boolean;
+  /** Adaptive sobriety: why continuous motion was turned off (null = not throttled). */
+  slow: SlowReason;
 }
+
+/**
+ * Why a stage limits itself to state-change animations:
+ *  - 'software': WebGL runs on a CPU rasteriser (SwiftShader, llvmpipe…)
+ *  - 'slow': the continuous loop could not keep up (frames far apart)
+ */
+export type SlowReason = null | 'software' | 'slow';
+
+const SOFTWARE_GL = /swiftshader|llvmpipe|softpipe|software|basic render|mesa offscreen/i;
 
 export interface StageOptions {
   quality: QualitySettings;
@@ -112,7 +123,11 @@ export class Stage3D {
   private selectHalo: Mesh;
   private haloTargets: { hover: Object3D | null; select: Object3D | null } = { hover: null, select: null };
   private looping = false;
+  private slowReason: SlowReason = null;
+  private gaps: number[] = [];
   size = { w: 1, h: 1 };
+  /** Called once when the stage throttles itself (software GL or a loop that can't keep up). */
+  onSlow: (reason: Exclude<SlowReason, null>) => void = () => undefined;
   /** Picking callbacks (set by the React wrapper or the view). */
   onHover: (hit: PickHit | null) => void = () => undefined;
   onClick: (hit: PickHit | null, e: PointerEvent) => void = () => undefined;
@@ -138,6 +153,7 @@ export class Stage3D {
     canvas.setAttribute('aria-label', opts.label ?? 'Scène 3D');
     if (opts.describedBy) canvas.setAttribute('aria-describedby', opts.describedBy);
     canvas.addEventListener('webglcontextlost', this.handleLost, false);
+    if (SOFTWARE_GL.test(rendererName(r))) this.slowReason = 'software';
     container.appendChild(canvas);
     // Dev-only handle for perf measurement scripts (stats(), renderNow()).
     if (import.meta.env.DEV) (canvas as HTMLCanvasElement & { __stage?: Stage3D }).__stage = this;
@@ -210,6 +226,20 @@ export class Stage3D {
 
   /* ---------------- motion policy ---------------- */
 
+  /**
+   * Motion actually used. A throttled stage (software rendering, or a loop
+   * that could not keep up) only animates real state changes, like "eco":
+   * a CPU rasteriser would otherwise burn a core for decorative motion.
+   */
+  get motion(): QualitySettings['motion'] {
+    const m = this.quality.motion;
+    return this.slowReason && (m === 'subtle' || m === 'ambient') ? 'state' : m;
+  }
+
+  get slow(): SlowReason {
+    return this.slowReason;
+  }
+
   get suspended(): boolean {
     return this.quality.suspended || document.documentElement.dataset.anim === 'paused' || document.visibilityState === 'hidden';
   }
@@ -222,7 +252,7 @@ export class Stage3D {
    */
   amplitude(kind: MotionKind): number {
     if (this.suspended) return 0;
-    const m = this.quality.motion;
+    const m = this.motion;
     if (m === 'none') return 0;
     if (m === 'state') {
       const now = performance.now();
@@ -236,7 +266,7 @@ export class Stage3D {
 
   /** Short animation window after a real state change (the only motion allowed at "eco"). */
   burst(ms = 1400) {
-    if (this.quality.motion === 'none') return this.invalidate();
+    if (this.motion === 'none') return this.invalidate();
     const now = performance.now();
     this.burstStart = now;
     this.burstUntil = Math.max(this.burstUntil, now + ms);
@@ -291,8 +321,10 @@ export class Stage3D {
     const info: FrameInfo = { t, dt, calls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, ms };
     for (const l of this.frameListeners) l(info);
 
-    const bursting = performance.now() < this.burstUntil && this.quality.motion !== 'none' && !this.suspended;
-    const continuous = wants && !this.suspended && this.quality.motion !== 'none';
+    const bursting = performance.now() < this.burstUntil && this.motion !== 'none' && !this.suspended;
+    const continuous = wants && !this.suspended && this.motion !== 'none';
+    if (continuous && !moving && !bursting) this.watchPace(now);
+    else this.gaps.length = 0;
     this.looping = moving || bursting || continuous;
     if (moving) this.raf = requestAnimationFrame(this.frame);
     else if (bursting || continuous) {
@@ -304,6 +336,28 @@ export class Stage3D {
       }, wait);
     }
   };
+
+  private paceFrom = 0;
+  /** Continuous loop far slower than its cap (≥ 3× the frame budget, 12 frames running) → throttle. */
+  private watchPace(now: number) {
+    if (this.slowReason || document.visibilityState !== 'visible') return;
+    if (this.paceFrom) this.gaps.push(now - this.paceFrom);
+    this.paceFrom = now;
+    if (this.gaps.length < 12) return;
+    if (this.gaps.length > 12) this.gaps.shift();
+    const sorted = [...this.gaps].sort((a, b) => a - b);
+    const budget = 1000 / Math.max(1, this.quality.fpsCap || 30);
+    if (sorted[6] > Math.max(120, budget * 3)) this.throttle('slow');
+  }
+
+  private throttle(reason: Exclude<SlowReason, null>) {
+    if (this.slowReason) return;
+    this.slowReason = reason;
+    this.gaps.length = 0;
+    this.applyQuality();
+    this.onSlow(reason);
+    this.invalidate();
+  }
 
   /** Renders immediately (synchronously), e.g. before reading stats. */
   renderNow() {
@@ -326,8 +380,8 @@ export class Stage3D {
   private applyQuality() {
     const q = this.quality;
     const r = this.renderer;
-    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, PIXEL_RATIO_CAP[q.level]));
-    const shadows = q.shadows && q.level !== 'minimal' && q.level !== 'eco';
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.slowReason ? 1 : PIXEL_RATIO_CAP[q.level]));
+    const shadows = q.shadows && q.level !== 'minimal' && q.level !== 'eco' && !this.slowReason;
     if (r.shadowMap.enabled !== shadows) {
       r.shadowMap.enabled = shadows;
       this.scene.traverse((o) => {
@@ -518,6 +572,7 @@ export class Stage3D {
       shadows: this.renderer.shadowMap.enabled,
       environment: !!this.envTex,
       looping: this.looping,
+      slow: this.slowReason,
     };
   }
 
@@ -630,3 +685,16 @@ export class ContactShadows {
   }
 }
 
+
+/** Name of the GPU/rasteriser behind a renderer ("WebKit WebGL" when the browser masks it). */
+function rendererName(r: WebGLRenderer): string {
+  try {
+    const gl = r.getContext();
+    const plain = String(gl.getParameter(gl.RENDERER) ?? '');
+    if (plain && !/^webkit webgl$/i.test(plain)) return plain;
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    return dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) ?? plain) : plain;
+  } catch {
+    return '';
+  }
+}

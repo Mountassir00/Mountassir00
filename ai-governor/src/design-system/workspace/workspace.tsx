@@ -76,12 +76,19 @@ export function DockLayout({
     onSizesRef.current?.(s);
   }, [s]);
 
+  const limits = (which: 'left' | 'right' | 'bottom') => {
+    const panel = which === 'left' ? left : which === 'right' ? right : bottom;
+    return { min: panel?.min ?? (which === 'bottom' ? 90 : 180), max: panel?.max ?? (which === 'bottom' ? 520 : 560) };
+  };
+  /** A focusable separator is a range widget: it must expose its value. */
+  const gutterAria = (which: 'left' | 'right' | 'bottom') => {
+    const { min, max } = limits(which);
+    return { 'aria-valuenow': Math.round(s[which]), 'aria-valuemin': min, 'aria-valuemax': max };
+  };
   const drag = (which: 'left' | 'right' | 'bottom') => (e: React.PointerEvent) => {
     e.preventDefault();
     const start = { x: e.clientX, y: e.clientY, v: s[which] };
-    const panel = which === 'left' ? left : which === 'right' ? right : bottom;
-    const min = panel?.min ?? (which === 'bottom' ? 90 : 180);
-    const max = panel?.max ?? (which === 'bottom' ? 520 : 560);
+    const { min, max } = limits(which);
     const move = (ev: PointerEvent) => {
       const d = which === 'left' ? ev.clientX - start.x : which === 'right' ? start.x - ev.clientX : start.y - ev.clientY;
       update({ [which]: Math.max(min, Math.min(max, start.v + d)) } as Partial<DockSizes>);
@@ -98,7 +105,8 @@ export function DockLayout({
     const dir = which === 'bottom' ? (e.key === 'ArrowUp' ? 1 : e.key === 'ArrowDown' ? -1 : 0) : (e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0) * (which === 'right' ? -1 : 1);
     if (dir) {
       e.preventDefault();
-      update({ [which]: Math.max(90, s[which] + dir * step) } as Partial<DockSizes>);
+      const { min, max } = limits(which);
+      update({ [which]: Math.max(min, Math.min(max, s[which] + dir * step)) } as Partial<DockSizes>);
     }
   };
 
@@ -136,7 +144,7 @@ export function DockLayout({
               <PanelHead label={left!.label} onClose={() => update({ leftCollapsed: true })} />
               <div className="dock__panel-body">{left!.content}</div>
             </section>
-            <div className="dock__gutter" role="separator" aria-orientation="vertical" aria-label={`Redimensionner ${left!.label}`} tabIndex={0} onPointerDown={drag('left')} onKeyDown={keyResize('left')} />
+            <div className="dock__gutter" role="separator" aria-orientation="vertical" aria-label={`Redimensionner ${left!.label}`} tabIndex={0} {...gutterAria('left')} onPointerDown={drag('left')} onKeyDown={keyResize('left')} />
           </>
         )}
         <div className="dock__mid" style={{ gridTemplateRows: bottom && !s.bottomCollapsed ? `minmax(0, 1fr) 6px ${s.bottom}px` : 'minmax(0, 1fr)' }}>
@@ -162,7 +170,7 @@ export function DockLayout({
           </div>
           {bottom && !s.bottomCollapsed && (
             <>
-              <div className="dock__gutter dock__gutter--h" role="separator" aria-orientation="horizontal" aria-label={`Redimensionner ${bottom.label}`} tabIndex={0} onPointerDown={drag('bottom')} onKeyDown={keyResize('bottom')} />
+              <div className="dock__gutter dock__gutter--h" role="separator" aria-orientation="horizontal" aria-label={`Redimensionner ${bottom.label}`} tabIndex={0} {...gutterAria('bottom')} onPointerDown={drag('bottom')} onKeyDown={keyResize('bottom')} />
               <section className="dock__panel dock__panel--bottom" aria-label={bottom.label}>
                 <div className="dock__panel-body">{bottom.content}</div>
                 <button type="button" className="btn btn--sm btn--icon btn--ghost dock__collapse" onClick={() => update({ bottomCollapsed: true })} aria-label={`Masquer ${bottom.label}`}>
@@ -174,7 +182,7 @@ export function DockLayout({
         </div>
         {showRight && (
           <>
-            <div className="dock__gutter" role="separator" aria-orientation="vertical" aria-label={`Redimensionner ${right!.label}`} tabIndex={0} onPointerDown={drag('right')} onKeyDown={keyResize('right')} />
+            <div className="dock__gutter" role="separator" aria-orientation="vertical" aria-label={`Redimensionner ${right!.label}`} tabIndex={0} {...gutterAria('right')} onPointerDown={drag('right')} onKeyDown={keyResize('right')} />
             <section className="dock__panel" aria-label={right!.label}>
               <PanelHead label={right!.label} onClose={() => update({ rightCollapsed: true })} />
               <div className="dock__panel-body">{right!.content}</div>
@@ -386,7 +394,12 @@ export function LogTerminal({
             </div>
           ))}
         </div>
-        {aside && <aside className="term__aside">{aside}</aside>}
+        {aside && (
+          // Scrollable region: reachable with the keyboard.
+          <aside className="term__aside" tabIndex={0} aria-label="Détail">
+            {aside}
+          </aside>
+        )}
       </div>
     </div>
   );
