@@ -7,7 +7,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { RegistryEntry } from '@engine/registry';
 import { ROLE_LABEL } from '@core/commands';
 import { activeFilterCount, CATEGORY_LABEL, EMPTY_FILTERS, type EventCategory, type Filters } from '@core/selectors';
-import { IconBell, IconChevron, IconFilter, IconMenu, IconMoon, IconPresent, IconSearch, IconSun, Segmented } from '@ds';
+import { IconBell, IconChevron, IconFilter, IconGallery, IconMenu, IconMoon, IconPresent, IconSearch, IconSun, Segmented } from '@ds';
+import { quickList } from './Launcher';
 import { fmtTime, modelLabel, useGovernor } from '@sdk';
 import { registry } from './registryInstance';
 import { switchTo, togglePresentation } from './App';
@@ -32,7 +33,9 @@ export function Header({ entries, activeId, pendingDecisions, scheme }: { entrie
   const menuOpen = useUi((s) => s.menuOpen);
   const nFilters = activeFilterCount(filters);
   const active = entries.find((e) => e.id === activeId);
-  const views = entries.filter((e) => e.enabled && !e.hidden);
+  const favorites = useUi((s) => s.prefs.favorites);
+  const quick = quickList(entries, favorites);
+  const views = quick.filter((e, i) => favorites.includes(e.id) || e.id === activeId || i < 3).slice(0, 8);
   const title = route === 'stage' ? active?.manifest.name ?? 'Vue' : PAGE_TITLE[route];
   const dark = scheme === 'dark';
   const real = g.sources.some((s) => s.nature === 'real');
@@ -65,14 +68,20 @@ export function Header({ entries, activeId, pendingDecisions, scheme }: { entrie
         </div>
       </div>
 
-      {route === 'stage' && views.length > 1 && (
+      {route === 'stage' && (
         <div className="header__switch">
+          <button type="button" className="btn btn--raised" onClick={() => ui.set({ launcherOpen: true })} aria-label="Toutes les vues (G)" title="Toutes les vues (G)">
+            <IconGallery size={16} /> <span className="hide-mobile">Toutes</span> <span className="pill">{entries.filter((e) => e.enabled && !e.hidden).length}</span>
+          </button>
           <Segmented
             raised
             label="Changer d’expérience"
             value={activeId}
             onChange={(id) => switchTo(id)}
-            options={views.map((e, i) => ({ value: e.id, label: e.manifest.name, title: `${e.manifest.name} (touche ${i + 1})`, onIntent: () => registry.prefetch(e.baseId) }))}
+            options={views.map((e) => {
+              const k = quick.findIndex((x) => x.id === e.id);
+              return { value: e.id, label: e.manifest.name, title: `${e.manifest.name}${k < 9 ? ` (touche ${k + 1})` : ''}`, onIntent: () => registry.prefetch(e.baseId) };
+            })}
           />
         </div>
       )}

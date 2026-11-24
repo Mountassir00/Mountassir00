@@ -9,6 +9,7 @@ import {
   IconBuilder, IconChevron, IconClose, IconData, IconDecision, IconGallery, IconGovernor, IconMinus, IconPlus, IconSettings, IconSidebar, IconStage, IconStudio,
 } from '@ds';
 import { registry } from './registryInstance';
+import { quickList } from './Launcher';
 import { switchTo } from './App';
 import { setPrefs, ui, useUi, type Route } from './uiStore';
 
@@ -31,7 +32,10 @@ export function Sidebar({ entries, activeId, pendingDecisions }: { entries: Regi
   const menuOpen = useUi((s) => s.menuOpen);
   const drawer = useUi((s) => s.drawer);
   const [viewsOpen, setViewsOpen] = useState(true);
-  const views = entries.filter((e) => e.enabled && !e.hidden);
+  const favorites = useUi((s) => s.prefs.favorites);
+  const all = entries.filter((e) => e.enabled && !e.hidden);
+  const quick = quickList(entries, favorites);
+  const views = quick.filter((e) => favorites.includes(e.id) || e.id === activeId);
   const overlay = device !== 'desktop';
   const iconOnly = overlay ? !menuOpen : collapsed;
 
@@ -82,7 +86,7 @@ export function Sidebar({ entries, activeId, pendingDecisions }: { entries: Regi
         </button>
         {viewsOpen && (
           <div className="nav-sub" role="group" aria-label="Expériences">
-            {views.map((e, i) => (
+            {views.map((e) => (
               <button
                 key={e.id}
                 type="button"
@@ -97,15 +101,25 @@ export function Sidebar({ entries, activeId, pendingDecisions }: { entries: Regi
               >
                 <img className="nav-thumb" src={thumb(e.manifest.thumbnail)} alt="" />
                 <span className="nav-item__label">{e.manifest.name}</span>
-                {i < 9 && (
+                {quick.indexOf(e) < 9 && (
                   <span className="nav-item__end">
                     <span className="kbd" aria-hidden>
-                      {i + 1}
+                      {quick.indexOf(e) + 1}
                     </span>
                   </span>
                 )}
               </button>
             ))}
+            <button type="button" className="nav-item" onClick={() => ui.set({ launcherOpen: true, menuOpen: false })}>
+              <IconGallery size={16} />
+              <span className="nav-item__label">Toutes les vues</span>
+              <span className="nav-item__end">
+                <span className="kbd" aria-hidden>
+                  G
+                </span>
+              </span>
+            </button>
+            <span className="sr-only">{all.length} vues installées</span>
           </div>
         )}
         <button

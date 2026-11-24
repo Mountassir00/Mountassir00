@@ -52,7 +52,7 @@ export const DEFAULT_PREFS: Prefs = {
   themeId: 'auto',
   quality: 'auto',
   reducedMotion: 'system',
-  favorites: ['ai-office'],
+  favorites: ['control-center', 'spatial-workspace', 'kanban', 'ai-office', 'system-map'],
   hidden: [],
   disabled: [],
   overrides: {},

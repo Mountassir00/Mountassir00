@@ -18,7 +18,8 @@ const PERM_LABEL: Record<string, string> = {
 };
 
 const SHORTCUTS: Array<[string, string]> = [
-  ['1 à 9', 'Changer d’expérience'],
+  ['1 à 9', 'Ouvrir une vue (favoris d’abord)'],
+  ['G', 'Toutes les vues (lanceur)'],
   ['Ctrl+K ou /', 'Rechercher un agent, un département, une vue'],
   ['D', 'Centre de décision'],
   ['I', 'Inspecteur'],

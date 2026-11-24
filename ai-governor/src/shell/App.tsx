@@ -21,6 +21,7 @@ import { TitleBlock } from './TitleBlock';
 import { ConfirmDialog } from './ConfirmDialog';
 import { PerfHud } from './PerfHud';
 import { Search } from './Search';
+import { Launcher, quickList } from './Launcher';
 
 // Admin pages are split out: the stage only pays for what it shows.
 const Gallery = lazy(() => import('./Gallery').then((m) => ({ default: m.Gallery })));
@@ -178,7 +179,7 @@ function AppInner() {
         return;
       }
       if (isTyping(e) || e.metaKey || e.ctrlKey || e.altKey) return;
-      const visible = registry.entries(ui.get().prefs).filter((x) => x.enabled && !x.hidden);
+      const visible = quickList(registry.entries(ui.get().prefs), ui.get().prefs.favorites);
       if (/^[1-9]$/.test(e.key)) {
         const target = visible[Number(e.key) - 1];
         if (target) switchTo(target.id);
@@ -186,9 +187,11 @@ function AppInner() {
       else if (e.key === 'i' || e.key === 'I') ui.set((s) => ({ drawer: s.drawer === 'inspector' ? null : 'inspector' }));
       else if (e.key === 'l' || e.key === 'L') goLive();
       else if (e.key === '[') setPrefs((p) => ({ ...p, navCollapsed: !p.navCollapsed }));
+      else if (e.key === 'g' || e.key === 'G') ui.set((s) => ({ launcherOpen: !s.launcherOpen }));
       else if (e.key === 'p' || e.key === 'P') togglePresentation();
       else if (e.key === 'Escape') {
-        if (ui.get().presentation) togglePresentation(false);
+        if (ui.get().launcherOpen) ui.set({ launcherOpen: false });
+        else if (ui.get().presentation) togglePresentation(false);
         else ui.set((s) => (s.drawer ? { drawer: null } : { selection: null }));
       }
     };
@@ -243,6 +246,7 @@ function AppInner() {
         </div>
         <ConfirmDialog />
         <Search entries={entries} />
+        <Launcher entries={entries} activeId={entry?.id ?? active} />
         <div className="toasts" role="status" aria-live="polite">
           {toasts.map((t) => (
             <div key={t.id} className="toast" data-tone={t.tone}>
