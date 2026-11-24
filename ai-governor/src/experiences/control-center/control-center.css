@@ -19,17 +19,23 @@
 .cc-area--activity, .cc-area--decisions, .cc-area--ba, .cc-area--security { grid-column: span 6; }
 .cc-area--updates, .cc-area--skills, .cc-area--history { grid-column: span 4; }
 
-@container cc (max-width: 1180px) {
+/* Tablet / narrow desktop: two columns; the hero becomes a horizontal band (stack | actions). */
+@container cc (max-width: 1000px) {
   .cc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cc-area--hero, .cc-area--kpis, .cc-area--donut, .cc-area--minis, .cc-area--activity, .cc-area--decisions,
+  .cc-area--donut, .cc-area--minis, .cc-area--activity, .cc-area--decisions,
   .cc-area--ba, .cc-area--security, .cc-area--updates, .cc-area--skills { grid-column: span 1; }
-  .cc-area--chart, .cc-area--goals, .cc-area--history { grid-column: span 2; }
+  .cc-area--hero, .cc-area--kpis, .cc-area--chart, .cc-area--goals, .cc-area--history { grid-column: span 2; }
+  .cc-area--hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: end; }
+  .cc-area--hero .cc-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; align-self: stretch; align-content: center; }
 }
-@container cc (max-width: 720px) {
+@container cc (max-width: 640px) {
   .cc__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .cc__grid > * { grid-column: 1 / -1 !important; }
+  .cc-area--hero { grid-template-columns: minmax(0, 1fr); }
+  .cc-area--hero .cc-actions { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 0; }
   .cc-toolbar__mix { margin-left: 0; width: 100%; }
 }
+@media (max-width: 719px) { .cc { padding-inline: 12px; } }
 
 /* card header */
 .cc-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 18px 20px 6px; flex-wrap: wrap; }
@@ -78,7 +84,7 @@
 .cc-delta[data-on-dark] { background: color-mix(in oklab, var(--cc-card-ink, #fff) 16%, transparent); color: inherit; }
 .cc-delta[data-on-dark].pill--up::before, .cc-delta[data-on-dark].pill--down::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--st-validating); margin-right: 2px; }
 .cc-delta[data-on-dark].pill--down::before { background: var(--st-error); }
-.cc-dots { position: absolute; top: 2px; right: 6px; display: flex; gap: 6px; z-index: 4; }
+.cc-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
 .cc-dots button { width: 8px; height: 8px; padding: 0; border-radius: 99px; border: 0; background: color-mix(in oklab, var(--c-ink) 22%, transparent); transition: width 260ms var(--spring), background-color 200ms; }
 .cc-dots button[aria-pressed='true'] { width: 22px; background: var(--c-ink); }
 .cc-dots button::before { content: ''; position: absolute; inset: -10px -4px; }
@@ -94,7 +100,7 @@
 
 /* ---------- KPI tiles ---------- */
 .cc-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-@container cc (max-width: 1180px) { .cc-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container cc (max-width: 640px) { .cc-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .cc-tile {
   display: flex; flex-direction: column; gap: 6px; padding: 16px; min-height: 148px; border-radius: var(--radius-lg);
   background: var(--c-raised); border: 1px solid var(--card-border); box-shadow: var(--shadow); min-width: 0;
@@ -131,7 +137,7 @@
 
 /* donut */
 .cc-donut { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; padding: 10px 20px 20px; }
-@container cc (max-width: 1180px) { .cc-donut { grid-template-columns: minmax(0, 1fr); justify-items: center; } }
+@container cc (max-width: 1320px) { .cc-donut { grid-template-columns: minmax(0, 1fr); justify-items: center; } }
 .cc-donut svg { max-width: 100%; height: auto; }
 .cc-donut__total { font-size: 20px; font-weight: 750; fill: var(--c-ink); font-family: var(--font-ui); letter-spacing: -0.02em; }
 .cc-donut__caption { font-size: 11px; fill: var(--c-ink-muted); font-family: var(--font-ui); }
@@ -208,7 +214,7 @@ button.cc-row:hover { background: var(--c-sunken); }
 .cc-counter b { font-size: 1.3rem; font-weight: 740; }
 .cc-counter span:last-child { font-size: 0.74rem; color: var(--c-ink-muted); }
 
-@container cc (max-width: 720px) {
+@container cc (max-width: 640px) {
   .cc-card { min-height: 172px; padding: 16px 18px; }
   .cc-actions { padding: 12px 6px; }
   .cc-action__icon { width: 50px; height: 50px; }

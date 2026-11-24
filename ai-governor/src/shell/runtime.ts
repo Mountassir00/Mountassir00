@@ -15,7 +15,8 @@ export class GovernorRuntime {
   readonly store = new EventStore();
   private sources = new Map<string, DataSource>();
   private live = new Map<string, () => void>();
-  private cache: { key: string; events: readonly GovEvent[] } | null = null;
+  /** Small LRU: views often read 2–3 windows (current, previous, timeline) per render. */
+  private cache: Array<{ key: string; events: readonly GovEvent[] }> = [];
   /** Count of LLM calls initiated by the presentation layer. Must stay 0. */
   readonly uiInitiatedModelCalls = 0;
 
@@ -98,9 +99,10 @@ export class GovernorRuntime {
   /** Filtered events of a window, memoised on (store version, window, filters). */
   windowEvents(from: number, to: number, filters: Filters): readonly GovEvent[] {
     const key = `${this.store.version}|${from}|${to}|${JSON.stringify(filters)}`;
-    if (this.cache?.key === key) return this.cache.events;
+    const hit = this.cache.find((c) => c.key === key);
+    if (hit) return hit.events;
     const events = filterEvents(this.store.range(from, to), filters);
-    this.cache = { key, events };
+    this.cache = [{ key, events }, ...this.cache].slice(0, 6);
     return events;
   }
 

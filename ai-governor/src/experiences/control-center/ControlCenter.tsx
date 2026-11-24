@@ -5,7 +5,7 @@
  */
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import {
-  beforeAfter, bucketize, byModel, fmtCompact, fmtInt, fmtPct, fmtRelative, fmtTime, fmtUsd, modelLabel, natureMix,
+  beforeAfter, bucketize, byModel, fmtCompact, fmtDuration, fmtInt, fmtPct, fmtRelative, fmtTime, fmtUsd, modelLabel, natureMix,
   useCatalogIndex, useGovernor, PRICE_TABLE_SOURCE, type DataNature, type ExperienceProps, type TaskRuntime,
 } from '@sdk';
 import { AnimatedNumber, NatureBadge, Segmented, Sparkline, StatusPill } from '@ds';
@@ -80,7 +80,7 @@ export default function ControlCenter({ config, host }: ExperienceProps) {
     t: b.t,
     value: metricValue(b),
     label: timeFmt.format(b.t),
-    detail: `${fmtCompact(b.tokensIn + b.tokensOut + b.cacheRead + b.cacheWrite)} tokens, ${fmtUsd(b.costUsd)} estimés, ${b.calls} appels`,
+    detail: `${fmtCompact(b.tokensIn + b.tokensOut + b.cacheRead + b.cacheWrite)} tokens, ${fmtUsd(b.costUsd, b.costUsd < 1 ? 3 : 2)} estimés, ${b.calls} appels`,
   }));
 
   const models = useMemo(() => byModel(events), [events]);
@@ -272,6 +272,16 @@ export default function ControlCenter({ config, host }: ExperienceProps) {
               delta={d(cur.u.avoidedUsd, prev.u.avoidedUsd)}
               nature={nat('estimated')}
               foot={<span className="t-micro t-muted">Cache et optimisations, au prix catalogue</span>}
+            />
+            <MiniCard
+              title="Latence moyenne"
+              value={cur.u.latencyAvgMs}
+              format={(n) => fmtDuration(n)}
+              delta={d(cur.u.latencyAvgMs, prev.u.latencyAvgMs)}
+              lowerIsBetter
+              nature={cur.u.latencyAvgMs == null ? 'unavailable' : nat('measured')}
+              unavailable="Non mesurée"
+              foot={<span className="t-micro t-muted">Par réponse modèle, file d’attente comprise</span>}
             />
           </div>
 
@@ -530,14 +540,14 @@ function Tile({ label, value, ratio, foot, nature, reason, inverted, tone, dashe
   );
 }
 
-function MiniCard({ title, value, format, delta: dl, lowerIsBetter, nature, foot }: { title: string; value: number | null; format: (n: number) => string; delta: number | null; lowerIsBetter?: boolean; nature: DataNature; foot: ReactNode }) {
+function MiniCard({ title, value, format, delta: dl, lowerIsBetter, nature, foot, unavailable = 'Masqué' }: { title: string; value: number | null; format: (n: number) => string; delta: number | null; lowerIsBetter?: boolean; nature: DataNature; foot: ReactNode; unavailable?: string }) {
   return (
     <article className="panel cc-mini">
       <div className="cc-mini__top">
         <span className="cc-mini__title">{title}</span>
         <DeltaPill delta={dl} lowerIsBetter={lowerIsBetter} subject={title} />
       </div>
-      <b className="cc-mini__value">{value == null ? 'Masqué' : <AnimatedNumber value={value} format={format} />}</b>
+      <b className="cc-mini__value">{value == null ? unavailable : <AnimatedNumber value={value} format={format} />}</b>
       <div className="cc-mini__foot">
         {foot}
         <NatureBadge nature={nature} />

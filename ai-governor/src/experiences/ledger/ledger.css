@@ -38,3 +38,4 @@ button.ledger__row:hover { background: var(--c-sunken); }
   .ledger__text b { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .ledger__group { padding: 0 4px 6px; }
 }
+@media (max-width: 719px) { .ledger { padding-inline: 12px; } }

@@ -65,7 +65,7 @@ export function Goals({ host, f, nature }: { host: HostApi; f: PeriodFigures; na
               <span className="num t-muted">{fmt(def, target)}</span>
             </div>
             <div className="cc-bar" role="meter" aria-label={`${def.title} : ${prog == null ? 'non mesurable' : `${Math.round(prog * 100)} % de l’objectif`}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={prog == null ? 0 : Math.round(prog * 100)}>
-              <i style={{ width: `${(prog ?? 0) * 100}%`, background: BAR[def.id] }} />
+              <i style={{ width: `${(prog ?? 0) * 100}%`, background: met ? 'var(--st-validating)' : BAR[def.id] }} />
             </div>
             <footer className="cc-goal__foot">
               <span className="t-micro t-muted">{cur == null ? 'Aucune donnée sur la période' : met ? 'Objectif atteint' : def.direction === 'min' ? 'En dessous de l’objectif' : 'Au-dessus de l’objectif'}</span>
