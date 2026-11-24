@@ -130,6 +130,8 @@ export class HQController {
     const kit = stage.kit;
     this.offAnimator?.();
     this.flows?.dispose();
+    // board textures are tracked by the kit (not freed by clearContent)
+    for (const f of this.scene?.rooms.values() ?? []) if (f.board) kit.untrack(String(f.board.userData.textureKey));
     stage.clearContent();
     this.frames = { hover: null, select: null };
     const firstBuild = !this.b || this.b.width !== b.width || this.b.depth !== b.depth;
@@ -622,6 +624,10 @@ export class HQController {
   /* Camera                                                            */
   /* ================================================================ */
 
+  private portrait() {
+    return this.stage.size.w < this.stage.size.h;
+  }
+
   private flightMs() {
     const q = this.stage.quality;
     if (q.level === 'minimal' || q.reducedMotion || q.motion === 'none') return 0;
@@ -685,9 +691,9 @@ export class HQController {
   applyAmbience(evening: boolean) {
     const stage = this.stage;
     const dark = stage.palette.scheme === 'dark';
-    stage.renderer.toneMappingExposure = evening ? (dark ? 0.84 : 0.76) : 1;
+    stage.renderer.toneMappingExposure = evening ? (dark ? 0.8 : 0.66) : 1;
     const bg = stage.palette.background.clone();
-    if (evening) bg.lerp(new THREE.Color(dark ? '#0b1022' : '#cfd3e6'), dark ? 0.35 : 0.5);
+    if (evening) bg.lerp(new THREE.Color(dark ? '#060a1a' : '#aeb5cf'), dark ? 0.4 : 0.55);
     stage.scene.background = bg;
     stage.invalidate();
   }
@@ -710,14 +716,15 @@ export class HQController {
     } else if (b.reception?.entrance) {
       // on the forecourt, facing the entrance
       const e = b.reception.entrance;
-      this.fp = { x: e.x, z: e.z + 1.7, az: 0, polar: 87 * DEG };
+      this.fp = { x: e.x, z: e.z + (this.portrait() ? 2.9 : 1.7), az: 0, polar: 87 * DEG };
     } else {
       const c = b.corridors[0];
       this.fp = { x: 0, z: c.z, az: Math.PI / 2, polar: 87 * DEG };
     }
     this.applyWalls();
     this.stage.updateShadows();
-    this.setFov(VISIT_FOV);
+    // portrait screens: a wider vertical angle so the horizontal field stays usable
+    this.setFov(this.portrait() ? 74 : VISIT_FOV);
     this.applyFp(this.flightMs() === 0);
     this.lastPlace = '';
     this.events.onMode('visit');
@@ -765,9 +772,26 @@ export class HQController {
       this.flyTo(s.center.x, s.center.z, 17, 48);
       return;
     }
-    // stop just inside the door, looking at the room
-    const inside = { x: s.inner.x, z: s.inner.z - s.doorSide * 0.35 };
-    this.walkTo(inside, Math.atan2(-(s.center.x - inside.x), -(s.center.z - s.doorSide * 0.8 - inside.z)));
+    // stop at the door, looking at the agents present (else the room centre)
+    const inside = { x: s.inner.x, z: s.inner.z };
+    let lx = 0;
+    let lz = 0;
+    let n = 0;
+    for (const f of this.figs.values()) {
+      if (f.spaceId !== s.id) continue;
+      const p = f.path ? f.path[f.path.length - 1] : f.object.position;
+      lx += p.x;
+      lz += p.z;
+      n++;
+    }
+    const look = n ? { x: lx / n, z: lz / n } : { x: s.center.x, z: s.center.z - s.doorSide * 0.8 };
+    // keep ~2.6 m from what we look at: step back through the doorway if needed
+    let stand = inside;
+    for (const t of [0, 0.4, 0.8, 1.1]) {
+      stand = t === 0 ? inside : { x: s.door.x, z: s.door.z + s.doorSide * (t - 0.4) };
+      if (Math.hypot(look.x - stand.x, look.z - stand.z) >= 2.6) break;
+    }
+    this.walkTo(stand, Math.atan2(-(look.x - stand.x), -(look.z - stand.z)));
   }
 
   /** Visit: walks to a floor point (route through doors); overview: flies above it. */
@@ -900,7 +924,7 @@ export class HQController {
   private zoomFov(factor: number) {
     const cam = this.stage.camera as THREE.PerspectiveCamera;
     this.fov = null;
-    cam.fov = clamp(cam.fov * factor, 32, 74);
+    cam.fov = clamp(cam.fov * factor, 32, 80);
     cam.updateProjectionMatrix();
     this.stage.invalidate();
   }

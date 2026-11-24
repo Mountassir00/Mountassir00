@@ -305,7 +305,9 @@ function furnish(stage: Stage3D, s: Space, opts: BuildOptions, plants: boolean):
       if (!opts.simplified) {
         put(createBar(kit, surfaceTint(kit, tone, 0.6), 1.9), fx + 0.05, -d / 2 + 0.42, 0, 0.6);
         put(createFloorLamp(kit, opts.evening ? '#ffd28a' : '#fff4dc'), -w / 2 + 0.45, -d / 2 + 0.45);
-        put(createWallScreen(kit), lx, d / 2 - 0.12, Math.PI);
+        // TV on the side wall away from the door (never across the doorway)
+        const side = doorX > 0 ? -1 : 1;
+        put(createWallScreen(kit), side * (w / 2 - 0.1), -0.35, -side * (Math.PI / 2));
       }
       plantCorner();
       // places (standing): around the coffee table, the table football, the bar
@@ -326,8 +328,9 @@ function furnish(stage: Stage3D, s: Space, opts: BuildOptions, plants: boolean):
       put(createMeetingTable(kit, L), 0, -0.3, 0, 1.3);
       put(createChair(kit), -L / 2 - 0.5, -0.3, Math.PI / 2);
       put(createChair(kit), L / 2 + 0.5, -0.3, -Math.PI / 2);
-      board = createGlassBoard(kit, { width: Math.min(2.8, w - 1.6), height: 1.05, stand: 'wall', edgeGlow: pal.accent, opacity: 0.9, tint: '#ffffff', textureWidth: opts.boardTextureWidth, drawTexture: opts.drawAgenda });
-      put(board, 0, -d / 2 + 0.14);
+      board = createGlassBoard(kit, { width: Math.min(2.8, d - 1.8), height: 1.05, stand: 'wall', edgeGlow: pal.accent, opacity: 0.9, tint: '#ffffff', textureWidth: opts.boardTextureWidth, drawTexture: opts.drawAgenda });
+      // on the west wall, facing east: readable from the overview camera (south-east) and from the door
+      put(board, flip ? w / 2 - 0.14 : -w / 2 + 0.14, 0, flip ? -Math.PI / 2 : Math.PI / 2);
       plantCorner();
       const xs = [-1.35, -0.45, 0.45, 1.35].map((x) => (x * L) / 3.4);
       for (const x of xs) posts.push(world(x, -0.3 + 0.98, Math.PI));

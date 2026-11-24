@@ -83,8 +83,6 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
   const humanDepts = useMemo(() => new Set(catalog.agents.filter((a) => a.kind === 'human').map((a) => a.departmentIds[0])), [catalog]);
 
   /* ---------------- controller ---------------- */
-  const modeRef = useRef(mode);
-  modeRef.current = mode;
   const tapRef = useRef<(hit: PickHit | null, double: boolean, floor: { x: number; z: number } | null) => void>(() => undefined);
   useEffect(() => {
     if (!stage) return;
@@ -241,11 +239,10 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
     else if (selection) host.select(null);
   };
 
+  // list / plan: "go there" only (the inspector opens on a click in the scene)
   const goTo = (s: Space) => {
     if (!ctl) return;
     ctl.goToSpace(s.id);
-    if (s.deptId) host.select({ kind: 'department', id: s.deptId });
-    else if (s.nodeId && building.models?.id === s.id) host.select({ kind: 'node', id: s.nodeId });
     host.announce(mode === 'visit' ? `En route vers ${s.name}` : `Vue sur ${s.name}`);
     if (phone) setListOpen(false);
   };
@@ -296,8 +293,11 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
       else if (placements.get(a.id)?.reason === 'lounge') lounge++;
       else rest++;
     }
-    return { work, lounge, wait, err, rest, unknown };
-  }, [catalog, state, placements]);
+    // room status computed with the same snapshot as the counts (state objects are updated in place)
+    const rooms = new Map<string, AgentStatus | null>();
+    for (const [id, list] of present) rooms.set(id, aggregate(state, list));
+    return { work, lounge, wait, err, rest, unknown, rooms };
+  }, [catalog, state, placements, present]);
 
   const labels = useMemo<SceneLabel[]>(() => {
     if (!ctl || !built) return [];
@@ -305,7 +305,7 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
     if (mode === 'overview')
       for (const s of building.spaces) {
         const here = present.get(s.id) ?? [];
-        const st = aggregate(state, here);
+        const st = counts.rooms.get(s.id) ?? null;
         const sel = s.deptId ? { kind: 'department' as const, id: s.deptId } : s.nodeId && s.role === 'models' ? { kind: 'node' as const, id: s.nodeId } : undefined;
         out.push({
           id: `room:${s.id}`,
@@ -350,7 +350,7 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
       });
     }
     return out;
-  }, [ctl, built, mode, building, present, state, catalog, placements, density, selection]);
+  }, [ctl, built, mode, building, present, state, catalog, placements, density, selection, counts]);
 
   const plan = useMemo<PlanItem[]>(() => {
     const items: PlanItem[] = [];
@@ -497,7 +497,7 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
                   {w.spaceIds.map((id) => {
                     const s = building.byId.get(id)!;
                     const here = present.get(id) ?? [];
-                    const st = aggregate(state, here);
+                    const st = counts.rooms.get(id) ?? null;
                     const current = place?.id === id;
                     const sel = spaceOfSelection(selection)?.id === id;
                     return (
