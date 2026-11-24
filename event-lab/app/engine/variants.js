@@ -20,6 +20,10 @@ export function applyVariant(config, variantId) {
     .filter((r) => !(v.revenue_overrides && v.revenue_overrides[r.id] === null));
   b.revenues.push(...structuredClone(v.revenue_additions ?? []));
   if (v.audience_overrides) cfg.audience = { ...cfg.audience, ...v.audience_overrides };
+  if (v.participants_overrides) cfg.participants = { ...cfg.participants, ...v.participants_overrides };
+  if (v.venue_overrides) cfg.venue = { ...cfg.venue, ...v.venue_overrides };
+  if (Array.isArray(v.program_overrides)) cfg.program = structuredClone(v.program_overrides);
+  if (Array.isArray(v.competition_overrides)) cfg.competition = { ...cfg.competition, stages: structuredClone(v.competition_overrides) };
   cfg.active_variant = v.id;
   return cfg;
 }

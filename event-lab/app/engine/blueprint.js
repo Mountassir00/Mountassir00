@@ -17,6 +17,7 @@ export const hhmm = (min) => {
   const s = `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
   return day < 0 ? `J${day} ${s}` : s;
 };
+export const dayLabel = (d) => (d == null ? '—' : `J${d >= 0 ? '+' : ''}${d}`);
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 
 export function table(headers, rows, align) {
@@ -62,7 +63,7 @@ export function variantComparisonTable(config) {
     const all = simulateAll(cfg);
     const be = breakeven(cfg, 'central');
     const cf = cashflow(cfg, 'central');
-    return [variantLabel(config, id), eur(all.central.totals.expenses), ...SCENARIOS.map((s) => eur(all[s].totals.result)), be.attendance == null ? 'aucun' : num(be.attendance), eur(cf.maxNeed)];
+    return [variantLabel(config, id), eur(all.central.totals.expenses), ...SCENARIOS.map((s) => eur(all[s].totals.result)), be.attendance == null ? 'inatteignable' : be.attendance === 0 ? 'aucun (couvert)' : num(be.attendance), eur(cf.maxNeed)];
   });
   return table(['Configuration', 'Dépenses (central)', 'Résultat prudent', 'Résultat central', 'Résultat ambitieux', 'Seuil (spectateurs, central)', 'Besoin de trésorerie (central)'], rows, ['l', 'r', 'r', 'r', 'r', 'r', 'r']);
 }
@@ -71,7 +72,7 @@ export function breakevenText(config) {
   return SCENARIOS.map((s) => {
     const b = breakeven(config, s);
     const label = SC_LABEL[s];
-    if (b.attendance == null) return `- **${label}** : ${b.note}.`;
+    if (b.attendance == null || (b.attendance === 0 && b.note)) return `- **${label}** : ${b.attendance === 0 ? 'pas de seuil — les recettes indépendantes de la fréquentation couvrent déjà les coûts fixes' : b.note} (écart fixe ${eur(b.fixedGap)}).`;
     return `- **${label}** : seuil à **${num(b.attendance)} spectateurs uniques** (écart fixe à couvrir ${eur(b.fixedGap)}, marge par spectateur ${num(b.unitMargin, 2)} €).`;
   }).join('\n');
 }
@@ -81,13 +82,15 @@ export function cashTable(config, scenario = 'central') {
   const byDay = new Map();
   for (const f of c.timeline) {
     const k = f.day;
-    const cur = byDay.get(k) ?? { out: 0, in: 0, cum: 0 };
+    const cur = byDay.get(k) ?? { out: 0, in: 0, cum: 0, low: Infinity };
     if (f.amount < 0) cur.out += f.amount; else cur.in += f.amount;
     cur.cum = f.cumulative;
+    cur.low = Math.min(cur.low, f.cumulative);
     byDay.set(k, cur);
   }
-  const rows = [...byDay.entries()].map(([d, v]) => [`J${d >= 0 ? '+' : ''}${d}`, eur(-v.out), eur(v.in), eur(v.cum)]);
-  return { table: table(['Date', 'Décaissements', 'Encaissements', 'Solde cumulé'], rows, ['c', 'r', 'r', 'r']), maxNeed: c.maxNeed, maxNeedDay: c.maxNeedDay };
+  // Point bas intra-journée : les décaissements d'un jour sont comptés avant ses encaissements (hypothèse prudente)
+  const rows = [...byDay.entries()].map(([d, v]) => [dayLabel(d), eur(-v.out), eur(v.in), eur(v.low), eur(v.cum)]);
+  return { table: table(['Date', 'Décaissements', 'Encaissements', 'Point bas du jour', 'Solde en fin de jour'], rows, ['c', 'r', 'r', 'r', 'r']), maxNeed: c.maxNeed, maxNeedDay: c.maxNeedDay };
 }
 
 export function sensitivityTable(config) {
@@ -270,7 +273,7 @@ export function renderGenerated(config) {
     results: Object.fromEntries(SCENARIOS.map((s) => [s, all[s].totals.result])),
     revenueCentral: all.central.totals.revenue, expensesCentral: all.central.totals.expenses,
     breakevenCentral: breakeven(config, 'central').attendance,
-    cashNeedCentral: cash.maxNeed, cashNeedDay: cash.maxNeedDay,
+    cashNeedCentral: cash.maxNeed, cashNeedDay: dayLabel(cash.maxNeedDay),
     competitionNetMin: comp.total.totalNetMin, competitionWithMarginMin: comp.total.totalWithMarginMin,
     volunteers: staff.volunteers, professionals: staff.professionals, powerW: equip.powerW, setupMin: setup?.total ?? null,
     variants: Object.fromEntries(variantIds(config).map((id) => { const c = applyVariant(config, id); const a = simulateAll(c); return [id, { expensesCentral: a.central.totals.expenses, results: Object.fromEntries(SCENARIOS.map((s) => [s, a[s].totals.result])), breakevenCentral: breakeven(c, 'central').attendance, cashNeedCentral: cashflow(c, 'central').maxNeed }]; })),
