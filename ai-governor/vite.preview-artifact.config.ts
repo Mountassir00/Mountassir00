@@ -29,7 +29,7 @@ function inlineAll(): Plugin {
       }
       const fonts =
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono&display=swap">';
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono&display=swap">';
       html.source =
         `<title>AI Governor</title>\n<meta name="description" content="MOUNTASSIR AI GOVERNOR — supervision visuelle de l'écosystème IA (prototype, données de démonstration)">\n` +
         `${fonts}\n<style>${css.replace(/<\/style/gi, '<\\/style')}</style>\n<div id="root"></div>\n` +
@@ -47,6 +47,7 @@ export default defineConfig({
       '@engine': r('./src/engine'),
       '@sdk': r('./src/sdk/index.ts'),
       '@ds': r('./src/design-system'),
+      '@fontsource-variable/plus-jakarta-sans/index.css': r('./tools/empty.css'),
       '@fontsource-variable/archivo/wdth.css': r('./tools/empty.css'),
       '@fontsource/ibm-plex-mono/400.css': r('./tools/empty.css'),
     },
