@@ -294,6 +294,8 @@ export interface FlowView {
   confidentiality: GovEvent['confidentiality'];
   tokens?: number;
   latencyMs?: number;
+  /** Department recorded on the event, when the source provided one. */
+  department?: string;
 }
 
 /**
@@ -321,6 +323,7 @@ export function recentFlows(events: readonly GovEvent[], t: number, windowMs: nu
       confidentiality: e.confidentiality,
       tokens: e.metrics ? (e.metrics.inputTokens ?? 0) + (e.metrics.outputTokens ?? 0) + (e.metrics.cacheReadTokens ?? 0) : undefined,
       latencyMs: e.metrics?.latencyMs,
+      department: e.department,
     });
   }
   return out;

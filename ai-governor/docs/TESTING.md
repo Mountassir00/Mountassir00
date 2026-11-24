@@ -30,18 +30,18 @@ Le rapport détaillé (JSON) et les captures sont écrits dans `tests/e2e/output
 | Vérification | Résultat attendu |
 |---|---|
 | Au démarrage, seul le moteur de rendu actif est téléchargé | aucun chunk d'une autre expérience |
-| Pour chacune des 5 expériences : agent sélectionné, période et filtre conservés après bascule | inspecteur toujours ouvert sur le même agent |
-| Durée de bascule | < 400 ms |
+| Pour chaque vue installée (liste lue dans `window.__mag.views()`, donc toute vue ajoutée est testée) : agent sélectionné, période et filtre conservés après bascule par le lanceur | inspecteur toujours ouvert sur le même agent |
+| Durée de bascule (de la touche Entrée à l'affichage) | < 400 ms ; scènes WebGL : < 1 500 ms (chargement de Three.js compris) |
 | Nœuds DOM | < 6 000 |
-| Tâches longues sur 3 s | ≤ 6 |
+| Tâches longues sur 3 s | ≤ 6 ; scènes WebGL : ≤ 12 |
 | Aucune navigation (rechargement) pendant les bascules | 0 |
 | Journal d'événements | jamais réinitialisé |
 | Requêtes vers un fournisseur LLM depuis l'interface | 0 |
-| axe (WCAG 2.1 A/AA) : 5 expériences en clair et en sombre, centre de décision, galerie, studio, builder, données, réglages | aucune violation « serious » ou « critical » |
+| axe (WCAG 2.1 A/AA) : toutes les vues en clair et en sombre, centre de décision, galerie, studio, builder, données, réglages | aucune violation « serious » ou « critical » |
 | Replay | boutons GO / NO GO / TEST désactivés |
 | Onglet masqué | `data-anim=paused`, horloge d'animation arrêtée |
 | `prefers-reduced-motion` | pas d'animation d'ambiance |
-| Mobile 390 px, 5 expériences | aucun défilement horizontal, aucune erreur JS |
+| Mobile 390 px, toutes les vues | aucun défilement horizontal, aucune erreur JS |
 
 ## Derniers résultats (24 nov. 2026, Chromium headless, 1440×900, données de démonstration)
 

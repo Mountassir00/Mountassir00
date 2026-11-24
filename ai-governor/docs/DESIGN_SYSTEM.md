@@ -67,13 +67,25 @@ Troisième thème intégré : **Contraste élevé** (AAA visé). Le Studio contr
 | Graphiques | `StackedColumns`, `LineArea`, `HBars`, `BeforeAfterBars`, `Legend` — un seul axe, marques fines, infobulle au survol |
 | Isométrique | `iso()`, `IsoBox`, `IsoTile`, `IsoFloor`, `IsoBackWalls`, mobilier (`Desk`, `MeetingTable`, `Whiteboard`, `ServerRack`, `Cylinder`, `LabBench`, `Antenna`, `Gauge`, `Shield`, `Shelf`, `RouterBox`, `Conveyor`, `Plant`), `IsoFigure` (personnage ou console), `IsoLabel`, `isoRoute`, `IsoFlowPath` |
 | Scène | `ZoomPan` (souris, trackpad, tactile, clavier, mini-carte, zoom sémantique) |
-| Icônes | 35 icônes au trait 1,5 px dessinées pour le produit |
+| Espace de travail (`@ds`) | `DockLayout` (panneaux redimensionnables et repliables, tailles mémorisées), `ExplorerTree`, `LogTerminal` (journal filtrable, suivi automatique), `PlanMinimap` |
+| 3D (`@ds/three`, chargé à la demande) | `Stage3D` (rendu uniquement quand quelque chose change), `CameraRig` (orbite, survol, cadrage), sélection par volumes simplifiés, `MaterialKit` lié au thème, figures `robot` / `console` / `drone` pilotées par le statut réel, mobilier, `FlowNetwork` (flux enregistrés), `SceneLabels` (étiquettes DOM), `SpatialLayout` + `useSpatialLayout` (disposition partagée et réactive entre vues), `buildSpatialScene`, `bakeStatic` (fusion des volumes immobiles). Voir `src/design-system/three/README.md` |
+| Icônes | icônes au trait 1,5 px dessinées pour le produit |
+
+## Basculer entre les présentations
+
+Toutes les présentations lisent le même journal, la même sélection, la même période et les mêmes filtres : basculer ne relance rien et n'appelle aucun modèle.
+
+- **Lanceur** (touche **G** ou bouton « Toutes les vues ») : vignettes groupées par famille (tableaux de bord, espaces de travail, scènes 3D, scènes 2D, outils), recherche classée (nom exact, début du nom, nom, puis description), navigation aux flèches, épinglage en favori (☆).
+- **Favoris** : ils remplissent le sélecteur de l'en-tête et la barre latérale ; les touches **1 à 9** ouvrent les favoris d'abord, puis les autres vues dans l'ordre du lanceur.
+- **Ajouter ou retirer une vue** : un dossier `src/experiences/<id>/` avec son `manifest.ts` est découvert automatiquement ; supprimer le dossier retire la vue (voir `CREATING_AN_EXPERIENCE.md`). Une vue peut aussi être masquée ou désactivée sans toucher au code, depuis la Galerie.
 
 ## Mouvement
 
 - Le mouvement **encode un état enregistré**, jamais une décoration : un agent ne s'anime que si son statut l'indique.
 - `html[data-motion]` : `none` (minimaliste), `state` (repères ponctuels — économique ou réduction des mouvements), `subtle` (pictogrammes de statut et flux, par paliers — standard), `ambient` (scène complète — haute qualité).
 - `html[data-anim=paused]` : tout est suspendu (onglet masqué, inactivité).
+- **Horloge partagée** (`useAnimationFrame`) : une seule boucle pour toute l'application, plafonnée par le niveau de qualité (15 / 30 / 60 images/s), active seulement en mouvement `subtle` ou `ambient` et seulement tant qu'une vue y est abonnée. Les scènes 3D ne redessinent qu'à la demande.
+- La pastille « En direct » ne pulse qu'en haute qualité : en standard elle reste fixe, pour ne rien coûter au repos.
 
 ## Mise en page
 
