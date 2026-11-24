@@ -5,10 +5,8 @@ Chaque point : exigence, problème, conséquences, alternative, bénéfice, comp
 ---
 
 ### A1. « Analyse les deux vidéos de référence » (§ 4, § 22)
-- **Problème** : aucune vidéo n'a été transmise dans cette session. La direction artistique repose sur la description textuelle (isométrique, pastel, contours fins, fond quadrillé, minimaliste, non photoréaliste).
-- **Conséquence** : risque d'écart avec ce que vous aviez en tête (proportions des personnages, densité des pièces, rythme des flux).
-- **Alternative** : prototypes livrés comme base de discussion ; transmettez les vidéos (ou 3 à 5 captures) et je compare point par point.
-- **Décision demandée** : **TEST** — valider la direction sur les prototypes, puis ajuster après réception des références.
+- **Mise à jour v0.3** : 9 vidéos et 12 images reçues ensuite. Chaque vidéo a été découpée en planches d'images (ffmpeg, local) et chaque *type de présentation* (IDE spatial, bureau 3D, kanban, tableau blanc, immeuble, verre flottant, boucle d'équipe, brief, constellation, sphère de nœuds, assistant, QG 3D) est devenu une vue. Les noms, logos et visuels propriétaires des produits de référence ne sont **pas** repris.
+- **Décision demandée** : **TEST** — essayer les vues sur vos usages réels, puis GO / NO GO vue par vue.
 
 ### A2. « Ne présente jamais de statistiques fictives » vs « données réelles » inexistantes (§ 5, § 18)
 - **Problème** : le moteur opérationnel n'existe pas encore dans ce dépôt ; aucune activité réelle d'agents n'est observable.
@@ -30,8 +28,9 @@ Chaque point : exigence, problème, conséquences, alternative, bénéfice, comp
 - **Décision demandée** : **TEST** — activer l'analyse par modèle vision derrière une proposition GO / NO GO chiffrée (≈ quelques centimes par image au prix catalogue, à confirmer).
 
 ### A6. Moteurs 3D (Three.js / WebGL) (§ 17)
-- **Problème** : coût mémoire, GPU et poids (≈ 150 Ko) injustifiés pour un rendu isométrique.
-- **Appliqué** : SVG pour les scènes ; WebGL réservé à une éventuelle expérience de catégorie B chargée uniquement quand elle est active.
+- **v0.1** : SVG pour les scènes isométriques (coût GPU et poids injustifiés pour de l'isométrique).
+- **v0.3** : les références demandent de vraies scènes 3D explorables (bureau fermé, QG, éditeur spatial, sphère de nœuds). Three.js est donc adopté, **uniquement** pour les vues `renderer: 'webgl'`, dans un chunk séparé téléchargé à la première ouverture d'une vue 3D (jamais au démarrage, contrôlé par l'e2e). Exigences imposées au kit 3D (en cours de construction, à vérifier à la livraison) : rendu **à la demande** (aucune boucle permanente), arrêt complet quand l'onglet est masqué ou inactif, ratio de pixels plafonné, niveau `minimal` = image fixe. Repli 2D déclaré dans chaque manifeste (`devices.fallbackId`) si WebGL est indisponible.
+- **Compromis** : budget e2e distinct pour les vues 3D (bascule < 1,5 s, car le rendu logiciel des machines de test est lent) ; sur matériel réel la bascule est nettement plus rapide.
 
 ### A7. Mesure CPU/GPU (§ 17)
 - **Problème** : un navigateur n'expose pas la consommation GPU, et la mémoire JS seulement sous Chromium.
@@ -58,3 +57,9 @@ Chaque point : exigence, problème, conséquences, alternative, bénéfice, comp
 ### A12. Arborescence du dépôt
 - **Constat** : le seul dépôt disponible est votre dépôt de profil GitHub (`Mountassir00/Mountassir00`). Le projet est isolé dans `ai-governor/` pour ne pas toucher au README du profil.
 - **Recommandation** : **GO** pour déplacer le projet dans un dépôt dédié (privé) avant d'y brancher des données réelles.
+
+### A13. Nombre de vues (v0.3 : 21 vues installées)
+- **Problème** : 21 présentations des mêmes données, c'est un coût de maintenance réel (chaque évolution du modèle de données touche 21 rendus) et un risque de dispersion : on passe d'une vue à l'autre au lieu de décider.
+- **Appliqué** : (1) toutes les vues lisent le même journal via le SDK, donc un changement de données ne casse aucune vue tant que le SDK reste stable ; (2) lanceur (touche G) + favoris : seules 5 vues apparaissent dans l'en-tête et la barre latérale ; (3) ajouter ou supprimer une vue = ajouter ou supprimer un dossier, sans toucher au cœur ; (4) les tests de bout en bout découvrent les vues automatiquement.
+- **Recommandation** : après une semaine d'usage, gardez 4 à 6 vues (une par question réelle : « combien ça coûte », « qui fait quoi maintenant », « qu'est-ce qui bloque », « qu'est-ce que je dois arbitrer », « que s'est-il passé ») et désactivez le reste dans la Galerie. Les vues désactivées ne coûtent rien à l'exécution (jamais chargées).
+- **Décision demandée** : **TEST** puis **GO / NO GO** par vue.
