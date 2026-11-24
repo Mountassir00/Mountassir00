@@ -193,12 +193,15 @@ test('incidents : réduction de budget épargne les postes indispensables', () =
 
 test('incidents : retard compensé par compression des séquences non critiques', () => {
   const cfg = { program: [
-    { id: 's1', label: 'Poules', kind: 'competition', start_min: 600, duration_min: 100 },
+    { id: 's1', label: 'Poules', kind: 'competition', stage_ref: 'p', start_min: 600, duration_min: 100 },
     { id: 's2', label: 'Show', kind: 'show', start_min: 700, duration_min: 30 },
-    { id: 's3', label: 'Finale', kind: 'competition', start_min: 730, duration_min: 20, critical: true },
-  ], budget: { expenses: [], revenues: [] } };
+    { id: 's3', label: 'Finale', kind: 'competition', stage_ref: 'k', start_min: 730, duration_min: 20 },
+  ], competition: { stages: [{ id: 'p', type: 'round_robin', entrants: 8, groups: 2, slot_duration_min: 10, parallel_units: 2 }, { id: 'k', type: 'single_elimination', entrants: 4, slot_duration_min: 12, parallel_units: 1 }] },
+  budget: { expenses: [], revenues: [] } };
   const r = runIncident(cfg, { type: 'delay', minutes: 20, fromMin: 600 });
   assert.equal(r.details.residualDelayMin, 0);
   const fin2 = r.config.program.find((s) => s.id === 's3');
   assert.equal(fin2.start_min, 730); // la finale garde son horaire
+  assert.equal(fin2.duration_min, 20); // et n'est jamais compressée
+  assert.equal(r.config.program.find((s) => s.id === 's2').duration_min, 21); // le show absorbe d'abord (−9)
 });

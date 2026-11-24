@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 1240" width="390" height="1240" role="img" aria-labelledby="t d">
+<title id="t">Maquette — page d'inscription d'une équipe (mobile, défilement continu)</title>
+<desc id="d">Maquette originale EVENT LAB. Catégorie, nom d'équipe, capitaine, 4 joueurs, documents pour les 16-17 ans, attestation santé, consentements séparés, paiement 60 euros par équipe. Champs et libellés à adapter à l'outil retenu.</desc>
+<rect width="390" height="1240" fill="#F4F1EA"/>
+<rect width="390" height="70" fill="#121417"/>
+<g transform="translate(16 20) scale(0.26)" fill="none" stroke="#F4F1EA" stroke-width="4"><rect x="0" y="0" width="40" height="24" rx="5" fill="#FFC629" stroke="#FFC629"/><rect x="0" y="34" width="40" height="24" rx="5"/><rect x="0" y="68" width="40" height="24" rx="5"/><rect x="50" y="12" width="40" height="24" rx="5"/><rect x="50" y="46" width="40" height="24" rx="5"/><rect x="50" y="80" width="40" height="24" rx="5"/><rect x="100" y="24" width="40" height="24" rx="5"/><rect x="100" y="58" width="40" height="24" rx="5"/><rect x="100" y="92" width="40" height="24" rx="5"/></g>
+<text x="62" y="44" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F4F1EA">Inscrire une équipe</text>
+<circle cx="30" cy="98" r="12" fill="#121417" stroke="#121417" stroke-width="2"/><text x="30" y="103" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">1</text>
+<text x="30" y="128" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Équipe</text>
+<circle cx="125" cy="98" r="12" fill="#F4F1EA" stroke="#121417" stroke-width="2"/><text x="125" y="103" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#121417">2</text>
+<text x="125" y="128" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Joueurs</text>
+<circle cx="220" cy="98" r="12" fill="#F4F1EA" stroke="#121417" stroke-width="2"/><text x="220" y="103" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#121417">3</text>
+<text x="220" y="128" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Documents</text>
+<circle cx="315" cy="98" r="12" fill="#F4F1EA" stroke="#121417" stroke-width="2"/><text x="315" y="103" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#121417">4</text>
+<text x="315" y="128" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Paiement</text>
+<text x="16" y="168" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Catégorie *</text>
+<rect x="16" y="178" width="172" height="44" rx="6" fill="#121417"/><text x="102" y="206" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="14" fill="#F4F1EA">OPEN (16 places)</text>
+<rect x="202" y="178" width="172" height="44" rx="6" fill="#FFFFFF" stroke="#121417" stroke-width="2"/><text x="288" y="206" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="13" fill="#121417">FÉMININES (8 places)</text>
+<text x="16" y="252" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Nom d&#39;équipe *</text>
+<rect x="16" y="260" width="358" height="44" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="288" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#5E636B">Ex. : Granit</text>
+<text x="16" y="322" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Public : grille et page de scores. 24 caractères max.</text>
+<text x="16" y="346" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Capitaine — e-mail *</text>
+<rect x="16" y="354" width="358" height="44" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="382" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#5E636B">prenom.nom@exemple.fr</text>
+<text x="16" y="416" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Sert à la confirmation à J-3 et aux informations du jour J.</text>
+<text x="16" y="440" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Capitaine — téléphone (jour J) *</text>
+<rect x="16" y="448" width="358" height="44" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="476" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#5E636B">06 00 00 00 00</text>
+<text x="16" y="530" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="15" fill="#121417">Joueurs (3 + 1 remplaçant)</text>
+<rect x="16" y="544" width="358" height="56" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="568" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Joueur 1</text>
+<text x="28" y="588" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#5E636B">Prénom · Nom · Date de naissance · N° licence (facultatif)</text>
+<rect x="16" y="608" width="358" height="56" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="632" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Joueur 2</text>
+<text x="28" y="652" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#5E636B">Prénom · Nom · Date de naissance · N° licence (facultatif)</text>
+<rect x="16" y="672" width="358" height="56" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="696" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Joueur 3</text>
+<text x="28" y="716" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#5E636B">Prénom · Nom · Date de naissance · N° licence (facultatif)</text>
+<rect x="16" y="736" width="358" height="56" rx="6" fill="#FFFFFF" stroke="#3A3F47" stroke-width="1.5"/>
+<text x="28" y="760" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#121417">Joueur 4 (remplaçant)</text>
+<text x="28" y="780" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#5E636B">Prénom · Nom · Date de naissance · N° licence (facultatif)</text>
+<text x="16" y="814" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Date de naissance : contrôle d'âge (16 ans minimum),</text>
+<text x="16" y="830" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">jamais publiée.</text>
+<text x="16" y="844" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="15" fill="#121417">Documents</text>
+<rect x="16" y="856" width="358" height="56" rx="6" fill="#FFFFFF" stroke="#2D55E6" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="28" y="880" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="#2D55E6">Déposer l'autorisation parentale</text><text x="28" y="900" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Obligatoire pour chaque joueur de 16-17 ans (modèle fourni)</text>
+<rect x="16" y="928" width="24" height="24" rx="4" fill="#FFFFFF" stroke="#121417" stroke-width="2"/>
+<text x="52" y="940" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#121417">Attestation santé de chaque joueur *</text>
+<text x="52" y="958" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Cochée par le capitaine ; aucun document médical</text>
+<rect x="16" y="980" width="24" height="24" rx="4" fill="#FFFFFF" stroke="#121417" stroke-width="2"/>
+<text x="52" y="992" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#121417">J&#39;accepte le règlement de LA GRILLE 3x3 *</text>
+<text x="52" y="1010" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Lien vers le règlement (version datée)</text>
+<rect x="16" y="1032" width="24" height="24" rx="4" fill="#FFFFFF" stroke="#121417" stroke-width="2"/>
+<text x="52" y="1044" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#121417">Photos et vidéos : diffusion par l&#39;organisateur</text>
+<text x="52" y="1062" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Choix individuel de chaque joueur, modifiable le jour J</text>
+<rect x="16" y="1084" width="24" height="24" rx="4" fill="#FFFFFF" stroke="#121417" stroke-width="2"/>
+<text x="52" y="1096" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#121417">Infos Grille Series et prochaine édition</text>
+<text x="52" y="1114" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Désinscription en un clic</text>
+<rect x="16" y="1144" width="358" height="64" rx="8" fill="#121417"/>
+<text x="28" y="1172" font-family="Archivo, Arial, sans-serif" font-size="14" fill="#F4F1EA">Total équipe</text><text x="362" y="1174" text-anchor="end" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="22" fill="#FFC629">60 €</text>
+<text x="28" y="1194" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#8B9099">Non remboursable, sauf force majeure (règlement, art. 5)</text>
+<rect x="16" y="1224" width="358" height="52" rx="26" fill="#FF5B1A"/><text x="195" y="1257" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">PAYER 60 € ET CONFIRMER</text>
+<text x="16" y="1298" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Paiement sur une plateforme externe. Finalités, durées de conservation</text>
+<text x="16" y="1314" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">et droits : lien « Données personnelles » en pied de page.</text>
+</svg>

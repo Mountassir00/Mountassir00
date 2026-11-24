@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 640" width="860mm" height="640mm" role="img" aria-labelledby="t d">
+  <title id="t">SIG-07 et SIG-09 — Espace PMR et poste de secours (2 panneaux 400 x 600 mm)</title>
+  <desc id="d">Maquettes originales EVENT LAB. Pictogrammes simplifiés dessinés pour le projet. Couleurs : blanc sur bleu 6,87:1 (PMR), blanc sur vert 4,81:1 (secours). La signalétique réglementaire de sécurité du lieu (issues, extincteurs) n'est ni masquée ni remplacée.</desc>
+  <rect width="860" height="640" fill="#DDDDDD"/>
+  <!-- PMR -->
+  <g transform="translate(20 20)">
+    <rect width="400" height="600" fill="#0057B8"/>
+    <g fill="#FFFFFF" transform="translate(120 60)">
+      <circle cx="78" cy="20" r="20"/>
+      <path d="M70 48 L86 48 L90 110 L140 110 L160 170 L144 176 L128 130 L76 130 Z"/>
+      <path d="M60 92 A58 58 0 1 0 140 160" fill="none" stroke="#FFFFFF" stroke-width="14"/>
+    </g>
+    <text x="200" y="330" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#FFFFFF">ESPACE PMR</text>
+    <text x="200" y="380" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#FFFFFF">Places réservées</text>
+    <text x="200" y="414" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#FFFFFF">vue dégagée sur le terrain 1</text>
+    <text x="200" y="470" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="22" fill="#FFFFFF">Accompagnant bienvenu</text>
+    <text x="200" y="530" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="22" fill="#FFFFFF">Référent accessibilité : gilet bleu</text>
+  </g>
+  <!-- Secours -->
+  <g transform="translate(440 20)">
+    <rect width="400" height="600" fill="#00843D"/>
+    <path d="M160 60 H240 V140 H320 V220 H240 V300 H160 V220 H80 V140 H160 Z" fill="#FFFFFF"/>
+    <text x="200" y="380" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#FFFFFF">POSTE DE</text>
+    <text x="200" y="430" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#FFFFFF">SECOURS</text>
+    <text x="200" y="490" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="24" fill="#FFFFFF">Ouvert de l'ouverture</text>
+    <text x="200" y="522" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="24" fill="#FFFFFF">à la fermeture des portes</text>
+  </g>
+</svg>

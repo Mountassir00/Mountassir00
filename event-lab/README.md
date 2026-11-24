@@ -18,8 +18,10 @@ Studio de recherche et développement événementiel, multisectoriel : veille in
 | 8 | Modèles documentaires | [docs/08](docs/08-modeles-documentaires.md), [templates/](templates/) | 0.1.0 |
 | 9 | Roadmap MVP, V1, V2 | [docs/09](docs/09-roadmap.md) | 0.1.0 |
 | 10 | Coûts de développement et d'exploitation | [docs/10](docs/10-couts.md) | 0.1.0 |
-| 11 | Portefeuille de dix concepts | `portfolio/` | 0.2.0 (à venir) |
-| 12 | Premier EVENT BLUEPRINT | `blueprints/` | 0.2.0 (à venir) |
+| 11 | Portefeuille de dix concepts | [portfolio/](portfolio/README.md) | 0.2.0 |
+| 12 | Premier EVENT BLUEPRINT (LA GRILLE 3x3) | [blueprints/la-grille-3x3/](blueprints/la-grille-3x3/README.md) | 0.2.0 |
+| — | Moteur (notation, simulations, générateur) + 28 tests | [app/engine/](app/engine/) | 0.2.0 |
+| — | Registre de 28 erreurs, 70 briques | [knowledge/](knowledge/) | 0.2.0 |
 
 ## Arborescence
 
@@ -34,6 +36,14 @@ Studio de recherche et développement événementiel, multisectoriel : veille in
 | `app/` | Moteur et application MVP |
 | `scripts/` | Outils : versionnement, génération et exports |
 | `archives/` | Versions figées (zip + empreintes SHA-256) |
+
+## Commandes
+
+```bash
+node --test app/engine/tests/*.test.js   # tests du moteur
+node scripts/validate.mjs                # validation des JSON contre les schémas
+node scripts/build-blueprint.mjs blueprints/la-grille-3x3
+```
 
 ## Versionnement
 

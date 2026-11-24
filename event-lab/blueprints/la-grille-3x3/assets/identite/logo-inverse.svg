@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-labelledby="t d">
+  <title id="t">LA GRILLE 3x3 — logo inversé (fonds sombres)</title>
+  <desc id="d">Création originale EVENT LAB. Version négative sur asphalte #121417 : traits et mot-symbole craie #F4F1EA (16,36:1), pole jaune #FFC629 (11,74:1), pastille orange #FF5B1A avec texte asphalte (5,94:1).</desc>
+  <rect width="640" height="200" fill="#121417"/>
+  <g transform="translate(24 42)" fill="none" stroke="#F4F1EA" stroke-width="4" stroke-linejoin="round">
+    <rect x="0" y="0" width="40" height="24" rx="5" fill="#FFC629" stroke="#FFC629"/>
+    <rect x="0" y="34" width="40" height="24" rx="5"/>
+    <rect x="0" y="68" width="40" height="24" rx="5"/>
+    <rect x="50" y="12" width="40" height="24" rx="5"/>
+    <rect x="50" y="46" width="40" height="24" rx="5"/>
+    <rect x="50" y="80" width="40" height="24" rx="5"/>
+    <rect x="100" y="24" width="40" height="24" rx="5"/>
+    <rect x="100" y="58" width="40" height="24" rx="5"/>
+    <rect x="100" y="92" width="40" height="24" rx="5"/>
+  </g>
+  <text x="186" y="112" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="72" fill="#F4F1EA" textLength="424" lengthAdjust="spacingAndGlyphs">LA GRILLE</text>
+  <rect x="186" y="128" width="112" height="46" rx="8" fill="#FF5B1A"/>
+  <text x="242" y="163" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="34" fill="#121417">3x3</text>
+</svg>

@@ -24,6 +24,48 @@ Légende des statuts de fonctionnalités :
 |---|---|---|---|
 | 0.0.0 | 2026-11-24 | Socle de versionnement | `archives/event-lab-v0.0.0.zip` |
 | 0.1.0 | 2026-11-24 | Fondations (livrables 1 à 10) | `archives/event-lab-v0.1.0.zip` |
+| 0.2.0 | 2026-11-24 | Moteur, portefeuille, connaissances, premier blueprint | `archives/event-lab-v0.2.0.zip` |
+
+---
+
+## [0.2.0] — 2026-11-24 — Moteur, portefeuille, base de connaissances, premier EVENT BLUEPRINT (livrables 11 et 12)
+
+### Ajouté
+- **Moteur** `app/engine/` (JavaScript, fonctions pures, partagé navigateur / Node) : notation /100 avec confiance et portes éliminatoires, simulateur financier (3 scénarios, seuil, trésorerie avec point bas intra-journée, tornade), compétition (passages chronométrés, poules, élimination simple et double, suisse), flux (files d'attente, occupation, densité), personnel et chemin critique, incidents (8 types), versionnement (immutabilité, nouvelle version, clone, adaptation, diff), variantes de configuration, générateur de concepts (filtrage, squelettes par direction, tirage reproductible, diversité), validateur de schémas. **28 tests unitaires** sur des cas calculés à la main.
+- **Scripts** : `build-blueprint.mjs` (configuration → tableaux → dossier assemblé), `validate.mjs`, `export_xlsx.py` (modèle financier à formules, contrôlé à 0 € d'écart avec le moteur après recalcul LibreOffice), `export-docs.mjs` (PDF via Chromium, DOCX via pandoc), `export_pptx.py` (dossier partenaires), `svg2png.mjs`.
+- **Portefeuille** `portfolio/` : 10 concepts notés indépendamment, couvrant les 6 directions dont 3 hors sport ; fiche économique d'une page par concept (problème, client, prix, acquisition, marges, récurrence, avantage, test en 7 jours) ; 3 graines remplacées pour non-originalité (dont 2 recoupant BASK'EST LAB). Classement : la-joute 77 · genese 70 · carre-fest 69 · repar-arene 67 · coop-12 66 · hors-bureau 64 · level-up-run 64 · silent-arena 64 · padel-royale 62 · la-grille-3x3 61 (version concept).
+- **Connaissances** `knowledge/` : registre de 28 erreurs sourcées (9 causes établies par rapport officiel, 14 recoupées par la presse, 5 probables ; 112 points de contrôle réutilisables ; 15 règles d'or), bibliothèque de 70 briques fonctionnelles (13 types), matrice de distance de transfert 16 × 16.
+- **Premier EVENT BLUEPRINT** `blueprints/la-grille-3x3/` : 40 sections (≈ 50 000 mots), configuration complète, 24 tableaux générés, 5 variantes de lieu (standard, économique, premium, capacité max par plan, secours simulée), 7 plans SVG à l'échelle, identité visuelle originale (15 SVG), 21 fiches de poste, checklist du jour J, règlement prêt à relire, 96 sources ; exports PDF (117 p.), DOCX, XLSX à formules, PPTX.
+
+### Modifié
+- Schémas : `stage_ref`, `doors_open_min`, intervenants, jalons identifiés, règle prix × quantité des packs partenaires, organisateur, confidentialité, `source_ref` sur risques / KPIs / recettes, responsable et justificatif des points de conformité, capacités inconnues admises à `null`.
+- `07-algorithmes.md` : la compression d'un retard ne touche jamais les phases finales ; les forfaits ne réduisent pas les inscriptions encaissées ; une panne informatique épargne les chronomètres manuels.
+
+### Décisions
+- **Notation de LA GRILLE au stade blueprint ramenée de 69 à 62/100** après relecture croisée indépendante : antériorité des concours d'habileté 3x3 et du placement serpentin, attente importante des équipes entre deux matchs, configuration standard déficitaire.
+- **Recettes forfaitaires requalifiées en « hypothétiques »** (subvention municipale, partenaires locaux, food trucks) : aucun accord n'existe ; elles ne passeront en « probables » qu'après accord oral.
+- **Première édition en configuration économique uniquement**, confirmée à J-60 si son scénario prudent revient à l'équilibre avec des recettes signées ; sinon report. Standard seulement avec partenaire titre signé et trésorerie financée ; premium seulement après deux éditions excédentaires.
+- Buvette sans alcool par défaut ; âge minimum 16 ans avec autorisation parentale ; prédiction gratuite ouverte à tous ; publicité payante engagée seulement après le go/no-go de J-30.
+
+### Résultats simulés (prévisionnels, à remplacer par des devis)
+
+| Configuration | Prudent | Central | Ambitieux |
+|---|---|---|---|
+| Standard | −11,2 k€ | −4,0 k€ | +4,0 k€ |
+| Économique | −5,1 k€ | +1,6 k€ | +9,3 k€ |
+| Premium | −26,9 k€ | −16,3 k€ | −4,9 k€ |
+| Secours (1 terrain) | −12,0 k€ | −5,8 k€ | +1,2 k€ |
+
+### Statut réel
+- **Opérationnel** : moteur et tests, génération du blueprint (reproductible à l'identique), exports PDF / DOCX / XLSX / PPTX, validation des 109 objets de connaissance.
+- **Simulé** : toutes les données de LA GRILLE (archétype de lieu, montants estimés, fréquentation supposée).
+- **Externe requis** : vérification réglementaire auprès des autorités et de l'exploitant ; devis ; lecture intégrale des sources (bloquée par le réseau de la session).
+
+### Limites connues
+- Aucune page web n'a pu être ouverte dans cette session (réseau) et le quota de recherche partagé a été épuisé : sources vérifiées par extraits de moteur de recherche ou reprises de BASK'EST LAB avec leur statut d'origine. Originalité non vérifiée pour repar-arene et coop-12 ; noms non vérifiés à l'INPI / EUIPO.
+- Le simulateur de compétition utilise les étapes nominales (16 + 8 équipes) même au scénario prudent (18 équipes) ; règle d'effectif réduit décrite dans le texte (§11), non simulée.
+- Les tableaux de dimensions de la section 21 décrivent le lieu avant correction (les plans SVG, eux, sont régénérés depuis la configuration corrigée).
+- Pas encore de liaison `block_id` entre les briques citées par les concepts et la bibliothèque.
 
 ---
 

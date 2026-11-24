@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="t d">
+  <title id="t">LA GRILLE 3x3 — icône / avatar</title>
+  <desc id="d">Création originale EVENT LAB. Marque seule (grille 3x3 décalée, pole jaune) sur fond asphalte, inscrite dans le cercle de recadrage des réseaux sociaux (rayon 230 px). Sans texte : lisible jusqu'à 32 px.</desc>
+  <rect width="512" height="512" fill="#121417"/>
+  <!-- Marque 140 x 116 mise à l'échelle 2,4 et centrée -->
+  <g transform="translate(88 117) scale(2.4)" fill="none" stroke="#F4F1EA" stroke-width="6" stroke-linejoin="round">
+    <rect x="0" y="0" width="40" height="24" rx="5" fill="#FFC629" stroke="#FFC629"/>
+    <rect x="0" y="34" width="40" height="24" rx="5"/>
+    <rect x="0" y="68" width="40" height="24" rx="5"/>
+    <rect x="50" y="12" width="40" height="24" rx="5"/>
+    <rect x="50" y="46" width="40" height="24" rx="5"/>
+    <rect x="50" y="80" width="40" height="24" rx="5"/>
+    <rect x="100" y="24" width="40" height="24" rx="5"/>
+    <rect x="100" y="58" width="40" height="24" rx="5"/>
+    <rect x="100" y="92" width="40" height="24" rx="5"/>
+  </g>
+</svg>

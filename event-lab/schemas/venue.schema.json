@@ -127,7 +127,10 @@
             "type": "number"
           },
           "capacity": {
-            "type": "integer"
+            "type": [
+              "integer",
+              "null"
+            ]
           },
           "fixed": {
             "type": "boolean",

@@ -1,0 +1,13 @@
+id;flux;libelle;montant_unitaire;base;taux_marge;certitude;decalage_encaissement_J
+R01;billetterie;Entrée journée en prévente en ligne (5 €, hypothèse : 60 % des payants);3;per_paying_attendee;1;probable;-7
+R01b;billetterie;Entrée journée sur place (5 €, hypothèse : 40 % des payants);2;per_paying_attendee;1;probable;0
+R02;inscriptions;Inscriptions équipes (60 € par équipe de 4);60;per_participant;1;probable;-21
+R03;restauration;Buvette (dépense moyenne 6 € par spectateur);6;per_attendee;1;probable;0
+R04;restauration;Redevance food trucks (2 × 100 €);200;fixed;1;hypothetical;0
+R05;merchandising;T-shirts LA GRILLE (marge nette sur 40 ventes);300;fixed;1;hypothetical;0
+R06;sponsoring;Partenaire titre — acompte 50 % à la signature;2000;fixed;1;hypothetical;-45
+R06b;sponsoring;Partenaire titre — solde 50 % après l'événement;2000;fixed;1;hypothetical;7
+R07;sponsoring;Partenaires officiels (3 × 1 200 €);3600;fixed;1;hypothetical;0
+R08;sponsoring;Partenaires locaux (4 × 400 €);1600;fixed;1;hypothetical;0
+R09;subvention;Subvention municipale (animation sportive);3000;fixed;1;hypothetical;60
+R10;subvention;Subvention départementale ou régionale;1500;fixed;1;hypothetical;90

@@ -134,7 +134,7 @@ export function staffTable(config) {
 export function equipmentTable(config) {
   const SRC = { possede: 'Possédé', lieu: 'Fourni par le lieu', location: 'Location', achat: 'Achat', pret_partenaire: 'Prêt partenaire', sponsor: 'Sponsor' };
   const rows = (config.resources?.equipment ?? []).map((e) => [e.item, num(e.qty), SRC[e.source] ?? '—', e.power_w ? `${num(e.power_w)} W` : '—', e.notes ?? '']);
-  const power = (config.resources?.equipment ?? []).reduce((s, e) => s + (e.power_w ?? 0) * (e.qty > 0 ? 1 : 0), 0);
+  const power = (config.resources?.equipment ?? []).reduce((s, e) => s + (e.power_w ?? 0) * (e.qty ?? 0), 0);
   return { table: table(['Matériel', 'Qté', 'Provenance', 'Puissance', 'Note'], rows, ['l', 'r', 'l', 'r', 'l']), powerW: power };
 }
 
@@ -180,6 +180,7 @@ export function continuityTable(config) {
 export function incidentsTable(config) {
   const cases = [
     { type: 'delay', minutes: 30, fromMin: 780, label: 'Retard de 30 min au début des poules' },
+    { type: 'delay', minutes: 60, fromMin: 780, label: 'Retard de 60 min au début des poules' },
     { type: 'dropout', count: 3, label: '3 équipes forfait' },
     { type: 'it_failure', label: 'Panne informatique (écran, chronométrage numérique)' },
     { type: 'power_failure', label: 'Défaillance électrique' },

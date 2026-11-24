@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600mm" height="900mm" role="img" aria-labelledby="t d">
+  <title id="t">SIG-01 — Panneau d'entrée et files (600 x 900 mm, sur pied ou barrière)</title>
+  <desc id="d">Maquette originale EVENT LAB. Affiché à l'entrée E1 avant les barrières de file. File A : billet QR et accès prioritaire. File B : achat sur place. Tarifs repris d'event.json : 5 euros la journée, gratuit moins de 12 ans.</desc>
+  <rect width="600" height="900" fill="#F4F1EA"/>
+  <rect width="600" height="150" fill="#121417"/>
+  <text x="300" y="98" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="64" fill="#F4F1EA">ENTRÉE</text>
+  <!-- File A -->
+  <rect x="30" y="180" width="540" height="270" rx="12" fill="#121417"/>
+  <text x="60" y="260" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="72" fill="#FFC629">A</text>
+  <text x="140" y="240" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="38" fill="#F4F1EA">BILLET QR</text>
+  <text x="140" y="280" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#F4F1EA">Téléphone ou papier prêt</text>
+  <text x="60" y="352" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="26" fill="#F4F1EA">ACCÈS PRIORITAIRE</text>
+  <text x="60" y="388" font-family="Archivo, Arial, sans-serif" font-size="22" fill="#F4F1EA">Fauteuil, mobilité réduite, grossesse,</text>
+  <text x="60" y="418" font-family="Archivo, Arial, sans-serif" font-size="22" fill="#F4F1EA">poussette, accompagnant</text>
+  <!-- File B -->
+  <rect x="30" y="480" width="540" height="230" rx="12" fill="none" stroke="#121417" stroke-width="6"/>
+  <text x="60" y="560" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="72" fill="#121417">B</text>
+  <text x="140" y="540" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="38" fill="#121417">ACHAT SUR PLACE</text>
+  <text x="140" y="580" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#121417">Carte ou espèces</text>
+  <text x="60" y="650" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="34" fill="#121417">5 € LA JOURNÉE</text>
+  <text x="60" y="690" font-family="Archivo, Arial, sans-serif" font-size="24" fill="#121417">Gratuit pour les moins de 12 ans</text>
+  <!-- bas -->
+  <rect x="0" y="750" width="600" height="150" fill="#2D55E6"/>
+  <text x="40" y="808" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="28" fill="#F4F1EA">GRILLE &amp; SCORES EN DIRECT</text>
+  <text x="40" y="848" font-family="Archivo, Arial, sans-serif" font-size="22" fill="#F4F1EA">Scannez le QR code sur votre billet</text>
+  <rect x="470" y="770" width="110" height="110" fill="#F4F1EA"/>
+  <text x="525" y="832" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="16" fill="#121417">QR</text>
+</svg>

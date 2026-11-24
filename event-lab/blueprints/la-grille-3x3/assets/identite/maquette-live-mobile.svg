@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" role="img" aria-labelledby="t d">
+<title id="t">Maquette — page publique « Grille et scores en direct » (mobile 390 x 844)</title>
+<desc id="d">Maquette originale EVENT LAB. Onglets Grille, Poules, Matchs, Mon équipe ; grille Open après Q3 ; carte épinglée « Mon équipe » avec l'heure et le terrain du prochain match ; horodatage de mise à jour. Équipes et temps fictifs.</desc>
+<rect width="390" height="844" fill="#F4F1EA"/>
+<rect width="390" height="112" fill="#121417"/>
+<g transform="translate(16 22) scale(0.26)" fill="none" stroke="#F4F1EA" stroke-width="4"><rect x="0" y="0" width="40" height="24" rx="5" fill="#FFC629" stroke="#FFC629"/><rect x="0" y="34" width="40" height="24" rx="5"/><rect x="0" y="68" width="40" height="24" rx="5"/><rect x="50" y="12" width="40" height="24" rx="5"/><rect x="50" y="46" width="40" height="24" rx="5"/><rect x="50" y="80" width="40" height="24" rx="5"/><rect x="100" y="24" width="40" height="24" rx="5"/><rect x="100" y="58" width="40" height="24" rx="5"/><rect x="100" y="92" width="40" height="24" rx="5"/></g>
+<text x="62" y="44" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F4F1EA">LA GRILLE 3x3</text>
+<text x="62" y="64" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#8B9099">Gymnase municipal · samedi</text>
+<rect x="270" y="26" width="104" height="26" rx="13" fill="#FF5B1A"/><circle cx="284" cy="39" r="4" fill="#121417"/>
+<text x="294" y="44" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#121417">EN DIRECT</text>
+<text x="16" y="98" font-family="Archivo Black, Arial Black, sans-serif" font-size="15" fill="#FFC629">Grille</text>
+<text x="104" y="98" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#F4F1EA">Poules</text>
+<text x="186" y="98" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#F4F1EA">Matchs</text>
+<text x="268" y="98" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#F4F1EA">Mon équipe</text>
+<rect x="16" y="104" width="50" height="4" fill="#FFC629"/>
+<rect x="16" y="124" width="358" height="36" rx="18" fill="none" stroke="#121417" stroke-width="2"/><rect x="18" y="126" width="177" height="32" rx="16" fill="#121417"/>
+<text x="106" y="147" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="13" fill="#F4F1EA">OPEN</text><text x="284" y="147" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="13" fill="#121417">FÉMININES</text>
+<text x="16" y="190" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">Grille définitive — après Q3</text>
+<text x="16" y="208" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Pos. · équipe · temps retenu · manche · poule</text>
+<rect x="16" y="222" width="358" height="38" rx="6" fill="#FFC629" stroke="#121417" stroke-width="1"/>
+<text x="28" y="247" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">01</text>
+<text x="64" y="247" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Ardoise</text>
+<text x="214" y="247" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:41.08</text>
+<text x="302" y="247" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q3</text>
+<rect x="336" y="231" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="246" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">A</text>
+<rect x="16" y="264" width="358" height="38" rx="6" fill="#F4F1EA" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="289" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">02</text>
+<text x="64" y="289" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Brique</text>
+<text x="214" y="289" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:41.32</text>
+<text x="302" y="289" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q3</text>
+<rect x="336" y="273" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="288" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">B</text>
+<rect x="16" y="306" width="358" height="38" rx="6" fill="#FFFFFF" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="331" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">03</text>
+<text x="64" y="331" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Cobalt</text>
+<text x="214" y="331" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:41.75</text>
+<text x="302" y="331" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q3</text>
+<rect x="336" y="315" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="330" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">C</text>
+<rect x="16" y="348" width="358" height="38" rx="6" fill="#F4F1EA" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="373" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">04</text>
+<text x="64" y="373" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Dalle</text>
+<text x="214" y="373" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:42.04</text>
+<text x="302" y="373" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q3</text>
+<rect x="336" y="357" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="372" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">D</text>
+<rect x="16" y="390" width="358" height="38" rx="6" fill="#FFFFFF" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="415" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">05</text>
+<text x="64" y="415" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Éclair</text>
+<text x="214" y="415" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:42.31</text>
+<text x="302" y="415" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="399" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="414" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">D</text>
+<rect x="16" y="432" width="358" height="38" rx="6" fill="#F4F1EA" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="457" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">06</text>
+<text x="64" y="457" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Faubourg</text>
+<text x="214" y="457" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:42.66</text>
+<text x="302" y="457" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="441" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="456" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">C</text>
+<rect x="16" y="474" width="358" height="38" rx="6" fill="#FFFFFF" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="499" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">07</text>
+<text x="64" y="499" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Granit</text>
+<text x="214" y="499" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:43.02</text>
+<text x="302" y="499" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="483" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="498" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">B</text>
+<rect x="16" y="516" width="358" height="38" rx="6" fill="#F4F1EA" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="541" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">08</text>
+<text x="64" y="541" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Hangar</text>
+<text x="214" y="541" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:43.40</text>
+<text x="302" y="541" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="525" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="540" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">A</text>
+<rect x="16" y="558" width="358" height="38" rx="6" fill="#FFFFFF" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="583" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">09</text>
+<text x="64" y="583" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Îlot</text>
+<text x="214" y="583" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:43.95</text>
+<text x="302" y="583" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="567" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="582" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">A</text>
+<rect x="16" y="600" width="358" height="38" rx="6" fill="#F4F1EA" stroke="#D8D4CB" stroke-width="1"/>
+<text x="28" y="625" font-family="IBM Plex Mono, Courier New, monospace" font-size="15" font-weight="700" fill="#121417">10</text>
+<text x="64" y="625" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="700" fill="#121417">Jetée</text>
+<text x="214" y="625" font-family="IBM Plex Mono, Courier New, monospace" font-size="14" fill="#121417">00:44.37</text>
+<text x="302" y="625" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#121417">Q2</text>
+<rect x="336" y="609" width="26" height="20" rx="4" fill="#121417"/><text x="349" y="624" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="12" fill="#F4F1EA">B</text>
+<text x="16" y="658" font-family="Archivo, Arial, sans-serif" font-size="14" fill="#2D55E6" text-decoration="underline">Voir les positions 11 à 16</text>
+<rect x="0" y="672" width="390" height="172" fill="#121417"/>
+<text x="16" y="700" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#8B9099">MON ÉQUIPE (épinglée)</text>
+<text x="16" y="726" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="20" fill="#F4F1EA">Granit · n° 07 · Poule B</text>
+<text x="16" y="756" font-family="Archivo, Arial, sans-serif" font-size="15" fill="#F4F1EA">Prochain match</text>
+<text x="16" y="788" font-family="IBM Plex Mono, Courier New, monospace" font-size="26" font-weight="700" fill="#FFC629">14:36</text>
+<text x="120" y="786" font-family="Archivo, Arial, sans-serif" font-size="16" fill="#F4F1EA">Terrain 2 · contre n° 15</text>
+<text x="16" y="826" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#8B9099">Mis à jour il y a 20 s · actualisation auto 30 s · données fictives</text>
+</svg>
