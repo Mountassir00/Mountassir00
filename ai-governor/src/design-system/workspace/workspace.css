@@ -66,7 +66,7 @@
 /* plan minimap */
 .plan { background: color-mix(in oklab, var(--c-raised) 92%, transparent); border: 1px solid var(--card-border); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 8px 10px; backdrop-filter: blur(10px); }
 .plan__head { display: flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 650; color: var(--c-ink-muted); }
-.plan svg { width: 100%; height: 120px; display: block; }
+.plan > svg { width: 100%; height: 120px; display: block; }
 .plan__room { fill: var(--c-sunken); stroke: var(--c-line); stroke-width: 0.06; cursor: pointer; }
 .plan__obj { fill: color-mix(in oklab, var(--c-ink) 14%, var(--c-raised)); stroke: var(--c-line); stroke-width: 0.04; cursor: pointer; }
 .plan__view { fill: color-mix(in oklab, var(--c-accent) 10%, transparent); stroke: var(--c-accent); stroke-width: 0.08; }

@@ -166,6 +166,16 @@ export function ExperienceProviders({ children, experienceId, quality, clock }: 
       setShared(key, value) {
         setPrefs((p) => ({ ...p, local: { ...p.local, __shared: { ...(p.local.__shared ?? {}), [key]: value } } }));
       },
+      subscribeShared(key, cb) {
+        let last = ui.get().prefs.local.__shared?.[key];
+        return ui.subscribe(() => {
+          const v = ui.get().prefs.local.__shared?.[key];
+          if (v !== last) {
+            last = v;
+            cb();
+          }
+        });
+      },
       provideCommands(commands) {
         const tagged = commands.map((c) => ({ ...c, id: `${experienceId}:${c.id}` }));
         ui.set((s) => ({ viewCommands: [...s.viewCommands.filter((c) => !c.id.startsWith(`${experienceId}:`)), ...tagged] }));

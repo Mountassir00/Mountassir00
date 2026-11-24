@@ -14,7 +14,7 @@
  *
  * Presentation data only — never operational data.
  */
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
 import type { Catalog, HostApi } from '@sdk';
 import type { EquipmentKind } from './props';
 
@@ -237,20 +237,15 @@ export interface SpatialLayoutState {
  * the value is re-read on every render (the shell re-renders views on data
  * ticks), and local writes bump a version so the caller re-renders at once.
  */
-export function useSpatialLayout(host: Pick<HostApi, 'getShared' | 'setShared'>): SpatialLayoutState {
-  const [version, setVersion] = useState(0);
-  const raw = host.getShared<unknown>(SPATIAL_LAYOUT_KEY, null);
-  const layout = useMemo(() => normalizeLayout(raw) ?? DEFAULT_SPATIAL_LAYOUT, [raw, version]); // eslint-disable-line react-hooks/exhaustive-deps
-  const setLayout = useCallback(
-    (next: SpatialLayout) => {
-      host.setShared(SPATIAL_LAYOUT_KEY, next);
-      setVersion((v) => v + 1);
-    },
-    [host],
+/** Reactive: every 3D view re-renders as soon as the editor (or any view) saves the layout. */
+export function useSpatialLayout(host: Pick<HostApi, 'getShared' | 'setShared' | 'subscribeShared'>): SpatialLayoutState {
+  const raw = useSyncExternalStore(
+    (cb) => host.subscribeShared(SPATIAL_LAYOUT_KEY, cb),
+    () => host.getShared<unknown>(SPATIAL_LAYOUT_KEY, null),
+    () => host.getShared<unknown>(SPATIAL_LAYOUT_KEY, null),
   );
-  const resetLayout = useCallback(() => {
-    host.setShared(SPATIAL_LAYOUT_KEY, null);
-    setVersion((v) => v + 1);
-  }, [host]);
+  const layout = useMemo(() => normalizeLayout(raw) ?? DEFAULT_SPATIAL_LAYOUT, [raw]);
+  const setLayout = useCallback((next: SpatialLayout) => host.setShared(SPATIAL_LAYOUT_KEY, next), [host]);
+  const resetLayout = useCallback(() => host.setShared(SPATIAL_LAYOUT_KEY, null), [host]);
   return { layout, setLayout, resetLayout, isCustom: raw != null && layout !== DEFAULT_SPATIAL_LAYOUT };
 }

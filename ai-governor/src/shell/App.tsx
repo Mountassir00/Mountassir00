@@ -104,7 +104,8 @@ function useAppearance(themeOverride?: string) {
     const el = document.documentElement;
     el.dataset.motion = quality.motion;
     el.dataset.quality = quality.level;
-    clock.configure(quality.fpsCap, quality.suspended || quality.motion !== 'ambient');
+    // The shared clock ticks only for subscribers, at 'subtle' (standard, 30 fps cap) and 'ambient' (high).
+    clock.configure(quality.fpsCap, quality.suspended || (quality.motion !== 'ambient' && quality.motion !== 'subtle'));
   }, [quality]);
   return { theme, quality };
 }

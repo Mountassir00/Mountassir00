@@ -277,7 +277,7 @@ export default function SpatialWorkspace({ host, config, quality, device }: Expe
           size: 236,
           content: (
             <div className="sw-explorer">
-              <ExplorerTree title="Espace" nodes={tree} selectedId={selectedTreeId} onSelect={onTreeSelect} />
+              <ExplorerTree title={layout.name} nodes={tree} selectedId={selectedTreeId} onSelect={onTreeSelect} />
               <p className="sw-explorer__legend">
                 <span className="sw-letter sw-letter--M" aria-hidden>M</span> activité &lt; 10 min · <span className="sw-letter sw-letter--I" aria-hidden>I</span> inactif &gt; 1 h · pastille = statut
               </p>
@@ -568,10 +568,10 @@ function ReviewPanel({ host }: { host: ExperienceProps['host'] }) {
   return (
     <div className="sw-panel">
       <div className="sw-review__head">
-        <h2 className="t-h3">Revue</h2>
+        <h2 className="t-h3">Propositions en attente</h2>
         <span className="badge-count" aria-label={`${pending.length} proposition(s) en attente`}>{pending.length}</span>
       </div>
-      <p className="t-micro t-muted">Propositions en attente d’arbitrage. Rien n’est appliqué sans votre GO, NO GO ou TEST.</p>
+      <p className="t-micro t-muted">Rien n’est appliqué sans votre GO, NO GO ou TEST. Chaque arbitrage passe par la confirmation proportionnée au risque.</p>
       {mode === 'replay' && <Notice tone="warn">Mode Replay : lecture seule. Revenez en direct pour arbitrer.</Notice>}
       {pending.length === 0 && <div className="empty">Aucune proposition en attente.</div>}
       {pending.map((d) => {

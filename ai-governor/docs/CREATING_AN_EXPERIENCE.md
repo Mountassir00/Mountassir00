@@ -91,6 +91,10 @@ Rien d'autre à modifier : le lanceur (touche G), la galerie, le studio, l'inspe
 
 ### 5. Respecter la sobriété
 
+**Scènes 3D.** Three.js n'est accessible que par le kit `@ds/three` (`import { THREE, ThreeStage, … } from '@ds/three'`) ; importer `three` directement fait échouer le test de frontières. Le kit rend **à la demande** (`stage.invalidate()`), plafonne le ratio de pixels et les images/s selon la qualité, coupe ombres et carte d'environnement en `minimal`/`eco`, s'arrête quand l'onglet est masqué et affiche un repli si WebGL manque. Mode d'emploi complet : `src/design-system/three/README.md`. La disposition de l'espace (`useSpatialLayout(host)`) est partagée entre l'Espace spatial, le Bureau 3D, le QG 3D et l'Éditeur spatial ; elle est réactive : une modification dans l'éditeur apparaît aussitôt dans les autres vues. Pour toute autre donnée de présentation partagée : `useShared(host, clé, défaut)`.
+
+**Horloge partagée.** `useAnimationFrame` ne tourne qu'aux niveaux `subtle` (standard, 30 i/s max) et `ambient` (élevé, 60 i/s max), et seulement tant qu'une vue y est abonnée. À `subtle`, n'animez que des indicateurs d'état et des flux réels ; réservez les mouvements décoratifs (corps, rotation lente) à `ambient`.
+
 - Pas de boucle `requestAnimationFrame` propre : animations CSS (gouvernées par `html[data-motion]`, suspendues par `html[data-anim=paused]`) ou `useAnimationFrame` (horloge partagée et plafonnée).
 - Respecter `quality.level` (`minimal` = aucune animation, formes simplifiées).
 - Mémoïser la disposition sur le catalogue et la configuration ; ne re-rendre que ce qui dépend de l'état.

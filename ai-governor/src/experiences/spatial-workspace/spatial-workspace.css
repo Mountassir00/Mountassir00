@@ -1,5 +1,6 @@
 /* Espace spatial (.sw-) */
-.sw { position: absolute; inset: 0; container-type: inline-size; }
+.sw { position: absolute; inset: 0; container: sw / inline-size; }
+@container sw (max-width: 640px) { .sw-term-note { display: none; } }
 .sw-dock .dock__center { background: var(--c-sunken); }
 .sw-center { position: absolute; inset: 0; container-type: inline-size; }
 .sw-scene { position: absolute; inset: 0; }
@@ -113,6 +114,8 @@ html[data-scheme='dark'] .sw-pr { background: var(--c-sunken); }
 }
 @container (max-width: 560px) {
   .sw-legend { display: none; }
+  .sw-scene .t3-label { padding: 4px 9px 4px 7px; gap: 6px; }
+  .sw-scene .t3-label__text small { display: none; }
   .sw-toolbar { left: 50%; transform: translateX(-50%); bottom: 10px; }
   .sw-card { min-width: 220px; max-width: min(280px, calc(100vw - 48px)); }
 }

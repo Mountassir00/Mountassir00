@@ -42,6 +42,8 @@ export interface HostApi {
    */
   getShared<T>(key: string, fallback: T): T;
   setShared<T>(key: string, value: T): void;
+  /** Called whenever the shared value under `key` changes (any view). Returns an unsubscribe function. Prefer the SDK hook useShared. */
+  subscribeShared(key: string, cb: () => void): () => void;
   /** Adds view-specific entries to the command palette (Ctrl+K). Returns a remover. */
   provideCommands(commands: ViewCommand[]): () => void;
 }

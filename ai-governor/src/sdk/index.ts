@@ -104,6 +104,19 @@ export function useAnimationFrame(cb: (t: number, dt: number) => void, enabled =
   }, [clock, enabled]);
 }
 
+/**
+ * Reactive cross-view value (e.g. the spatial layout saved by the editor):
+ * re-renders as soon as any view calls host.setShared(key, …).
+ */
+export function useShared<T>(host: HostApi, key: string, fallback: T): T {
+  const v = useSyncExternalStore(
+    (cb) => host.subscribeShared(key, cb),
+    () => host.getShared<T | undefined>(key, undefined),
+    () => host.getShared<T | undefined>(key, undefined),
+  );
+  return v === undefined ? fallback : v;
+}
+
 /** Lookup helpers built once per catalog. */
 export function useCatalogIndex() {
   const { catalog } = useGovernor();

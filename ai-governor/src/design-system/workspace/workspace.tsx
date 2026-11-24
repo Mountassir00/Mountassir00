@@ -62,12 +62,19 @@ export function DockLayout({
     return () => ro.disconnect();
   }, []);
 
-  const update = (patch: Partial<DockSizes>) =>
-    setS((prev) => {
-      const next = { ...prev, ...patch };
-      onSizes?.(next);
-      return next;
-    });
+  // onSizes is reported after the state settles, never from inside the
+  // updater (a store write there would update another component mid-render).
+  const update = (patch: Partial<DockSizes>) => setS((prev) => ({ ...prev, ...patch }));
+  const onSizesRef = useRef(onSizes);
+  onSizesRef.current = onSizes;
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    onSizesRef.current?.(s);
+  }, [s]);
 
   const drag = (which: 'left' | 'right' | 'bottom') => (e: React.PointerEvent) => {
     e.preventDefault();
