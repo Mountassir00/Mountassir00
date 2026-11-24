@@ -70,7 +70,9 @@ knowledge/
   building-blocks.json        tableau de BuildingBlock
   registre-erreurs.json       tableau d'ErrorEntry
   veille/AAAA/MM/W-AAAAMMJJ-slug.json   une fiche par fichier
-  veille/index.json           index généré (id, nom, date, secteur, fiabilité)
+  veille/index.json           index généré (id, nom, date, secteur, fiabilité, statut) — dérivé, jamais édité à la main
+  veille/validations.json     décisions humaines de validation (a_valider / publie / rejete / fusionne) — édité par l'humain seulement
+  veille/digests/<cadence>/   synthèses Markdown de chaque passage de veille
   veille/sources.json         catalogue de sources
 portfolio/concepts/<id>.json  EventConfig maturity=concept
 blueprints/<id>/event.json    EventConfig maturity=blueprint (version courante)
