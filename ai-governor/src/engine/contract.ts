@@ -31,6 +31,8 @@ export interface HostApi {
   announce(message: string): void;
   /* UI navigation only — never an operational change, never a model call. */
   navigate(target: 'sources' | 'gallery' | 'studio' | 'builder' | 'settings'): void;
+  /** Switches to another installed view (context kept: selection, period, filters). Unknown or disabled ids are ignored. */
+  openView(id: string): void;
   setPeriod(preset: Exclude<PeriodPreset, 'custom'>): void;
   /** Replays the current period from its start (read-only). */
   startReplay(): void;

@@ -10,6 +10,8 @@ import { ClockContext, HostContext, QualityContext, type GovernorSnapshot } from
 import type { AnimationClock } from '@engine/runtime';
 import type { GovernorRuntime } from './runtime';
 import { announce, setPrefs, toast, ui, useUi } from './uiStore';
+import { registry } from './registryInstance';
+import { switchTo } from './App';
 
 export const RuntimeContext = createContext<GovernorRuntime | null>(null);
 export function useRuntime() {
@@ -141,6 +143,10 @@ export function ExperienceProviders({ children, experienceId, quality, clock }: 
         setPrefs((p) => ({ ...p, local: { ...p.local, [experienceId]: { ...(p.local[experienceId] ?? {}), [key]: value } } }));
       },
       announce,
+      openView(id) {
+        const target = registry.entries(ui.get().prefs).find((e) => e.id === id && e.enabled && !e.hidden);
+        if (target) switchTo(target.id);
+      },
       navigate(target) {
         ui.set({ route: target });
       },
