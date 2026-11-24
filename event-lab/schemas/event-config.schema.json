@@ -1,0 +1,1222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://event-lab.local/schemas/event-config.schema.json",
+  "title": "EventConfig",
+  "description": "Configuration structurée, versionnée et clonable d'un événement EVENT LAB. Un concept du portefeuille et un blueprint complet utilisent le même schéma ; seul le niveau de complétude change.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "status",
+    "identity",
+    "format",
+    "evaluation"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Identifiant stable (slug) du concept, commun à toutes ses versions et adaptations."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "review",
+        "validated",
+        "archived"
+      ],
+      "description": "Une version 'validated' est immuable : toute modification crée une nouvelle version 'draft' avec parent."
+    },
+    "maturity": {
+      "enum": [
+        "concept",
+        "blueprint",
+        "executed"
+      ],
+      "default": "concept"
+    },
+    "parent": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Lignée : version source en cas de nouvelle version, de clonage ou d'adaptation géographique.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "new_version",
+            "clone",
+            "city_adaptation",
+            "venue_adaptation"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "relation"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "name",
+        "tagline",
+        "disciplines",
+        "directions"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "pitch": {
+          "type": "string"
+        },
+        "disciplines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vide = événement sans discipline."
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "directions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "accessible",
+              "optimise",
+              "premium",
+              "experimental",
+              "hybride",
+              "communautaire"
+            ]
+          }
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audiences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "segment": {
+                "type": "string"
+              },
+              "role": {
+                "enum": [
+                  "spectateur",
+                  "participant",
+                  "benevole",
+                  "sponsor",
+                  "journaliste",
+                  "prestataire",
+                  "vip",
+                  "organisateur"
+                ]
+              },
+              "motivation": {
+                "type": "string"
+              },
+              "willingness_to_pay": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "segment",
+              "role"
+            ]
+          }
+        },
+        "inspirations": {
+          "type": "array",
+          "description": "Logique empruntée à d'autres secteurs. Jamais de reprise de marque, d'identité visuelle ou d'élément protégé.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_event": {
+                "type": "string"
+              },
+              "source_sector": {
+                "type": "string"
+              },
+              "borrowed_logic": {
+                "type": "string"
+              },
+              "adaptation": {
+                "type": "string"
+              },
+              "source_ref": {
+                "type": "string",
+                "description": "Identifiant d'une source dans 'sources'."
+              }
+            },
+            "required": [
+              "source_event",
+              "borrowed_logic",
+              "adaptation"
+            ]
+          }
+        }
+      }
+    },
+    "format": {
+      "type": "object",
+      "required": [
+        "summary",
+        "building_blocks"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "rules_summary": {
+          "type": "string"
+        },
+        "duration_hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "edition_cadence": {
+          "type": "string",
+          "description": "ex. 'annuelle', 'saison de 6 épisodes'"
+        },
+        "building_blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "block_id": {
+                "type": "string",
+                "description": "Référence à knowledge/building-blocks.json"
+              },
+              "type": {
+                "$ref": "#/$defs/blockType"
+              },
+              "label": {
+                "type": "string"
+              },
+              "parameters": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "type",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    "participants": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "enum": [
+            "individu",
+            "equipe"
+          ]
+        },
+        "count": {
+          "$ref": "#/$defs/scenarioNumber"
+        },
+        "team_size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "properties": {
+        "attendance": {
+          "$ref": "#/$defs/scenarioNumber",
+          "description": "Spectateurs uniques attendus par scénario."
+        },
+        "paying_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "arrival_profile": {
+          "type": "array",
+          "description": "Part des arrivées par créneau, en minutes depuis l'ouverture des portes.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from_min": {
+                "type": "number"
+              },
+              "to_min": {
+                "type": "number"
+              },
+              "share": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "from_min",
+              "to_min",
+              "share"
+            ]
+          }
+        },
+        "avg_dwell_min": {
+          "type": "number"
+        }
+      }
+    },
+    "venue_requirements": {
+      "type": "object",
+      "properties": {
+        "setting": {
+          "enum": [
+            "interieur",
+            "exterieur",
+            "mixte"
+          ]
+        },
+        "min_area_m2": {
+          "type": "number"
+        },
+        "spaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/space"
+          }
+        },
+        "power_kw": {
+          "type": "number"
+        },
+        "internet": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "venue": {
+      "$ref": "venue.schema.json",
+      "description": "Instance de lieu retenue (optionnelle au stade concept)."
+    },
+    "program": {
+      "type": "array",
+      "description": "Séquences horodatées (minutes relatives au début de J). Sert au conducteur, aux simulations et au rétroplanning.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "start_min",
+          "duration_min",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "montage",
+              "accueil",
+              "competition",
+              "show",
+              "ceremonie",
+              "pause",
+              "animation",
+              "demontage",
+              "media"
+            ]
+          },
+          "start_min": {
+            "type": "number"
+          },
+          "duration_min": {
+            "type": "number",
+            "minimum": 0
+          },
+          "space": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "cues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tops son/lumière/micro/vidéo."
+          },
+          "critical": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "competition": {
+      "type": "object",
+      "description": "Paramètres utilisés par le simulateur de durée de compétition.",
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "time_trial",
+                  "round_robin",
+                  "single_elimination",
+                  "double_elimination",
+                  "swiss",
+                  "battle_royale",
+                  "custom"
+                ]
+              },
+              "entrants": {
+                "type": "integer"
+              },
+              "groups": {
+                "type": "integer"
+              },
+              "slot_duration_min": {
+                "type": "number",
+                "description": "Durée d'un passage ou d'un match."
+              },
+              "changeover_min": {
+                "type": "number"
+              },
+              "parallel_units": {
+                "type": "integer",
+                "description": "Terrains, pistes ou stations simultanés."
+              },
+              "advance": {
+                "type": "integer",
+                "description": "Nombre qualifiés pour l'étape suivante."
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "entrants",
+              "slot_duration_min",
+              "parallel_units"
+            ]
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "staff": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "role",
+              "count"
+            ],
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "status": {
+                "enum": [
+                  "salarie",
+                  "prestataire",
+                  "benevole",
+                  "partenaire"
+                ]
+              },
+              "hours": {
+                "type": "number"
+              },
+              "cost_per_hour": {
+                "type": "number"
+              },
+              "ratio_note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "equipment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item",
+              "qty"
+            ],
+            "properties": {
+              "item": {
+                "type": "string"
+              },
+              "qty": {
+                "type": "number"
+              },
+              "source": {
+                "enum": [
+                  "possede",
+                  "lieu",
+                  "location",
+                  "achat",
+                  "pret_partenaire",
+                  "sponsor"
+                ]
+              },
+              "unit_cost": {
+                "type": "number"
+              },
+              "power_w": {
+                "type": "number"
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "default": "EUR"
+        },
+        "contingency_rate": {
+          "type": "number",
+          "default": 0.1
+        },
+        "expenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "category",
+              "label",
+              "amount",
+              "basis"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Montant fixe (basis=fixed) ou unitaire (per_attendee / per_participant)."
+              },
+              "basis": {
+                "enum": [
+                  "fixed",
+                  "per_attendee",
+                  "per_participant"
+                ]
+              },
+              "certainty": {
+                "enum": [
+                  "devis",
+                  "estimation",
+                  "hypothese"
+                ]
+              },
+              "optional": {
+                "type": "boolean",
+                "default": false
+              },
+              "priority": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3,
+                "description": "1 = indispensable, 3 = premier poste coupé en cas de réduction."
+              },
+              "pay_offset_days": {
+                "type": "integer",
+                "description": "Date de décaissement relative à J (négatif = avant)."
+              },
+              "source_ref": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "revenues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "stream",
+              "label",
+              "unit_amount",
+              "basis",
+              "certainty"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "stream": {
+                "enum": [
+                  "billetterie",
+                  "inscriptions",
+                  "sponsoring",
+                  "subvention",
+                  "restauration",
+                  "merchandising",
+                  "premium",
+                  "digital",
+                  "licence",
+                  "autre"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "unit_amount": {
+                "type": "number",
+                "description": "Prix unitaire ou montant forfaitaire."
+              },
+              "basis": {
+                "enum": [
+                  "fixed",
+                  "per_paying_attendee",
+                  "per_attendee",
+                  "per_participant"
+                ]
+              },
+              "margin_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 1,
+                "description": "Part conservée (ex. marge buvette)."
+              },
+              "certainty": {
+                "enum": [
+                  "secured",
+                  "probable",
+                  "hypothetical"
+                ]
+              },
+              "cash_offset_days": {
+                "type": "integer",
+                "description": "Date d'encaissement relative à J."
+              }
+            }
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "object",
+      "description": "Paramètres de réalisation par scénario financier.",
+      "properties": {
+        "prudent": {
+          "$ref": "#/$defs/scenarioParams"
+        },
+        "central": {
+          "$ref": "#/$defs/scenarioParams"
+        },
+        "ambitieux": {
+          "$ref": "#/$defs/scenarioParams"
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "description",
+          "probability",
+          "impact"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "securite",
+              "reglementaire",
+              "operationnel",
+              "financier",
+              "meteo",
+              "technique",
+              "reputationnel",
+              "juridique",
+              "sante",
+              "environnement"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "probability": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "impact": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Risque critique : déclenche la porte éliminatoire si non traité."
+          },
+          "warning_signs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "prevention": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "continuity_plan": {
+            "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ouvert",
+              "traite",
+              "accepte"
+            ]
+          }
+        }
+      }
+    },
+    "compliance": {
+      "type": "array",
+      "description": "Points réglementaires et de sécurité. Un point obligatoire non conforme élimine le concept indépendamment de son score.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "item",
+          "mandatory",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "authority": {
+            "type": "string"
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "a_verifier",
+              "en_cours",
+              "conforme",
+              "non_conforme",
+              "non_applicable"
+            ]
+          },
+          "deadline_offset_days": {
+            "type": "integer"
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "target"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "phase": {
+            "enum": [
+              "avant",
+              "pendant",
+              "apres"
+            ]
+          },
+          "target": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "unit": {
+            "type": "string"
+          },
+          "measure": {
+            "type": "string"
+          },
+          "actual": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "properties": {
+        "viral_moments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "photo_spots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gamification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mechanic": {
+            "type": "string"
+          },
+          "target_role": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "fairness_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "$ref": "evaluation.schema.json"
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hypothèses explicites posées faute de données."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "Historique des versions et décisions.",
+      "items": {
+        "type": "object",
+        "required": [
+          "version",
+          "date",
+          "summary"
+        ],
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "author": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "decisions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approved_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Variantes de configuration (économique, premium, capacité maximale, secours…) exprimées comme surcharges de la configuration de base.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "expense_overrides": {
+            "type": "object",
+            "description": "id de dépense → nouveau montant (null = supprimée)"
+          },
+          "expense_additions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "revenue_overrides": {
+            "type": "object",
+            "description": "id de recette → nouveau montant unitaire (null = supprimée)"
+          },
+          "revenue_additions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "audience_overrides": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "description": "Jalons du rétroplanning, en jours relatifs à J.",
+      "items": {
+        "type": "object",
+        "required": [
+          "offset_days",
+          "label"
+        ],
+        "properties": {
+          "offset_days": {
+            "type": "integer"
+          },
+          "label": {
+            "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "deliverable": {
+            "type": "string"
+          },
+          "go_no_go": {
+            "type": "string",
+            "description": "Critère de décision si le jalon est un go/no-go."
+          }
+        }
+      }
+    },
+    "sponsor_packages": {
+      "type": "array",
+      "description": "Offres partenaires ; le prix doit correspondre à une ligne de recettes (revenue_ref).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "quantity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "revenue_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "exclusivity": {
+            "type": "string"
+          },
+          "counterparts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "active_variant": {
+      "type": "string",
+      "description": "Renseigné par le moteur quand une variante est appliquée."
+    }
+  },
+  "$defs": {
+    "blockType": {
+      "enum": [
+        "regles",
+        "qualification",
+        "recompenses",
+        "mise_en_scene",
+        "interaction_public",
+        "mecanique_jeu",
+        "experience_digitale",
+        "scenographie",
+        "son_lumiere",
+        "monetisation",
+        "fidelisation",
+        "activation_partenaire",
+        "creation_contenu"
+      ]
+    },
+    "scenarioNumber": {
+      "type": "object",
+      "properties": {
+        "prudent": {
+          "type": "number"
+        },
+        "central": {
+          "type": "number"
+        },
+        "ambitieux": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "prudent",
+        "central",
+        "ambitieux"
+      ]
+    },
+    "scenarioParams": {
+      "type": "object",
+      "properties": {
+        "realization": {
+          "type": "object",
+          "description": "Taux de réalisation appliqué aux recettes selon leur certitude.",
+          "properties": {
+            "secured": {
+              "type": "number"
+            },
+            "probable": {
+              "type": "number"
+            },
+            "hypothetical": {
+              "type": "number"
+            }
+          }
+        },
+        "cost_overrun": {
+          "type": "number",
+          "description": "Dérive appliquée aux dépenses estimées/hypothétiques (ex. 0.1 = +10 %)."
+        }
+      }
+    },
+    "space": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "aire_de_jeu",
+            "tribune",
+            "accueil",
+            "file_attente",
+            "restauration",
+            "vip",
+            "vestiaire",
+            "sanitaire",
+            "stockage",
+            "regie",
+            "media",
+            "activation_sponsor",
+            "secours",
+            "zone_photo",
+            "circulation",
+            "autre"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "area_m2": {
+          "type": "number"
+        },
+        "width_m": {
+          "type": "number"
+        },
+        "length_m": {
+          "type": "number"
+        },
+        "capacity": {
+          "type": "integer"
+        },
+        "standing": {
+          "type": "boolean"
+        },
+        "accessible_pmr": {
+          "type": "boolean"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "accessed_at": {
+          "type": "string"
+        },
+        "reliability": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "A officiel/primaire, B presse ou étude reconnue, C source secondaire non recoupée, D déclaratif/non vérifié."
+        }
+      }
+    }
+  }
+}

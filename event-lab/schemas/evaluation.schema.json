@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://event-lab.local/schemas/evaluation.schema.json",
+  "title": "Evaluation",
+  "description": "Notation /100 d'un concept selon la grille EVENT LAB + portes éliminatoires indépendantes du score.",
+  "type": "object",
+  "required": ["type", "ratings"],
+  "properties": {
+    "type": { "enum": ["previsionnelle", "reelle"], "description": "Prévisionnelle = avant exécution, sur hypothèses. Réelle = fondée sur les données post-événement." },
+    "date": { "type": "string", "format": "date" },
+    "ratings": {
+      "type": "object",
+      "description": "Note de 0 à 5 par critère. Le score pondéré est calculé, jamais saisi.",
+      "required": ["originalite", "experience_utilisateur", "faisabilite_technique", "viabilite_economique", "potentiel_mediatique", "reproductibilite", "adaptabilite_lieux", "accessibilite_inclusion", "potentiel_commercial", "responsabilite_environnementale"],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "type": "object",
+          "required": ["rating", "justification"],
+          "properties": {
+            "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+            "justification": { "type": "string" },
+            "evidence": { "enum": ["donnees_reelles", "benchmark_source", "jugement_expert"], "default": "jugement_expert" },
+            "improvements": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "properties": {
+        "originalite": { "type": "object" },
+        "experience_utilisateur": { "type": "object" },
+        "faisabilite_technique": { "type": "object" },
+        "viabilite_economique": { "type": "object" },
+        "potentiel_mediatique": { "type": "object" },
+        "reproductibilite": { "type": "object" },
+        "adaptabilite_lieux": { "type": "object" },
+        "accessibilite_inclusion": { "type": "object" },
+        "potentiel_commercial": { "type": "object" },
+        "responsabilite_environnementale": { "type": "object" }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "description": "Conditions éliminatoires, évaluées indépendamment du score.",
+      "properties": {
+        "securite": { "$ref": "#/$defs/gate" },
+        "conformite_reglementaire": { "$ref": "#/$defs/gate" },
+        "risques_critiques": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "computed": {
+      "type": "object",
+      "description": "Résultats calculés par le moteur (lecture seule).",
+      "properties": {
+        "score": { "type": "number" },
+        "grade": { "enum": ["A", "B", "C", "D"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "verdict": { "enum": ["eligible", "sous_reserve", "elimine"] }
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["ok", "a_verifier", "bloquant"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -67,6 +67,10 @@ push() {
   done
 }
 push -u origin "$BRANCH" || echo "AVERTISSEMENT : push de la branche échoué."
-push origin "$TAG" || echo "AVERTISSEMENT : push du tag $TAG refusé ou échoué — l'archive zip sur la branche reste la référence."
+if [[ "${RELEASE_PUSH_TAGS:-0}" == "1" ]]; then
+  push origin "$TAG" || echo "AVERTISSEMENT : push du tag $TAG refusé — l'archive zip sur la branche reste la référence."
+else
+  echo "Tag $TAG conservé en local (push des tags désactivé : RELEASE_PUSH_TAGS=1 pour l'activer)."
+fi
 
 echo "OK : $TAG figé (contenu $CONTENT_SHA, archive $ARCHIVE)."
