@@ -1,0 +1,28 @@
+/* 3D kit — stage, labels, overlays (prefix .t3-). Loaded with the kit, i.e. only by views that use Three.js. */
+.t3-stage { position: absolute; inset: 0; overflow: hidden; contain: strict; }
+.t3-canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; outline: none; touch-action: none; -webkit-tap-highlight-color: transparent; }
+.t3-canvas:focus-visible { box-shadow: inset 0 0 0 2px var(--c-focus); }
+.t3-fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--c-ink-soft); background: var(--c-sunken); }
+.t3-fallback > div { max-width: 420px; display: grid; gap: 8px; }
+
+.t3-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+.t3-labels[data-hidden='true'] { display: none; }
+.t3-label {
+  position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 8px; max-width: 220px;
+  padding: 6px 11px 6px 9px; border-radius: 14px; border: 1px solid var(--card-border);
+  background: color-mix(in oklab, var(--c-raised) 90%, transparent); color: var(--c-ink); box-shadow: var(--shadow);
+  font: 600 0.78rem/1.2 var(--font-ui); text-align: left; pointer-events: auto; cursor: pointer; will-change: transform;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: opacity 160ms var(--ease), box-shadow 160ms var(--ease);
+}
+.t3-label[data-hidden='true'] { opacity: 0; pointer-events: none; visibility: hidden; }
+.t3-label:hover, .t3-label:focus-visible { box-shadow: var(--shadow-lg); }
+.t3-label[data-selected='true'] { outline: 2px solid var(--c-accent); outline-offset: 1px; }
+.t3-label__dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--dot); box-shadow: 0 0 0 3px color-mix(in oklab, var(--dot) 22%, transparent); }
+.t3-label__text { display: grid; min-width: 0; }
+.t3-label__text b { font-weight: 680; font-size: 0.76rem; letter-spacing: 0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t3-label__text small { color: var(--c-ink-muted); font-weight: 520; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t3-label__count { flex: none; margin-left: 2px; padding: 2px 7px; border-radius: 999px; background: var(--c-sunken); color: var(--c-ink-soft); font-size: 0.7rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+html[data-scheme='dark'] .t3-label { background: color-mix(in oklab, var(--c-raised) 82%, transparent); }
+
+.t3-anchored { position: absolute; left: 0; top: 0; z-index: 30; pointer-events: none; will-change: transform; }
+@media (forced-colors: active) { .t3-label__dot { forced-color-adjust: none; } }
