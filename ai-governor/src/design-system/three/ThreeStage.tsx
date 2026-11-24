@@ -117,8 +117,8 @@ export function ThreeStage({ quality, label, help = DEFAULT_3D_HELP, camera, env
       {slow && !failure && (
         <p className={slow.shown ? 't3-note' : 'sr-only'} role="status">
           {slow.reason === 'software'
-            ? 'Rendu 3D sans accélération graphique : la scène ne s’anime qu’aux changements d’état, pour ménager le processeur.'
-            : 'Rendu 3D trop lent sur cet appareil : animations limitées aux changements d’état.'}
+            ? 'Sans accélération graphique : la 3D ne s’anime qu’aux changements d’état.'
+            : 'Rendu 3D trop lent : animations limitées aux changements d’état.'}
         </p>
       )}
     </div>

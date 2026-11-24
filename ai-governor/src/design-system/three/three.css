@@ -28,6 +28,6 @@ html[data-scheme='dark'] .t3-label { background: color-mix(in oklab, var(--c-rai
 @media (forced-colors: active) { .t3-label__dot { forced-color-adjust: none; } }
 
 /* adaptive sobriety notice (software GL / slow loop) */
-.t3-note { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 3; max-width: min(520px, calc(100% - 32px)); margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--c-paper); color: var(--c-ink-soft); box-shadow: var(--shadow); font-size: 0.8rem; text-align: center; pointer-events: none; animation: t3-note-in 240ms ease-out both; }
-@keyframes t3-note-in { from { opacity: 0; transform: translate(-50%, 6px); } }
+.t3-note { position: absolute; left: 50%; top: 64px; transform: translateX(-50%); z-index: 3; max-width: min(420px, calc(100% - 32px)); margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--c-paper); color: var(--c-ink-soft); box-shadow: var(--shadow); font-size: 0.8rem; text-align: center; pointer-events: none; animation: t3-note-in 240ms ease-out both; }
+@keyframes t3-note-in { from { opacity: 0; transform: translate(-50%, -6px); } }
 html[data-motion='none'] .t3-note { animation: none; }
