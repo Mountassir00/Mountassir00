@@ -28,11 +28,16 @@ export const manifestSchema = z.object({
   /** Inline SVG markup for the gallery card (sanitised before display). */
   thumbnail: z.string().max(20_000),
   renderer: z.enum(RENDERERS),
+  /** Family used to group views in the launcher and the sidebar. */
+  family: z.enum(['dashboard', 'scene-2d', 'scene-3d', 'workspace', 'tool']).optional(),
   status: z.enum(['stable', 'prototype', 'pending-validation']),
   graphics: z.array(paramSchema),
   components: z.array(z.string()),
   layout: z.object({
-    kind: z.enum(['grid', 'scene', 'list']),
+    /** grid/list/workspace: transparent stage (the view lays its own cards/panels); scene: framed canvas. */
+    kind: z.enum(['grid', 'scene', 'list', 'workspace']),
+    /** Immersive views get more room: the shell hides the view strip and compacts the timeline. */
+    immersive: z.boolean().optional(),
     zoomPan: z.boolean(),
     minimap: z.boolean(),
     minWidth: z.number().int().min(0),

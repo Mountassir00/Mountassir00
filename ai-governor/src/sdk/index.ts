@@ -13,7 +13,8 @@ import type { Filters, Period } from '@core/selectors';
 import type { HostApi, Selection } from '@engine/contract';
 import type { QualitySettings } from '@engine/quality';
 
-export type { ExperienceProps, HostApi, Selection, DeviceClass } from '@engine/contract';
+export type { ExperienceProps, HostApi, Selection, DeviceClass, ViewCommand } from '@engine/contract';
+export type { ExperienceDefinition, ExperienceManifest, ExperienceModule, GraphicParam } from '@engine/manifest';
 export type { QualitySettings } from '@engine/quality';
 export type { Catalog, AgentDef, DepartmentDef, SystemNode, SystemEdge, PastelSlot, EquipmentKind, AgentKind } from '@core/catalog';
 export type { GovEvent, DataNature, AgentStatus, EventType, NodeKind } from '@core/events/schema';

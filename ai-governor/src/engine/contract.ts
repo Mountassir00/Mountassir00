@@ -36,6 +36,23 @@ export interface HostApi {
   startReplay(): void;
   openFilters(): void;
   openSearch(): void;
+  /**
+   * Presentation data shared between views (e.g. the spatial layout edited in
+   * the spatial editor and shown by the 3D views). Never operational data.
+   */
+  getShared<T>(key: string, fallback: T): T;
+  setShared<T>(key: string, value: T): void;
+  /** Adds view-specific entries to the command palette (Ctrl+K). Returns a remover. */
+  provideCommands(commands: ViewCommand[]): () => void;
+}
+
+export interface ViewCommand {
+  id: string;
+  label: string;
+  hint?: string;
+  /** Short keyword shown on the right, e.g. "grid:snap". */
+  keyword?: string;
+  run: () => void;
 }
 
 export interface ExperienceProps {

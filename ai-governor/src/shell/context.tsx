@@ -159,6 +159,18 @@ export function ExperienceProviders({ children, experienceId, quality, clock }: 
       openSearch() {
         ui.set({ searchOpen: true });
       },
+      getShared<T>(key: string, fallback: T): T {
+        const v = ui.get().prefs.local.__shared?.[key];
+        return v === undefined ? fallback : (v as T);
+      },
+      setShared(key, value) {
+        setPrefs((p) => ({ ...p, local: { ...p.local, __shared: { ...(p.local.__shared ?? {}), [key]: value } } }));
+      },
+      provideCommands(commands) {
+        const tagged = commands.map((c) => ({ ...c, id: `${experienceId}:${c.id}` }));
+        ui.set((s) => ({ viewCommands: [...s.viewCommands.filter((c) => !c.id.startsWith(`${experienceId}:`)), ...tagged] }));
+        return () => ui.set((s) => ({ viewCommands: s.viewCommands.filter((c) => !tagged.some((t) => t.id === c.id)) }));
+      },
     }),
     [rt, experienceId],
   );

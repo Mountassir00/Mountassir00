@@ -4,3 +4,4 @@ export * from './icons';
 export * from './iso/iso';
 export { ZoomPan, type ZoomPanHandle, type Bounds, type ZoomBucket } from './iso/ZoomPan';
 export * from './charts/charts';
+export * from './workspace/workspace';

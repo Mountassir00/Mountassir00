@@ -489,3 +489,8 @@ html[data-anim='paused'] *, html[data-anim='paused'] *::before, html[data-anim='
 @media (max-width: 719px) { .page { padding: 4px 14px 40px; } }
 .page__body { grid-template-columns: minmax(0, 1fr); }
 .page__body > * { min-width: 0; }
+/* workspace & immersive views */
+.stage[data-layout='workspace'] { overflow: visible; }
+.app[data-immersive='true'] .header__switch { display: none; }
+.app[data-immersive='true'] .timeline { padding: 6px 12px; grid-template-rows: auto; }
+.app[data-immersive='true'] .timeline__track { display: none; }

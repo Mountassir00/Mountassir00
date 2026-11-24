@@ -55,6 +55,9 @@ export interface UiState {
   announce: string;
   /** Navigation sheet (phones) or overlay (tablets). */
   menuOpen: boolean;
+  /** Commands contributed by the active view to the palette. */
+  viewCommands: Array<{ id: string; label: string; hint?: string; keyword?: string; run: () => void }>;
+  launcherOpen: boolean;
 }
 
 type Listener = () => void;
@@ -96,6 +99,8 @@ export const ui = createStore<UiState>({
   studioTarget: null,
   announce: '',
   menuOpen: false,
+  viewCommands: [],
+  launcherOpen: false,
 });
 
 export function useUi<S>(selector: (s: UiState) => S): S {

@@ -1,0 +1,61 @@
+import type { ExperienceDefinition } from '@sdk';
+import { THUMB_MODULAR } from '../thumbs';
+
+export const definitions: ExperienceDefinition[] = [
+  {
+    manifest: {
+      id: 'modular-office',
+      name: 'AI Modular Office',
+      description: 'Hybride : chaque département est une plateforme miniature reliée aux autres. Réorganisable, extensible, avec regroupement automatique quand le système grandit.',
+      version: '0.1.0',
+      thumbnail: THUMB_MODULAR,
+      family: 'scene-2d',
+      renderer: 'svg',
+      status: 'prototype',
+      graphics: [
+        { type: 'select', key: 'arrangement', label: 'Disposition', default: 'grid', options: [{ value: 'grid', label: 'Grille' }, { value: 'hub', label: 'Hub central' }], group: 'Disposition' },
+        { type: 'number', key: 'gap', label: 'Espacement des plateformes', default: 2, min: 1, max: 4, step: 0.5, unit: 'cases', group: 'Disposition' },
+        { type: 'select', key: 'grouping', label: 'Regroupement', default: 'auto', options: [{ value: 'auto', label: 'Automatique' }, { value: 'always', label: 'Toujours' }, { value: 'never', label: 'Jamais' }], group: 'Disposition' },
+        { type: 'number', key: 'thickness', label: 'Épaisseur des plateformes', default: 0.3, min: 0.1, max: 0.6, step: 0.05, group: 'Formes' },
+        { type: 'boolean', key: 'showLinks', label: 'Connexions entre plateformes', default: true, group: 'Scène' },
+        { type: 'boolean', key: 'showIndicators', label: 'Indicateurs sur les plateformes', default: true, group: 'Scène' },
+      ],
+      components: ['IsoFloor', 'IsoFigure', 'IsoFlowPath', 'ZoomPan', 'Minimap', 'ClusterPlate'],
+      layout: { kind: 'scene', zoomPan: true, minimap: true, minWidth: 320 },
+      accessibility: { keyboard: true, screenReaderSummary: true, reducedMotion: 'full', contrast: 'AA', notes: 'Réorganisation au clavier (flèches) en plus du glisser-déposer.' },
+      dependencies: { sdk: '^1.0.0', libraries: [] },
+      performance: { cost: 'high', maxNodes: 600, targetFps: 30, animated: true },
+      devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'ledger' },
+      createdAt: '2026-11-24',
+    },
+    load: () => import('./ModularOffice'),
+  },
+  {
+    manifest: {
+      id: 'hub-office',
+      name: 'Hub central',
+      description: 'Variante sombre du Modular Office : un cerveau central relié à chaque pôle, les échanges réels circulent le long des rayons.',
+      version: '0.1.0',
+      thumbnail: THUMB_MODULAR,
+      family: 'scene-2d',
+      renderer: 'svg',
+      status: 'prototype',
+      graphics: [
+        { type: 'select', key: 'arrangement', label: 'Disposition', default: 'hub', options: [{ value: 'grid', label: 'Grille' }, { value: 'hub', label: 'Hub central' }], group: 'Disposition' },
+        { type: 'number', key: 'gap', label: 'Espacement des plateformes', default: 2, min: 1, max: 4, step: 0.5, unit: 'cases', group: 'Disposition' },
+        { type: 'select', key: 'grouping', label: 'Regroupement', default: 'auto', options: [{ value: 'auto', label: 'Automatique' }, { value: 'always', label: 'Toujours' }, { value: 'never', label: 'Jamais' }], group: 'Disposition' },
+        { type: 'number', key: 'thickness', label: 'Épaisseur des plateformes', default: 0.3, min: 0.1, max: 0.6, step: 0.05, group: 'Formes' },
+        { type: 'boolean', key: 'showLinks', label: 'Connexions entre plateformes', default: true, group: 'Scène' },
+        { type: 'boolean', key: 'showIndicators', label: 'Indicateurs sur les plateformes', default: true, group: 'Scène' },
+      ],
+      components: ['IsoFloor', 'IsoFigure', 'IsoFlowPath', 'ZoomPan', 'Minimap', 'ClusterPlate'],
+      layout: { kind: 'scene', zoomPan: true, minimap: true, minWidth: 320 },
+      accessibility: { keyboard: true, screenReaderSummary: true, reducedMotion: 'full', contrast: 'AA', notes: 'Réorganisation au clavier (flèches) en plus du glisser-déposer.' },
+      dependencies: { sdk: '^1.0.0', libraries: [] },
+      performance: { cost: 'high', maxNodes: 600, targetFps: 30, animated: true },
+      devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'ledger' },
+      createdAt: '2026-11-24',
+    },
+    load: () => import('./ModularOffice'),
+  },
+];

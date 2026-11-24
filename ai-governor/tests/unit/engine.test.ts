@@ -23,7 +23,7 @@ describe('experience manifests', () => {
       expect(ids.has(d.manifest.id)).toBe(false);
       ids.add(d.manifest.id);
     }
-    expect(ids.size).toBeGreaterThanOrEqual(5);
+    expect(ids.size).toBeGreaterThanOrEqual(20);
   });
   it('registry refuses an invalid manifest', () => {
     const r = new ExperienceRegistry();
@@ -147,7 +147,11 @@ describe('architecture boundaries', () => {
     for (const f of files) {
       const folder = relative(join(root, 'experiences'), f).split('/')[0];
       for (const spec of imports(f)) {
-        const ok = spec === 'react' || spec === '@sdk' || spec === '@ds' || spec.startsWith('@ds/') || (spec.startsWith('./') && !spec.includes('..')) || spec.endsWith('.css');
+        const isManifest = f.endsWith('/manifest.ts');
+        const ok =
+          spec === 'react' || spec === '@sdk' || spec === '@ds' || spec.startsWith('@ds/') || (spec.startsWith('./') && !spec.includes('..')) || spec.endsWith('.css') ||
+          // a manifest may use the shared thumbnail helpers
+          (isManifest && spec === '../thumbs');
         if (!ok) bad.push(`${relative(root, f)} → ${spec} (dossier ${folder})`);
       }
     }

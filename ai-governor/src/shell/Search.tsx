@@ -18,6 +18,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').to
 /** Command palette: agents, departments, system nodes, experiences. */
 export function Search({ entries }: { entries: RegistryEntry[] }) {
   const open = useUi((s) => s.searchOpen);
+  const viewCommands = useUi((s) => s.viewCommands);
   const g = useGovernor();
   const [q, setQ] = useState('');
   const [cursor, setCursor] = useState(0);
@@ -32,6 +33,7 @@ export function Search({ entries }: { entries: RegistryEntry[] }) {
   const hits = useMemo<Hit[]>(() => {
     const select = (sel: Selection) => () => ui.set({ selection: sel, drawer: 'inspector', searchOpen: false, route: 'stage' });
     const all: Hit[] = [
+      ...viewCommands.map((c) => ({ key: `c:${c.id}`, label: c.label, hint: `Commande de la vue${c.keyword ? ` · ${c.keyword}` : ''}${c.hint ? ` · ${c.hint}` : ''}`, run: () => { ui.set({ searchOpen: false }); c.run(); } })),
       ...g.catalog.agents.map((a) => ({ key: `a:${a.id}`, label: a.name, hint: `Agent · ${a.role}`, run: select({ kind: 'agent', id: a.id }) })),
       ...g.catalog.departments.map((d) => ({ key: `d:${d.id}`, label: d.name, hint: `Département · ${d.mission}`, run: select({ kind: 'department', id: d.id }) })),
       ...g.catalog.nodes.filter((n) => n.kind !== 'agent' && n.kind !== 'service' && n.kind !== 'user').map((n) => ({ key: `n:${n.id}`, label: n.label, hint: `Composant · ${n.kind}`, run: select({ kind: 'node', id: n.id }) })),
@@ -40,7 +42,7 @@ export function Search({ entries }: { entries: RegistryEntry[] }) {
     const nq = norm(q.trim());
     if (!nq) return all.slice(0, 12);
     return all.filter((h) => norm(`${h.label} ${h.hint}`).includes(nq)).slice(0, 20);
-  }, [g.catalog, entries, q]);
+  }, [g.catalog, entries, q, viewCommands]);
   if (!open) return null;
   return (
     <div className="scrim" style={{ alignItems: 'start', paddingTop: '12vh' }} onMouseDown={(e) => e.target === e.currentTarget && ui.set({ searchOpen: false })}>

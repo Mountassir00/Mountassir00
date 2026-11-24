@@ -202,7 +202,7 @@ function AppInner() {
   return (
     <>
       <GovernorContext.Provider value={snapshot}>
-        <div className="app" ref={shellRef} data-nav={navState} data-presentation={presentation || undefined} data-timeline={showTimeline ? 'shown' : 'hidden'}>
+        <div className="app" ref={shellRef} data-nav={navState} data-presentation={presentation || undefined} data-timeline={showTimeline ? 'shown' : 'hidden'} data-immersive={(route === 'stage' && entry?.manifest.layout.immersive) || undefined}>
           <a href="#stage" className="sr-only">
             Aller à la vue principale
           </a>

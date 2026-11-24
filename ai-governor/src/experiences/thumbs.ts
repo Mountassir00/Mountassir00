@@ -1,8 +1,9 @@
 /** Gallery thumbnails — static SVG rendered through <img>, so no script can ever run from them. */
-const wrap = (body: string) =>
+/** Helpers available to every manifest for drawing its gallery thumbnail. */
+export const wrap = (body: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180"><defs><pattern id="g" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" stroke="#dde4eb" stroke-width="1"/></pattern></defs><rect width="320" height="180" fill="#eef2f5"/><rect width="320" height="180" fill="url(#g)"/>${body}</svg>`;
 
-const box = (x: number, y: number, w: number, h: number, top: string, l: string, r: string) => {
+export const box = (x: number, y: number, w: number, h: number, top: string, l: string, r: string) => {
   const hw = w / 2, hh = w / 4;
   return `<path d="M${x},${y} l${hw},${hh} l${-hw},${hh} l${-hw},${-hh} Z" fill="${top}" stroke="#16203a" stroke-opacity=".6"/>` +
     `<path d="M${x - hw},${y + hh} l${hw},${hh} v${h} l${-hw},${-hh} Z" fill="${l}" stroke="#16203a" stroke-opacity=".6"/>` +
@@ -41,3 +42,7 @@ export const THUMB_MODULAR = wrap(
 export const THUMB_LEDGER = wrap(
   Array.from({ length: 7 }, (_, i) => `<rect x="20" y="${18 + i * 22}" width="280" height="16" rx="3" fill="#fbfcfd" stroke="#dde4eb"/><circle cx="32" cy="${26 + i * 22}" r="4" fill="${['#1f74d6', '#2b8048', '#b2700f', '#1f74d6', '#cf2f3c', '#2b8048', '#8a45c8'][i]}"/><rect x="44" y="${23 + i * 22}" width="${120 + ((i * 53) % 90)}" height="6" rx="3" fill="#5a6580"/><rect x="262" y="${23 + i * 22}" width="28" height="6" rx="3" fill="#bfc9d6"/>`).join(''),
 );
+
+/** Neutral placeholder used until a view draws its own thumbnail. */
+export const placeholder = (label: string) =>
+  wrap(`<rect x="60" y="50" width="200" height="80" rx="16" fill="#ffffff" stroke="#d6d6dd"/><text x="160" y="96" text-anchor="middle" font-family="system-ui" font-size="15" font-weight="600" fill="#3f3f46">${label}</text>`);
