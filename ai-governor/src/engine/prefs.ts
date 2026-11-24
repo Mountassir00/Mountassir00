@@ -40,6 +40,8 @@ export interface Prefs {
   perfHud: boolean;
   role: 'owner' | 'operator' | 'observer';
   liveDemo: boolean;
+  /** Desktop sidebar state. */
+  navCollapsed: boolean;
 }
 
 export const DEFAULT_PREFS: Prefs = {
@@ -60,6 +62,7 @@ export const DEFAULT_PREFS: Prefs = {
   perfHud: false,
   role: 'owner',
   liveDemo: true,
+  navCollapsed: false,
 };
 
 const KEY = 'mag.prefs.v1';

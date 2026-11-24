@@ -122,7 +122,6 @@ export function Studio({ entries, quality }: { entries: RegistryEntry[]; quality
     <div className="page">
       <div className="page__head">
         <div>
-          <h1 className="t-h1">Experience Studio</h1>
           <p className="t-muted" style={{ margin: '4px 0 0' }}>
             Modifiez l’apparence sans toucher au fonctionnement : l’aperçu utilise les données réelles affichées, rien n’est appliqué avant publication.
           </p>
@@ -191,7 +190,7 @@ export function Studio({ entries, quality }: { entries: RegistryEntry[]; quality
                   </select>
                 </label>
                 <Range label="Taille de base" value={theme.type.basePx} min={12} max={18} step={1} unit="px" onChange={(v) => setTheme((t) => ({ ...t, type: { ...t.type, basePx: v } }))} />
-                <Range label="Arrondi" value={theme.shape.radius} min={0} max={14} step={1} unit="px" onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, radius: v } }))} />
+                <Range label="Arrondi" value={theme.shape.radius} min={0} max={32} step={1} unit="px" onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, radius: v } }))} />
                 <Range label="Épaisseur des contours" value={theme.shape.stroke} min={0.5} max={2} step={0.25} unit="px" onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, stroke: v } }))} />
                 <Select label="Ombres" value={theme.shape.shadow} options={[['none', 'Aucune'], ['soft', 'Douces'], ['crisp', 'Nettes (décalées)']]} onChange={(v) => setTheme((t) => ({ ...t, shape: { ...t.shape, shadow: v as Theme['shape']['shadow'] } }))} />
                 <Select label="Fond" value={theme.surface.grid} options={[['plan', 'Papier millimétré'], ['lines', 'Quadrillage simple'], ['dots', 'Points'], ['none', 'Uni']]} onChange={(v) => setTheme((t) => ({ ...t, surface: { ...t.surface, grid: v as Theme['surface']['grid'] } }))} />

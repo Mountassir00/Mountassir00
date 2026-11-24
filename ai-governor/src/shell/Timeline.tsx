@@ -6,7 +6,7 @@
  */
 import { useMemo, useRef, useState } from 'react';
 import { PERIOD_LABEL, PERIOD_MS, eventDensity, type PeriodPreset } from '@core/selectors';
-import { IconLive, IconPause, IconPlay } from '@ds';
+import { IconLive, IconPause, IconPlay, Segmented } from '@ds';
 import { fmtTime, useGovernor } from '@sdk';
 import { goLive } from './App';
 import { ui, useUi } from './uiStore';
@@ -72,28 +72,37 @@ export function Timeline() {
   return (
     <section className="timeline" aria-label="Chronologie de l’activité">
       <div className="timeline__controls">
-        <div className="seg" role="group" aria-label="Période">
-          {PRESETS.map((p) => (
-            <button key={p} type="button" aria-pressed={period.preset === p} onClick={() => setPreset(p)} className={p === 'custom' || p === '1h' ? 'hide-mobile' : undefined}>
-              {p === 'live' && <IconLive size={14} />}
-              {PERIOD_LABEL[p]}
-            </button>
-          ))}
-        </div>
+        <Segmented
+          label="Période"
+          value={period.preset}
+          onChange={setPreset}
+          options={PRESETS.map((p) => ({
+            value: p,
+            label: p === 'live' ? (
+              <>
+                <IconLive size={14} />
+                {PERIOD_LABEL[p]}
+              </>
+            ) : (
+              PERIOD_LABEL[p]
+            ),
+            className: p === 'custom' || p === '1h' ? 'hide-mobile' : undefined,
+          }))}
+        />
         {period.preset === 'custom' && (
           <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }} className="hide-mobile">
             <label className="sr-only" htmlFor="tl-from">Début</label>
-            <input id="tl-from" className="input" type="datetime-local" value={toLocalInput(period.from ?? Date.now())} onChange={(e) => ui.set({ period: { ...period, from: new Date(e.target.value).getTime() } })} />
+            <input id="tl-from" className="input" style={{ height: 36 }} type="datetime-local" value={toLocalInput(period.from ?? Date.now())} onChange={(e) => ui.set({ period: { ...period, from: new Date(e.target.value).getTime() } })} />
             <span aria-hidden>→</span>
             <label className="sr-only" htmlFor="tl-to">Fin</label>
-            <input id="tl-to" className="input" type="datetime-local" value={toLocalInput(period.to ?? Date.now())} onChange={(e) => ui.set({ period: { ...period, to: new Date(e.target.value).getTime() } })} />
+            <input id="tl-to" className="input" style={{ height: 36 }} type="datetime-local" value={toLocalInput(period.to ?? Date.now())} onChange={(e) => ui.set({ period: { ...period, to: new Date(e.target.value).getTime() } })} />
           </span>
         )}
       </div>
 
-      <div className="t-small t-muted hide-mobile" aria-live="off" style={{ justifySelf: 'center' }}>
+      <div className="timeline__summary" aria-live="off">
         {time.mode === 'live' ? (
-          <>En direct · {g.windowEvents(domain.from, domain.to).length.toLocaleString('fr-FR')} événements sur la période</>
+          <>{g.windowEvents(domain.from, domain.to).length.toLocaleString('fr-FR')} événements sur la période</>
         ) : (
           <>
             Replay au <b className="num" style={{ color: 'var(--c-ink)' }}>{fmtTime(time.t, true)}</b> · aucune action rejouée
@@ -102,11 +111,11 @@ export function Timeline() {
       </div>
 
       <div className="timeline__controls" style={{ justifySelf: 'end' }}>
-        <button type="button" className="btn btn--icon" onClick={togglePlay} aria-label={time.playing ? 'Mettre en pause le replay' : 'Lancer le replay'} title={time.playing ? 'Pause' : 'Rejouer la période'}>
+        <button type="button" className="btn btn--icon btn--primary" onClick={togglePlay} aria-label={time.playing ? 'Mettre en pause le replay' : 'Lancer le replay'} title={time.playing ? 'Pause' : 'Rejouer la période'}>
           {time.playing ? <IconPause size={16} /> : <IconPlay size={16} />}
         </button>
         <label className="sr-only" htmlFor="tl-speed">Vitesse du replay</label>
-        <select id="tl-speed" className="select hide-mobile" value={time.speed} onChange={(e) => ui.set((s) => ({ time: { ...s.time, speed: Number(e.target.value) } }))}>
+        <select id="tl-speed" className="select hide-mobile" style={{ height: 40, borderRadius: 999 }} value={time.speed} onChange={(e) => ui.set((s) => ({ time: { ...s.time, speed: Number(e.target.value) } }))}>
           {SPEEDS.map((s) => (
             <option key={s.v} value={s.v}>
               {s.label}
@@ -163,10 +172,10 @@ export function Timeline() {
         }}
       >
         <svg viewBox={`0 0 ${buckets} 34`} preserveAspectRatio="none" aria-hidden>
-          <rect x={0} y={0} width={buckets} height={34} fill="var(--c-sunken)" rx={0} />
+          <rect x={0} y={0} width={buckets} height={34} fill="var(--c-sunken)" />
           {density.map((v, i) => {
-            const h = v ? Math.max(1.5, (v / max) * 30) : 0;
-            return <rect key={i} x={i + 0.15} y={32 - h} width={0.7} height={h} fill={i / buckets <= head ? 'var(--c-ink-soft)' : 'var(--c-line)'} />;
+            const h = v ? Math.max(2, (v / max) * 28) : 0.8;
+            return <rect key={i} x={i + 0.18} y={31 - h} width={0.64} height={h} rx={0.32} fill={i / buckets <= head ? (time.mode === 'replay' ? 'var(--c-accent)' : 'var(--c-ink-soft)') : 'var(--c-line)'} opacity={v ? 1 : 0.6} />;
           })}
         </svg>
         <div className="timeline__head" style={{ left: `calc(${Math.min(1, Math.max(0, head)) * 100}% - 1px)` }} />

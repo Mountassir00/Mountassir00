@@ -213,7 +213,6 @@ export function Builder({ entries, quality }: { entries: RegistryEntry[]; qualit
     <div className="page">
       <div className="page__head">
         <div>
-          <h1 className="t-h1">Créer une expérience</h1>
           <p className="t-muted" style={{ margin: '4px 0 0', maxWidth: '70ch' }}>
             Déposez des références : l’analyse locale propose une direction artistique. Une image ne devient pas automatiquement une interface fonctionnelle :
             si un nouveau moteur est nécessaire, vous obtenez un brief d’implémentation.

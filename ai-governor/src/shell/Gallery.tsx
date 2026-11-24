@@ -57,7 +57,6 @@ export function Gallery({ entries, activeId }: { entries: RegistryEntry[]; activ
     <div className="page">
       <div className="page__head">
         <div>
-          <h1 className="t-h1">Galerie des expériences</h1>
           <p className="t-muted" style={{ margin: '4px 0 0' }}>
             {entries.length} expérience(s) installée(s). Toutes lisent les mêmes données et respectent les mêmes permissions.
           </p>

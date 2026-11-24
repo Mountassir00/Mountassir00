@@ -9,6 +9,7 @@ import { isSafeColor } from './manifest';
 const color = z.string().refine(isSafeColor, 'couleur invalide');
 
 export const FONT_STACKS = {
+  jakarta: "'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif",
   archivo: "'Archivo Variable', 'Archivo', system-ui, sans-serif",
   system: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
   humanist: "'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', sans-serif",
@@ -27,6 +28,8 @@ export const themeSchema = z.object({
   colors: z.object({
     paper: color, raised: color, sunken: color, ink: color, inkSoft: color, inkMuted: color, line: color, grid: color, gridMajor: color,
     accent: color, accentInk: color, focus: color,
+    /** Selected item (pill, tab, nav): black on light themes, white on dark. Defaults to ink/raised. */
+    active: color.optional(), activeInk: color.optional(),
   }),
   status: z.object({
     working: color, waiting: color, collaborating: color, researching: color, validating: color, error: color, paused: color, idle: color, offline: color,
@@ -40,7 +43,7 @@ export const themeSchema = z.object({
     basePx: z.number().min(12).max(18),
   }),
   shape: z.object({
-    radius: z.number().min(0).max(14),
+    radius: z.number().min(0).max(32),
     stroke: z.number().min(0.5).max(2),
     shadow: z.enum(['none', 'soft', 'crisp']),
   }),
@@ -49,11 +52,85 @@ export const themeSchema = z.object({
     gridSize: z.number().min(8).max(64),
     /** Subtle paper grain, drawn once by the browser (skipped at minimal/eco quality). */
     texture: z.enum(['none', 'paper']).optional(),
+    /** Translucent, blurred cards over a glowing canvas (more GPU: off at minimal/eco). */
+    glass: z.boolean().optional(),
   }),
   density: z.enum(['compact', 'comfortable', 'spacious']),
 });
 
 export type Theme = z.infer<typeof themeSchema>;
+
+/** Default light theme: soft grey canvas, white cards, black selection, violet signal. */
+const LUMIERE: Theme = {
+  id: 'lumiere',
+  name: 'Lumière',
+  scheme: 'light',
+  builtin: true,
+  colors: {
+    paper: '#ECECEF', raised: '#FFFFFF', sunken: '#F4F4F6', ink: '#0F0F12', inkSoft: '#3F3F46', inkMuted: '#62626C',
+    line: '#E2E2E7', grid: '#E3E3E8', gridMajor: '#D6D6DD', accent: '#7B3FE4', accentInk: '#FFFFFF', focus: '#7B3FE4',
+    active: '#111114', activeInk: '#FFFFFF',
+  },
+  status: {
+    working: '#2E6FE0', waiting: '#B7790B', collaborating: '#7B3FE4', researching: '#0E8A86', validating: '#13915F', error: '#D93A45',
+    paused: '#62626C', idle: '#9A9AA5', offline: '#C4C4CC',
+  },
+  nature: { real: '#13915F', estimated: '#B7790B', demo: '#7B3FE4', unavailable: '#8A8A94', planned: '#2E6FE0', historical: '#62626C' },
+  pastel: { p1: '#D9F2E4', p2: '#DCE8FB', p3: '#E9E0FB', p4: '#FBE6D5', p5: '#F8EFC3', p6: '#F9DDE6', p7: '#E4EED9', p8: '#D6F0F0' },
+  series: { s1: '#7B3FE4', s2: '#D99A00', s3: '#14A06F', s4: '#2E7CF6' },
+  type: { ui: 'jakarta', mono: 'plex', basePx: 14 },
+  shape: { radius: 20, stroke: 1, shadow: 'soft' },
+  surface: { grid: 'dots', gridSize: 22 },
+  density: 'comfortable',
+};
+
+/** Default dark theme: deep black, graphite cards, white selection. */
+const ONYX: Theme = {
+  id: 'onyx',
+  name: 'Onyx',
+  scheme: 'dark',
+  builtin: true,
+  colors: {
+    paper: '#050506', raised: '#151517', sunken: '#1E1E21', ink: '#F5F5F7', inkSoft: '#CACAD2', inkMuted: '#9696A0',
+    line: '#2A2A2F', grid: '#141416', gridMajor: '#232327', accent: '#A47BFF', accentInk: '#0F0F12', focus: '#B794FF',
+    active: '#FFFFFF', activeInk: '#0F0F12',
+  },
+  status: {
+    working: '#5B9BFF', waiting: '#E9B53A', collaborating: '#A47BFF', researching: '#3CC4C0', validating: '#3DD68C', error: '#FF6369',
+    paused: '#9696A0', idle: '#6E6E78', offline: '#45454C',
+  },
+  nature: { real: '#3DD68C', estimated: '#E9B53A', demo: '#A47BFF', unavailable: '#9696A0', planned: '#5B9BFF', historical: '#CACAD2' },
+  pastel: { p1: '#1D3A2D', p2: '#1E2E4A', p3: '#2E2350', p4: '#43301F', p5: '#3F3820', p6: '#45232F', p7: '#2C3A23', p8: '#1C3B3C' },
+  series: { s1: '#9A6BFF', s2: '#C98500', s3: '#199E70', s4: '#3987E5' },
+  type: { ui: 'jakarta', mono: 'plex', basePx: 14 },
+  shape: { radius: 20, stroke: 1, shadow: 'none' },
+  surface: { grid: 'dots', gridSize: 22 },
+  density: 'comfortable',
+};
+
+/** Deep green, translucent cards over a soft glow. */
+const NEXUS: Theme = {
+  id: 'nexus',
+  name: 'Nexus',
+  scheme: 'dark',
+  builtin: true,
+  colors: {
+    paper: '#0B1310', raised: '#16211DE6', sunken: '#1E2B26', ink: '#EEF5F1', inkSoft: '#C3D3CB', inkMuted: '#93A79D',
+    line: '#2A3A33', grid: '#101A16', gridMajor: '#1B2823', accent: '#46C08F', accentInk: '#06110C', focus: '#7DDCB4',
+    active: '#46C08F', activeInk: '#06110C',
+  },
+  status: {
+    working: '#5B9BFF', waiting: '#E9C25A', collaborating: '#9A8CF8', researching: '#46C0B8', validating: '#46C08F', error: '#FF6B6B',
+    paused: '#93A79D', idle: '#6B7F75', offline: '#3F4F48',
+  },
+  nature: { real: '#46C08F', estimated: '#E9C25A', demo: '#9A8CF8', unavailable: '#93A79D', planned: '#5B9BFF', historical: '#C3D3CB' },
+  pastel: { p1: '#1F3D31', p2: '#1F3046', p3: '#2B2A4D', p4: '#3E3324', p5: '#38391F', p6: '#40262F', p7: '#29391F', p8: '#1C3A3B' },
+  series: { s1: '#9A6BFF', s2: '#C98500', s3: '#199E70', s4: '#3987E5' },
+  type: { ui: 'jakarta', mono: 'plex', basePx: 14 },
+  shape: { radius: 22, stroke: 1, shadow: 'none' },
+  surface: { grid: 'dots', gridSize: 22, glass: true },
+  density: 'comfortable',
+};
 
 const PLAN: Theme = {
   id: 'plan',
@@ -121,14 +198,17 @@ const CONTRASTE: Theme = {
   density: 'comfortable',
 };
 
-export const BUILTIN_THEMES: Theme[] = [PLAN, ATELIER_NUIT, CONTRASTE];
+/** Index 0 = default light, index 1 = default dark (used by the "automatic" setting). */
+export const BUILTIN_THEMES: Theme[] = [LUMIERE, ONYX, NEXUS, PLAN, ATELIER_NUIT, CONTRASTE];
 
 const kebab = (s: string) => s.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
 
 /** Converts a validated theme to CSS custom properties. */
 export function themeToCssVars(t: Theme): Record<string, string> {
   const v: Record<string, string> = {};
-  for (const [k, val] of Object.entries(t.colors)) v[`--c-${kebab(k)}`] = val;
+  for (const [k, val] of Object.entries(t.colors)) if (val) v[`--c-${kebab(k)}`] = val;
+  v['--c-active'] = t.colors.active ?? t.colors.ink;
+  v['--c-active-ink'] = t.colors.activeInk ?? t.colors.raised;
   for (const [k, val] of Object.entries(t.status)) v[`--st-${k}`] = val;
   for (const [k, val] of Object.entries(t.nature)) v[`--nat-${k}`] = val;
   for (const [k, val] of Object.entries(t.pastel)) v[`--${k}`] = val;
@@ -136,8 +216,10 @@ export function themeToCssVars(t: Theme): Record<string, string> {
   v['--font-ui'] = FONT_STACKS[t.type.ui];
   v['--font-mono'] = MONO_STACKS[t.type.mono];
   v['--fs-base'] = `${t.type.basePx}px`;
-  v['--radius'] = `${t.shape.radius}px`;
-  v['--radius-lg'] = `${Math.round(t.shape.radius * 1.6)}px`;
+  // radius = cards; small controls use a proportional radius; pills stay round.
+  v['--radius-lg'] = `${t.shape.radius}px`;
+  v['--radius'] = `${Math.max(2, Math.round(t.shape.radius * 0.6))}px`;
+  v['--radius-sm'] = `${Math.max(2, Math.round(t.shape.radius * 0.4))}px`;
   v['--stroke'] = `${t.shape.stroke}px`;
   v['--shadow'] =
     t.shape.shadow === 'none' ? 'none' : t.shape.shadow === 'crisp' ? '2px 2px 0 color-mix(in oklab, var(--c-ink) 22%, transparent)' : '0 1px 2px color-mix(in oklab, var(--c-ink) 10%, transparent), 0 6px 18px -8px color-mix(in oklab, var(--c-ink) 22%, transparent)';
@@ -151,6 +233,7 @@ export function applyTheme(t: Theme, el: HTMLElement) {
   el.dataset.scheme = t.scheme;
   el.dataset.grid = t.surface.grid;
   el.dataset.texture = t.surface.texture ?? 'none';
+  el.dataset.glass = t.surface.glass ? 'true' : 'false';
   el.dataset.density = t.density;
   el.style.colorScheme = t.scheme;
 }

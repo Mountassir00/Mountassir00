@@ -24,6 +24,7 @@ const SHORTCUTS: Array<[string, string]> = [
   ['I', 'Inspecteur'],
   ['L', 'Revenir au direct'],
   ['P', 'Mode présentation'],
+  ['[', 'Replier / déplier le menu latéral'],
   ['Échap', 'Fermer le panneau / quitter la présentation'],
   ['Flèches, + / −, 0', 'Se déplacer, zoomer, recadrer (scène active)'],
   ['Espace (chronologie)', 'Lecture / pause du replay'],
@@ -37,7 +38,6 @@ export function Settings({ entries }: { entries: RegistryEntry[] }) {
   return (
     <div className="page">
       <div className="page__head">
-        <h1 className="t-h1">Réglages</h1>
       </div>
       <div className="page__body" style={{ display: 'grid', gap: 14, maxWidth: 900 }}>
         <section className="panel" style={{ padding: 14, display: 'grid', gap: 12 }}>

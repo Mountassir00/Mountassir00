@@ -1,18 +1,40 @@
-.ledger { position: absolute; inset: 0; overflow: auto; container-type: inline-size; container-name: ledger; padding: 20px clamp(14px, 3vw, 32px) 96px; background: var(--c-paper); }
-.ledger__inner { max-width: 880px; margin: 0 auto; display: grid; gap: 14px; }
-.ledger__group { background: var(--c-raised); border: var(--stroke) solid var(--c-line); border-radius: var(--radius-lg); padding: 6px 14px 8px; }
-.ledger__gh { font-size: 0.82rem; font-weight: 640; font-stretch: 85%; color: var(--c-ink-soft); margin: 6px 0; }
-.ledger__list { list-style: none; margin: 0; padding: 0; }
-.ledger__row { display: grid; grid-template-columns: 70px 130px 1fr auto; gap: 10px; align-items: baseline; padding: 7px 0; border-top: var(--stroke) solid color-mix(in oklab, var(--c-line) 50%, transparent); font-size: 0.9rem; }
-.ledger__row:first-child { border-top: 0; }
-.ledger__row[data-failed] .ledger__type { color: var(--st-error); font-weight: 620; }
-.ledger__row[data-selected] { background: color-mix(in oklab, var(--c-accent) 6%, transparent); }
-.ledger__type { color: var(--c-ink-soft); font-size: 0.82rem; }
-.ledger__text { min-width: 0; overflow-wrap: anywhere; }
-.ledger__who { border: 0; background: none; padding: 0; color: var(--c-accent); font: inherit; font-size: 0.84rem; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
-@container ledger (max-width: 600px) {
-  .ledger__row { grid-template-columns: 56px 1fr; }
-  .ledger__type { grid-column: 2; }
-  .ledger__text { grid-column: 1 / -1; }
-  .ledger__row .nat { grid-column: 1 / -1; }
+.ledger { position: absolute; inset: 0; overflow: auto; container-type: inline-size; container-name: ledger; padding: 2px 2px calc(28px + env(safe-area-inset-bottom, 0px)); overscroll-behavior: contain; scrollbar-width: thin; }
+.ledger__inner { max-width: 920px; margin: 0 auto; display: grid; gap: 14px; }
+.ledger__filters { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 2px 2px 4px; margin: 0 -2px; }
+.ledger__filters::-webkit-scrollbar { display: none; }
+.ledger__filters .chip { background: var(--c-raised); box-shadow: var(--shadow); border-color: var(--card-border); }
+.ledger__filters .chip[aria-pressed='true'] { background: var(--c-active); color: var(--c-active-ink); }
+.ledger__count { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; display: inline-grid; place-items: center; font-size: 0.7rem; font-weight: 700; background: var(--c-sunken); color: var(--c-ink-soft); }
+.ledger__filters .chip[aria-pressed='true'] .ledger__count { background: color-mix(in oklab, var(--c-active-ink) 18%, transparent); color: var(--c-active-ink); }
+.ledger__summary { margin: -4px 4px 0; }
+.ledger__empty { padding: 40px 16px; text-align: center; color: var(--c-ink-muted); background: var(--c-raised); border-radius: var(--radius-lg); }
+.ledger__group { background: var(--c-raised); border: 1px solid var(--card-border); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 0 8px 8px; }
+.ledger__gh {
+  position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; margin: 0 -8px; padding: 14px 18px 8px;
+  font-size: 0.86rem; font-weight: 700; background: var(--c-raised); border-radius: var(--radius-lg) var(--radius-lg) 0 0; text-transform: none;
+}
+.ledger__gh span:first-child::first-letter { text-transform: uppercase; }
+.ledger__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.ledger__row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; padding: 9px 10px; border: 0; border-radius: 16px; background: none; text-align: left; color: inherit; font: inherit; }
+button.ledger__row { cursor: pointer; transition: background-color 150ms var(--ease); }
+button.ledger__row:hover { background: var(--c-sunken); }
+.ledger__item[data-selected] .ledger__row { background: color-mix(in oklab, var(--c-accent) 9%, var(--c-raised)); }
+.ledger__icon { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--c-sunken); color: var(--c-ink-soft); flex: none; }
+.ledger__icon[data-cat='tasks'] { background: color-mix(in oklab, var(--st-working) 13%, var(--c-raised)); color: color-mix(in oklab, var(--st-working) 80%, var(--c-ink)); }
+.ledger__icon[data-cat='decisions'] { background: color-mix(in oklab, var(--c-accent) 14%, var(--c-raised)); color: color-mix(in oklab, var(--c-accent) 85%, var(--c-ink)); }
+.ledger__icon[data-cat='security'] { background: color-mix(in oklab, var(--st-waiting) 16%, var(--c-raised)); color: color-mix(in oklab, var(--st-waiting) 65%, var(--c-ink)); }
+.ledger__icon[data-cat='optimization'] { background: color-mix(in oklab, var(--st-validating) 14%, var(--c-raised)); color: color-mix(in oklab, var(--st-validating) 80%, var(--c-ink)); }
+.ledger__icon[data-cat='skills'] { background: color-mix(in oklab, var(--series-2) 18%, var(--c-raised)); color: color-mix(in oklab, var(--series-2) 55%, var(--c-ink)); }
+.ledger__icon[data-cat='connectors'] { background: color-mix(in oklab, var(--series-4) 14%, var(--c-raised)); color: color-mix(in oklab, var(--series-4) 80%, var(--c-ink)); }
+.ledger__icon[data-failed] { background: color-mix(in oklab, var(--st-error) 14%, var(--c-raised)); color: color-mix(in oklab, var(--st-error) 82%, var(--c-ink)); }
+.ledger__text { display: grid; min-width: 0; }
+.ledger__text b { font-weight: 600; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ledger__text > span { font-size: 0.78rem; color: var(--c-ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ledger__end { display: inline-flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+.ledger__more { justify-self: center; }
+@container ledger (max-width: 520px) {
+  .ledger__row { grid-template-columns: auto minmax(0, 1fr); row-gap: 6px; }
+  .ledger__end { grid-column: 2; justify-content: flex-start; }
+  .ledger__text b { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .ledger__group { padding: 0 4px 6px; }
 }

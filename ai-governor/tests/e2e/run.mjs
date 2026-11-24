@@ -61,8 +61,8 @@ try {
   check('Seul le moteur de rendu actif est chargé au démarrage', !chunks.some((c) => /AiOffice|SystemMap|ModularOffice|Ledger/.test(c)), `chunks: ${[...new Set(chunks)].join(', ')}`);
 
   // Establish context: period 7 j, a filter, a selected agent.
-  await page.getByRole('button', { name: '7 j', exact: true }).click();
-  await page.getByRole('button', { name: /^Filtres/ }).click();
+  await page.locator('.timeline').getByRole('button', { name: '7 j', exact: true }).click();
+  await page.locator('.header').getByRole('button', { name: /^Filtres/ }).click();
   await page.getByRole('dialog', { name: 'Filtres' }).getByRole('button', { name: 'Sonnet 5.5' }).click();
   await page.getByRole('button', { name: 'Fermer', exact: true }).click();
   await page.keyboard.press('Control+k');
@@ -81,8 +81,8 @@ try {
     const wall = Date.now() - t0;
     await page.waitForTimeout(1500);
     const inspector = await page.getByRole('complementary', { name: /Inspecteur : Auditrice/ }).count();
-    const period = await page.getByRole('button', { name: '7 j', exact: true }).getAttribute('aria-pressed');
-    const filters = await page.getByRole('button', { name: /Filtres, 1 actifs/ }).count();
+    const period = await page.locator('.timeline').getByRole('button', { name: '7 j', exact: true }).getAttribute('aria-pressed');
+    const filters = await page.locator('.header').getByRole('button', { name: /Filtres, 1 actifs/ }).count();
     check(`${name} : contexte conservé (agent, période, filtre)`, inspector === 1 && period === 'true' && filters === 1, `inspecteur=${inspector} période=${period} filtres=${filters}`);
     // Performance sample (3 s).
     const cdp = await ctx.newCDPSession(page);
@@ -136,8 +136,8 @@ try {
   await page.keyboard.press('Escape');
 
   // Admin pages accessibility.
-  for (const [label, id] of [['Galerie', 'gallery'], ['Studio', 'studio'], ['Créer', 'builder'], ['Données', 'sources'], ['Réglages', 'settings']]) {
-    await page.locator('.rail').getByRole('button', { name: label, exact: true }).click();
+  for (const [label, id] of [['Galerie', 'gallery'], ['Studio', 'studio'], ['Créer une expérience', 'builder'], ['Données', 'sources'], ['Réglages', 'settings']]) {
+    await page.locator('.sidebar').getByRole('button', { name: label, exact: true }).click();
     await page.waitForTimeout(600);
     await page.addScriptTag({ content: AXE });
     const ax = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] }, resultTypes: ['violations'] })).violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, help: v.help })));
@@ -146,7 +146,7 @@ try {
     check(`${label} : aucune violation axe grave`, serious.length === 0, serious.map((v) => `${v.id}×${v.nodes}`).join(', '));
     await page.screenshot({ path: join(OUT, `desktop-${id}.png`) });
   }
-  await page.locator('.rail').getByRole('button', { name: 'Vue', exact: true }).click();
+  await page.locator('.sidebar').getByRole('button', { name: 'Vues', exact: true }).click();
 
   // Replay is read-only.
   await page.keyboard.press('1');
@@ -203,8 +203,7 @@ try {
   pm.on('pageerror', (e) => errors.push(`[mobile] ${e.message}`));
   await pm.goto(URL, { waitUntil: 'networkidle' });
   for (const [id, name] of EXPERIENCES) {
-    await pm.getByRole('button', { name: /Toutes les vues|Control Center|AI |Journal/ }).first().click();
-    await pm.getByRole('option', { name: new RegExp(name) }).click();
+    await pm.getByRole('group', { name: 'Changer d’expérience' }).getByRole('button', { name, exact: true }).click();
     await pm.waitForTimeout(1200);
     const overflow = await pm.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
     check(`Mobile ${name} : pas de défilement horizontal`, !overflow);

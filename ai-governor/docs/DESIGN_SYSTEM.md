@@ -1,4 +1,32 @@
-# Design system — « Plan d'atelier »
+# Design system
+
+## Direction (v0.2, d'après les références fournies)
+
+Interface « application » douce et ergonomique, inspirée des 5 références transmises (applications bancaires et tableaux de bord mobiles, menu latéral repliable) :
+
+- **Fond gris très doux, cartes blanches très arrondies** (20 px ; contrôles en pilule), ombres légères, presque aucun trait.
+- **Sélection noire** (blanche en thème sombre) : onglet actif, élément de menu actif, période choisie, bouton principal. **Violet** comme signal (graphiques, focus, liens), vert/rouge réservés aux variations et statuts.
+- **Chiffre héros** en gras, **actions rapides** en boutons ronds légendés, **pastilles de variation** (+12 %).
+- **Barres arrondies hachurées** avec la barre active pleine et sa valeur en bulle ; **anneau** à segments arrondis ; barres de progression.
+- **Menu latéral** repliable (icônes seules ↔ menu complet) avec groupes dépliables, compteurs et sous-éléments ; **capsule de navigation flottante** sur mobile ; **tiroirs** flottants qui deviennent des **feuilles glissantes** (à tirer vers le bas pour fermer) sur téléphone.
+- **Dynamique sobre** : pastille glissante des contrôles segmentés, fondu entre vues, nombres qui s'animent au changement, barres qui poussent à l'affichage — tout est désactivé en mode minimaliste ou « réduire les animations ».
+
+### Thèmes intégrés
+
+| Thème | Usage | Fond | Cartes | Sélection | Signal |
+|---|---|---|---|---|---|
+| **Lumière** (défaut clair) | quotidien | `#ECECEF` | `#FFFFFF` | noir `#111114` | violet `#7B3FE4` |
+| **Onyx** (défaut sombre) | soir, OLED | `#050506` | `#151517` | blanc | violet `#A47BFF` |
+| **Nexus** | sombre vert translucide (réf. 4) | `#0B1310` + halo | verre flouté | menthe `#46C08F` | menthe |
+| Plan d'atelier, Atelier de nuit, Contraste élevé | direction précédente et accessibilité | | | | |
+
+Séries de graphiques validées (daltonisme, contraste) : clair `#7B3FE4 · #D99A00 · #14A06F · #2E7CF6`, sombre `#9A6BFF · #C98500 · #199E70 · #3987E5`.
+
+Typographie : **Plus Jakarta Sans** (interface et chiffres, graisses 400–800), Archivo condensé pour la marque, IBM Plex Mono pour le code.
+
+---
+
+## Direction précédente (v0.1) — « Plan d'atelier »
 
 Une identité propre, née du sujet : un **plan technique** de votre organisation IA. Papier millimétré bleuté, encre marine, contours fins, volumes isométriques pastel, et un **cartouche** — comme sur un dessin industriel — qui dit ce que montre la feuille : quelle vue, quel moment, quelle nature de données.
 

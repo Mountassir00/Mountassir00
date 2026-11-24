@@ -5,6 +5,7 @@
  * backend directly — every change goes through `host.request()`.
  */
 import type { Command, DispatchResult, Interaction } from '@core/commands';
+import type { PeriodPreset } from '@core/selectors';
 import type { ExperienceManifest } from './manifest';
 import type { QualitySettings } from './quality';
 
@@ -28,6 +29,13 @@ export interface HostApi {
   setLocal<T>(key: string, value: T): void;
   /** Polite screen-reader announcement. */
   announce(message: string): void;
+  /* UI navigation only — never an operational change, never a model call. */
+  navigate(target: 'sources' | 'gallery' | 'studio' | 'builder' | 'settings'): void;
+  setPeriod(preset: Exclude<PeriodPreset, 'custom'>): void;
+  /** Replays the current period from its start (read-only). */
+  startReplay(): void;
+  openFilters(): void;
+  openSearch(): void;
 }
 
 export interface ExperienceProps {

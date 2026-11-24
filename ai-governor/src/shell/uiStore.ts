@@ -53,6 +53,8 @@ export interface UiState {
   device: DeviceClass;
   studioTarget: string | null;
   announce: string;
+  /** Navigation sheet (phones) or overlay (tablets). */
+  menuOpen: boolean;
 }
 
 type Listener = () => void;
@@ -93,6 +95,7 @@ export const ui = createStore<UiState>({
   device: typeof window !== 'undefined' ? deviceClass(window.innerWidth) : 'desktop',
   studioTarget: null,
   announce: '',
+  menuOpen: false,
 });
 
 export function useUi<S>(selector: (s: UiState) => S): S {

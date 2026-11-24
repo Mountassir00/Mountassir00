@@ -5,14 +5,15 @@ import { detectEnvironment, resolveQuality } from '@engine/quality';
 import { ActivityMonitor, AnimationClock, PerfMonitor } from '@engine/runtime';
 import { applyTheme, BUILTIN_THEMES } from '@engine/themes';
 import { deviceClass } from '@engine/prefs';
-import { IconBuilder, IconData, IconDecision, IconGallery, IconGovernor, IconSettings, IconStage, IconStudio, IconClose } from '@ds';
+import { IconClose } from '@ds';
+import { flushSync } from 'react-dom';
 import { RuntimeContext, useSnapshot } from './context';
 import { GovernorRuntime } from './runtime';
 import { registry } from './registryInstance';
-import { setPrefs, ui, useUi, type Route } from './uiStore';
+import { setPrefs, ui, useUi } from './uiStore';
 import { ExperienceHost } from './ExperienceHost';
-import { ViewSwitcher } from './ViewSwitcher';
-import { TopBarControls } from './TopBarControls';
+import { Header } from './Header';
+import { Sidebar, MobileNav } from './Sidebar';
 import { Inspector } from './Inspector';
 import { DecisionCenter } from './DecisionCenter';
 import { Timeline } from './Timeline';
@@ -106,15 +107,6 @@ function useAppearance(themeOverride?: string) {
   return { theme, quality };
 }
 
-const NAV: Array<{ route: Route; label: string; icon: typeof IconStage; desktopOnly?: boolean }> = [
-  { route: 'stage', label: 'Vue', icon: IconStage },
-  { route: 'gallery', label: 'Galerie', icon: IconGallery },
-  { route: 'studio', label: 'Studio', icon: IconStudio, desktopOnly: true },
-  { route: 'builder', label: 'Créer', icon: IconBuilder, desktopOnly: true },
-  { route: 'sources', label: 'Données', icon: IconData },
-  { route: 'settings', label: 'Réglages', icon: IconSettings },
-];
-
 function isTyping(e: KeyboardEvent) {
   const t = e.target as HTMLElement | null;
   return !!t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable);
@@ -142,7 +134,9 @@ function AppInner() {
   const time = useUi((s) => s.time);
   const entries = useMemo(() => registry.entries(prefs), [prefs]);
   const entry = entries.find((e) => e.id === active && e.enabled) ?? entries.find((e) => e.id === pickExperience(entries, prefs, device));
-  const { quality } = useAppearance(route === 'stage' ? entry?.variant?.themeId : undefined);
+  const { quality, theme } = useAppearance(route === 'stage' ? entry?.variant?.themeId : undefined);
+  const navCollapsed = prefs.navCollapsed;
+  const menuOpen = useUi((s) => s.menuOpen);
   const projectFilter = useUi((s) => (s.filters.projects.length === 1 ? s.filters.projects[0] : ''));
   const pendingDecisions = Object.values(snapshot.state.decisions).filter((d) => d.status === 'pending').length;
   const shellRef = useRef<HTMLDivElement>(null);
@@ -191,6 +185,7 @@ function AppInner() {
       } else if (e.key === 'd' || e.key === 'D') ui.set((s) => ({ drawer: s.drawer === 'decisions' ? null : 'decisions' }));
       else if (e.key === 'i' || e.key === 'I') ui.set((s) => ({ drawer: s.drawer === 'inspector' ? null : 'inspector' }));
       else if (e.key === 'l' || e.key === 'L') goLive();
+      else if (e.key === '[') setPrefs((p) => ({ ...p, navCollapsed: !p.navCollapsed }));
       else if (e.key === 'p' || e.key === 'P') togglePresentation();
       else if (e.key === 'Escape') {
         if (ui.get().presentation) togglePresentation(false);
@@ -202,63 +197,49 @@ function AppInner() {
   }, []);
 
   const showTimeline = route === 'stage';
+  const navState = presentation ? 'hidden' : device === 'mobile' ? (menuOpen ? 'sheet' : 'hidden') : device === 'tablet' ? (menuOpen ? 'expanded-overlay' : 'collapsed') : navCollapsed ? 'collapsed' : 'expanded';
+  const layout = route === 'stage' ? entry?.manifest.layout.kind ?? 'grid' : 'page';
   return (
     <>
       <GovernorContext.Provider value={snapshot}>
-        <div className="shell" ref={shellRef} data-presentation={presentation || undefined} data-timeline={showTimeline ? 'shown' : 'hidden'}>
+        <div className="app" ref={shellRef} data-nav={navState} data-presentation={presentation || undefined} data-timeline={showTimeline ? 'shown' : 'hidden'}>
           <a href="#stage" className="sr-only">
             Aller à la vue principale
           </a>
-          <nav className="rail" aria-label="Navigation principale">
-            <div className="rail__brand" title="MOUNTASSIR AI GOVERNOR">
-              <IconGovernor size={26} />
-            </div>
-            {NAV.map((n, i) => (
-              <RailButton key={n.route} {...n} current={route === n.route} order={i} />
-            ))}
-            <button type="button" className="rail__btn" onClick={() => ui.set((s) => ({ drawer: s.drawer === 'decisions' ? null : 'decisions' }))} aria-pressed={drawer === 'decisions'} aria-label={`Décisions GO / NO GO / TEST, ${pendingDecisions} en attente`}>
-              <IconDecision size={20} />
-              Décisions
-              {pendingDecisions > 0 && <span className="count" aria-hidden>{pendingDecisions}</span>}
-            </button>
-            <div className="rail__spacer" />
-          </nav>
-
-          <header className="topbar">
-            <div className="topbar__title hide-mobile">
-              <b>MOUNTASSIR AI GOVERNOR</b>
-              <span>Supervision de l’écosystème IA</span>
-            </div>
-            <ViewSwitcher entries={entries} activeId={entry?.id ?? active} />
-            <div className="topbar__grow" />
-            <TopBarControls />
-          </header>
-
-          <main className="stage" id="stage" data-surface="plan" aria-label={entry ? `Expérience ${entry.manifest.name}` : 'Vue'}>
-            {route === 'stage' && entry && (
-              <>
-                <ExperienceHost entry={entry} quality={quality} clock={clock} perf={perf} />
-                <TitleBlock entry={entry} quality={quality.level} />
-                {prefs.perfHud && <PerfHud quality={quality} />}
-              </>
-            )}
-            <Suspense fallback={<div className="stage__loading">Chargement…</div>}>
-              {route === 'gallery' && <Gallery entries={entries} activeId={entry?.id ?? ''} />}
-              {route === 'studio' && <Studio entries={entries} quality={quality} />}
-              {route === 'builder' && <Builder entries={entries} quality={quality} />}
-              {route === 'sources' && <Sources />}
-              {route === 'settings' && <Settings entries={entries} />}
-            </Suspense>
-            {presentation && (
-              <button type="button" className="btn present-exit" onClick={() => togglePresentation(false)}>
-                <IconClose size={16} /> Quitter la présentation
-              </button>
-            )}
-          </main>
-
-          {showTimeline && <Timeline />}
+          <Sidebar entries={entries} activeId={entry?.id ?? active} pendingDecisions={pendingDecisions} />
+          {(navState === 'sheet' || navState === 'expanded-overlay') && <div className="sheet-scrim" onClick={() => ui.set({ menuOpen: false })} aria-hidden />}
+          <div className="main">
+            <Header entries={entries} activeId={entry?.id ?? active} pendingDecisions={pendingDecisions} scheme={theme.scheme} />
+            <main className="stage" id="stage" data-surface="plan" data-layout={layout} aria-label={entry && route === 'stage' ? `Expérience ${entry.manifest.name}` : 'Page'}>
+              {route === 'stage' && entry && (
+                <div key={entry.id} className="stage__fade" style={{ position: 'absolute', inset: 0 }}>
+                  <ExperienceHost entry={entry} quality={quality} clock={clock} perf={perf} />
+                  <TitleBlock entry={entry} quality={quality.level} />
+                  {prefs.perfHud && <PerfHud quality={quality} />}
+                </div>
+              )}
+              <Suspense fallback={<div className="stage__loading">Chargement…</div>}>
+                {route !== 'stage' && (
+                  <div key={route} className="stage__fade" style={{ position: 'absolute', inset: 0 }}>
+                    {route === 'gallery' && <Gallery entries={entries} activeId={entry?.id ?? ''} />}
+                    {route === 'studio' && <Studio entries={entries} quality={quality} />}
+                    {route === 'builder' && <Builder entries={entries} quality={quality} />}
+                    {route === 'sources' && <Sources />}
+                    {route === 'settings' && <Settings entries={entries} />}
+                  </div>
+                )}
+              </Suspense>
+              {presentation && (
+                <button type="button" className="btn btn--raised present-exit" onClick={() => togglePresentation(false)}>
+                  <IconClose size={16} /> Quitter la présentation
+                </button>
+              )}
+            </main>
+            {showTimeline && <Timeline />}
+          </div>
           {drawer === 'inspector' && <Inspector />}
           {drawer === 'decisions' && <DecisionCenter />}
+          {device === 'mobile' && !presentation && <MobileNav pendingDecisions={pendingDecisions} />}
         </div>
         <ConfirmDialog />
         <Search entries={entries} />
@@ -277,18 +258,13 @@ function AppInner() {
   );
 }
 
-function RailButton({ route, label, icon: Icon, current, desktopOnly }: { route: Route; label: string; icon: typeof IconStage; current: boolean; desktopOnly?: boolean; order: number }) {
-  return (
-    <button type="button" className="rail__btn" aria-current={current ? 'page' : undefined} data-desktop-only={desktopOnly || undefined} onClick={() => ui.set({ route })}>
-      <Icon size={20} />
-      {label}
-    </button>
-  );
-}
-
 /** Switching view changes only the renderer: data, tasks, filters, selection and time stay. */
 export function switchTo(id: string) {
-  ui.set({ active: id, route: 'stage' });
+  const apply = () => ui.set({ active: id, route: 'stage' });
+  // Native cross-fade between views where supported and motion is allowed.
+  const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+  if (doc.startViewTransition && document.documentElement.dataset.motion !== 'none' && ui.get().active !== id) doc.startViewTransition(() => flushSync(apply));
+  else apply();
   setPrefs((p) => ({ ...p, lastExperience: id }));
 }
 

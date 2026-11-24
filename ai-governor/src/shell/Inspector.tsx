@@ -6,7 +6,8 @@
 import { useMemo } from 'react';
 import type { GovEvent } from '@core/events/schema';
 import type { Priority, TaskRuntime } from '@core/projection';
-import { IconClose, IconInfo, NatureBadge, Notice, StatusPill } from '@ds';
+import { IconInfo, NatureBadge, Notice, StatusPill } from '@ds';
+import { Drawer } from './Drawer';
 import { displaySummary, fmtCompact, fmtDuration, fmtRelative, fmtTime, fmtUsd, modelLabel, useCatalogIndex, useGovernor, recentFlows } from '@sdk';
 import { requestCommand, useRuntime } from './context';
 import { ui, useUi } from './uiStore';
@@ -48,18 +49,9 @@ export function Inspector() {
     body = <TaskPanel id={sel.id} />;
   }
   return (
-    <aside className="drawer" aria-label={`Inspecteur : ${title}`}>
-      <div className="drawer__grip" aria-hidden />
-      <div className="drawer__head">
-        <h2 className="t-h2" style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {title}
-        </h2>
-        <button type="button" className="btn btn--icon btn--ghost" onClick={close} aria-label="Fermer l’inspecteur">
-          <IconClose size={18} />
-        </button>
-      </div>
-      <div className="drawer__body">{body}</div>
-    </aside>
+    <Drawer label={`Inspecteur : ${title}`} title={title} onClose={close}>
+      {body}
+    </Drawer>
   );
 }
 

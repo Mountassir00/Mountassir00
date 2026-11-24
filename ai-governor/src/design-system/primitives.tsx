@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { NATURE_LABEL, STATUS_LABEL, type AgentStatus, type DataNature } from '@core/events/schema';
 
 /** Where a number comes from — shown next to every metric. Shape-coded, not colour-only. */
@@ -49,17 +49,81 @@ export function Panel({ title, aside, children, className, id }: { title?: React
 }
 
 export function Segmented<T extends string>({
-  value, options, onChange, label, size,
-}: { value: T; options: Array<{ value: T; label: ReactNode; title?: string }>; onChange: (v: T) => void; label: string; size?: 'sm' }) {
+  value, options, onChange, label, size, raised, className,
+}: { value: T; options: Array<{ value: T; label: ReactNode; title?: string; className?: string; onIntent?: () => void }>; onChange: (v: T) => void; label: string; size?: 'sm'; raised?: boolean; className?: string }) {
+  const track = useRef<HTMLDivElement>(null);
+  const ind = useRef<HTMLSpanElement>(null);
+  // The active pill slides between options (measured, so it follows any label width).
+  useLayoutEffect(() => {
+    const el = track.current;
+    const pill = ind.current;
+    if (!el || !pill) return;
+    const place = () => {
+      const btn = el.querySelector<HTMLElement>('button[aria-pressed="true"]');
+      if (!btn || btn.offsetParent === null) {
+        pill.style.opacity = '0';
+        return;
+      }
+      pill.style.opacity = '1';
+      pill.style.width = `${btn.offsetWidth}px`;
+      pill.style.transform = `translateX(${btn.offsetLeft}px)`;
+      // In a horizontally scrolling strip (phones), keep the active option visible.
+      const sc = el.parentElement;
+      if (sc && sc.scrollWidth > sc.clientWidth + 1) {
+        const left = el.offsetLeft + btn.offsetLeft - 24;
+        if (left < sc.scrollLeft || left + btn.offsetWidth + 48 > sc.scrollLeft + sc.clientWidth) sc.scrollTo({ left, behavior: 'smooth' });
+      }
+    };
+    place();
+    const ro = new ResizeObserver(place);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [value, options.length]);
   return (
-    <div className="seg" role="group" aria-label={label} data-size={size}>
+    <div ref={track} className={`seg ${raised ? 'seg--raised' : ''} ${className ?? ''}`} role="group" aria-label={label} data-size={size} data-slide="true">
+      <span ref={ind} className="seg__ind" aria-hidden />
       {options.map((o) => (
-        <button key={o.value} type="button" aria-pressed={o.value === value} title={o.title} onClick={() => onChange(o.value)}>
+        <button key={o.value} type="button" className={o.className} aria-pressed={o.value === value} title={o.title} onClick={() => onChange(o.value)} onMouseEnter={o.onIntent} onFocus={o.onIntent}>
           {o.label}
         </button>
       ))}
     </div>
   );
+}
+
+/** Animates a number to its new value (short, only on change, skipped when motion is off). */
+export function useCountUp(target: number, duration = 450): number {
+  const [v, setV] = useState(target);
+  const from = useRef(target);
+  useEffect(() => {
+    const start = from.current;
+    if (start === target || document.documentElement.dataset.motion === 'none' || !Number.isFinite(target)) {
+      from.current = target;
+      setV(target);
+      return;
+    }
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / duration);
+      const e = 1 - Math.pow(1 - k, 3);
+      setV(start + (target - start) * e);
+      if (k < 1) raf = requestAnimationFrame(step);
+      else from.current = target;
+    };
+    raf = requestAnimationFrame(step);
+    return () => {
+      cancelAnimationFrame(raf);
+      from.current = target;
+    };
+  }, [target, duration]);
+  return v;
+}
+
+/** A number that eases to new values; formatting stays with the caller. */
+export function AnimatedNumber({ value, format }: { value: number; format: (n: number) => string }) {
+  const v = useCountUp(value);
+  return <span className="num">{format(v)}</span>;
 }
 
 export function CostDots({ level }: { level: 'low' | 'medium' | 'high' }) {

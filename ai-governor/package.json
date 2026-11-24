@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "MOUNTASSIR AI GOVERNOR \u2014 Visual Experience Engine & AI Office (couche de pr\u00e9sentation)",
+  "description": "MOUNTASSIR AI GOVERNOR — Visual Experience Engine & AI Office (couche de présentation)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fontsource-variable/archivo": "5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "5.3.0",
     "@fontsource/ibm-plex-mono": "5.3.0",
     "react": "19.2.9",
     "react-dom": "19.2.9",

@@ -5,7 +5,8 @@
  */
 import { useState } from 'react';
 import type { Decision, Verdict } from '@core/projection';
-import { IconClose, NatureBadge } from '@ds';
+import { NatureBadge } from '@ds';
+import { Drawer } from './Drawer';
 import { fmtRelative, fmtUsd, useCatalogIndex, useGovernor } from '@sdk';
 import { requestCommand, useRuntime } from './context';
 import { ui } from './uiStore';
@@ -21,17 +22,8 @@ export function DecisionCenter() {
   const pending = all.filter((d) => d.status === 'pending');
   const done = all.filter((d) => d.status !== 'pending');
   return (
-    <aside className="drawer" aria-label="Centre de décision GO / NO GO / TEST">
-      <div className="drawer__grip" aria-hidden />
-      <div className="drawer__head">
-        <h2 className="t-h2" style={{ flex: 1 }}>
-          Décisions
-        </h2>
-        <button type="button" className="btn btn--icon btn--ghost" onClick={() => ui.set({ drawer: null })} aria-label="Fermer le centre de décision">
-          <IconClose size={18} />
-        </button>
-      </div>
-      <div className="drawer__body">
+    <Drawer label="Centre de décision GO / NO GO / TEST" title="Décisions" onClose={() => ui.set({ drawer: null })}>
+      <div>
         <div className="seg" role="tablist" aria-label="Décisions" style={{ marginBottom: 12 }}>
           <button type="button" role="tab" aria-selected={tab === 'pending'} onClick={() => setTab('pending')}>
             En attente <span className="pill">{pending.length}</span>
@@ -59,7 +51,7 @@ export function DecisionCenter() {
             <div className="empty">Aucune décision arbitrée sur l’historique chargé.</div>
           ))}
       </div>
-    </aside>
+    </Drawer>
   );
 }
 

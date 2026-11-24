@@ -141,6 +141,24 @@ export function ExperienceProviders({ children, experienceId, quality, clock }: 
         setPrefs((p) => ({ ...p, local: { ...p.local, [experienceId]: { ...(p.local[experienceId] ?? {}), [key]: value } } }));
       },
       announce,
+      navigate(target) {
+        ui.set({ route: target });
+      },
+      setPeriod(preset) {
+        ui.set((s) => ({ period: { preset }, time: s.time.mode === 'replay' ? { ...s.time, domain: null } : s.time }));
+      },
+      startReplay() {
+        const s = ui.get();
+        const to = rt.store.lastTs();
+        const span = s.period.preset === 'custom' ? (s.period.to ?? to) - (s.period.from ?? to - PERIOD_MS['24h']) : PERIOD_MS[s.period.preset];
+        ui.set({ time: { ...s.time, mode: 'replay', t: to - span, playing: true, domain: { from: to - span, to } } });
+      },
+      openFilters() {
+        ui.set({ filtersOpen: true });
+      },
+      openSearch() {
+        ui.set({ searchOpen: true });
+      },
     }),
     [rt, experienceId],
   );

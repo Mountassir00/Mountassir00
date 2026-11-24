@@ -169,3 +169,34 @@ export const IconGroup = make(
     <path d="M9 6h3a1 1 0 0 1 1 1v4" />
   </>,
 );
+export const IconMenu = make(<path d="M4 6h12M4 10h12M4 14h8" />);
+export const IconBell = make(
+  <>
+    <path d="M5.5 13.5V9a4.5 4.5 0 0 1 9 0v4.5l1.5 1.5H4Z" />
+    <path d="M8.5 17a1.6 1.6 0 0 0 3 0" />
+  </>,
+);
+export const IconMoon = make(<path d="M15.5 12.2A6.5 6.5 0 0 1 7.8 4.5 6.5 6.5 0 1 0 15.5 12.2Z" />);
+export const IconSun = make(
+  <>
+    <circle cx="10" cy="10" r="3.2" />
+    <path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7l1.3 1.3M14 14l1.3 1.3M4.7 15.3 6 14M14 6l1.3-1.3" />
+  </>,
+);
+export const IconPlus = make(<path d="M10 4v12M4 10h12" />);
+export const IconMinus = make(<path d="M4 10h12" />);
+export const IconSidebar = make(
+  <>
+    <rect x="3" y="3.5" width="14" height="13" rx="2.5" />
+    <path d="M8 3.5v13" />
+  </>,
+);
+export const IconArrowUpRight = make(<path d="M6 14 14 6M7.5 6H14v6.5" />);
+export const IconArrowDownLeft = make(<path d="M14 6 6 14M12.5 14H6V7.5" />);
+export const IconReplay = make(
+  <>
+    <path d="M4.5 8A6 6 0 1 1 4 11" />
+    <path d="M4.5 3.5V8H9" />
+    <path d="M9 7.5v5l3.5-2.5Z" />
+  </>,
+);

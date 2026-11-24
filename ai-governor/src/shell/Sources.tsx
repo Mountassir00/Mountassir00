@@ -42,7 +42,6 @@ export function Sources() {
     <div className="page">
       <div className="page__head">
         <div>
-          <h1 className="t-h1">Sources de données</h1>
           <p className="t-muted" style={{ margin: '4px 0 0', maxWidth: '72ch' }}>
             Toutes les expériences lisent le même journal d’événements. Chaque source déclare ce qu’elle voit et ce qu’elle ne voit pas : l’interface n’invente rien pour combler un manque.
           </p>

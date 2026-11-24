@@ -1,150 +1,223 @@
 /**
- * Experience 01 — Control Center.
- * Every figure states its nature (measured, estimated, unavailable, demo).
- * A number that cannot be known from the active sources is shown as
- * "Indisponible" with the reason — never filled with a guess.
+ * Experience 01 — Control Center (soft dashboard layout).
+ * Every figure shows its nature (measured, estimated, demo, unavailable).
+ * Unknown figures say "Indisponible" with the reason — never a guess.
  */
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import {
-  beforeAfter, bucketize, byModel, fmtCompact, fmtDuration, fmtInt, fmtPct, fmtRelative, fmtTime, fmtUsd, modelLabel, natureMix, sumUsage,
+  beforeAfter, bucketize, byModel, fmtCompact, fmtInt, fmtPct, fmtRelative, fmtTime, fmtUsd, modelLabel, natureMix,
   useCatalogIndex, useGovernor, PRICE_TABLE_SOURCE, type DataNature, type ExperienceProps, type TaskRuntime,
 } from '@sdk';
-import { BeforeAfterBars, HBars, Legend, LineArea, NatureBadge, Panel, Segmented, StackedColumns, StatusPill, type Series } from '@ds';
+import { AnimatedNumber, NatureBadge, Segmented, Sparkline, StatusPill } from '@ds';
+import { bucketFor, delta, figures, natureOf, type Kind } from './data';
+import { DeltaPill, HeroStack, QuickActions, type HeroMetric } from './Hero';
+import { CapsuleChart } from './CapsuleChart';
+import { Donut, foldSlices } from './Donut';
+import { Goals } from './Goals';
+import { GChart, GHistory, GPlug, GPuzzle, GRefresh, GShield, GTable } from './glyphs';
 import './control-center.css';
 
-const SERIES: Series[] = [
-  { key: 'tokensIn', label: 'Entrée', color: 'var(--series-1)' },
-  { key: 'tokensOut', label: 'Sortie', color: 'var(--series-2)' },
-  { key: 'cacheRead', label: 'Lecture cache', color: 'var(--series-3)' },
-  { key: 'cacheWrite', label: 'Écriture cache', color: 'var(--series-4)' },
-];
+type Metric = 'tokens' | 'cost' | 'calls';
+type PeriodChip = 'live' | '24h' | '7d' | '30d';
 
-type Kind = 'measured' | 'estimated' | 'unavailable';
+const NATURE_SHORT: Record<DataNature, string> = { real: 'Mesuré', estimated: 'Estimé', demo: 'Démo', unavailable: 'Indisponible', planned: 'Planifié', historical: 'Historique' };
+const TASK_STATUS: Record<TaskRuntime['status'], string> = { pending: 'En attente', running: 'En cours', paused: 'Suspendue', succeeded: 'Terminée', failed: 'Échouée', cancelled: 'Annulée' };
 
-export default function ControlCenter({ config, host, device }: ExperienceProps) {
+export default function ControlCenter({ config, host }: ExperienceProps) {
   const g = useGovernor();
   const idx = useCatalogIndex();
-  const events = g.rangeEvents();
+  // Memoised on the store version: the shell's window cache is single-entry, so
+  // reading two windows per render would otherwise recompute both every time.
+  const events = useMemo(() => g.rangeEvents(), [g.version, g.range.from, g.range.to, g.filters]); // eslint-disable-line react-hooks/exhaustive-deps
   const showEst = config.showEstimates !== false;
-  const [tableView, setTableView] = useState(config.showTables === true);
-  const [chart, setChart] = useState<'columns' | 'line'>((config.usageChart as 'columns' | 'line') ?? 'columns');
+  const [metric, setMetric] = useState<Metric>(config.usageChart === 'line' ? 'cost' : 'tokens');
+  const [table, setTable] = useState(config.showTables === true);
+  const [bars, setBars] = useState(24);
+  const onCountHint = useCallback((n: number) => setBars((b) => (Math.abs(b - n) > 2 ? n : b)), []);
 
-  const u = useMemo(() => sumUsage(events), [events]);
+  const span = Math.max(60_000, g.range.to - g.range.from);
+  const cur = useMemo(() => figures(events), [events]);
+  const prev = useMemo(() => figures(g.windowEvents(g.range.from - span, g.range.from)), [g.version, g.range.from, span, g.filters]); // eslint-disable-line react-hooks/exhaustive-deps
+  const prevComparable = prev.u.llmCalls > 0;
   const mix = useMemo(() => natureMix(events), [events]);
   const onlyDemo = (mix.demo ?? 0) > 0 && !mix.real;
+  const nat = (k: Kind) => natureOf(k, onlyDemo);
   const hasBilling = g.sources.some((s) => s.id === 'anthropic-usage-api');
-  /** Nature of a KPI given what kind of value it is and which sources fed it. */
-  const nat = (k: Kind): DataNature => (k === 'unavailable' ? 'unavailable' : onlyDemo ? 'demo' : k === 'measured' ? 'real' : 'estimated');
 
-  const buckets = useMemo(() => bucketize(events, g.range.from, g.range.to), [events, g.range.from, g.range.to]);
-  const models = useMemo(() => byModel(events), [events]);
   const tasks = useMemo(() => Object.values(g.state.tasks), [g.state.tasks, g.version]); // eslint-disable-line react-hooks/exhaustive-deps
   const running = tasks.filter((t) => t.status === 'running' || t.status === 'paused');
   const pendingTasks = tasks.filter((t) => t.status === 'pending');
-  const decisions = Object.values(g.state.decisions).filter((d) => d.status === 'pending');
-  const incidents = Object.values(g.state.incidents).sort((a, b) => b.ts - a.ts);
-  const openIncidents = incidents.filter((i) => i.state === 'open');
-  const skills = Object.values(g.state.skills);
-  const connectors = Object.values(g.state.connectors);
-  const quotas = Object.values(g.state.quotas);
-  const processed = u.tokensIn + u.tokensOut + u.cacheRead + u.cacheWrite;
-  const cacheShare = u.tokensIn + u.cacheRead > 0 ? u.cacheRead / (u.tokensIn + u.cacheRead) : null;
+  const decisions = Object.values(g.state.decisions).filter((d) => d.status === 'pending').sort((a, b) => b.proposedAt - a.proposedAt);
+  const quota = Object.values(g.state.quotas)[0];
+
+  const d = (a: number | null, b: number | null) => (prevComparable ? delta(a, b) : null);
+
+  const hero: HeroMetric[] = [
+    {
+      id: 'cost', label: 'Coût estimé', value: showEst ? cur.cost : null, unavailable: 'Masqué (réglage)', format: (n) => fmtUsd(n),
+      delta: d(cur.cost, prev.cost), lowerIsBetter: true, nature: nat('estimated'), tone: 'ink',
+      sub: <>{fmtCompact(cur.processed)} tokens · {fmtInt(cur.u.llmCalls)} appels</>,
+    },
+    {
+      id: 'cache', label: 'Servis par le cache', value: cur.u.cacheRead, format: (n) => fmtCompact(n), delta: d(cur.u.cacheRead, prev.u.cacheRead),
+      nature: nat('measured'), tone: 'gold', sub: cur.cacheShare != null ? `${fmtPct(cur.cacheShare)} de l’entrée` : 'Aucune entrée',
+    },
+    {
+      id: 'quality', label: 'Qualité moyenne', value: cur.u.qualityAvg, unavailable: 'Aucun contrôle', format: (n) => fmtPct(n), delta: d(cur.u.qualityAvg, prev.u.qualityAvg),
+      nature: cur.u.qualityAvg == null ? 'unavailable' : nat('measured'), tone: 'violet', sub: `${fmtInt(cur.u.tasksDone)} tâches terminées`,
+    },
+  ];
+
+  const bucketMs = bucketFor(span, bars);
+  const buckets = useMemo(() => bucketize(events, g.range.from, g.range.to, bucketMs), [events, g.range.from, g.range.to, bucketMs]);
+  const timeFmt = useMemo(
+    () => (span > 2 * 86_400_000 ? new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'short' }) : new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' })),
+    [span],
+  );
+  const metricValue = (b: (typeof buckets)[number]) => (metric === 'tokens' ? b.tokensIn + b.tokensOut + b.cacheRead + b.cacheWrite : metric === 'cost' ? b.costUsd : b.calls);
+  const metricFmt = metric === 'cost' ? (n: number) => fmtUsd(n) : metric === 'tokens' ? fmtCompact : (n: number) => fmtInt(n);
+  const points = buckets.map((b) => ({
+    t: b.t,
+    value: metricValue(b),
+    label: timeFmt.format(b.t),
+    detail: `${fmtCompact(b.tokensIn + b.tokensOut + b.cacheRead + b.cacheWrite)} tokens, ${fmtUsd(b.costUsd)} estimés, ${b.calls} appels`,
+  }));
+
+  const models = useMemo(() => byModel(events), [events]);
+  const slices = foldSlices(models.map((m) => ({ key: m.model, label: modelLabel(m.model), value: m.costUsd })));
+  const totalModelCost = slices.reduce((s, x) => s + x.value, 0);
 
   const comparisons = useMemo(() => {
-    const ms = g.state.feed.optimizations.filter((o) => o.attrs?.milestone).slice(-4).reverse();
+    const ms = g.state.feed.optimizations.filter((o) => o.attrs?.milestone).slice(-3).reverse();
     return ms.map((m) => {
-      const scope = m.departmentId === 'tokens' ? { agent: 'governor' } : m.departmentId === 'routing' ? { agent: 'scout' } : m.departmentId === 'context' ? { agent: 'auditor' } : {};
-      const list = 'agent' in scope ? tasks.filter((t) => t.agentId === scope.agent) : tasks;
-      return { m, r: beforeAfter(list, m.ts, 5 * 86_400_000, m.summary), scope: 'agent' in scope ? idx.agents.get(scope.agent!)?.name : 'Toutes les tâches' };
+      const agent = m.departmentId === 'tokens' ? 'governor' : m.departmentId === 'routing' ? 'scout' : m.departmentId === 'context' ? 'auditor' : undefined;
+      const list = agent ? tasks.filter((t) => t.agentId === agent) : tasks;
+      return { m, r: beforeAfter(list, m.ts, 5 * 86_400_000, m.summary), scope: agent ? idx.agents.get(agent)?.name ?? agent : 'Toutes les tâches' };
     });
   }, [g.state.feed.optimizations, tasks, idx.agents]);
 
-  const changes = useMemo(
-    () => [...g.state.feed.changes, ...g.state.feed.interventions].sort((a, b) => b.ts - a.ts).slice(0, 8),
-    [g.state.feed.changes, g.state.feed.interventions],
+  const recent = useMemo(
+    () =>
+      [...running, ...pendingTasks, ...tasks.filter((t) => t.status === 'succeeded' || t.status === 'failed').sort((a, b) => (b.endedAt ?? 0) - (a.endedAt ?? 0)).slice(0, 8)].slice(0, 7),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [g.version, g.now],
   );
+  const incidents = Object.values(g.state.incidents).sort((a, b) => b.ts - a.ts);
+  const openIncidents = incidents.filter((i) => i.state === 'open').length;
+  const feed = [...g.state.feed.updates, ...g.state.feed.recommendations].sort((a, b) => b.ts - a.ts).slice(0, 5);
+  const changes = [...g.state.feed.changes, ...g.state.feed.interventions].sort((a, b) => b.ts - a.ts).slice(0, 6);
+  const skills = Object.values(g.state.skills);
+  const connectors = Object.values(g.state.connectors);
 
-  const span = g.range.to - g.range.from;
-  const fmtX = (t: number) => (span > 2 * 86_400_000 ? new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'short' }).format(t) : new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' }).format(t));
+  const preset = g.period.preset as PeriodChip | 'custom' | '1h';
+  const costSeries = buckets.map((b) => b.costUsd);
 
   return (
     <div className="cc" data-density={config.density as string}>
       <div className="cc__inner">
-        <header className="cc__head">
-          <div>
-            <h1 className="t-h1">Control Center</h1>
-            <p className="t-small t-muted">
-              {g.mode === 'replay' ? `État au ${fmtTime(g.now, true)}` : 'Période'} · {fmtTime(g.range.from, true)} → {fmtTime(g.range.to, true)} · {fmtInt(events.length)} événements
-            </p>
-          </div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="cc-toolbar">
+          <Segmented<PeriodChip>
+            raised
+            label="Période affichée"
+            value={(['live', '24h', '7d', '30d'].includes(preset) ? preset : '24h') as PeriodChip}
+            onChange={(v) => host.setPeriod(v)}
+            options={[
+              { value: 'live', label: 'Direct' },
+              { value: '24h', label: '24 h' },
+              { value: '7d', label: '7 j' },
+              { value: '30d', label: '30 j' },
+            ]}
+          />
+          {g.mode === 'replay' && <span className="pill replay-banner">État au {fmtTime(g.now, true)}</span>}
+          <div className="cc-toolbar__mix" aria-label="Nature des données affichées">
             {(Object.keys(mix) as DataNature[]).map((n) => (
               <NatureBadge key={n} nature={n} label={`${NATURE_SHORT[n]} ${fmtPct((mix[n] ?? 0) / Math.max(1, events.length))}`} />
             ))}
+            {!events.length && <span className="t-small t-muted">Aucun événement sur la période</span>}
           </div>
-        </header>
-
-        <section className="cc-kpis" aria-label="Indicateurs clés">
-          <Kpi hero label="Tokens traités" value={fmtCompact(processed)} sub={`${fmtCompact(u.tokensIn)} entrée · ${fmtCompact(u.tokensOut)} sortie`} nature={nat('measured')} />
-          <Kpi label="Servis par le cache" value={fmtCompact(u.cacheRead)} sub={cacheShare != null ? `${fmtPct(cacheShare)} de l’entrée` : 'Aucune entrée'} nature={nat('measured')} />
-          <Kpi label="Tokens évités (optimisations)" value={fmtCompact(u.tokensSaved)} sub={`${u.optimizations} optimisation(s) appliquée(s)`} nature={nat('estimated')} />
-          <Kpi label="Dépenses réelles" value={hasBilling ? fmtUsd(u.costMeasured) : null} unavailable="Nécessite la source de facturation" nature={hasBilling ? nat('measured') : 'unavailable'} />
-          <Kpi label="Coût estimé" value={showEst ? fmtUsd(u.costEstimated + u.costMeasured) : null} unavailable="Masqué (réglage)" sub="Tokens × prix catalogue" nature={nat('estimated')} />
-          <Kpi label="Économies vérifiées" value={null} unavailable={hasBilling ? 'Aucune optimisation vérifiée' : 'Indisponible : aucune facture rapprochée'} nature="unavailable" />
-          <Kpi label="Coûts évités estimés" value={showEst ? fmtUsd(u.avoidedUsd) : null} unavailable="Masqué (réglage)" sub="Cache + optimisations" nature={nat('estimated')} />
-          <Kpi label="Qualité moyenne" value={u.qualityAvg != null ? fmtPct(u.qualityAvg) : null} unavailable="Aucun contrôle qualité" nature={u.qualityAvg != null ? nat('measured') : 'unavailable'} />
-          <Kpi label="Tâches exécutées" value={fmtInt(u.tasksDone)} sub={`${running.length} en cours · ${pendingTasks.length} en attente · ${u.tasksFailed} en échec`} nature={nat('measured')} />
-          <Kpi label="Erreurs" value={fmtInt(u.errors)} sub={`${u.interventions} intervention(s) humaine(s)`} nature={nat('measured')} />
-          <Kpi
-            label="Quota consommé"
-            value={quotas.length ? fmtPct(quotas[0].usedPct / 100) : null}
-            unavailable="Non exposé par la source"
-            sub={quotas.length ? `${quotas[0].provider}, mis à jour ${fmtRelative(quotas[0].ts, g.now)}` : undefined}
-            nature={quotas.length ? (quotas[0].nature === 'demo' ? 'demo' : 'real') : 'unavailable'}
-          />
-        </section>
+        </div>
 
         <div className="cc__grid">
-          <Panel
-            className="cc__span-8"
-            title={chart === 'columns' ? 'Consommation de tokens' : 'Coût estimé dans le temps'}
-            aside={
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <Segmented size="sm" label="Type de graphique" value={chart} onChange={setChart} options={[{ value: 'columns', label: 'Tokens' }, { value: 'line', label: 'Coût' }]} />
-                <button type="button" className="btn btn--sm" aria-pressed={tableView} onClick={() => setTableView((v) => !v)}>
-                  {tableView ? 'Graphique' : 'Tableau'}
-                </button>
-              </div>
-            }
-          >
-            {!tableView && chart === 'columns' && (
-              <>
-                <Legend series={SERIES} />
-                <StackedColumns data={buckets} series={SERIES} value={(d, k) => d[k as keyof typeof d] as number} fmtY={fmtCompact} fmtX={fmtX} fmtTip={fmtInt} height={device === 'mobile' ? 170 : 220} label="Tokens par intervalle, empilés par type" />
-              </>
-            )}
-            {!tableView && chart === 'line' && (
-              <LineArea
-                data={buckets}
-                value={(d) => d.costUsd}
-                fmtY={(n) => fmtUsd(n)}
-                fmtX={fmtX}
-                height={device === 'mobile' ? 170 : 220}
-                label="Coût estimé par intervalle"
-                markers={comparisons.filter((c) => c.m.ts >= g.range.from && c.m.ts <= g.range.to).map((c) => ({ t: c.m.ts, label: 'Optimisation' }))}
-              />
-            )}
-            {tableView && (
-              <div className="table-wrap" style={{ maxHeight: 260, overflow: 'auto' }}>
+          <div className="cc-area cc-area--hero">
+            <HeroStack metrics={hero} />
+            <QuickActions host={host} pending={decisions.length} />
+          </div>
+
+          <section className="cc-area cc-area--kpis cc-kpis" aria-label="Indicateurs">
+            <Tile
+              inverted
+              label="Servis par le cache"
+              value={cur.cacheShare != null ? fmtPct(cur.cacheShare) : null}
+              ratio={cur.cacheShare}
+              foot={`${fmtCompact(cur.u.cacheRead)} tokens`}
+              nature={nat('measured')}
+              reason="Aucune requête modèle"
+            />
+            <Tile label="Qualité moyenne" value={cur.u.qualityAvg != null ? fmtPct(cur.u.qualityAvg) : null} ratio={cur.u.qualityAvg} foot="Contrôles qualité" nature={cur.u.qualityAvg != null ? nat('measured') : 'unavailable'} reason="Aucun contrôle qualité" />
+            <Tile label="Tâches réussies" value={cur.successRate != null ? fmtPct(cur.successRate) : null} ratio={cur.successRate} foot={`${fmtInt(cur.u.tasksDone)} sur ${fmtInt(cur.u.tasksDone + cur.u.tasksFailed)}`} nature={nat('measured')} reason="Aucune tâche terminée" />
+            <Tile
+              label="Quota consommé"
+              value={quota ? fmtPct(quota.usedPct / 100) : null}
+              ratio={quota ? quota.usedPct / 100 : null}
+              foot={quota ? `${quota.provider} · ${fmtRelative(quota.ts, g.now)}` : undefined}
+              nature={quota ? (quota.nature === 'demo' ? 'demo' : 'real') : 'unavailable'}
+              reason="Non exposé par la source"
+              tone="var(--series-2)"
+            />
+            <Tile
+              label="Erreurs"
+              value={fmtInt(cur.u.errors)}
+              ratio={cur.errorRate}
+              foot={cur.errorRate != null ? `${fmtPct(cur.errorRate, 1)} des appels · ${cur.u.interventions} intervention(s)` : 'Aucun appel'}
+              nature={nat('measured')}
+              tone="var(--st-error)"
+            />
+            <Tile
+              label="Dépenses réelles · économies vérifiées"
+              value={hasBilling ? fmtUsd(cur.u.costMeasured) : null}
+              ratio={null}
+              foot={hasBilling ? 'Facturation rapprochée' : undefined}
+              nature={hasBilling ? nat('measured') : 'unavailable'}
+              reason="Indisponible : aucune source de facturation connectée"
+              dashed={!hasBilling}
+            />
+          </section>
+
+          <section className="panel cc-area cc-area--chart" aria-labelledby="cc-chart-title">
+            <CardHead
+              id="cc-chart-title"
+              title={metric === 'tokens' ? 'Tokens traités' : metric === 'cost' ? 'Coût estimé' : 'Appels modèle'}
+              sub={`Par tranche de ${fmtSpan(bucketMs)}`}
+              aside={
+                <div className="cc-head-actions">
+                  <Segmented<Metric>
+                    size="sm"
+                    label="Mesure affichée"
+                    value={metric}
+                    onChange={setMetric}
+                    options={[
+                      { value: 'tokens', label: 'Tokens' },
+                      { value: 'cost', label: 'Coût' },
+                      { value: 'calls', label: 'Appels' },
+                    ]}
+                  />
+                  <button type="button" className="btn btn--sm btn--icon" aria-pressed={table} onClick={() => setTable((v) => !v)} aria-label={table ? 'Afficher le graphique' : 'Afficher le tableau'} title={table ? 'Graphique' : 'Tableau'}>
+                    {table ? <GChart size={16} /> : <GTable size={16} />}
+                  </button>
+                </div>
+              }
+            />
+            {table ? (
+              <div className="table-wrap cc-table">
                 <table className="table">
                   <thead>
                     <tr>
                       <th>Intervalle</th>
-                      {SERIES.map((s) => (
-                        <th key={s.key} className="r">
-                          {s.label}
-                        </th>
-                      ))}
+                      <th className="r">Entrée</th>
+                      <th className="r">Sortie</th>
+                      <th className="r">Cache lu</th>
+                      <th className="r">Cache écrit</th>
+                      <th className="r">Appels</th>
                       <th className="r">Coût estimé</th>
                     </tr>
                   </thead>
@@ -156,264 +229,369 @@ export default function ControlCenter({ config, host, device }: ExperienceProps)
                         <td className="r">{fmtInt(b.tokensOut)}</td>
                         <td className="r">{fmtInt(b.cacheRead)}</td>
                         <td className="r">{fmtInt(b.cacheWrite)}</td>
+                        <td className="r">{b.calls}</td>
                         <td className="r">{fmtUsd(b.costUsd)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                {!buckets.some((b) => b.calls) && <p className="empty">Aucun appel modèle sur la période.</p>}
               </div>
-            )}
-            <p className="t-micro t-muted" style={{ marginTop: 8 }}>
-              Coûts : {PRICE_TABLE_SOURCE.label}. {PRICE_TABLE_SOURCE.caveat}
-            </p>
-          </Panel>
-
-          <Panel className="cc__span-4" title="Performance des modèles" aside={<NatureBadge nature={nat('measured')} />}>
-            {models.length ? (
-              <>
-                <HBars rows={models.map((m) => ({ key: m.model, label: modelLabel(m.model), value: m.costUsd, note: `${fmtInt(m.calls)} appels` }))} fmt={(n) => fmtUsd(n)} label="Coût estimé par modèle" />
-                <div className="table-wrap" style={{ marginTop: 12 }}>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Modèle</th>
-                        <th className="r">Latence</th>
-                        <th className="r">Cache</th>
-                        <th className="r">Erreurs</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {models.map((m) => (
-                        <tr key={m.model}>
-                          <td>{modelLabel(m.model)}</td>
-                          <td className="r">{m.latencyAvgMs != null ? fmtDuration(m.latencyAvgMs) : '—'}</td>
-                          <td className="r">{m.cacheHitRate != null ? fmtPct(m.cacheHitRate) : '—'}</td>
-                          <td className="r">{m.errors}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </>
             ) : (
-              <p className="t-muted">Aucun appel modèle sur la période et les filtres choisis.</p>
+              <CapsuleChart points={points} format={metricFmt} label={`${metric === 'tokens' ? 'Tokens traités' : metric === 'cost' ? 'Coût estimé' : 'Appels modèle'} par intervalle`} onCountHint={onCountHint} />
             )}
-          </Panel>
+            <div className="cc-chart-foot">
+              <NatureBadge nature={metric === 'cost' ? nat('estimated') : nat('measured')} />
+              <span className="t-micro t-muted">{metric === 'cost' ? `Tokens × prix catalogue (${PRICE_TABLE_SOURCE.asOf}). ${PRICE_TABLE_SOURCE.caveat}` : 'Somme des entrées, sorties et lectures/écritures de cache.'}</span>
+            </div>
+          </section>
 
-          <Panel className="cc__span-6" title="Avant / après optimisation" aside={<span className="t-micro t-muted">Fenêtres de 5 jours, coût par tâche réussie</span>}>
+          <section className="panel cc-area cc-area--donut" aria-labelledby="cc-donut-title">
+            <CardHead id="cc-donut-title" title="Coût par modèle" aside={<NatureBadge nature={nat('estimated')} />} />
+            {slices.length ? (
+              <Donut slices={slices} total={totalModelCost} format={(n) => fmtUsd(n)} centerLabel="Total estimé" label="Coût estimé par modèle" />
+            ) : (
+              <p className="empty">Aucun appel modèle sur la période et les filtres choisis.</p>
+            )}
+          </section>
+
+          <div className="cc-area cc-area--minis">
+            <MiniCard
+              title="Coût estimé"
+              value={showEst ? cur.cost : null}
+              format={(n) => fmtUsd(n)}
+              delta={d(cur.cost, prev.cost)}
+              lowerIsBetter
+              nature={nat('estimated')}
+              foot={<Sparkline values={costSeries} width={120} height={30} color="var(--c-accent)" label="Évolution du coût estimé sur la période" />}
+            />
+            <MiniCard
+              title="Coûts évités estimés"
+              value={showEst ? cur.u.avoidedUsd : null}
+              format={(n) => fmtUsd(n)}
+              delta={d(cur.u.avoidedUsd, prev.u.avoidedUsd)}
+              nature={nat('estimated')}
+              foot={<span className="t-micro t-muted">Cache et optimisations, au prix catalogue</span>}
+            />
+          </div>
+
+          <section className="panel cc-area cc-area--goals" aria-labelledby="cc-goals-title">
+            <CardHead id="cc-goals-title" title="Objectifs" sub="Vos cibles, comparées à la période affichée" />
+            <Goals host={host} f={cur} nature={nat('measured')} />
+          </section>
+
+          <section className="panel cc-area cc-area--activity" aria-labelledby="cc-act-title">
+            <CardHead id="cc-act-title" title="Activité récente" sub={`${running.length} en cours · ${pendingTasks.length} en attente`} />
+            <ul className="cc-rows">
+              {recent.map((t) => {
+                const dept = t.departmentId ? idx.departments.get(t.departmentId) : undefined;
+                const agent = t.agentId ? idx.agents.get(t.agentId) : undefined;
+                const when = t.endedAt ?? t.startedAt ?? t.createdAt;
+                return (
+                  <li key={t.id}>
+                    <button type="button" className="cc-row" onClick={() => t.agentId && host.select({ kind: 'agent', id: t.agentId })}>
+                      <Initials name={dept?.name ?? '?'} tone={dept?.tone} />
+                      <span className="cc-row__text">
+                        <b>{t.title}</b>
+                        <span>
+                          {fmtRelative(when, g.now)} · {agent?.name ?? '—'}
+                        </span>
+                      </span>
+                      <span className="cc-row__end">
+                        {t.status === 'succeeded' && t.costUsd > 0 ? (
+                          <b className="num">{fmtUsd(t.costUsd, t.costUsd < 1 ? 3 : 2)}</b>
+                        ) : (
+                          <span className={`pill ${t.status === 'failed' ? 'pill--down' : t.status === 'running' ? 'pill--accent' : t.status === 'succeeded' ? 'pill--up' : ''}`}>{TASK_STATUS[t.status]}</span>
+                        )}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+              {!recent.length && <li className="empty">Aucune tâche à afficher.</li>}
+            </ul>
+          </section>
+
+          <section className="panel cc-area cc-area--decisions" aria-labelledby="cc-dec-title">
+            <CardHead id="cc-dec-title" title="Propositions GO / NO GO / TEST" aside={<SeeAll onClick={() => host.openDecisions()} label="Tout voir" />} />
+            <ul className="cc-rows">
+              {decisions.slice(0, 5).map((dd) => (
+                <li key={dd.id}>
+                  <button type="button" className="cc-row" onClick={() => host.openDecisions()}>
+                    <span className="cc-round" data-tone={dd.risk} aria-hidden>
+                      {dd.durable ? '!' : dd.risk === 'high' ? '▲' : dd.risk === 'medium' ? '◆' : '●'}
+                    </span>
+                    <span className="cc-row__text">
+                      <b>{dd.title}</b>
+                      <span>
+                        {dd.impact || 'Impact non précisé'} · {fmtRelative(dd.proposedAt, g.now)}
+                      </span>
+                    </span>
+                    <span className="cc-row__end">
+                      <span className={`pill pill--risk-${dd.risk}`}>{dd.durable ? 'Durable' : dd.risk === 'high' ? 'Risque élevé' : dd.risk === 'medium' ? 'Modéré' : 'Faible'}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+              {!decisions.length && <li className="empty">Aucune proposition en attente.</li>}
+            </ul>
+          </section>
+
+          <section className="panel cc-area cc-area--ba" aria-labelledby="cc-ba-title">
+            <CardHead id="cc-ba-title" title="Avant / après optimisation" sub="Coût par tâche réussie, fenêtres de 5 jours" />
             {comparisons.length ? (
               <div className="cc-ba">
                 {comparisons.map(({ m, r, scope }) => (
                   <div key={m.id} className="cc-ba__item">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-                      <b style={{ fontWeight: 600 }}>{m.summary}</b>
+                    <div className="cc-ba__head">
+                      <b>{m.summary}</b>
                       <span className="t-micro t-muted">
                         {fmtTime(m.ts, true)} · {scope}
                       </span>
                     </div>
                     {r.sufficient ? (
-                      <div className="cc-split">
-                        <div>
-                          <div className="t-micro t-muted" style={{ marginBottom: 4 }}>
-                            Coût par tâche{' '}
-                            <span className="cc-delta" data-good={(r.deltaCostPct ?? 0) < 0}>
-                              {r.deltaCostPct != null ? `${r.deltaCostPct > 0 ? '+' : ''}${fmtPct(r.deltaCostPct)}` : ''}
-                            </span>
-                          </div>
-                          <BeforeAfterBars before={r.before.costPerTask} after={r.after.costPerTask} fmt={(n) => fmtUsd(n, 3)} label="Coût par tâche" />
-                        </div>
-                        <div>
-                          <div className="t-micro t-muted" style={{ marginBottom: 4 }}>
-                            Tokens facturés plein tarif par tâche{' '}
-                            <span className="cc-delta" data-good={(r.deltaTokensPct ?? 0) < 0}>
-                              {r.deltaTokensPct != null ? `${r.deltaTokensPct > 0 ? '+' : ''}${fmtPct(r.deltaTokensPct)}` : ''}
-                            </span>
-                          </div>
-                          <BeforeAfterBars before={r.before.tokensPerTask} after={r.after.tokensPerTask} fmt={fmtCompact} label="Tokens par tâche" />
-                        </div>
-                        <div style={{ gridColumn: '1 / -1', display: 'flex', gap: 8, alignItems: 'center' }}>
+                      <>
+                        <PairBars before={r.before.costPerTask} after={r.after.costPerTask} format={(n) => fmtUsd(n, 3)} label="Coût par tâche" />
+                        <div className="cc-ba__foot">
+                          <DeltaPill delta={r.deltaCostPct} lowerIsBetter subject="Coût par tâche" />
                           <NatureBadge nature={r.nature === 'demo' ? 'demo' : 'estimated'} />
                           <span className="t-micro t-muted">
                             {r.before.tasks} tâches avant, {r.after.tasks} après. Corrélation observée, pas une preuve de causalité.
                           </span>
                         </div>
-                      </div>
+                      </>
                     ) : (
-                      <p className="t-small t-muted">Données insuffisantes pour conclure ({r.before.tasks} tâches avant, {r.after.tasks} après ; 8 minimum de chaque côté).</p>
+                      <p className="t-small t-muted">
+                        Données insuffisantes ({r.before.tasks} tâches avant, {r.after.tasks} après ; 8 minimum de chaque côté).
+                      </p>
                     )}
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="t-muted">Aucune optimisation datée dans l’historique chargé.</p>
+              <p className="empty">Aucune optimisation datée dans l’historique chargé.</p>
             )}
-          </Panel>
+          </section>
 
-          <Panel className="cc__span-6" title="Tâches" aside={<span className="t-micro t-muted">{running.length} en cours · {pendingTasks.length} en attente</span>}>
-            <TaskList tasks={[...running, ...pendingTasks].slice(0, 7)} now={g.now} onSelect={(id) => host.select({ kind: 'agent', id })} />
-            <h3 className="section-title">Échecs récents</h3>
-            <TaskList tasks={tasks.filter((t) => t.status === 'failed').sort((a, b) => (b.endedAt ?? 0) - (a.endedAt ?? 0)).slice(0, 4)} now={g.now} onSelect={(id) => host.select({ kind: 'agent', id })} showError />
-          </Panel>
-
-          <Panel className="cc__span-4" title="Propositions GO / NO GO / TEST" aside={<button type="button" className="btn btn--sm" onClick={() => host.openDecisions()}>Arbitrer</button>}>
-            {decisions.length ? (
-              <ul className="cc-list">
-                {decisions.map((d) => (
-                  <li key={d.id}>
-                    <button type="button" className="cc-link" onClick={() => host.openDecisions()}>
-                      {d.title}
-                      <div className="meta">{d.impact}</div>
-                    </button>
-                    <span className={`pill pill--risk-${d.risk}`}>{d.durable ? 'Durable' : d.risk === 'high' ? 'Élevé' : d.risk === 'medium' ? 'Modéré' : 'Faible'}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="t-muted">Aucune proposition en attente.</p>
-            )}
-            <h3 className="section-title">Recommandations</h3>
-            <Feed items={g.state.feed.recommendations.slice(-3).reverse()} now={g.now} empty="Aucune recommandation." />
-          </Panel>
-
-          <Panel className="cc__span-4" title="Sécurité" aside={<span className={`pill ${openIncidents.length ? 'pill--risk-high' : 'pill--risk-low'}`}>{openIncidents.length} ouvert(s)</span>}>
-            {incidents.length ? (
-              <ul className="cc-list">
-                {incidents.slice(0, 5).map((i) => (
-                  <li key={i.id}>
-                    <span>
-                      {g.canViewConfidential ? i.summary : 'Détails confidentiels masqués'}
-                      <div className="meta">
-                        {fmtRelative(i.ts, g.now)} · gravité {i.severity}
-                      </div>
-                    </span>
-                    <span className={`pill ${i.state === 'open' ? 'pill--risk-high' : ''}`}>{i.state === 'open' ? 'Ouvert' : 'Résolu'}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="t-muted">Aucun incident enregistré.</p>
-            )}
-            <h3 className="section-title">Mises à jour détectées</h3>
-            <Feed items={g.state.feed.updates.slice(-3).reverse()} now={g.now} empty="Aucune mise à jour détectée." />
-          </Panel>
-
-          <Panel className="cc__span-4" title="Skills et connecteurs">
-            <div className="cc-inv">
-              <div>
-                <b>{skills.filter((s) => s.status === 'active').length}</b>
-                <span>skills actifs</span>
-              </div>
-              <div>
-                <b>{skills.reduce((s, x) => s + x.improvements, 0)}</b>
-                <span>améliorations</span>
-              </div>
-              <div>
-                <b>{skills.filter((s) => s.status === 'disabled').length}</b>
-                <span>désactivés</span>
-              </div>
-            </div>
-            <ul className="cc-list">
-              {connectors.map((c) => (
-                <li key={c.id}>
-                  <span>
-                    {c.name}
-                    <div className="meta">depuis {fmtRelative(c.since, g.now)}</div>
+          <section className="panel cc-area cc-area--security" aria-labelledby="cc-sec-title">
+            <CardHead id="cc-sec-title" title="Sécurité" aside={<span className={`pill ${openIncidents ? 'pill--risk-high' : 'pill--risk-low'}`}>{openIncidents} ouvert(s)</span>} />
+            <ul className="cc-rows">
+              {incidents.slice(0, 4).map((i) => (
+                <li key={i.id} className="cc-row cc-row--static">
+                  <span className="cc-round" data-tone={i.state === 'open' ? 'high' : 'low'} aria-hidden>
+                    <GShield size={18} />
                   </span>
-                  <StatusPill status={c.status === 'connected' ? 'validating' : c.status === 'degraded' ? 'waiting' : 'error'} compact />
+                  <span className="cc-row__text">
+                    <b>{g.canViewConfidential ? i.summary : 'Détails confidentiels masqués'}</b>
+                    <span>
+                      {fmtRelative(i.ts, g.now)} · gravité {i.severity}
+                    </span>
+                  </span>
+                  <span className="cc-row__end">
+                    <span className={`pill ${i.state === 'open' ? 'pill--risk-high' : ''}`}>{i.state === 'open' ? 'Ouvert' : 'Résolu'}</span>
+                  </span>
                 </li>
               ))}
-              {!connectors.length && <li className="t-muted">Aucun connecteur suivi par cette source.</li>}
+              {!incidents.length && <li className="empty">Aucun incident enregistré.</li>}
             </ul>
-            <h3 className="section-title">Automatisations</h3>
-            <Feed items={g.state.feed.automations.slice(-3).reverse()} now={g.now} empty="Aucune automatisation enregistrée." />
-          </Panel>
+          </section>
 
-          <Panel className="cc__span-12" title="Historique des modifications et interventions">
-            {changes.length ? (
-              <div className="table-wrap">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Modification</th>
-                      <th>Origine</th>
-                      <th>Donnée</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {changes.map((c) => (
-                      <tr key={c.id}>
-                        <td className="num" style={{ whiteSpace: 'nowrap' }}>
-                          {fmtTime(c.ts, true)}
-                        </td>
-                        <td>{c.summary}</td>
-                        <td>{c.type === 'config.changed' ? 'Configuration' : c.type.startsWith('skill') ? 'Skill' : 'Intervention'}</td>
-                        <td>
-                          <NatureBadge nature={c.nature} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p className="t-muted">Aucune modification enregistrée.</p>
-            )}
-          </Panel>
+          <section className="panel cc-area cc-area--updates" aria-labelledby="cc-upd-title">
+            <CardHead id="cc-upd-title" title="Mises à jour et recommandations" />
+            <ul className="cc-rows">
+              {feed.map((f) => (
+                <li key={f.id} className="cc-row cc-row--static">
+                  <span className="cc-round" data-tone={f.type === 'recommendation' ? 'accent' : 'info'} aria-hidden>
+                    <GRefresh size={18} />
+                  </span>
+                  <span className="cc-row__text">
+                    <b>{f.summary}</b>
+                    <span>
+                      {f.type === 'recommendation' ? 'Recommandation' : 'Mise à jour détectée'} · {fmtRelative(f.ts, g.now)}
+                    </span>
+                  </span>
+                </li>
+              ))}
+              {!feed.length && <li className="empty">Rien de nouveau.</li>}
+            </ul>
+          </section>
+
+          <section className="panel cc-area cc-area--skills" aria-labelledby="cc-sk-title">
+            <CardHead id="cc-sk-title" title="Skills et connecteurs" aside={<SeeAll onClick={() => host.navigate('sources')} label="Sources" />} />
+            <div className="cc-counters">
+              <Counter value={skills.filter((s) => s.status === 'active').length} label="skills actifs" icon={<GPuzzle size={18} />} />
+              <Counter value={skills.reduce((s, x) => s + x.improvements, 0)} label="améliorations" icon={<GRefresh size={18} />} />
+              <Counter value={skills.filter((s) => s.status === 'disabled').length} label="désactivés" icon={<GPuzzle size={18} />} />
+            </div>
+            <ul className="cc-rows">
+              {connectors.map((c) => (
+                <li key={c.id} className="cc-row cc-row--static">
+                  <span className="cc-round" data-tone={c.status === 'connected' ? 'low' : c.status === 'degraded' ? 'medium' : 'high'} aria-hidden>
+                    <GPlug size={18} />
+                  </span>
+                  <span className="cc-row__text">
+                    <b>{c.name}</b>
+                    <span>
+                      {fmtInt(c.calls)} appels · depuis {fmtRelative(c.since, g.now).replace('il y a ', '')}
+                    </span>
+                  </span>
+                  <span className="cc-row__end">
+                    <StatusPill status={c.status === 'connected' ? 'validating' : c.status === 'degraded' ? 'waiting' : 'error'} compact />
+                    <span className="t-micro t-soft">{c.status === 'connected' ? 'Connecté' : c.status === 'degraded' ? 'Dégradé' : c.status === 'auth-required' ? 'Accès requis' : 'Déconnecté'}</span>
+                  </span>
+                </li>
+              ))}
+              {!connectors.length && <li className="empty">Aucun connecteur suivi par cette source.</li>}
+            </ul>
+          </section>
+
+          <section className="panel cc-area cc-area--history" aria-labelledby="cc-hist-title">
+            <CardHead id="cc-hist-title" title="Historique des modifications" />
+            <ul className="cc-rows">
+              {changes.map((c) => (
+                <li key={c.id} className="cc-row cc-row--static">
+                  <span className="cc-round" data-tone="info" aria-hidden>
+                    <GHistory size={18} />
+                  </span>
+                  <span className="cc-row__text">
+                    <b>{c.summary}</b>
+                    <span>
+                      {c.type === 'config.changed' ? 'Configuration' : c.type.startsWith('skill') ? 'Skill' : 'Intervention'} · {fmtTime(c.ts, true)}
+                    </span>
+                  </span>
+                  <span className="cc-row__end">
+                    <NatureBadge nature={c.nature} />
+                  </span>
+                </li>
+              ))}
+              {!changes.length && <li className="empty">Aucune modification enregistrée.</li>}
+            </ul>
+          </section>
         </div>
       </div>
     </div>
   );
 }
 
-const NATURE_SHORT: Record<DataNature, string> = { real: 'Mesuré', estimated: 'Estimé', demo: 'Démo', unavailable: 'Indisponible', planned: 'Planifié', historical: 'Historique' };
+function fmtSpan(ms: number) {
+  if (ms < 3_600_000) return `${Math.round(ms / 60_000)} min`;
+  if (ms < 86_400_000) return `${Math.round(ms / 3_600_000)} h`;
+  return `${Math.round(ms / 86_400_000)} j`;
+}
 
-function Kpi({ label, value, sub, nature, unavailable, hero }: { label: string; value: string | null; sub?: string; nature: DataNature; unavailable?: string; hero?: boolean }) {
+function CardHead({ id, title, sub, aside }: { id: string; title: string; sub?: string; aside?: ReactNode }) {
   return (
-    <div className={`cc-kpi ${hero ? 'cc-kpi--hero' : ''}`}>
-      <span className="cc-kpi__label">{label}</span>
-      <span className="cc-kpi__value" data-unavailable={value == null}>
-        {value ?? unavailable ?? 'Indisponible'}
-      </span>
-      {sub && value != null && <span className="cc-kpi__sub">{sub}</span>}
-      <NatureBadge nature={nature} />
+    <div className="cc-card-head">
+      <div>
+        <h2 id={id} className="t-h3">
+          {title}
+        </h2>
+        {sub && <p className="t-micro t-muted">{sub}</p>}
+      </div>
+      {aside}
     </div>
   );
 }
 
-function TaskList({ tasks, now, onSelect, showError }: { tasks: TaskRuntime[]; now: number; onSelect: (agentId: string) => void; showError?: boolean }) {
-  const idx = useCatalogIndex();
-  if (!tasks.length) return <p className="t-small t-muted">Rien à afficher.</p>;
+function SeeAll({ onClick, label }: { onClick: () => void; label: string }) {
   return (
-    <ul className="cc-list">
-      {tasks.map((t) => (
-        <li key={t.id}>
-          <button type="button" className="cc-link" onClick={() => t.agentId && onSelect(t.agentId)}>
-            {t.title}
-            <div className="meta">
-              {idx.agents.get(t.agentId ?? '')?.name ?? '—'} · {idx.departments.get(t.departmentId ?? '')?.name ?? '—'}
-              {showError && t.errors.length ? ` · ${t.errors[t.errors.length - 1]}` : ''}
-            </div>
-          </button>
-          <span className="t-micro t-muted num" style={{ whiteSpace: 'nowrap' }}>
-            {t.status === 'pending' ? 'en attente' : t.status === 'paused' ? 'suspendue' : t.endedAt ? fmtRelative(t.endedAt, now) : fmtDuration(now - (t.startedAt ?? t.createdAt))}
-          </span>
-        </li>
-      ))}
-    </ul>
+    <button type="button" className="cc-seeall" onClick={onClick}>
+      {label}
+      <span aria-hidden>›</span>
+    </button>
   );
 }
 
-function Feed({ items, now, empty }: { items: Array<{ id: string; ts: number; summary: string }>; now: number; empty: string }) {
-  if (!items.length) return <p className="t-small t-muted">{empty}</p>;
+function Tile({ label, value, ratio, foot, nature, reason, inverted, tone, dashed }: {
+  label: string; value: string | null; ratio: number | null; foot?: string; nature: DataNature; reason?: string; inverted?: boolean; tone?: string; dashed?: boolean;
+}) {
   return (
-    <ul className="cc-list">
-      {items.map((i) => (
-        <li key={i.id}>
-          <span>{i.summary}</span>
-          <span className="meta">{fmtRelative(i.ts, now)}</span>
-        </li>
-      ))}
-    </ul>
+    <article className="cc-tile" data-inverted={inverted || undefined} data-dashed={dashed || undefined}>
+      <span className="cc-tile__value num" data-unavailable={value == null || undefined}>
+        {value ?? 'Indisponible'}
+      </span>
+      <span className="cc-tile__label">{label}</span>
+      {value == null ? (
+        <span className="cc-tile__reason">{reason}</span>
+      ) : ratio != null ? (
+        <>
+          <div className="cc-bar cc-bar--thin" role="meter" aria-label={`${label} : ${Math.round(ratio * 100)} %`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(ratio * 100)}>
+            <i style={{ width: `${Math.max(0, Math.min(1, ratio)) * 100}%`, background: tone }} />
+          </div>
+          <span className="cc-tile__scale num">
+            <span>0 %</span>
+            <span>{Math.round(ratio * 100)} %</span>
+          </span>
+        </>
+      ) : null}
+      {foot && value != null && <span className="cc-tile__foot">{foot}</span>}
+      <NatureBadge nature={nature} />
+    </article>
+  );
+}
+
+function MiniCard({ title, value, format, delta: dl, lowerIsBetter, nature, foot }: { title: string; value: number | null; format: (n: number) => string; delta: number | null; lowerIsBetter?: boolean; nature: DataNature; foot: ReactNode }) {
+  return (
+    <article className="panel cc-mini">
+      <div className="cc-mini__top">
+        <span className="cc-mini__title">{title}</span>
+        <DeltaPill delta={dl} lowerIsBetter={lowerIsBetter} subject={title} />
+      </div>
+      <b className="cc-mini__value">{value == null ? 'Masqué' : <AnimatedNumber value={value} format={format} />}</b>
+      <div className="cc-mini__foot">
+        {foot}
+        <NatureBadge nature={nature} />
+      </div>
+    </article>
+  );
+}
+
+function PairBars({ before, after, format, label }: { before: number; after: number; format: (n: number) => string; label: string }) {
+  const max = Math.max(before, after, 1e-9);
+  return (
+    <div className="cc-pair" role="img" aria-label={`${label} : avant ${format(before)}, après ${format(after)}`}>
+      <div className="cc-pair__row">
+        <span>Avant</span>
+        <div className="cc-pair__track">
+          <i className="cc-pair__before" style={{ width: `${Math.max(4, (before / max) * 100)}%` }} />
+        </div>
+        <b className="num">{format(before)}</b>
+      </div>
+      <div className="cc-pair__row">
+        <span>Après</span>
+        <div className="cc-pair__track">
+          <i className="cc-pair__after" style={{ width: `${Math.max(4, (after / max) * 100)}%` }} />
+        </div>
+        <b className="num">{format(after)}</b>
+      </div>
+    </div>
+  );
+}
+
+function Counter({ value, label, icon }: { value: number; label: string; icon: ReactNode }) {
+  return (
+    <div className="cc-counter">
+      <span className="cc-counter__icon" aria-hidden>
+        {icon}
+      </span>
+      <b className="num">{value}</b>
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function Initials({ name, tone }: { name: string; tone?: string }) {
+  const letters = name
+    .replace(/Department|Office|Laboratory|Control|Management/g, '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join('') || name.slice(0, 2).toUpperCase();
+  return (
+    <span className="cc-initials" style={{ background: tone ? `var(--${tone})` : 'var(--c-sunken)' }} aria-hidden>
+      {letters}
+    </span>
   );
 }
