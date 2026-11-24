@@ -1,10 +1,11 @@
 jalon;echeance_relative_J;responsable;livrable;dependances;statut;go_no_go
 Validation du lieu et des dates;-120;Directeur de projet;Accord écrit de l'exploitant + document ERP du lieu (type, catégorie, effectif autorisé);;a_faire;
 Inventaire des démarches réglementaires applicables;-120;Directeur de projet;compliance[] renseigné : démarche, autorité, échéance, source (checklist sécurité);Validation du lieu et des dates;a_faire;
+Dépôt des démarches à délai de trois mois;-115;Directeur de projet;Accusés de dépôt (ex. dérogation boissons en enceinte sportive, buvette à Paris, manifestation sur plusieurs départements) selon l'inventaire;Inventaire des démarches réglementaires applicables;a_faire;
 Budget prévisionnel v1 et plan de financement;-110;Trésorier;budget.csv et recettes.csv chiffrés avec certitude;Validation du lieu et des dates;a_faire;
 Premier contact avec une association agréée de sécurité civile;-100;Responsable sécurité;Grille d'évaluation des risques DPS en cours avec l'association;Validation du lieu et des dates;a_faire;
-Dépôt des démarches à délai long;-90;Directeur de projet;Accusés de dépôt (ex. utilisation exceptionnelle de l'ERP, dérogation boissons en enceinte sportive, manifestation sur la voie publique) selon l'inventaire;Inventaire des démarches réglementaires applicables;a_faire;
-GO/NO-GO 1 — lieu et démarches;-90;Directeur de projet;Décision écrite dans history[].decisions;Dépôt des démarches à délai long | Budget prévisionnel v1 et plan de financement;a_faire;Lieu confirmé par écrit ET toutes les démarches dont le délai légal est d'au moins deux mois déposées
+Dépôt des démarches à délai long;-90;Directeur de projet;Accusés de dépôt (ex. utilisation exceptionnelle de l'ERP, manifestation sportive chronométrée sur la voie publique, occupation du domaine public) selon l'inventaire;Inventaire des démarches réglementaires applicables;a_faire;
+GO/NO-GO 1 — lieu et démarches;-90;Directeur de projet;Décision écrite dans history[].decisions;Dépôt des démarches à délai de trois mois | Dépôt des démarches à délai long | Budget prévisionnel v1 et plan de financement;a_faire;Lieu confirmé par écrit ET toutes les démarches dont le délai légal est d'au moins deux mois déposées
 Lancement du démarchage des partenaires;-90;Responsable partenariats;Dossier de sponsoring PPTX + liste de cibles;GO/NO-GO 1 — lieu et démarches;a_faire;
 Ouverture des inscriptions participants;-75;Responsable compétition;Règlement publié + formulaire d'inscription en ligne;GO/NO-GO 1 — lieu et démarches;a_faire;
 Ouverture de la billetterie;-60;Responsable billetterie;Billetterie en ligne ouverte, tarifs publiés;GO/NO-GO 1 — lieu et démarches;a_faire;

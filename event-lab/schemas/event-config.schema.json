@@ -16,7 +16,7 @@
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9-]+$",
-      "description": "Identifiant stable (slug) du concept, commun à toutes ses versions et adaptations."
+      "description": "Identifiant stable (slug) commun à toutes les VERSIONS d'un événement. Un clone ou une adaptation à une autre ville / un autre lieu reçoit un identifiant dérivé (<id>-<ville> ou <id>-<lieu>) et pointe vers sa source via 'parent' : deux adaptations parallèles ne partagent donc jamais leurs numéros de version."
     },
     "version": {
       "type": "string",
@@ -174,6 +174,10 @@
               "source_ref": {
                 "type": "string",
                 "description": "Identifiant d'une source dans 'sources'."
+              },
+              "not_borrowed": {
+                "type": "string",
+                "description": "Ce qui n'est PAS repris : nom, marque, identité visuelle, éléments protégés (07 §3)."
               }
             },
             "required": [
@@ -294,6 +298,11 @@
         },
         "avg_dwell_min": {
           "type": "number"
+        },
+        "entry_lanes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Files de contrôle prévues à l'entrée (sinon dimensionnées par le simulateur, 07 §5)."
         }
       }
     },
@@ -442,6 +451,47 @@
               "advance": {
                 "type": "integer",
                 "description": "Nombre qualifiés pour l'étape suivante."
+              },
+              "runs_per_entrant": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "time_trial : passages par entrant (défaut 1)"
+              },
+              "rounds": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "swiss : nombre de rondes"
+              },
+              "rest_min": {
+                "type": "number",
+                "description": "Repos minimal d'un participant entre deux créneaux"
+              },
+              "third_place": {
+                "type": "boolean",
+                "description": "single_elimination : petite finale"
+              },
+              "grand_final_reset": {
+                "type": "boolean",
+                "description": "double_elimination : finale rejouée"
+              },
+              "tiers": {
+                "type": "array",
+                "description": "battle_royale / custom : paliers successifs",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "slots": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "units_open": {
+                      "type": "integer"
+                    }
+                  }
+                }
               }
             },
             "required": [
@@ -527,6 +577,10 @@
               },
               "notes": {
                 "type": "string"
+              },
+              "on_generator": {
+                "type": "boolean",
+                "description": "Alimenté par groupe électrogène (maintenu en cas de défaillance électrique, 07 §8)."
               }
             }
           }
@@ -599,6 +653,17 @@
               },
               "source_ref": {
                 "type": "string"
+              },
+              "commit_offset_days": {
+                "type": "integer",
+                "description": "Date d'engagement (signature, commande) relative à J — sert au ratio recettes sécurisées / dépenses engagées (07 §7.5)."
+              },
+              "actual_amount": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Montant réel constaté (bilan post-événement)."
               }
             }
           }
@@ -665,6 +730,13 @@
               "cash_offset_days": {
                 "type": "integer",
                 "description": "Date d'encaissement relative à J."
+              },
+              "actual_amount": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Montant réel encaissé (bilan post-événement)."
               }
             }
           }
@@ -986,6 +1058,28 @@
           },
           "audience_overrides": {
             "type": "object"
+          },
+          "kind": {
+            "enum": [
+              "economique",
+              "standard",
+              "premium",
+              "capacite_max",
+              "secours",
+              "autre"
+            ],
+            "description": "Les 5 configurations du brief §8 sont des variantes typées."
+          },
+          "venue_overrides": {
+            "type": "object",
+            "description": "Surcharges du lieu (espaces, jauge, lieu de repli pour 'secours')."
+          },
+          "program_overrides": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Programme de remplacement (ex. format resserré de secours)."
           }
         }
       }
@@ -1066,6 +1160,77 @@
     "active_variant": {
       "type": "string",
       "description": "Renseigné par le moteur quand une variante est appliquée."
+    },
+    "event_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date absolue de J (ISO 8601, AAAA-MM-JJ). Nulle au stade concept. Sert au calcul « jours avant J » des portes éliminatoires (07 §1.5) et du rétroplanning."
+    },
+    "generation": {
+      "type": "object",
+      "description": "Traçabilité d'un concept généré : brief source et graine (07 §2).",
+      "properties": {
+        "brief": {
+          "type": "object"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "engine_version": {
+          "type": "string"
+        }
+      }
+    },
+    "post_event": {
+      "type": "object",
+      "description": "Bilan post-événement attaché à une version exécutée (maturity = executed). Les montants réels sont dans actual_amount des lignes budgétaires, les KPIs dans kpis[].actual.",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "attendance_actual": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "participants_actual": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "incidents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "feedback_summary": {
+          "type": "string"
+        },
+        "lessons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proposed_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "evaluations_history": {
+      "type": "array",
+      "description": "Évaluations antérieures conservées (ex. prévisionnelle avant exécution, puis réelle).",
+      "items": {
+        "$ref": "evaluation.schema.json"
+      }
     }
   },
   "$defs": {

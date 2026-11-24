@@ -988,6 +988,14 @@ Exports : XLSX, CSV, PDF (Gantt), ICS (V1).
 | {{.deadline_offset_days\|jrel}} | {{.id}} — {{.item}} | {{.authority}} | {{.mandatory\|yesno}} | {{.status}} |
 {{/each}}
 
+Ratio recettes sécurisées / dépenses engagées à chaque jalon [auto] (docs/07 §7.5 ; dépense engagée = certitude devis ou décaissement antérieur au jalon) :
+
+| Échéance | Jalon | Recettes sécurisées | Dépenses engagées | Ratio |
+|---|---|---|---|---|
+{{#each sim.finance.secured_ratio}}
+| {{.offset_days\|jrel}} | {{.label}} | {{.secured\|eur}} | {{.committed\|eur}} | {{.ratio\|pct}} |
+{{/each}}
+
 Décaissements et encaissements [auto] :
 
 | Jour | Mouvement | Montant | Solde cumulé |

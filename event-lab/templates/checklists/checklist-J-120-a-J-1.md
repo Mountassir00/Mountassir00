@@ -23,6 +23,7 @@ Une préparation plus courte que J-120 est possible : reporter alors chaque poin
 - [ ] Identifier la fédération concernée et lire son règlement (conditions médicales, autorisation si prix > 3 000 € pour une manifestation ouverte aux licenciés) — responsable compétition — règlement fédéral — B11, B12
 - [ ] Désigner les responsables de chaque rôle clé (projet, trésorerie, compétition, sécurité, accueil, communication, partenariats, bénévoles, régie) — directeur de projet — organigramme — section 24
 - [ ] Vérifier la disponibilité du nom (recherche d'antériorité) — directeur de projet — section 03.3
+- [ ] Déposer sans attendre les démarches dont le délai relevé est d'au moins trois mois : dérogation boissons en enceinte sportive (B8), buvette temporaire à Paris (B7), manifestation sportive sur la voie publique traversant plusieurs départements (B2) — directeur de projet — accusés de dépôt — checklist sécurité §B
 
 ## J-110 — Budget et financement
 
@@ -38,7 +39,7 @@ Une préparation plus courte que J-120 est possible : reporter alors chaque poin
 
 ## J-90 — Démarches à délai long · GO/NO-GO 1
 
-- [ ] Déposer les démarches dont le délai relevé est d'au moins deux mois : utilisation exceptionnelle de l'ERP (B6), dérogation boissons en enceinte sportive (B8), manifestation sportive sur la voie publique avec classement (B2), occupation du domaine public (B5) — directeur de projet — accusés de dépôt — checklist sécurité §B
+- [ ] Déposer les démarches dont le délai relevé est d'au moins deux mois : utilisation exceptionnelle de l'ERP (B6), manifestation sportive sur la voie publique avec chronométrage ou classement (B2), occupation du domaine public (B5), buvette temporaire hors Paris (B7, délai à confirmer en mairie) — directeur de projet — accusés de dépôt — checklist sécurité §B
 - [ ] Lancer le démarchage des partenaires avec le dossier de sponsoring — responsable partenariats — PPTX + liste de cibles — checklist-sponsors.md
 - [ ] **GO/NO-GO 1** — lieu confirmé par écrit ET toutes les démarches à délai d'au moins deux mois déposées — directeur de projet — décision dans `history[].decisions`
 
@@ -53,7 +54,6 @@ Une préparation plus courte que J-120 est possible : reporter alors chaque poin
 - [ ] Ouvrir la billetterie avec une jauge plafonnée sous l'effectif autorisé — responsable billetterie — paramétrage — C4
 - [ ] Indiquer sur la billetterie un contact pour les besoins d'accessibilité — responsable billetterie — checklist sécurité §K
 - [ ] Publier les fiches de poste bénévoles et lancer le recrutement — coordinateur bénévoles — checklist-benevoles.md
-- [ ] Déposer la demande de buvette temporaire (B7) si non encore faite, en vérifiant le délai local — directeur de projet — accusé de dépôt
 - [ ] **GO/NO-GO 2** — ratio recettes sécurisées / dépenses engagées ≥ seuil fixé par l'organisateur — trésorier — ratio calculé — `07` §7.5
 
 ## J-45 — Engagements

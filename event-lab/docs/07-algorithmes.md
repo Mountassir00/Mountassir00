@@ -85,6 +85,12 @@ Une évaluation `previsionnelle` dépasse rarement 0,6. Une évaluation `reelle`
 
 Verdict : un `bloquant` ⇒ **éliminé** (quel que soit le score) ; un `a_verifier` ⇒ **sous réserve** ; sinon **éligible**.
 
+Précisions (v0.1.0) :
+- « Jours avant J » se calcule à partir de `event_date` ; à défaut de date, la règle des 30 jours s'applique dès `maturity = blueprint` (un blueprint est réputé exécutable).
+- Un point obligatoire `en_cours` est traité comme `a_verifier`.
+- Un risque `critical` reste bloquant sans plan de continuité, **même** s'il est marqué `accepte` : accepter un risque n'est pas le traiter.
+- Lorsqu'un lieu et un programme sont connus, un pic d'occupation simulé (§5) supérieur à l'effectif autorisé déclenche la porte Sécurité en `bloquant` (implémentation prévue avec le configurateur de lieu, v0.3).
+
 ### 1.6 Recommandations d'amélioration
 
 Gain potentiel par critère : `g_i = w_i × (5 − r_i) / 5`. Les trois critères au plus fort `g_i` reçoivent en priorité les actions listées dans `improvements` ; le moteur affiche le score atteignable si chaque note gagne +1.
@@ -98,13 +104,17 @@ Discipline (ou aucune), objectif principal, localisation, infrastructure, budget
 Toute entrée absente est remplacée par **trois hypothèses** (basse, médiane, haute) et le générateur produit un jeu de concepts par hypothèse médiane, en listant les hypothèses dans `hypotheses`.
 
 ### 2.2 Normalisation
-- Palier budgétaire `T` : T0 < 5 k€ · T1 5–30 k€ · T2 30–150 k€ · T3 150 k€–1 M€ · T4 > 1 M€.
+- Palier budgétaire `T` (bornes basses incluses, hautes exclues) : T0 < 5 k€ ≤ T1 < 30 k€ ≤ T2 < 150 k€ ≤ T3 < 1 M€ ≤ T4.
+- Données absentes : hypothèses médianes par défaut, listées dans `hypotheses` — budget 15 k€, capacité 400, 20 personnes, intérieur, 1 000 m², innovation 3/5 ; le jeu « bas / haut » est proposé à l'utilisateur pour relancer la génération.
 - Capacité humaine `H` = Σ (personnes × heures disponibles).
 - Équipements disponibles → ensemble `Tech` (sono, écran, chronométrage…).
 
 ### 2.3 Filtrage des briques
 Une brique `b` est admissible si :
-`b.budget_tier_min ≤ T` ∧ `b.staff_min ≤ staff` ∧ `b.tech ⊆ Tech ∪ louable(T)` ∧ `b.setting compatible` ∧ `b.min_area_m2 ≤ surface`.
+`b.budget_tier_min ≤ T` ∧ `b.staff_min ≤ effectif (personnes)` ∧ `b.tech ⊆ Tech ∪ louable(T)` ∧ `b.setting compatible` ∧ `b.min_area_m2 ≤ surface`.
+
+- `louable(T)` = {sono, écran, chronométrage, éclairage scénique, casques audio, streaming} dès T1 ; `app_web` et `billetterie_en_ligne` toujours accessibles (coût marginal faible).
+- Compatibilité de cadre : une brique `indifferent` convient à tout lieu ; un lieu `mixte` accepte les briques `interieur` et `exterieur`.
 
 ### 2.4 Squelette par direction
 Six directions, chacune avec des emplacements (slots) obligatoires et un profil de pondération :
@@ -132,10 +142,10 @@ U(b) = Σ_a profil_a × attr_a(b)            (adéquation à la direction)
 Sélection par tirage **softmax** à température `τ = 0,3 + 0,2 × ν` avec graine fixée (reproductible). Les slots facultatifs sont remplis tant que le budget et `H` le permettent.
 
 ### 2.6 Contrôles de cohérence
-Rejet si : durée du programme > durée disponible ; besoins en personnel (§6) > `H` ; effectif estimé > capacité ; paire de briques incompatibles. Le candidat est réparé (suppression de la brique la plus coûteuse) au plus 3 fois, puis abandonné.
+Rejet si : durée du programme > durée disponible ; besoins en personnel (§6, en personnes × heures) > `H` ; effectif estimé > capacité ; paire de briques incompatibles. Le candidat est réparé (suppression de la brique la plus coûteuse) au plus 3 fois, puis abandonné.
 
 ### 2.7 Diversité
-Sur N candidats, sélection gloutonne (MMR) des 6 retenus : `argmax λ × pré-score − (1 − λ) × max Jaccard(blocs, déjà retenus)`, `λ = 0,7` [param]. Distance Jaccard minimale exigée entre deux retenus : 0,5.
+Le générateur tire `N = 4` candidats par direction [param] (24 pour les 6 directions) et retient **un concept par direction** par sélection gloutonne (MMR) : `argmax λ × pré-score − (1 − λ) × max Jaccard(blocs, déjà retenus)`, `λ = 0,7` [param]. Un candidat trop proche d'un concept déjà retenu (Jaccard > 0,5) est écarté ; si aucun candidat d'une direction ne respecte ce seuil, la direction est signalée « sans proposition distincte » plutôt que remplie par un doublon.
 
 ### 2.8 Pré-notation automatique
 Note provisoire par critère à partir des attributs agrégés des briques (moyenne pondérée par l'importance du slot), arrondie au 0,5, marquée `jugement_expert` et **toujours revue par un humain** avant passage en `review`.
@@ -247,11 +257,16 @@ Dérive des coûts non devisés : prudent +15 %, central +5 %, ambitieux 0 % [pa
 
 ### 7.2 Seuil de rentabilité (en spectateurs)
 
+Même scénario `σ` que §7.1 (central par défaut), mêmes dérives, marges et provision. Avec `d(e)` = dérive du scénario si la dépense n'est pas devisée, `c = 1 + contingence` :
+
 ```
-F = Σ dépenses fixes × (1 + contingence) − Σ recettes fixes − P × (recettes − dépenses par participant)
-m = paying_share × Σ recettes par payant + Σ recettes par spectateur − Σ dépenses par spectateur × (1 + contingence)
-A* = F / m          (si m ≤ 0 : « pas de seuil — chaque spectateur supplémentaire coûte »)
+F = Σ_fixes amount·(1+d)·c + P · Σ_par_participant amount·(1+d)·c
+    − Σ_recettes_fixes unit·margin·réalisation(σ) − P · Σ_recettes_par_participant unit·margin
+m = paying_share · Σ_par_payant unit·margin + Σ_par_spectateur unit·margin − Σ_dépenses_par_spectateur amount·(1+d)·c
+A* = ⌈F / m⌉          (F ≤ 0 : couvert sans spectateur ; m ≤ 0 : « pas de seuil — chaque spectateur supplémentaire coûte »)
 ```
+
+Par construction, `Résultat_σ(A) = m·A − F` : le seuil est cohérent avec la simulation (test unitaire dédié).
 
 ### 7.3 Trésorerie
 Chaque ligne a un décalage `pay_offset_days` / `cash_offset_days` relatif à J. Le moteur trie les flux par date et calcule le solde cumulé ; **besoin de trésorerie = −min(solde cumulé)**. Les subventions sont par défaut encaissées après J (+60 j) [param], ce qui crée souvent le pic de besoin.
@@ -274,8 +289,8 @@ Chaque incident est une transformation de la configuration, suivie d'une nouvell
 | Désistement de participants (−k) | Recalcule le tableau de compétition | Repêchage liste d'attente, format de poule réduit |
 | Absence d'un prestataire | Retire les équipements/staff de la source concernée | Fournisseur de secours, mode dégradé |
 | Panne informatique | Désactive les briques `experience_digitale`, chronométrage numérique | Procédure papier, chrono manuel |
-| Défaillance électrique | Retire tout équipement `power_w > 0` hors groupe électrogène | Groupe de secours, programme acoustique |
-| Météo défavorable | Bascule vers la configuration de secours du lieu | Repli intérieur, report, assurance |
+| Défaillance électrique | Retire tout équipement `power_w > 0` sauf `on_generator = true` | Groupe de secours, programme acoustique |
+| Météo défavorable | Bascule vers la variante `kind = secours` (lieu de repli, programme resserré) | Repli intérieur, report, assurance |
 | Affluence −x % / +x % | Modifie `A_σ` ; recalcule flux, personnel, finances | Ouverture de files, jauge, communication |
 | Réduction de budget −x % | Supprime les dépenses `optional` puis par `priority` décroissante | Liste des postes coupés et impact sur la note |
 
@@ -300,5 +315,5 @@ biais_moyen(paramètre) = moyenne des écarts sur les N derniers événements co
 ```
 
 - Les paramètres `[param]` (débits, taux de réalisation, dérives) sont recalibrés **sur proposition** : le moteur propose une nouvelle valeur, un humain valide.
-- Un événement `validated` n'est jamais modifié : le moteur crée une version `draft` `x.(y+1).0` avec la liste des changements proposés, soumise à approbation.
+- Un événement `validated` n'est jamais modifié. Après l'événement : (1) une **version de réalisation** `x.(y+1).0`, `maturity = executed`, enregistre les données réelles (`actual_amount`, `kpis[].actual`, `post_event`, évaluation `reelle`, la prévisionnelle passant dans `evaluations_history`) ; (2) le moteur propose une **version améliorée** `draft x.(y+2).0` avec la liste des changements, soumise à approbation (workflow W6 de `05-workflows-utilisateurs.md`).
 - Les incidents réels alimentent le registre des erreurs (nouvelle entrée ou enrichissement d'une entrée existante).

@@ -4,69 +4,330 @@
   "title": "WatchEntry",
   "description": "Fiche de veille. Chaque affirmation est rattachée à une source vérifiable et porte un statut : fait vérifié, estimation ou hypothèse. Aucune statistique, coût ou retour d'expérience n'est inventé : un champ inconnu reste null.",
   "type": "object",
-  "required": ["id", "dedupe_key", "event_name", "discipline", "published_at", "sources", "format_description", "main_innovation", "reliability", "collected_at", "cadence"],
+  "required": [
+    "id",
+    "dedupe_key",
+    "event_name",
+    "discipline",
+    "published_at",
+    "sources",
+    "format_description",
+    "main_innovation",
+    "reliability",
+    "collected_at",
+    "cadence"
+  ],
   "properties": {
-    "id": { "type": "string", "description": "Format : W-AAAAMMJJ-slug" },
-    "dedupe_key": { "type": "string", "description": "slug(nom événement)|slug(organisateur)|année d'édition — sert à fusionner les doublons." },
-    "event_name": { "type": "string" },
-    "organizer": { "type": ["string", "null"] },
-    "country": { "type": ["string", "null"], "description": "Code ISO 3166-1 alpha-2" },
-    "city": { "type": ["string", "null"] },
-    "discipline": { "type": "string" },
-    "sector_family": { "enum": ["sport", "esport", "musique_festival", "spectacle", "tv_media", "parc_loisirs", "exposition_immersive", "mode_luxe", "salon_pro", "activation_marque", "cinema", "jeu", "communautaire", "universitaire", "tourisme", "autre"] },
-    "organizer_scale": { "enum": ["grande_organisation", "intermediaire", "independant", "association", "startup", "inconnu"] },
-    "event_date": { "type": ["string", "null"], "description": "Date ou période de l'événement (ISO 8601)." },
-    "published_at": { "type": "string", "description": "Date de publication de l'information (ISO 8601)." },
-    "collected_at": { "type": "string" },
-    "cadence": { "enum": ["quotidienne", "hebdomadaire", "mensuelle", "trimestrielle", "annuelle", "manuelle"] },
+    "id": {
+      "type": "string",
+      "description": "Format : W-AAAAMMJJ-slug"
+    },
+    "dedupe_key": {
+      "type": "string",
+      "description": "slug(nom événement)|slug(organisateur)|année d'édition — sert à fusionner les doublons."
+    },
+    "event_name": {
+      "type": "string"
+    },
+    "organizer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "country": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Code ISO 3166-1 alpha-2"
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discipline": {
+      "type": "string"
+    },
+    "sector_family": {
+      "enum": [
+        "sport",
+        "esport",
+        "musique_festival",
+        "spectacle",
+        "tv_media",
+        "parc_loisirs",
+        "exposition_immersive",
+        "mode_luxe",
+        "salon_pro",
+        "activation_marque",
+        "cinema",
+        "jeu",
+        "communautaire",
+        "universitaire",
+        "tourisme",
+        "autre"
+      ]
+    },
+    "organizer_scale": {
+      "enum": [
+        "grande_organisation",
+        "intermediaire",
+        "independant",
+        "association",
+        "startup",
+        "inconnu"
+      ]
+    },
+    "event_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date ou période de l'événement (ISO 8601)."
+    },
+    "published_at": {
+      "type": "string",
+      "description": "Date de publication de l'information (ISO 8601)."
+    },
+    "collected_at": {
+      "type": "string"
+    },
+    "cadence": {
+      "enum": [
+        "quotidienne",
+        "hebdomadaire",
+        "mensuelle",
+        "trimestrielle",
+        "annuelle",
+        "manuelle"
+      ]
+    },
     "sources": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["url", "title", "accessed_at"],
+        "required": [
+          "url",
+          "title",
+          "accessed_at"
+        ],
         "properties": {
-          "url": { "type": "string" },
-          "title": { "type": "string" },
-          "publisher": { "type": "string" },
-          "type": { "enum": ["officiel", "presse", "etude", "reseau_social", "avis_public", "blog", "autre"] },
-          "accessed_at": { "type": "string" }
+          "url": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "officiel",
+              "presse",
+              "etude",
+              "reseau_social",
+              "avis_public",
+              "blog",
+              "autre"
+            ]
+          },
+          "accessed_at": {
+            "type": "string"
+          },
+          "reliability": {
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "read": {
+            "type": "boolean",
+            "description": "La page a été ouverte et lue (sinon : vue seulement via un moteur de recherche)."
+          }
         }
       }
     },
-    "format_description": { "type": "string" },
-    "main_innovation": { "type": "string" },
-    "target_audience": { "type": ["string", "null"] },
-    "business_model": { "type": ["string", "null"] },
-    "observed_results": { "type": ["string", "null"] },
-    "strengths": { "type": "array", "items": { "type": "string" } },
-    "weaknesses": { "type": "array", "items": { "type": "string" } },
+    "format_description": {
+      "type": "string"
+    },
+    "main_innovation": {
+      "type": "string"
+    },
+    "target_audience": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "business_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observed_results": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "weaknesses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "transposition": {
       "type": "object",
       "properties": {
-        "potential": { "type": "integer", "minimum": 1, "maximum": 5 },
-        "ideas": { "type": "array", "items": { "type": "string" } },
-        "target_disciplines": { "type": "array", "items": { "type": "string" } }
+        "potential": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "ideas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_disciplines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
-    "reproduction_constraints": { "type": "array", "items": { "type": "string" } },
+    "reproduction_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "claims": {
       "type": "array",
       "description": "Affirmations factuelles clés, chacune qualifiée.",
       "items": {
         "type": "object",
-        "required": ["text", "status"],
+        "required": [
+          "text",
+          "status"
+        ],
         "properties": {
-          "text": { "type": "string" },
-          "status": { "enum": ["fait_verifie", "estimation", "hypothese"] },
-          "source_index": { "type": "integer", "description": "Index dans 'sources'." }
+          "text": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "fait_verifie",
+              "estimation",
+              "hypothese"
+            ]
+          },
+          "source_index": {
+            "type": "integer",
+            "description": "Obsolète : utiliser source_indexes."
+          },
+          "source_indexes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Index des sources dans 'sources' (deux sources B indépendantes exigées pour un fait vérifié sans source A, 07 §9)."
+          }
         }
       }
     },
-    "reliability": { "enum": ["A", "B", "C", "D"], "description": "A : source officielle ou primaire. B : presse/étude reconnue. C : secondaire non recoupée. D : déclaratif ou non vérifié." },
-    "extracted_blocks": { "type": "array", "items": { "type": "string" }, "description": "Briques fonctionnelles identifiées (ids de knowledge/building-blocks.json ou propositions de nouvelles briques)." },
-    "error_refs": { "type": "array", "items": { "type": "string" }, "description": "Liens vers le registre des erreurs." },
-    "tags": { "type": "array", "items": { "type": "string" } },
-    "merged_from": { "type": "array", "items": { "type": "string" }, "description": "Ids des fiches fusionnées lors de la déduplication." }
+    "reliability": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "description": "A : source officielle ou primaire. B : presse/étude reconnue. C : secondaire non recoupée. D : déclaratif ou non vérifié."
+    },
+    "extracted_blocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Briques fonctionnelles identifiées (ids de knowledge/building-blocks.json ou propositions de nouvelles briques)."
+    },
+    "error_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Liens vers le registre des erreurs."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "merged_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ids des fiches fusionnées lors de la déduplication."
+    },
+    "review_status": {
+      "enum": [
+        "a_valider",
+        "publie",
+        "rejete",
+        "fusionne"
+      ],
+      "description": "Recopié depuis validations.json (décision humaine) lors de la génération de l'index."
+    },
+    "validated_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analysis": {
+      "type": "object",
+      "description": "Grille des 21 dimensions (06 §9) : clé = code de domaine de error-entry.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "source_indexes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
   }
 }

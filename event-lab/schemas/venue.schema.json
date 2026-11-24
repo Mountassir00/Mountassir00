@@ -54,7 +54,7 @@
             "integer",
             "null"
           ],
-          "description": "Effectif maximal autorisé (public + personnel selon le document)."
+          "description": "Effectif maximal autorisé tel qu'il figure dans le document de l'exploitant. Par défaut, EVENT LAB le compare au total public + participants + personnel."
         },
         "document_ref": {
           "type": "string"
@@ -88,7 +88,24 @@
             "type": "string"
           },
           "type": {
-            "type": "string"
+            "enum": [
+              "aire_de_jeu",
+              "tribune",
+              "accueil",
+              "file_attente",
+              "restauration",
+              "vip",
+              "vestiaire",
+              "sanitaire",
+              "stockage",
+              "regie",
+              "media",
+              "activation_sponsor",
+              "secours",
+              "zone_photo",
+              "circulation",
+              "autre"
+            ]
           },
           "label": {
             "type": "string"

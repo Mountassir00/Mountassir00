@@ -575,7 +575,7 @@ Contrastes calculés avec la formule de luminance relative de WCAG 2.1, sur le f
 | `--color-ok` / `-bg` | `#166534` / `#E8F5EC` | Porte OK, éligible | 7,13 (bg) · 6,35 (ok-bg) |
 | `--color-warn` / `-bg` | `#8A4B00` / `#FDF0DB` | À vérifier, sous réserve, alerte orange | 6,80 · 6,05 |
 | `--color-block` / `-bg` | `#B42318` / `#FDECEA` | Bloquant, éliminé, alerte rouge | 6,57 · 5,75 ; texte blanc dessus 6,57 |
-| `--color-info` / `-bg` | `#1E40AF` / `#E8EEFC` | Information | 7,50 (info-bg) |
+| `--color-info` / `-bg` | `#1E40AF` / `#E8EEFC` | Information | 8,72 (bg) · 7,50 (info-bg) |
 | `--color-firm` / `-bg` | `#0E6672` / `#E6F3F4` | Niveau **ferme** | 6,64 · 5,85 |
 | `--color-estimated` / `-bg` | `#4338CA` / `#ECEBFB` | Niveau **estimé** | 7,90 · 6,71 |
 | `--color-assumed` / `-bg` | `#86198F` / `#F8E9F9` | Niveau **supposé** | 8,24 · 7,07 |
@@ -585,7 +585,7 @@ Contrastes calculés avec la formule de luminance relative de WCAG 2.1, sur le f
 | `--chart-negative` / `--chart-positive` | `#B42318` / `#047857` | Tornade | 6,57 / 5,48 |
 | `--chart-grid` | `#9AA3B2` | Grilles des graphiques, plan (décoratif) | 2,54 — les valeurs sont portées par des libellés en `--color-text-muted` |
 
-Le texte principal sur les fonds teintés reste au-delà de 13:1 (14,19 sur `firm-bg`, 14,16 sur `warn-bg`, 13,60 sur `assumed-bg`). Pas de thème sombre en MVP.
+Sur les sept fonds teintés (`-bg`), le texte principal atteint au moins 13,54:1 (minimum sur `estimated-bg`) et le texte secondaire au moins 6,40:1. Pas de thème sombre en MVP.
 
 ### 6.2 Codes visuels
 

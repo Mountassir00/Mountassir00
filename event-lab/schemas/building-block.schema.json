@@ -4,56 +4,218 @@
   "title": "BuildingBlock",
   "description": "Brique fonctionnelle réutilisable issue de la décomposition d'événements existants. Décrit une LOGIQUE, jamais une marque ou un élément protégé.",
   "type": "object",
-  "required": ["id", "type", "name", "mechanic", "origin", "requirements", "attributes"],
+  "required": [
+    "attributes",
+    "id",
+    "ip_note",
+    "mechanic",
+    "name",
+    "origin",
+    "requirements",
+    "type"
+  ],
   "properties": {
-    "id": { "type": "string", "description": "Format : B-<type>-<slug>" },
-    "type": { "enum": ["regles", "qualification", "recompenses", "mise_en_scene", "interaction_public", "mecanique_jeu", "experience_digitale", "scenographie", "son_lumiere", "monetisation", "fidelisation", "activation_partenaire", "creation_contenu"] },
-    "name": { "type": "string" },
-    "mechanic": { "type": "string", "description": "Fonctionnement générique, transposable." },
+    "id": {
+      "type": "string",
+      "description": "Format : B-<type>-<slug>"
+    },
+    "type": {
+      "enum": [
+        "regles",
+        "qualification",
+        "recompenses",
+        "mise_en_scene",
+        "interaction_public",
+        "mecanique_jeu",
+        "experience_digitale",
+        "scenographie",
+        "son_lumiere",
+        "monetisation",
+        "fidelisation",
+        "activation_partenaire",
+        "creation_contenu"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "mechanic": {
+      "type": "string",
+      "description": "Fonctionnement générique, transposable."
+    },
     "origin": {
       "type": "object",
-      "required": ["sector_family"],
+      "required": [
+        "sector_family"
+      ],
       "properties": {
-        "sector_family": { "type": "string" },
-        "examples": { "type": "array", "items": { "type": "string" }, "description": "Événements où la logique est observée (citer la source dans watch entries)." }
+        "sector_family": {
+          "enum": [
+            "sport",
+            "esport",
+            "musique_festival",
+            "spectacle",
+            "tv_media",
+            "parc_loisirs",
+            "exposition_immersive",
+            "mode_luxe",
+            "salon_pro",
+            "activation_marque",
+            "cinema",
+            "jeu",
+            "communautaire",
+            "universitaire",
+            "tourisme",
+            "autre"
+          ]
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Événements où la logique est observée (citer la source dans watch entries)."
+        }
       }
     },
     "requirements": {
       "type": "object",
       "properties": {
-        "budget_tier_min": { "type": "integer", "minimum": 0, "maximum": 4, "description": "T0 <5 k€, T1 5–30 k€, T2 30–150 k€, T3 150 k€–1 M€, T4 >1 M€" },
-        "staff_min": { "type": "integer" },
-        "tech": { "type": "array", "items": { "enum": ["aucune", "sono", "ecran", "chronometrage", "app_web", "streaming", "eclairage_scenique", "capteurs", "casques_audio", "billetterie_en_ligne"] } },
-        "setting": { "enum": ["interieur", "exterieur", "indifferent"] },
-        "min_area_m2": { "type": "number" }
+        "budget_tier_min": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4,
+          "description": "T0 <5 k€, T1 5–30 k€, T2 30–150 k€, T3 150 k€–1 M€, T4 >1 M€"
+        },
+        "staff_min": {
+          "type": "integer"
+        },
+        "tech": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "aucune",
+              "sono",
+              "ecran",
+              "chronometrage",
+              "app_web",
+              "streaming",
+              "eclairage_scenique",
+              "capteurs",
+              "casques_audio",
+              "billetterie_en_ligne"
+            ]
+          }
+        },
+        "setting": {
+          "enum": [
+            "interieur",
+            "exterieur",
+            "indifferent"
+          ]
+        },
+        "min_area_m2": {
+          "type": "number"
+        }
       }
     },
     "attributes": {
       "type": "object",
       "description": "Attributs normalisés 0–5 utilisés par le générateur et la pré-notation.",
       "properties": {
-        "novelty": { "type": "number", "minimum": 0, "maximum": 5 },
-        "ux_gain": { "type": "number", "minimum": 0, "maximum": 5 },
-        "complexity": { "type": "number", "minimum": 0, "maximum": 5 },
-        "cost": { "type": "number", "minimum": 0, "maximum": 5 },
-        "media": { "type": "number", "minimum": 0, "maximum": 5 },
-        "revenue": { "type": "number", "minimum": 0, "maximum": 5 },
-        "inclusion": { "type": "number", "minimum": 0, "maximum": 5 },
-        "eco_impact": { "type": "number", "minimum": 0, "maximum": 5, "description": "5 = impact environnemental très faible." },
-        "portability": { "type": "number", "minimum": 0, "maximum": 5 }
+        "novelty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "ux_gain": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "complexity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "cost": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "media": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "revenue": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "inclusion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "eco_impact": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "5 = impact environnemental très faible."
+        },
+        "portability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        }
       }
     },
     "direction_fit": {
       "type": "object",
       "description": "Adéquation 0–5 à chaque direction créative.",
       "properties": {
-        "accessible": { "type": "number" }, "optimise": { "type": "number" }, "premium": { "type": "number" },
-        "experimental": { "type": "number" }, "hybride": { "type": "number" }, "communautaire": { "type": "number" }
+        "accessible": {
+          "type": "number"
+        },
+        "optimise": {
+          "type": "number"
+        },
+        "premium": {
+          "type": "number"
+        },
+        "experimental": {
+          "type": "number"
+        },
+        "hybride": {
+          "type": "number"
+        },
+        "communautaire": {
+          "type": "number"
+        }
       }
     },
-    "compatible_with": { "type": "array", "items": { "type": "string" } },
-    "incompatible_with": { "type": "array", "items": { "type": "string" } },
-    "risks": { "type": "array", "items": { "type": "string" } },
-    "ip_note": { "type": "string", "description": "Ce qui est emprunté (logique) et ce qui ne doit pas l'être (nom, identité, éléments protégés)." }
+    "compatible_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "incompatible_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ip_note": {
+      "type": "string",
+      "description": "Ce qui est emprunté (logique) et ce qui ne doit pas l'être (nom, identité, éléments protégés)."
+    }
   }
 }
