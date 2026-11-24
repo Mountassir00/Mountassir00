@@ -1,0 +1,1022 @@
+[
+  {
+    "mode": "local",
+    "route": "accueil",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "accueil-local-1440-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "notation",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "projets",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "post-evenement",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "tendances",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "veille",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "innovations",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "erreurs",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "generateur",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "labo",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "salles",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-sportif",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-financier",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "programmation",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "dossiers",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "ecosysteme",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "notifications",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "collaboratif",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "portefeuille",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio-config",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "studio-config-versions-local-1440-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "generateur-multi",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "briques",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "application",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "compte",
+    "width": 1440,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "compte-local-1440-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "accueil",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "accueil-local-1440-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "notation",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "projets",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "post-evenement",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "tendances",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "veille",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "innovations",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "erreurs",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "generateur",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "labo",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "salles",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-sportif",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-financier",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "programmation",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "dossiers",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "ecosysteme",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "notifications",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "collaboratif",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "portefeuille",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio-config",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "studio-config-versions-local-1440-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "generateur-multi",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "briques",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "application",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "compte",
+    "width": 1440,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "compte-local-1440-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "accueil",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "accueil-local-360-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "notation",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "projets",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "post-evenement",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "tendances",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "veille",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "innovations",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "erreurs",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "generateur",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "labo",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "salles",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-sportif",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-financier",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "programmation",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "dossiers",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "ecosysteme",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "notifications",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "collaboratif",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "portefeuille",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio-config",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "studio-config-versions-local-360-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "generateur-multi",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "briques",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "application",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "compte",
+    "width": 360,
+    "theme": "light",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "compte-local-360-light.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "menu ouvert",
+    "width": 360,
+    "theme": "light",
+    "file": "menu-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "accueil",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "accueil-local-360-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "notation",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "projets",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "post-evenement",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "tendances",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "veille",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "innovations",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "erreurs",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "generateur",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "labo",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "salles",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-sportif",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "simulateur-financier",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "programmation",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "dossiers",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "ecosysteme",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "notifications",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "collaboratif",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "portefeuille",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "studio-config",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "studio-config-versions-local-360-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "generateur-multi",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "briques",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "application",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "local",
+    "route": "compte",
+    "width": 360,
+    "theme": "dark",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "file": "compte-local-360-dark.jpg"
+  },
+  {
+    "mode": "local",
+    "route": "menu ouvert",
+    "width": 360,
+    "theme": "dark",
+    "file": "menu-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "mode": "configuré (API simulée) — connexion",
+    "route": "compte",
+    "width": 1440,
+    "theme": "light",
+    "file": "compte-connexion-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Mode local. Données sur cet appareil uniquement (non connecté). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connecte",
+    "route": "compte",
+    "width": 1440,
+    "theme": "light",
+    "file": "compte-connecte-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Synchronisé. Bask’Est : à jour (dernière synchronisation 24/11/2026 20:40:49). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connexion",
+    "route": "compte",
+    "width": 1440,
+    "theme": "dark",
+    "file": "compte-connexion-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Mode local. Données sur cet appareil uniquement (non connecté). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connecte",
+    "route": "compte",
+    "width": 1440,
+    "theme": "dark",
+    "file": "compte-connecte-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Synchronisé. Bask’Est : à jour (dernière synchronisation 24/11/2026 20:40:53). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connexion",
+    "route": "compte",
+    "width": 360,
+    "theme": "light",
+    "file": "compte-connexion-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Mode local. Données sur cet appareil uniquement (non connecté). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connecte",
+    "route": "compte",
+    "width": 360,
+    "theme": "light",
+    "file": "compte-connecte-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Synchronisé. Bask’Est : à jour (dernière synchronisation 24/11/2026 20:40:56). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connexion",
+    "route": "compte",
+    "width": 360,
+    "theme": "dark",
+    "file": "compte-connexion-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Mode local. Données sur cet appareil uniquement (non connecté). Ouvrir Compte et organisation."
+  },
+  {
+    "mode": "configuré (API simulée) — connecte",
+    "route": "compte",
+    "width": 360,
+    "theme": "dark",
+    "file": "compte-connecte-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "indicator": "Synchronisation : Synchronisé. Bask’Est : à jour (dernière synchronisation 24/11/2026 20:41:00). Ouvrir Compte et organisation."
+  }
+]

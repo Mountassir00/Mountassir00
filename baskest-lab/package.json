@@ -16,9 +16,12 @@
     "check:concepts": "tsx scripts/check-concepts.ts",
     "screenshots": "node scripts/screenshots.cjs docs/screenshots 2",
     "eventlab:blueprint": "tsx ../event-lab/scripts/build-blueprint.ts",
-    "eventlab:validate": "tsx ../event-lab/scripts/validate.ts"
+    "eventlab:validate": "tsx ../event-lab/scripts/validate.ts",
+    "db:test": "tsx scripts/db-test.ts",
+    "db:seed:generate": "tsx scripts/generate-seed.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.119.0",
     "react": "19.2.9",
     "react-dom": "19.2.9"
   },

@@ -4,7 +4,7 @@
  * Toutes les entités du système sont définies ici. Les moteurs (simulation,
  * programmation, finance, salles, notation, génération, blueprint) ne
  * manipulent que ces types : c'est le contrat commun entre modules, UI,
- * base de données (voir db/schema.sql) et intégrations externes.
+ * base de données (voir supabase/migrations/) et intégrations externes.
  *
  * Convention : chaque donnée factuelle importée de l'extérieur porte une
  * `Provenance` (vérifiée / estimée / hypothèse) pour ne jamais confondre

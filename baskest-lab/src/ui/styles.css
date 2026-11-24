@@ -337,3 +337,63 @@ td.current, th.current { background: color-mix(in srgb, var(--serie-1) 10%, tran
   .kv { grid-template-columns: 1fr; }
   .kv dt { margin-top: 6px; }
 }
+
+/* ======================================================================
+   v0.4 — socle SaaS : indicateur de synchronisation, page Compte et organisation
+   ====================================================================== */
+.sync-pill i, .sync-line i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex: none; background: currentColor; }
+.sync-pill.local i, .sync-line.local i { background: transparent; border: 2px solid currentColor; }
+.nav a.sync-pill {
+  display: flex; justify-content: flex-start; align-items: center; gap: 8px;
+  margin: -4px 8px 12px; padding: 5px 10px; border: 1px solid #2d4570; border-radius: 999px;
+  font-size: 12px; color: #dfe6f2; text-decoration: none; width: fit-content; max-width: calc(100% - 16px);
+}
+.nav a.sync-pill:hover { background: var(--nuit-2); }
+.nav a.sync-pill i, .mobile-nav .sync-pill i { color: #9fb0cc; }
+.nav a.sync-pill.ok i, .mobile-nav .sync-pill.ok i { color: #5ccf8f; }
+.nav a.sync-pill.wait i, .mobile-nav .sync-pill.wait i { color: var(--or); }
+.nav a.sync-pill.alert i, .mobile-nav .sync-pill.alert i { color: #ff8f97; }
+.mobile-nav .sync-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border-radius: var(--radius-s); flex: none; }
+.mobile-nav .sync-pill i { width: 11px; height: 11px; }
+.mobile-nav .sync-pill:focus-visible { outline-offset: -2px; }
+
+.sync-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 12px; font-size: 14px; }
+.sync-line.local { color: var(--ink-2); }
+.sync-line.local b, .sync-line.ok b, .sync-line.wait b, .sync-line.off b, .sync-line.alert b { color: var(--ink); }
+.sync-line.ok i { color: var(--vert); }
+.sync-line.wait i { color: var(--ambre); }
+.sync-line.off i { color: var(--ink-2); }
+.sync-line.alert i { color: var(--rouge); }
+.sync-alerts { margin-top: 10px; font-size: 13px; }
+
+.org-list { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); margin-bottom: 8px; }
+.org-choice {
+  display: grid; gap: 2px; text-align: left; font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius-m); padding: 10px 12px; min-height: 44px; cursor: pointer;
+}
+.org-choice:hover { border-color: var(--orange); }
+.org-choice.on { border: 2px solid var(--orange); padding: 9px 11px; background: color-mix(in srgb, var(--orange) 8%, var(--surface)); }
+.org-choice .small { color: var(--ink-2); }
+button.btn.danger { background: var(--rouge); border-color: var(--rouge); color: var(--surface); }
+button.btn.danger:hover { background: color-mix(in srgb, var(--rouge) 85%, var(--ink)); }
+.danger-zone { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 10px; }
+.danger-zone > summary { cursor: pointer; font-weight: 600; color: var(--rouge); min-height: 32px; }
+.danger-panel { border-color: color-mix(in srgb, var(--rouge) 45%, var(--line)); }
+.check-line { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; margin-top: 10px; }
+.check-line input { margin-top: 3px; }
+@media (max-width: 900px) {
+  .check-line { min-height: 44px; align-items: center; }
+  .check-line input { margin-top: 0; }
+  .danger-zone > summary { min-height: 44px; display: flex; align-items: center; }
+}
+.member-rows { list-style: none; margin: 0 0 8px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-s); }
+.member-rows li { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(130px, 170px) minmax(92px, auto); gap: 6px 12px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--line); }
+.member-rows li:first-child { border-top: none; }
+.member-rows .who { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; min-width: 0; }
+.member-rows .fn { color: var(--ink-2); min-width: 0; }
+.member-rows .act { justify-self: end; }
+@media (max-width: 560px) {
+  .member-rows li { grid-template-columns: minmax(0, 1fr) auto; }
+  .member-rows .who, .member-rows .fn { grid-column: 1 / -1; }
+  .member-rows .fn { margin-top: -4px; }
+}

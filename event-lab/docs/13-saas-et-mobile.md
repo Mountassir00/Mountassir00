@@ -30,7 +30,7 @@ flowchart LR
 ```
 
 - **Hors ligne d'abord** : l'application fonctionne sans réseau (sur le terrain, le jour J) ; elle synchronise ensuite. Les versions validées sont immuables (déjà garanti par le moteur), donc les conflits portent seulement sur les brouillons : dernier enregistrement gagnant avec contrôle de version, et alerte en cas d'écart.
-- **Multi-organisation** : chaque association, club, collectivité ou agence est une organisation ; isolation des données par règles de sécurité au niveau des lignes (schéma cible dans `03-modele-de-donnees.md` §5 et `baskest-lab/db/schema.sql`, à fusionner).
+- **Multi-organisation** : chaque association, club, collectivité ou agence est une organisation ; isolation des données par règles de sécurité au niveau des lignes (schéma cible dans `03-modele-de-donnees.md` §5 et l'ancien `baskest-lab/db/schema.sql`, fusionnés en v0.4 dans `baskest-lab/supabase/migrations/` : voir [14-socle-saas.md](14-socle-saas.md)).
 - **Connaissances partagées** : briques, registre des erreurs et sources de veille sont communs à tous les clients et en lecture seule. Ils forment l'actif du studio.
 - **Exports** : JSON et Markdown sur l'appareil ; PDF, DOCX, XLSX et PPTX par un service d'export côté serveur (à construire, aujourd'hui assuré par les scripts du dépôt).
 

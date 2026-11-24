@@ -93,11 +93,11 @@ export function Collaboration() {
         </Panel>
         <Panel title="Pour activer la collaboration">
           <ol>
-            <li>Créer une base Postgres (ex. Supabase, offre gratuite) et appliquer db/schema.sql.</li>
-            <li>Activer l’authentification et les politiques de sécurité par ligne (rôles ci-contre).</li>
-            <li>Remplacer le stockage local du navigateur par le client de la base (src/ui/ui.tsx, fonction useLocal).</li>
+            <li>Créer un projet Supabase (offre gratuite, région UE) et appliquer les migrations de supabase/migrations/ (procédure : event-lab/docs/14-socle-saas.md).</li>
+            <li>Renseigner l’URL et la clé publique dans .env : la page <a href="#/compte">Compte et organisation</a> propose alors comptes, organisations, rôles génériques (lecteur, éditeur, administrateur, propriétaire) et invitations.</li>
+            <li>Les versions du studio de configuration et le portefeuille se synchronisent déjà (v0.4) ; les projets, approbations et notifications basket restent dans ce navigateur (fonction useLocal) et seront branchés ensuite.</li>
           </ol>
-          <p className="small muted">D’ici là, chaque poste conserve ses projets et notes en local ; les dossiers se partagent par export (HTML, PDF, Word).</p>
+          <p className="small muted">Les fonctions associatives ci-contre (présidence, trésorerie…) deviennent un libellé libre sur l’adhésion ; les droits viennent du rôle générique. D’ici là, les dossiers se partagent par export (HTML, PDF, Word).</p>
         </Panel>
       </div>
     </Page>

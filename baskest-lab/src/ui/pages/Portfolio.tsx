@@ -4,7 +4,8 @@ import { feature } from '../features';
 import { PORTFOLIO, EVENTLAB_FILES } from '../../data/eventlab';
 import { evaluate, CRITERIA, EVIDENCE_LABEL, type EventConfig, type EvaluationResult, type GateKey } from '../../core/eventlab';
 import { DIRECTION_LABEL, VerdictLabel, hashParam, useScrollOnSelect } from '../eventlab-ui';
-import { loadLocalConcepts, saveLocalConcepts } from '../local-portfolio';
+import { generatedConcepts, removeGeneratedConcept } from '../local-portfolio';
+import { useRepo } from '../workspace';
 
 const GATE_NAMES: Record<GateKey, string> = { securite: 'Sécurité', conformite_reglementaire: 'Conformité réglementaire', risques_critiques: 'Risques critiques' };
 
@@ -26,19 +27,19 @@ function rowsOf(list: EventConfig[], local: boolean): Row[] {
 
 export function Portfolio() {
   const f = feature('portefeuille');
-  const [local, setLocal] = useState(loadLocalConcepts);
+  const { repo: store, app, workspace } = useRepo();
   const [msg, setMsg] = useState<string | null>(null);
   const repo = useMemo(() => rowsOf(PORTFOLIO, false), []);
-  const loc = useMemo(() => rowsOf(local, true), [local]);
+  // Recalcul à chaque modification de l'espace actif (app.rev change à chaque écriture ou synchronisation)
+  const loc = useMemo(() => rowsOf(generatedConcepts(store), true), [store, app.rev]);
   const all = [...repo, ...loc];
   const [sel, setSel] = useState<string>(() => hashParam('c') ?? repo[0].c.id);
   const r = all.find((x) => x.c.id === sel) ?? repo[0];
   const detailRef = useScrollOnSelect<HTMLDivElement>(sel);
   const remove = (id: string) => {
-    const next = local.filter((c) => c.id !== id);
-    setMsg(saveLocalConcepts(next));
-    setLocal(next);
-    if (sel === id) setSel(repo[0].c.id);
+    const err = removeGeneratedConcept(store, id);
+    setMsg(err);
+    if (!err && sel === id) setSel(repo[0].c.id);
   };
   const tableRows = (rows: Row[]) =>
     rows.map((x) => [
@@ -66,8 +67,8 @@ export function Portfolio() {
       </Panel>
 
       {loc.length > 0 && (
-        <Panel title={`Ajouts locaux du générateur (${loc.length})`} className="">
-          <p className="muted small">Squelettes générés, conservés dans ce navigateur uniquement. Pré-notes automatiques (jugement expert) à revoir ; sans risques ni conformité saisis, leurs portes ne sont pas évaluables.</p>
+        <Panel title={`Ajouts du générateur (${loc.length})`} className="">
+          <p className="muted small">Squelettes générés, conservés {workspace === 'local' ? 'dans ce navigateur uniquement (mode local)' : 'dans l’organisation active (synchronisés)'}. Pré-notes automatiques (jugement expert) à revoir ; sans risques ni conformité saisis, leurs portes ne sont pas évaluables.</p>
           <Table head={[...head, 'Action']} numeric={[3, 5]} rows={tableRows(loc).map((row, i) => [...row, <button className="btn ghost" onClick={(e) => { e.stopPropagation(); remove(loc[i].c.id); }}>Retirer</button>])} onRowClick={(i) => setSel(loc[i].c.id)} selected={loc.findIndex((x) => x.c.id === r.c.id)} />
           {msg && <div className="alert">{msg}</div>}
         </Panel>

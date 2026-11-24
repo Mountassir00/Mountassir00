@@ -25,6 +25,7 @@ Studio de recherche et développement événementiel, multisectoriel : veille in
 | — | Démo hors ligne en un seul fichier | [baskest-lab/docs/demo/event-lab-demo.html](../baskest-lab/docs/demo/event-lab-demo.html) | 0.3.0 |
 | — | Fusion, plan du pilote LA GRILLE, SaaS et mobile | [docs/11](docs/11-fusion-et-application.md), [docs/12](docs/12-plan-pilote-la-grille-nancy.md), [docs/13](docs/13-saas-et-mobile.md) | 0.3.0 |
 | — | Registre de 28 erreurs, 70 briques | [knowledge/](knowledge/) | 0.2.0 |
+| — | Socle SaaS : comptes, organisations, rôles, synchronisation hors ligne d'abord des événements et versions ; schéma Supabase en migrations, tests SQL locaux, graine des connaissances (non testé contre un vrai projet Supabase) | [docs/14](docs/14-socle-saas.md), [baskest-lab/supabase/](../baskest-lab/supabase/migrations/) | 0.4.0 |
 
 ## Arborescence
 
@@ -49,6 +50,8 @@ cd ../baskest-lab
 npx vitest run                                                   # tests (application + moteur EVENT LAB + non-régression du blueprint)
 npm run eventlab:validate                                        # validation des JSON contre les schémas
 npm run eventlab:blueprint -- ../event-lab/blueprints/la-grille-3x3   # tableaux, summary.json, CSV, BLUEPRINT.md
+npm run db:seed:generate                                         # graine SQL des connaissances (supabase/seed.sql) depuis knowledge/ et portfolio/
+npm run db:test                                                  # schéma SaaS v0.4 sur un PostgreSQL local jetable (simulation de l'authentification Supabase)
 ```
 
 ## Versionnement

@@ -44,7 +44,9 @@ import {
   type GateKey,
   type BreakevenResult,
 } from '../../core/eventlab';
-import { CashChart, Tornado, Money, VerdictLabel, hashParam, readStore, writeStore, shortJson, copyText } from '../eventlab-ui';
+import { CashChart, Tornado, Money, VerdictLabel, hashParam, shortJson, copyText } from '../eventlab-ui';
+import { atLeast, type VersionRecord } from '../../core/sync';
+import { activeMembership, requestSync, useRepo } from '../workspace';
 
 // ---------------------------------------------------------------- sources de configuration
 interface SourceDef {
@@ -69,7 +71,6 @@ const cmpVer = (a: string, b: string) => {
   return 0;
 };
 const today = () => new Date().toISOString().slice(0, 10);
-const storeKey = (k: string) => `eventlab:versions:${k}`;
 const beText = (b: BreakevenResult) => (b.attendance == null ? 'inatteignable' : b.attendance === 0 ? 'aucun (couvert)' : `${num(b.attendance)} spectateurs`);
 /** Exécute un calcul du moteur ; une configuration incomplète renvoie un message au lieu de casser la page. */
 function safe<T>(f: () => T): { ok: true; v: T } | { ok: false; err: string } {
@@ -112,14 +113,23 @@ export function ConfigStudio() {
   })();
   const [srcKey, setSrcKey] = useState(initial);
   const source = SOURCES.find((s) => s.key === srcKey)!;
-  const [versions, setVersions] = useState<EventConfig[]>(() => readStore<EventConfig[]>(storeKey(initial), []));
+  // Versions de l'événement (EventConfig.id) dans l'espace actif : mode local ou organisation (v0.4).
+  // Le blueprint et le concept LA GRILLE 3x3 partagent le même identifiant, donc les mêmes versions.
+  const { repo, workspace, role } = useRepo();
+  const slug = source.config.id;
+  const records: VersionRecord[] = repo.versions(slug);
+  const versions: EventConfig[] = records.map((r) => r.config);
+  const recordOf = (version: string) => records.find((r) => r.version === version);
+  const canEdit = atLeast(role, 'editeur');
+  const canValidate = atLeast(role, 'administrateur');
+  const where = workspace === 'local' ? 'ce navigateur (mode local)' : `l’organisation ${activeMembership()?.organizationName ?? ''} (synchronisée)`;
   const [selVer, setSelVer] = useState('depot');
   const [work, setWork] = useState<EventConfig | null>(null);
   const [variant, setVariant] = useState('standard');
   const [scenario, setScenario] = useState<ScenarioKey>('central');
   const [tab, setTab] = useState<'synthese' | 'tresorerie' | 'competition' | 'incidents' | 'notation' | 'versions'>('synthese');
   const [msg, setMsg] = useState<{ kind: 'ok' | 'block' | 'warn'; text: string; frozen?: boolean } | null>(null);
-  const [author, setAuthor] = useState('porteur');
+  const [author, setAuthor] = useState(() => activeMembership()?.displayName ?? 'porteur');
   const [summaryTxt, setSummaryTxt] = useState('');
   const [lineId, setLineId] = useState('');
   const [diffA, setDiffA] = useState('depot');
@@ -134,18 +144,24 @@ export function ConfigStudio() {
 
   const changeSource = (k: string) => {
     setSrcKey(k);
-    setVersions(readStore<EventConfig[]>(storeKey(k), []));
     setSelVer('depot');
     setWork(null);
     setVariant('standard');
     setMsg(null);
     setLineId('');
   };
-  const persist = (list: EventConfig[]) => {
-    setVersions(list);
-    const err = writeStore(storeKey(srcKey), list);
-    if (err) setMsg({ kind: 'block', text: err });
+  /** Écrit dans le dépôt de l'espace actif ; une erreur (stockage plein, version figée, numéro pris) s'affiche. */
+  const store = (f: () => void): boolean => {
+    try {
+      f();
+      requestSync();
+      return true;
+    } catch (e) {
+      setMsg({ kind: 'block', text: e instanceof Error ? e.message : String(e) });
+      return false;
+    }
   };
+  const lastNumber = () => [source.config.version, ...repo.takenVersions(slug)].sort(cmpVer).at(-1)!;
 
   const base: EventConfig = selVer === 'depot' ? source.config : (versions.find((v) => v.version === selVer) ?? source.config);
   const current = work ?? base;
@@ -185,19 +201,17 @@ export function ConfigStudio() {
   const lineOverridden = line && variantDef && ((line.kind === 'expense' && variantDef.expense_overrides && line.id in variantDef.expense_overrides) || (line.kind === 'revenue' && variantDef.revenue_overrides && line.id in variantDef.revenue_overrides));
 
   const createFromFrozen = () => {
-    const nextVer = [source.config.version, ...versions.map((v) => v.version)].sort(cmpVer).at(-1)!;
-    const n = newVersion({ ...base, version: nextVer }, { author, summary: `Nouvelle version depuis ${base.version} (version figée non modifiable)`, date: today() });
+    const n = newVersion({ ...base, version: lastNumber() }, { author, summary: `Nouvelle version depuis ${base.version} (version figée non modifiable)`, date: today() });
     n.parent = { id: base.id, version: base.version, relation: 'new_version' };
-    persist([...versions, n]);
+    if (!store(() => repo.createVersion(n))) return;
     setSelVer(n.version);
     setWork(null);
     setMsg({ kind: 'ok', text: `Version ${n.version} créée en brouillon à partir de ${base.version}, qui reste inchangée.` });
   };
   const save = () => {
-    const nextVer = [source.config.version, ...versions.map((v) => v.version)].sort(cmpVer).at(-1)!;
-    const n = newVersion({ ...current, version: nextVer }, { author: author || 'inconnu', summary: summaryTxt.trim() || `Nouvelle version depuis ${current.version}`, date: today() });
+    const n = newVersion({ ...current, version: lastNumber() }, { author: author || 'inconnu', summary: summaryTxt.trim() || `Nouvelle version depuis ${current.version}`, date: today() });
     n.parent = { id: current.id, version: current.version, relation: 'new_version' };
-    persist([...versions, n]);
+    if (!store(() => repo.createVersion(n))) return;
     setSelVer(n.version);
     setWork(null);
     setSummaryTxt('');
@@ -206,16 +220,23 @@ export function ConfigStudio() {
     setMsg({ kind: 'ok', text: `Version ${n.version} enregistrée en brouillon (parent : ${current.version}). La version de départ n’est pas modifiée.` });
   };
   const doTransition = (a: TransitionAction) => {
+    const rec = recordOf(base.version);
+    if (!rec) return;
+    // Contrôle du moteur avant écriture (message identique en mode local et en organisation)
     try {
-      const t = transition(base, a, { actor: author || 'inconnu', date: today() });
-      persist(versions.map((v) => (v.version === base.version ? t : v)));
-      setMsg({ kind: 'ok', text: `Version ${t.version} : ${STATUS_TEXT[t.status]}.` });
+      transition(base, a, { actor: author || 'inconnu', date: today() });
     } catch (e) {
       setMsg({ kind: 'block', text: e instanceof Error ? e.message : String(e) });
+      return;
+    }
+    if (store(() => repo.transition(rec.id, a, author || 'inconnu', today()))) {
+      const t = repo.version(rec.id)!;
+      setMsg({ kind: 'ok', text: `Version ${t.version} : ${STATUS_TEXT[t.status]}.${workspace === 'local' ? '' : ' Envoi au serveur dès que possible.'}` });
     }
   };
   const removeVersion = () => {
-    persist(versions.filter((v) => v.version !== base.version));
+    const rec = recordOf(base.version);
+    if (!rec || !store(() => repo.deleteVersion(rec.id))) return;
     setSelVer('depot');
     setWork(null);
   };
@@ -250,7 +271,11 @@ export function ConfigStudio() {
   // ------------------------------------------------------------ rendu
   const sc = all[scenario];
   const be = bes[SCENARIOS.indexOf(scenario)];
-  const optionsVersions = [{ value: 'depot', label: `Dépôt v${source.config.version} (fichier, ${STATUS_TEXT[source.config.status]})` }, ...[...versions].sort((a, b) => cmpVer(a.version, b.version)).map((v) => ({ value: v.version, label: `Locale v${v.version} — ${STATUS_TEXT[v.status]}` }))];
+  const SYNC_TEXT: Record<VersionRecord['sync'], string> = { local: '', synced: '', pending: ' · en attente d’envoi', rejected: ' · refusée par le serveur' };
+  const optionsVersions = [
+    { value: 'depot', label: `Dépôt v${source.config.version} (fichier, ${STATUS_TEXT[source.config.status]})` },
+    ...[...records].sort((a, b) => cmpVer(a.version, b.version)).map((r) => ({ value: r.version, label: `${workspace === 'local' ? 'Locale' : 'Organisation'} v${r.version} — ${STATUS_TEXT[r.status]}${SYNC_TEXT[r.sync]}` })),
+  ];
   const diffOptions = [...optionsVersions, ...(work ? [{ value: 'travail', label: 'Modifications en cours (non enregistrées)' }] : [])];
   const getDiffCfg = (k: string) => (k === 'travail' ? work : k === 'depot' ? source.config : versions.find((v) => v.version === k)) ?? null;
   const dA = getDiffCfg(diffA);
@@ -273,7 +298,7 @@ export function ConfigStudio() {
   return (
     <Page
       title="Studio de configuration"
-      intro="Charger LA GRILLE 3x3 ou un concept du portefeuille, choisir une variante et un scénario, modifier quelques paramètres : tous les chiffres sont recalculés par le moteur EVENT LAB (le même que celui qui produit les blueprints). Les versions enregistrées restent dans ce navigateur."
+      intro={`Charger LA GRILLE 3x3 ou un concept du portefeuille, choisir une variante et un scénario, modifier quelques paramètres : tous les chiffres sont recalculés par le moteur EVENT LAB (le même que celui qui produit les blueprints). Les versions enregistrées sont conservées dans ${where}.`}
       status={f.status}
     >
       <Panel>
@@ -350,7 +375,7 @@ export function ConfigStudio() {
             {msg.text}
             {msg.frozen && (
               <div className="row" style={{ marginTop: 8 }}>
-                <button className="btn" onClick={createFromFrozen}>
+                <button className="btn" onClick={createFromFrozen} disabled={!canEdit}>
                   Créer une nouvelle version brouillon depuis v{base.version}
                 </button>
               </div>
@@ -744,7 +769,8 @@ export function ConfigStudio() {
             <div className="grid">
               <Panel title="Enregistrer une nouvelle version">
                 <p className="muted small">
-                  Chaque enregistrement crée une <b>nouvelle version brouillon</b> (moteur : <code>newVersion</code>) avec sa filiation ; la version de départ n’est jamais modifiée. Stockage : ce navigateur uniquement.
+                  Chaque enregistrement crée une <b>nouvelle version brouillon</b> (moteur : <code>newVersion</code>) avec sa filiation ; la version de départ n’est jamais modifiée. Stockage : {where}.
+                  {!canEdit && ' Votre rôle (lecteur) ne permet pas d’enregistrer.'}
                 </p>
                 <div className="controls">
                   <label className="field">
@@ -757,7 +783,7 @@ export function ConfigStudio() {
                   </label>
                 </div>
                 <div className="row" style={{ marginTop: 10 }}>
-                  <button className="btn" onClick={save}>
+                  <button className="btn" onClick={save} disabled={!canEdit}>
                     Enregistrer (nouvelle version brouillon)
                   </button>
                   <button
@@ -777,24 +803,27 @@ export function ConfigStudio() {
               </Panel>
               <Panel title={`Version affichée : v${base.version} (${STATUS_TEXT[base.status]})`}>
                 {selVer === 'depot' ? (
-                  <p className="muted small">Version du dépôt (fichier) : elle ne change que dans le dépôt. Les transitions de statut s’appliquent aux versions locales.</p>
+                  <p className="muted small">Version du dépôt (fichier) : elle ne change que dans le dépôt. Les transitions de statut s’appliquent aux versions enregistrées ({where}).</p>
                 ) : (
                   <>
                     <div className="row">
                       {(Object.keys(TRANSITIONS) as TransitionAction[])
                         .filter((a) => TRANSITIONS[a].from.includes(base.status))
+                        .filter((a) => (a === 'submit' ? canEdit : canValidate))
                         .map((a) => (
                           <button key={a} className="btn ghost" disabled={!!work} onClick={() => doTransition(a)}>
                             {ACTION_TEXT[a]}
                           </button>
                         ))}
-                      {base.status === 'draft' && (
+                      {base.status === 'draft' && canEdit && (
                         <button className="btn ghost" disabled={!!work} onClick={removeVersion}>
                           Supprimer ce brouillon
                         </button>
                       )}
                     </div>
                     {work && <p className="muted small">Enregistrez ou annulez les modifications en cours avant de changer le statut.</p>}
+                    {workspace !== 'local' && !canValidate && base.status === 'review' && <p className="muted small">Validation réservée aux administrateurs et propriétaires de l’organisation.</p>}
+                    {recordOf(base.version)?.note && <p className="small notice">{recordOf(base.version)!.note}</p>}
                     {base.parent && (
                       <p className="small">
                         Filiation : {base.parent.id} v{base.parent.version} ({base.parent.relation})

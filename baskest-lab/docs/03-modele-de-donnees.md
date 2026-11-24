@@ -1,6 +1,6 @@
 # 03 — Modèle de données
 
-Source de vérité : `src/core/model.ts` (types TypeScript). Miroir persistant : `db/schema.sql` (PostgreSQL 16 / Supabase, **validé** par exécution sur PostgreSQL 16 : 21 tables, politiques RLS).
+Source de vérité : `src/core/model.ts` (types TypeScript). Persistance partagée : depuis la v0.4, schéma unique EVENT LAB en migrations `supabase/migrations/` (testé par `npm run db:test` sur PostgreSQL 16 avec une simulation de l'authentification Supabase ; voir `event-lab/docs/14-socle-saas.md`). L'ancien `db/schema.sql` (21 tables, v0.3) n'est plus qu'un renvoi ; les tables propres au basket qu'il décrivait ne sont pas encore reprises.
 
 ## 1. Règle transverse : la provenance
 

@@ -78,7 +78,8 @@ baskest-lab/
 ├── src/ui/                   ← dashboard React (19 modules, statut affiché sur chaque page)
 ├── scripts/                  ← génération du Blueprint, exports Office, captures, sondes
 ├── tests/                    ← tests Vitest des moteurs
-├── db/schema.sql             ← schéma PostgreSQL/Supabase (validé sur PostgreSQL 16)
+├── supabase/migrations/      ← schéma PostgreSQL/Supabase unique (v0.4), testé par npm run db:test
+├── db/                       ← tests SQL (db/tests/) ; schema.sql = renvoi vers les migrations
 └── docs/                     ← livrables écrits, recherche, Blueprint, captures
 ```
 
@@ -133,8 +134,8 @@ Le générateur exécute cette chaîne sur chaque candidat, répare automatiquem
 
 ## 7. Évolution vers la version « équipe »
 
-1. Appliquer `db/schema.sql` sur une base Supabase ; activer l'authentification.
-2. Remplacer `useLocal` (`src/ui/ui.tsx`) par un client de base de données — c'est le seul point de persistance de l'interface.
+1. Appliquer `supabase/migrations/` sur une base Supabase ; activer l'authentification (procédure : `event-lab/docs/14-socle-saas.md`).
+2. Versions du studio et portefeuille : faits en v0.4 (`src/core/sync/`, hors ligne d'abord). Restent à brancher les autres usages de `useLocal` (`src/ui/ui.tsx`) : projets, approbations, notifications.
 3. Brancher les connecteurs un par un (`src/core/integration/contracts.ts`), toujours derrière `requireApproval`.
 4. Planifier la veille (collecte + synthèse hebdomadaire) via une tâche programmée.
 

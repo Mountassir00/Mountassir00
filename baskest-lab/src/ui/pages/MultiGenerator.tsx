@@ -4,7 +4,8 @@ import { feature } from '../features';
 import { BUILDING_BLOCKS } from '../../data/eventlab';
 import { generate, DIRECTIONS, budgetTier, type Brief, type Direction, type EventConfig, type SectorFamily } from '../../core/eventlab';
 import { BLOCK_TYPE_LABEL, DIRECTION_LABEL, SECTOR_LABEL, TIER_HINT } from '../eventlab-ui';
-import { loadLocalConcepts, saveLocalConcepts } from '../local-portfolio';
+import { addGeneratedConcept, generatedConcepts } from '../local-portfolio';
+import { useRepo } from '../workspace';
 
 interface Form {
   discipline: string;
@@ -35,7 +36,8 @@ function NumberInput({ label, value, onChange, hint, min = 0, step = 1 }: { labe
 export function MultiGenerator() {
   const f = feature('generateur-multi');
   const [form, setForm] = useState<Form>(EMPTY);
-  const [added, setAdded] = useState<string[]>(() => loadLocalConcepts().map((c) => String(c.generation?.seed ?? '') + '|' + c.format.summary));
+  const { repo: store, workspace } = useRepo();
+  const added = generatedConcepts(store).map((c) => String(c.generation?.seed ?? '') + '|' + c.format.summary);
   const [msg, setMsg] = useState<string | null>(null);
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setForm((p) => ({ ...p, [k]: v }));
   const brief: Brief = useMemo(
@@ -58,11 +60,9 @@ export function MultiGenerator() {
   const blockName = new Map(BUILDING_BLOCKS.map((b) => [b.id, b]));
   const tierNow = budgetTier(brief.budget ?? 15000);
   const addLocal = (c: EventConfig) => {
-    const list = loadLocalConcepts();
     const copy: EventConfig = { ...structuredClone(c), id: `${c.id}-${Date.now().toString(36)}` };
-    const err = saveLocalConcepts([...list, copy]);
-    setMsg(err ?? `« ${c.identity.name} » ajouté au portefeuille local (identifiant ${copy.id}).`);
-    if (!err) setAdded((a) => [...a, `${seed}|${c.format.summary}`]);
+    const err = addGeneratedConcept(store, copy);
+    setMsg(err ?? `« ${c.identity.name} » ajouté au portefeuille ${workspace === 'local' ? 'local (ce navigateur)' : 'de l’organisation'} (identifiant ${copy.id}).`);
   };
   return (
     <Page

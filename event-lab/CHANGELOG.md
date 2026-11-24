@@ -26,6 +26,73 @@ Légende des statuts de fonctionnalités :
 | 0.1.0 | 2026-11-24 | Fondations (livrables 1 à 10) | `archives/event-lab-v0.1.0.zip` |
 | 0.2.0 | 2026-11-24 | Moteur, portefeuille, connaissances, premier blueprint | `archives/event-lab-v0.2.0.zip` |
 | 0.3.0 | 2026-11-24 | Application fusionnée EVENT LAB × BASK'EST LAB, installable | `archives/event-lab-v0.3.0.zip` |
+| 0.4.0 | 2026-11-24 | Socle SaaS : comptes, organisations, rôles, synchronisation hors ligne | `archives/event-lab-v0.4.0.zip` |
+
+---
+
+## [0.4.0] — 2026-11-24 — Socle SaaS : comptes, organisations, rôles, synchronisation hors ligne
+
+### Ajouté
+- **Schéma serveur unique** `baskest-lab/supabase/migrations/` (5 migrations), ciblant Supabase (Postgres + Auth + RLS). Il réunit l'ancien schéma BASK'EST et le DDL de `docs/03` §5 :
+  - organisations, adhésions, invitations ;
+  - événements (configuration JSONB) et versions **immuables une fois validées ou archivées** : un déclencheur refuse toute modification ou suppression, même au rôle de service ;
+  - historique de statut et journal d'audit **en ajout seul** ;
+  - connaissances partagées en lecture seule (briques, erreurs, veille, portefeuille).
+- **Rôles** : `proprietaire`, `administrateur`, `editeur`, `lecteur`. Les fonctions associatives (trésorier, présidente…) deviennent un libellé libre, sans effet sur les droits.
+- **RLS sur toutes les tables** :
+  - isolation stricte entre organisations ;
+  - `anon` n'a aucun droit ;
+  - concurrence optimiste par `row_version` (refus `PT409`).
+- **Suppression de son compte** depuis l'application (règle des stores) :
+  - seul membre d'une organisation : l'organisation est supprimée avec ses données ;
+  - seul propriétaire alors qu'il reste d'autres membres : refus tant qu'un autre propriétaire n'est pas nommé ;
+  - sinon : l'adhésion est retirée.
+- **Tests SQL locaux** (`npm run db:test`) : un cluster PostgreSQL 16 temporaire, sans écoute réseau, avec une **simulation** de l'authentification Supabase. **155 vérifications**, nettoyage garanti.
+- **Graine des connaissances** générée depuis `event-lab/` (`npm run db:seed:generate`, `supabase/seed.sql`) : 70 briques, 28 erreurs, 70 sources, 10 concepts.
+- **Couche de données hors ligne d'abord** (`src/core/sync/`) :
+  - un dépôt local et un dépôt distant (`@supabase/supabase-js` 2.119.0, chargé seulement si un serveur est configuré) ;
+  - une file d'envoi persistante, rejouée dans l'ordre, sans risque de doublon si une réponse se perd ;
+  - les conflits ne peuvent porter que sur les brouillons : les deux versions sont conservées et l'utilisateur est alerté ;
+  - reprise sans perte des données enregistrées en v0.3.
+- **Interface** :
+  - page « Compte et organisation » : connexion par lien e-mail ou mot de passe, organisations, membres et rôles, invitations, suppression du compte, mode local ;
+  - indicateur de synchronisation dans la coquille.
+- `.env.example` sans valeur ; `.env` ignoré par git.
+- `docs/14-socle-saas.md` : architecture, rôles, règles RLS en clair, synchronisation, procédure pas à pas pour brancher le vrai projet, points RGPD pour un juriste.
+
+### Modifié
+- Studio de configuration, portefeuille et générateur passent par le dépôt local. Le blueprint et le concept LA GRILLE partagent l'identifiant `la-grille-3x3` : ils affichent donc les mêmes versions, et deux sources ne peuvent plus produire le même numéro de version.
+- `baskest-lab/db/schema.sql` ne contient plus qu'un renvoi vers les migrations. L'ancien contenu reste lisible dans la v0.3.0.
+- La démo en un fichier est régénérée. Elle reste en mode local et ne contient aucun code Supabase.
+
+### Contrôles réalisés
+- `tsc --noEmit` : 0 erreur.
+- `vitest` : **98/98** (68 existants + 30 nouveaux).
+- `db:test` : 155/155. J'ai aussi vérifié qu'un test en échec renvoie bien le code 1.
+- `vite build` (PWA, 19 fichiers en cache) et `build:demo` (1,38 Mo, aucun code Supabase) : OK.
+- `eventlab:validate` : 109 objets, 0 invalide.
+- Blueprint LA GRILLE : régénération sans aucun fichier modifié.
+- Pages contrôlées avec Playwright en 1440 et 360 px, thèmes clair et sombre : 0 erreur console, 0 débordement, 0 cible tactile sous 44 px. Les 22 captures sont dans `baskest-lab/docs/screenshots/v0.4/`. Pour le mode « serveur configuré », les réponses de Supabase sont **simulées** : seul l'affichage est contrôlé.
+- `npm audit` : aucune alerte nouvelle, 0 alerte dans les dépendances de production.
+
+### Statut réel
+- **Opérationnel** : schéma et règles RLS sur PostgreSQL 16 local, synchronisation contre un faux serveur en mémoire, mode local complet, reprise des données v0.3.
+- **Externe requis** (le module « Compte et organisation » est affiché « dépend d'une intégration ») :
+  - le projet Supabase réel, à créer par le porteur ;
+  - les connexions par e-mail ;
+  - les codes d'erreur réels de l'API ;
+  - le droit de supprimer dans `auth.users` depuis `delete_my_account` (à défaut, il faudra passer par une fonction Edge, voir docs/14 §8) ;
+  - l'envoi d'e-mails d'invitation ;
+  - les sauvegardes (l'offre gratuite n'en garantit pas : prévoir `pg_dump`).
+
+### Limites connues
+- La documentation Supabase en ligne n'a pas pu être consultée, car le site était bloqué dans la session. Les noms de migration suivent le format de l'outil Supabase mais sont écrits à la main.
+- Ne sont pas encore synchronisés : les projets, approbations et notifications de l'espace Basket. Les connaissances sont chargées sur le serveur, mais l'application lit encore les JSON intégrés.
+- Aucun e-mail d'invitation n'est envoyé : la personne invitée se connecte avec la même adresse.
+- Un client qui n'envoie pas `row_version` n'est pas contrôlé (l'application l'envoie toujours).
+- Les copies de conflit s'accumulent sans écran de fusion, et deux onglets ouverts sur la même organisation peuvent s'écraser.
+- La PWA met en cache le client Supabase (environ 226 Kio), même en mode local.
+- RGPD : la purge d'une organisation efface son journal d'audit ; l'identifiant d'un compte supprimé reste comme auteur, sous forme de pseudonyme ; une version validée peut contenir des noms et ne peut plus être modifiée. Ces points sont à soumettre à un juriste (docs/14 §11).
 
 ---
 

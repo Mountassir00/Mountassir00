@@ -64,7 +64,7 @@ export function MobileApp() {
             <dt>Connexion</dt>
             <dd>{online ? 'en ligne' : 'hors ligne'}</dd>
             <dt>Données saisies</dt>
-            <dd>stockées dans ce navigateur (versions, portefeuille local, signaux) ; pas de synchronisation entre appareils</dd>
+            <dd>stockées dans ce navigateur (versions, portefeuille, signaux) ; avec un compte et une organisation, les versions et le portefeuille se synchronisent entre appareils (page <a href="#/compte">Compte et organisation</a>, dépend d’un serveur Supabase pas encore branché)</dd>
           </dl>
           <div className="row" style={{ marginTop: 12 }}>
             {pwaState.installPrompt && !standalone ? (

@@ -225,7 +225,7 @@ Les moteurs sont du TypeScript pur, déterministes (graine aléatoire), sans dé
 
 - **Objectif** : commentaires, rôles, historique partagé.
 - **Règles prévues** : 5 rôles (bureau, trésorerie, responsable événement, bénévole référent, partenaire en lecture) ; sécurité par ligne dans la base.
-- **Pour passer opérationnel** : base Postgres (schéma `db/schema.sql`) + authentification + remplacement de `useLocal` par le client de la base.
+- **Pour passer opérationnel** : base Postgres (schéma `supabase/migrations/`, socle v0.4 : rôles génériques, membres, invitations, versions partagées) + projet Supabase réel + remplacement des derniers `useLocal` par la couche `src/core/sync/`.
 
 ---
 

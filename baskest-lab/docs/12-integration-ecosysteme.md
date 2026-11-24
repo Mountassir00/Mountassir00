@@ -1,6 +1,6 @@
 # 12 — Intégration à l'écosystème digital Bask'Est
 
-> Code : `src/core/integration/contracts.ts` (connecteurs, garde-fou d'approbation), `src/core/scheduler/scheduler.ts` (`publicationPayload`), `db/schema.sql` (base partagée).
+> Code : `src/core/integration/contracts.ts` (connecteurs, garde-fou d'approbation), `src/core/scheduler/scheduler.ts` (`publicationPayload`), `supabase/migrations/` (base partagée, v0.4).
 > Interface : **Intégrations et validations** (`#/ecosysteme`), **Espaces collaboratifs** (`#/collaboratif`). Statut : dépend d'une intégration.
 
 Objectif (§20) : qu'un concept généré et validé devienne un **vrai projet** dans le dashboard administratif de l'association, et que les informations utiles partent vers les inscriptions, le budget, le planning, les ressources humaines et la communication — **sans** qu'aucune action sensible ne parte toute seule.
@@ -70,7 +70,7 @@ Les options ci-dessous sont des **options à évaluer**, pas des décisions. Les
 
 | Besoin | Option recommandée | Alternatives | Coût indicatif (à vérifier) | Pourquoi |
 |---|---|---|---|---|
-| Base partagée + authentification + rôles | Postgres managé type Supabase (schéma `db/schema.sql`) | Postgres auto-hébergé ; Firebase | offre gratuite pour démarrer ; offre payante ≈ quelques dizaines d'€/mois si besoin | SQL standard, sécurité par ligne (RLS), pas de serveur à maintenir |
+| Base partagée + authentification + rôles | Postgres managé type Supabase (schéma `supabase/migrations/`, socle v0.4) | Postgres auto-hébergé ; Firebase | offre gratuite pour démarrer ; offre payante ≈ quelques dizaines d'€/mois si besoin | SQL standard, sécurité par ligne (RLS), pas de serveur à maintenir |
 | Hébergement du dashboard | Hébergement statique (Netlify, Vercel, Cloudflare Pages, GitHub Pages) | Fichier HTML unique (`npm run build:demo`) | gratuit à l'échelle associative | L'application est statique |
 | Billetterie / inscriptions | Outils déjà utilisés par Bask'Est : HelloAsso (collectes) et Billetweb (ASG 2026) | — | HelloAsso : modèle à contribution volontaire du payeur ; Billetweb : commission par billet | Continuité, habitudes des publics |
 | Documents partagés | Google Drive / Workspace ou Notion | Nextcloud | offres associatives souvent gratuites ou réduites (à vérifier) | Diffusion des Blueprints (Word, PDF) |
@@ -111,5 +111,5 @@ Détail et coûts : `docs/16-roadmap.md`.
 
 - Les **charges utiles** (planning publiable, passation au dashboard administratif, lignes de budget) sont produites par les moteurs.
 - Le **garde-fou** d'approbation est codé et testé côté moteur.
-- Le **schéma de base** est fourni (`db/schema.sql`).
+- Le **schéma de base** est fourni (`supabase/migrations/`, testé localement par `npm run db:test`) ; il reste à l'appliquer sur un projet réel.
 - Les **exports fichiers** (Word, Excel, PowerPoint, PDF, CSV) permettent de travailler dès aujourd'hui avec les outils existants de l'association, sans attendre les intégrations.

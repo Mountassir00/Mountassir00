@@ -1,6 +1,15 @@
 # EVENT LAB (application) — espace Basket : BASK'EST LAB
 
-> **v0.3 (fusion, en cours, non publiée).** Ce dossier contient l'application unique **EVENT LAB** (conception : [event-lab/docs/11](../event-lab/docs/11-fusion-et-application.md)). Elle a deux espaces : *Basket — Bask'Est* (les modules d'origine décrits ci-dessous) et *Multisectoriel* (portefeuille, studio de configuration, générateur sur 70 briques, bibliothèque de briques), plus des modules communs (tableau de bord, registre des erreurs unifié, veille unifiée, application mobile). Le moteur générique d'EVENT LAB est porté en TypeScript dans [src/core/eventlab/](src/core/eventlab/) et lit les données d'`../event-lab/` sans copie ([src/data/eventlab.ts](src/data/eventlab.ts)). Le renommage du dossier (`baskest-lab/` → `event-lab/app/`) est reporté.
+> **v0.4 (socle SaaS, en cours, non publiée).** Comptes, organisations, rôles (lecteur, éditeur, administrateur, propriétaire), invitations, suppression du compte, synchronisation hors ligne d'abord des versions du studio et du portefeuille. Sans fichier `.env`, l'application reste en **mode local**, comme en v0.3. Schéma : [supabase/migrations/](supabase/migrations/) ; couche de données : [src/core/sync/](src/core/sync/) ; page « Compte et organisation » ; documentation et procédure pour brancher Supabase : [event-lab/docs/14](../event-lab/docs/14-socle-saas.md). **Rien n'a été testé contre un vrai projet Supabase** (statut « dépend d'une intégration »).
+>
+> ```bash
+> npm run db:test                # PostgreSQL local jetable + simulation de l'authentification Supabase : migrations, graine, 155 vérifications RLS
+> npm run db:seed:generate       # régénère supabase/seed.sql depuis ../event-lab (briques, erreurs, veille, portefeuille)
+> cp .env.example .env           # puis renseigner VITE_SUPABASE_URL et VITE_SUPABASE_ANON_KEY (clé publique) pour sortir du mode local
+> node scripts/screenshots-v04.cjs docs/screenshots/v0.4   # contrôles Playwright 1440/360 px (voir l'en-tête du script)
+> ```
+>
+> **v0.3 (fusion).** Ce dossier contient l'application unique **EVENT LAB** (conception : [event-lab/docs/11](../event-lab/docs/11-fusion-et-application.md)). Elle a deux espaces : *Basket — Bask'Est* (les modules d'origine décrits ci-dessous) et *Multisectoriel* (portefeuille, studio de configuration, générateur sur 70 briques, bibliothèque de briques), plus des modules communs (tableau de bord, registre des erreurs unifié, veille unifiée, application mobile). Le moteur générique d'EVENT LAB est porté en TypeScript dans [src/core/eventlab/](src/core/eventlab/) et lit les données d'`../event-lab/` sans copie ([src/data/eventlab.ts](src/data/eventlab.ts)). Le renommage du dossier (`baskest-lab/` → `event-lab/app/`) est reporté.
 >
 > ```bash
 > npx vitest run                 # tests : moteurs basket, moteur EVENT LAB (28 tests portés), non-régression du blueprint LA GRILLE 3x3, données unifiées
@@ -38,7 +47,7 @@ Prérequis : Node 20+, Python 3 avec `python-docx`, `openpyxl`, `python-pptx` po
 |---|---|---|---|
 | 1 | Architecture complète | [docs/01-architecture.md](docs/01-architecture.md) | Fait |
 | 2 | Cahier des charges fonctionnel | [docs/02-cahier-des-charges.md](docs/02-cahier-des-charges.md) | Fait |
-| 3 | Modèle de données | [docs/03-modele-de-donnees.md](docs/03-modele-de-donnees.md), [src/core/model.ts](src/core/model.ts), [db/schema.sql](db/schema.sql) | Fait (schéma validé sur PostgreSQL 16) |
+| 3 | Modèle de données | [docs/03-modele-de-donnees.md](docs/03-modele-de-donnees.md), [src/core/model.ts](src/core/model.ts), [supabase/migrations/](supabase/migrations/) (v0.4 ; [db/schema.sql](db/schema.sql) n'est plus qu'un renvoi) | Fait (schéma testé sur PostgreSQL 16 local, pas encore sur Supabase) |
 | 4 | Maquettes UX/UI | [docs/04-maquettes-ux-ui.md](docs/04-maquettes-ux-ui.md) + l'application | Fait |
 | 5 | Stratégie de veille | [docs/06-strategie-veille.md](docs/06-strategie-veille.md) | Fait (collecte automatique = intégration) |
 | 6 | Moteur de génération de concepts | [src/core/generator](src/core/generator), [docs/08-moteur-generation.md](docs/08-moteur-generation.md) | Opérationnel |
@@ -57,9 +66,9 @@ Prérequis : Node 20+, Python 3 avec `python-docx`, `openpyxl`, `python-pptx` po
 
 Compléments : observatoire des erreurs ([docs/07](docs/07-observatoire-erreurs.md)), recherche sourcée ([docs/research/](docs/research/)) : données publiques Bask'Est et salles de Nancy (R1), benchmark mondial 2025-2026 (R2), cadre réglementaire et financements (R3).
 
-## Le dashboard (24 modules en v0.3, dont 19 d'origine)
+## Le dashboard (25 modules en v0.4, dont 19 d'origine)
 
-Commun (tableau de bord, registre des erreurs unifié, veille et sources unifiée, application mobile) · Espace Basket : Pilotage (notation, projets et calendrier, analyse post-événement) · Veille (tendances, innovations) · Création (générateur, laboratoire, studio) · Simulation (salles, sportif, financier, programmation) · Production (bibliothèque des dossiers) · Écosystème (intégrations et validations, notifications, collaboratif) · Espace Multisectoriel (portefeuille, studio de configuration, générateur multisectoriel, bibliothèque de briques). Statut réel de chaque module : [src/ui/features.ts](src/ui/features.ts) et [docs/16-roadmap.md §1](docs/16-roadmap.md).
+Commun (tableau de bord, registre des erreurs unifié, veille et sources unifiée, application mobile, compte et organisation) · Espace Basket : Pilotage (notation, projets et calendrier, analyse post-événement) · Veille (tendances, innovations) · Création (générateur, laboratoire, studio) · Simulation (salles, sportif, financier, programmation) · Production (bibliothèque des dossiers) · Écosystème (intégrations et validations, notifications, collaboratif) · Espace Multisectoriel (portefeuille, studio de configuration, générateur multisectoriel, bibliothèque de briques). Statut réel de chaque module : [src/ui/features.ts](src/ui/features.ts) et [docs/16-roadmap.md §1](docs/16-roadmap.md).
 
 ## Règles du système
 

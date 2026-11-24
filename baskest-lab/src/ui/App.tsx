@@ -23,6 +23,8 @@ import { ConfigStudio } from './pages/ConfigStudio';
 import { MultiGenerator } from './pages/MultiGenerator';
 import { Blocks } from './pages/Blocks';
 import { MobileApp } from './pages/MobileApp';
+import { Account } from './pages/Account';
+import { SyncIndicator } from './SyncIndicator';
 
 const PAGES: Record<string, ComponentType> = {
   accueil: Home,
@@ -49,6 +51,7 @@ const PAGES: Record<string, ComponentType> = {
   'generateur-multi': MultiGenerator,
   briques: Blocks,
   application: MobileApp,
+  compte: Account,
 };
 
 function currentRoute() {
@@ -162,6 +165,7 @@ export function App() {
             <div className="brand-sub">Innovation événementielle</div>
           </div>
         </div>
+        <SyncIndicator />
         <NavLinks route={route} />
         <Legend theme={theme} setTheme={setTheme} />
       </nav>
@@ -173,6 +177,7 @@ export function App() {
             {space && space.id !== 'commun' ? `${space.label} · ` : ''}
             {current?.label}
           </span>
+          <SyncIndicator compact />
           <button ref={menuBtn} className="icon-btn" aria-expanded={menu} aria-controls="menu-mobile" onClick={() => setMenu(true)}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

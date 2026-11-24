@@ -84,6 +84,8 @@ Règles : encodage UTF-8, indentation 2 espaces, clés en `snake_case`, identifi
 
 ## 5. Schéma relationnel cible (V1, PostgreSQL)
 
+> Mise en œuvre v0.4 : `baskest-lab/supabase/migrations/` ([14-socle-saas.md](14-socle-saas.md)). Écarts avec l'esquisse ci-dessous : identifiants UUID générés sur l'appareil pour `events` et `event_versions` (slug unique par organisation), rôles génériques (`lecteur`, `editeur`, `administrateur`, `proprietaire`) au lieu de la liste de rôles métier, version figée protégée contre toute modification et suppression (archivage seul autorisé), historique de statut et journal d'audit en ajout seul, `venue`, `post_event_review` et `license_grant` non encore créés.
+
 Approche hybride : les objets métier riches restent en **JSONB validé** (souplesse, alignement avec les schémas), les éléments interrogés ou soumis à droits sont **relationnels**.
 
 ```sql

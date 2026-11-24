@@ -3,16 +3,17 @@
 > Hypothèse de travail : une association bénévole, peu de temps disponible, budget très limité. La feuille de route privilégie ce qui **produit des résultats réels** (données, tests terrain, partenaires) avant ce qui produit de la technique.
 > Les efforts sont exprimés en **jours de travail** (développement ou organisation) ; les coûts sont des **estimations** à vérifier. Si le développement est confié à un prestataire, compter un tarif journalier de marché (ordre de grandeur : plusieurs centaines d'euros par jour — estimation) ; s'il est fait par un bénévole compétent, le coût est surtout du temps.
 
-## 1. Matrice de statut des fonctionnalités (au 24/11/2026, v0.3 EVENT LAB en cours)
+## 1. Matrice de statut des fonctionnalités (au 24/11/2026, v0.4 EVENT LAB en cours, non publiée)
 
-Source de vérité : `src/ui/features.ts` (affichée dans l'interface). Depuis la v0.3, l'application s'intitule **EVENT LAB** et compte deux espaces (Basket — Bask'Est ; Multisectoriel) et des modules communs.
+Source de vérité : `src/ui/features.ts` (affichée dans l'interface). Depuis la v0.3, l'application s'intitule **EVENT LAB** et compte deux espaces (Basket — Bask'Est ; Multisectoriel) et des modules communs. La v0.4 ajoute le socle SaaS (comptes, organisations, rôles, synchronisation) : voir `event-lab/docs/14-socle-saas.md`. **Rien n'a été testé contre un vrai projet Supabase** : tout ce qui en dépend reste « dépend d'une intégration ».
 
 | Module | Espace / groupe | Statut | Ce qui manque pour l'étape suivante |
 |---|---|---|---|
 | Tableau de bord | Commun | Opérationnel | Données réelles 2026 |
 | Registre des erreurs (unifié : 45 cas BASK'EST + 28 fiches EVENT LAB → 59 entrées) | Commun | Opérationnel | Incidents réels de Bask'Est |
 | Veille et sources (unifiée : 50 + 70 sources → 111 domaines) | Commun | Prototype | Ingestion RSS/API, synthèses planifiées (v0.4) |
-| Application mobile (PWA) | Commun | Prototype | Tests sur téléphones réels ; enveloppe Android/iOS (Capacitor), comptes développeur, fiches magasin |
+| Application mobile (PWA) | Commun | Prototype | Tests sur téléphones réels ; enveloppe Android/iOS (Capacitor, v0.5), comptes développeur, fiches magasin |
+| Compte et organisation (v0.4) | Commun | Dépend d'une intégration | Projet Supabase en région UE créé par le porteur, essais de `docs/14` §10 étape 9 (connexion, invitations, synchronisation, suppression du compte) ; schéma et RLS testés seulement sur PostgreSQL local avec une simulation de l'authentification |
 | Tableau de notation | Basket — Pilotage | Opérationnel | Surcharges partagées (base commune) |
 | Projets et calendrier | Basket — Pilotage | Prototype | Base partagée + authentification |
 | Analyse post-événement | Basket — Pilotage | Opérationnel | Saisie des chiffres réels des éditions |
@@ -28,13 +29,13 @@ Source de vérité : `src/ui/features.ts` (affichée dans l'interface). Depuis l
 | Bibliothèque des dossiers | Basket — Production | Opérationnel | — |
 | Intégrations et validations | Basket — Écosystème | Dépend d'une intégration | Premier connecteur réel |
 | Notifications | Basket — Écosystème | Prototype | Push / e-mail |
-| Espaces collaboratifs | Basket — Écosystème | Dépend d'une intégration | Base partagée + rôles |
+| Espaces collaboratifs | Basket — Écosystème | Dépend d'une intégration | Socle v0.4 prêt (rôles, membres, versions partagées) mais non branché ; commentaires et projets basket partagés non réalisés |
 | Portefeuille multisectoriel | Multisectoriel | Opérationnel | Données réelles (confiance actuelle 0,30 à 0,37) |
-| Studio de configuration | Multisectoriel | Prototype | Versions partagées (base commune), édition de tous les champs, porte « pic d'occupation > effectif autorisé » (07 §1.5) |
+| Studio de configuration | Multisectoriel | Prototype | Versions partagées : couche de synchronisation v0.4 testée avec un faux serveur, à vérifier sur Supabase ; édition de tous les champs, porte « pic d'occupation > effectif autorisé » (07 §1.5) |
 | Générateur multisectoriel | Multisectoriel | Prototype | Contrôles de cohérence et réparation (07 §2.6), couche rédactionnelle (07 §2.9) |
 | Bibliothèque de briques | Multisectoriel | Opérationnel | Enrichissement par la veille |
 
-Bilan : **14 opérationnels, 8 prototypes, 2 dépendant d'une intégration** (24 modules). Avant la v0.3 : 12 opérationnels, 5 prototypes, 2 dépendant d'une intégration (19 modules).
+Bilan : **14 opérationnels, 8 prototypes, 3 dépendant d'une intégration** (25 modules). v0.3 : 14 opérationnels, 8 prototypes, 2 dépendant d'une intégration (24 modules). Avant la v0.3 : 12 opérationnels, 5 prototypes, 2 dépendant d'une intégration (19 modules).
 
 ## 2. P0 — Livré (aujourd'hui)
 
@@ -53,8 +54,8 @@ Limites assumées de P0 : stockage dans le navigateur, données réelles de l'as
 |---|---|---|---|---|
 | Saisie des données réelles : ASG 2026, Bask'Cup 2025-2026, King of the Court (s'il a eu lieu) | 2-3 j (association) | Billetweb, HelloAsso, comptes de l'association | 0 € | 100 % des champs « priorité 1 » renseignés |
 | Visite technique du Palais des Sports Jean-Weille + fiche de relevé (`docs/09`, §9) | 1 j (association) | RDV gestionnaire | 0 € | Accès, jauge, tarif de mise à disposition confirmés |
-| Base partagée + authentification + rôles (schéma `db/schema.sql`) | 5-8 j (dev) | Choix de l'hébergeur | offre gratuite au démarrage | 3 membres du bureau connectés |
-| Remplacement du stockage navigateur par la base (projets, concepts, approbations, audits) | 3-4 j (dev) | Base | — | Un projet créé sur un poste visible sur un autre |
+| Base partagée + authentification + rôles — **socle construit en v0.4** (`supabase/migrations/`, `docs/14` de `event-lab/`), reste à brancher sur un projet Supabase réel et à vérifier | 1-2 j (porteur + dev) | Projet Supabase en région UE | offre gratuite au démarrage | 3 membres du bureau connectés |
+| Remplacement du stockage navigateur par la base : versions du studio et portefeuille **faits en v0.4 (hors ligne d'abord)** ; projets, concepts basket, approbations, audits à faire | 3-4 j (dev) | Base | — | Un projet créé sur un poste visible sur un autre |
 | Déploiement du dashboard (hébergement statique) | 0,5 j (dev) | — | gratuit | URL privée accessible au bureau |
 | **Premier test terrain** d'un format (prototype) : ex. séance « Les Nocturnes » ou « Le Chardon » avec 8-16 joueurs | 1 j (association) | Gymnase, 4-6 bénévoles | < 200 € (estimation) | Questionnaire joueurs ≥ 8/10 ; durée réelle des matchs mesurée |
 | Recalage du simulateur sur les mesures du test (durée réelle, scores) | 1 j (dev) | Test terrain | — | Écart durée simulée / réelle < 15 % |
