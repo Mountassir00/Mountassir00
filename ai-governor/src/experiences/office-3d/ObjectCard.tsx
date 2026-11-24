@@ -35,7 +35,6 @@ export function describeTarget(
       status: a.kind === 'human' ? null : rt?.status ?? 'idle',
       hue: a.avatar.hue,
       rows: [
-        { k: 'Rôle', v: a.role },
         { k: 'Tâche en cours', v: task ? task.title : <span className="t-muted">Aucune</span> },
         { k: 'Emplacement', v: pl?.reason === 'lounge' ? 'Salon (disponible)' : `${dept?.name ?? '—'}${pl?.reason === 'task' ? ' · pour sa tâche' : ''}` },
         {
@@ -57,7 +56,7 @@ export function describeTarget(
               </span>
             ),
         },
-        { k: 'Dernier événement', v: rt?.lastEventTs ? fmtRelative(rt.lastEventTs, now) : <span className="t-muted">Aucun</span> },
+        { k: 'Activité', v: rt?.lastEventTs ? `dernier événement ${fmtRelative(rt.lastEventTs, now)}` : <span className="t-muted">Aucun événement</span> },
       ],
     };
   }
@@ -72,10 +71,9 @@ export function describeTarget(
     const engines = d.engineIds.map((id) => catalog.agents.find((a) => a.id === id)?.name).filter(Boolean).join(' · ');
     return {
       title: d.name,
-      type: `Département · ${d.group}`,
+      type: d.mission,
       status: aggregateStatus(state, d.engineIds),
       rows: [
-        { k: 'Mission', v: d.mission },
         { k: 'Moteurs', v: engines || '—' },
         { k: 'Tâche en cours', v: running[0] ? `${running[0].title}${running.length > 1 ? ` (+${running.length - 1})` : ''}` : <span className="t-muted">Aucune · {pending} en file</span> },
         {
@@ -139,7 +137,7 @@ export function describeTarget(
 
 export function ObjectCard({ info, actions, onClose, sheet }: { info: CardInfo; actions: RadialAction[]; onClose: () => void; sheet?: boolean }) {
   return (
-    <section className={`o3-card ${sheet ? 'o3-card--sheet' : ''}`} role="dialog" aria-label={`Fiche : ${info.title}`}>
+    <section className={`o3-card ${sheet ? "o3-card--sheet" : ""}`} role="region" aria-label={`Fiche : ${info.title}`}>
       {sheet && <div className="o3-card__grip" aria-hidden />}
       <header className="o3-card__head">
         {info.hue != null ? (

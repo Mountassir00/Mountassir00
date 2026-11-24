@@ -224,7 +224,7 @@ export function EditorScene({
       const pz = CAMERA_PRESETS[preset];
       stage.rig.setView({ azimuth: pz.azimuth, polar: pz.polar }, true);
       stage.rig.fit(scene.bounds, true);
-      stage.rig.setView({ distance: stage.rig.view.distance * (simplified ? 0.92 : 0.9) }, true);
+      stage.rig.setView({ distance: stage.rig.view.distance * (simplified ? 0.74 : 0.88) }, true);
       stage.rig.setHome(stage.rig.view);
     }
     setVersion((v) => v + 1);
@@ -288,7 +288,8 @@ export function EditorScene({
     stage.setHalo('select', b ? b.object : null);
     stage.invalidate();
   };
-  useEffect(syncGizmo);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(syncGizmo, [stage, version, selectedId, flagged, simplified]);
 
   /* ---------------- camera presets ---------------- */
   const firstPreset = useRef(true);
@@ -298,10 +299,18 @@ export function EditorScene({
       firstPreset.current = false;
       return;
     }
+    // compute the framed view of the new preset, then tween to it from where the camera is
     const pz = CAMERA_PRESETS[preset];
-    stage.rig.setView({ azimuth: pz.azimuth, polar: pz.polar });
-    stage.rig.setHome({ ...stage.rig.view, azimuth: pz.azimuth, polar: pz.polar });
-  }, [stage, preset, version]);
+    const before = stage.rig.view;
+    stage.rig.setView({ azimuth: pz.azimuth, polar: pz.polar }, true);
+    stage.rig.fit(live.current.scene.bounds, true);
+    stage.rig.setView({ distance: stage.rig.view.distance * (simplified ? 0.74 : 0.88) }, true);
+    const home = stage.rig.view;
+    stage.rig.setHome(home);
+    stage.rig.setView(before, true);
+    stage.rig.setView(home);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, preset]);
 
   /* ---------------- handle ---------------- */
   useEffect(() => {
@@ -548,7 +557,7 @@ export function EditorScene({
   const W = layout.room.width;
   const D = layout.room.depth;
   const dimFront = useMemo(() => new THREE.Vector3(0, 0, D / 2 + 0.9), [D]);
-  const dimSide = useMemo(() => new THREE.Vector3(W / 2 + 0.9, 0, 0), [W]);
+  const dimSide = useMemo(() => new THREE.Vector3(-W / 2 - 0.9, 0, 0), [W]);
 
   return (
     <div ref={wrap} className="se-scene" data-tool={tool} data-dragging={dragging || undefined}>

@@ -10,7 +10,7 @@
  *  - left click: object card (glass) · right click / long press / Menu key: radial menu
  *  - Tab: accessible list of every object (Enter opens its radial menu)
  */
-import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent as RKeyboardEvent } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as RKeyboardEvent, type ReactNode } from 'react';
 import { IconDecision, IconEye, IconEyeOff, IconFit, IconInfo, IconMoon, IconPause, IconPlay, IconSun, NatureBadge, Segmented } from '@ds';
 import {
   Anchored, FlowNetwork, SceneLabels, THREE, ThreeStage, bakeStatic, buildSpatialScene, createConsole, createDrone, createPerson, createRobot, hueColor, markStatic,
@@ -31,7 +31,7 @@ type G = InstanceType<typeof THREE.Group>;
 
 type CamPreset = 'cinematic' | 'iso' | 'top';
 const CAMS: Record<CamPreset, { azimuth: number; polar: number; dist: number; label: string }> = {
-  cinematic: { azimuth: 34, polar: 61, dist: 0.8, label: 'Cinématique' },
+  cinematic: { azimuth: 33, polar: 65, dist: 0.74, label: 'Cinématique' },
   iso: { azimuth: 40, polar: 50, dist: 0.92, label: '3/4' },
   top: { azimuth: 0, polar: 8, dist: 0.95, label: 'Plan' },
 };
@@ -141,6 +141,8 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
   const audit = useMemo(() => auditData(state), [state]);
   const stateRef = useRef(state);
   stateRef.current = state;
+  const flowsOn = useRef(showFlows);
+  flowsOn.current = showFlows;
   const boardData = useRef({ kanban, audit });
   boardData.current = { kanban, audit };
   const placements = useMemo(() => {
@@ -169,7 +171,7 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
     stage.clearContent();
     live.current?.flows.dispose();
     const kit = stage.kit;
-    const texW = tier === 'h' ? 448 : tier === 's' ? 384 : 256;
+    const texW = tier === 'l' ? 256 : 384; // two boards stay under the 1 MB content-texture budget
     const sceneLayout: SpatialLayout = { ...reconciled, room: { ...reconciled.room, walls: 'none' } };
     const scene = buildSpatialScene(stage, sceneLayout, {
       catalog,
@@ -291,7 +293,8 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
         const partner = partnerId ? L.figures.get(partnerId) : undefined;
         wants = setRobotStatus(f.object as Robot, f.status, t, { figure: fig, indicator: ind, partner: partner ? partnerPos.copy(partner.object.position) : null }) || wants;
       }
-      wants = L.flows.update(t, stage.amplitude('flow')) || wants;
+      // hidden flows never keep the loop alive
+      wants = (flowsOn.current ? L.flows.update(t, stage.amplitude('flow')) : false) || wants;
       return wants;
     });
     setBuildVersion((v) => v + 1);
@@ -304,6 +307,10 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
   }, [stage, reconciled, catalog, minimal, palette, wallHeight, ambiance, tier]);
 
   /* ---------------- data → scene ---------------- */
+  const drawn = useRef({ boards: '', minute: -1 });
+  useEffect(() => {
+    drawn.current = { boards: '', minute: -1 };
+  }, [buildVersion]);
   useEffect(() => {
     const L = live.current;
     if (!stage || !L) return;
@@ -374,12 +381,27 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
       const color = p.failed > 0 && p.failed >= p.count / 2 ? FLOW_COLORS.failed : p.llm >= p.tools && p.llm >= p.data ? FLOW_COLORS.llm : p.tools >= p.data ? FLOW_COLORS.tools : FLOW_COLORS.data;
       specs.push({ id: p.key, points: routeBetween(a, b, { bend: activeKeys.has(`${p.to}>${p.from}`) ? 0.22 : 0.12 }), color, active: true, level: Math.min(1, 0.35 + Math.log10(1 + p.count) / 1.6) });
     }
-    if (L.flows.set(specs)) changed = true;
-    L.flows.setVisible(showFlows);
-    for (const b of L.scene.prims.values()) b.board?.userData.redraw();
-    setClock(L.shell.clock, now);
+    // a new set of tubes is redrawn once; only a status / placement change earns an animation burst
+    let redraw = L.flows.set(specs);
+    if (L.flows.group.visible !== showFlows) {
+      L.flows.setVisible(showFlows);
+      redraw = true;
+    }
+    // boards and clock: redrawn only when what they show changed
+    const sig = JSON.stringify([kanban, audit]);
+    if (sig !== drawn.current.boards) {
+      drawn.current.boards = sig;
+      for (const b of L.scene.prims.values()) b.board?.userData.redraw();
+      redraw = true;
+    }
+    const minute = Math.floor(now / 60_000);
+    if (minute !== drawn.current.minute) {
+      drawn.current.minute = minute;
+      setClock(L.shell.clock, now);
+      redraw = true;
+    }
     if (changed) stage.burst(1600);
-    else stage.invalidate();
+    else if (redraw) stage.invalidate();
   }, [stage, buildVersion, state, placements, flows, showFlows, quality.motion, quality.reducedMotion, kanban, audit, now]);
 
   /* ---------------- camera preset changes ---------------- */
@@ -560,6 +582,12 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
 
   // Menu key / Shift+F10 on the canvas or a label
   const onKeyDown = (e: RKeyboardEvent) => {
+    if (e.key === 'Escape' && card && !radial && !e.defaultPrevented) {
+      e.preventDefault();
+      setCard(null);
+      host.announce('Fiche fermée');
+      return;
+    }
     if (!(e.key === 'ContextMenu' || (e.key === 'F10' && e.shiftKey))) return;
     const t = e.target as HTMLElement;
     let sel: PickSelection | null = null;
@@ -694,6 +722,7 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
             <SceneLabels
               stage={st}
               labels={labels}
+              hidden={!!radial}
               farDistance={mobile ? 18 : 26}
               onSelect={(sel) => setCard(sel)}
               avoid={() => (rootRef.current ? [...rootRef.current.querySelectorAll('.o3-avoid')] : [])}
@@ -707,10 +736,10 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
                 </div>
               </Anchored>
             )}
-            {cardInfo && card && !mobile && (
-              <Anchored stage={st} offsetY={18} position={() => worldOf(card) ?? [0, -40, 0]} className="o3-card-anchor">
-                <ObjectCard info={cardInfo} actions={actionsFor(card)} onClose={() => setCard(null)} />
-              </Anchored>
+            {cardInfo && card && !mobile && !radial && (
+              <SideAnchored stage={st} position={() => worldOf(card)} contentKey={selKey(card)}>
+                <ObjectCard info={cardInfo} actions={actionsFor(card).filter((a) => a.id !== 'decisions' && a.id !== 'edit')} onClose={() => setCard(null)} />
+              </SideAnchored>
             )}
           </>
         )}
@@ -830,6 +859,50 @@ export default function Office3D({ host, config, quality, device }: ExperiencePr
       <p className="sr-only" aria-live="off">
         {summary}
       </p>
+    </div>
+  );
+}
+
+/**
+ * Keeps the object card BESIDE its object (right of it, or left when there is
+ * no room), vertically centred and clamped inside the canvas below the HUD.
+ */
+function SideAnchored({ stage, position, children, contentKey }: { stage: Stage3D; position: () => V3 | null; children: ReactNode; contentKey: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const pos = useRef(position);
+  pos.current = position;
+  useEffect(() => {
+    const out = { x: 0, y: 0, visible: false, depth: 0 };
+    const place = () => {
+      const el = ref.current;
+      const p = pos.current();
+      if (!el) return;
+      if (!p) {
+        el.style.visibility = 'hidden';
+        return;
+      }
+      stage.project(p, out);
+      const w = el.offsetWidth;
+      const h = el.offsetHeight;
+      const W = stage.size.w;
+      const H = stage.size.h;
+      let x = out.x + 40;
+      if (x + w > W - 12) x = out.x - 40 - w;
+      x = Math.min(W - w - 12, Math.max(12, x));
+      const y = Math.min(H - h - 12, Math.max(58, out.y - h * 0.42));
+      el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+      el.style.visibility = out.visible ? 'visible' : 'hidden';
+    };
+    const off = stage.onFrame(place);
+    stage.invalidate();
+    return off;
+  }, [stage]);
+  useLayoutEffect(() => {
+    stage.invalidate();
+  }, [stage, contentKey, children]);
+  return (
+    <div ref={ref} className="o3-card-anchor" style={{ visibility: 'hidden' }}>
+      {children}
     </div>
   );
 }

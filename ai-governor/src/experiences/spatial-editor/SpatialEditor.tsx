@@ -282,45 +282,57 @@ export default function SpatialEditor({ host, config, quality, device }: Experie
     }
     if (mod) return;
     if (t.closest('[role="dialog"]')) return;
+    // keys handled here are marked (preventDefault) so the shell's global shortcuts skip them
+    const done = () => e.preventDefault();
     switch (k) {
       case 'delete':
       case 'backspace':
         if (selected) {
-          e.preventDefault();
+          done();
           actions.remove(selected.id);
         }
         break;
       case 'q':
       case 'e':
         if (selected) {
-          e.preventDefault();
+          done();
           actions.rotateTo(selected.id, selected.rotation.z + (k === 'q' ? 1 : -1) * (e.shiftKey ? 90 : 15));
         }
         break;
       case 'v':
+        done();
         setTool('select');
         host.announce('Outil Sélection');
         break;
       case 'm':
+        done();
         setTool('move');
         host.announce('Outil Déplacer');
         break;
       case 'r':
+        done();
         setTool('rotate');
         host.announce('Outil Pivoter');
         break;
-      case 'g':
-        setSnapOn((s) => !s);
+      case 's':
+        done();
+        setSnapOn((v) => {
+          host.announce(v ? 'Aimantation désactivée' : 'Aimantation activée');
+          return !v;
+        });
         break;
-      case 'p':
+      case 't':
+        done();
         togglePreset();
         break;
       case 'f':
+        done();
         if (selected) scene.current?.focus(selected.id);
         else scene.current?.fit();
         break;
       case 'escape':
         if (selected) {
+          done();
           setSelectedId(null);
           host.announce('Sélection retirée');
         }
@@ -471,13 +483,13 @@ export default function SpatialEditor({ host, config, quality, device }: Experie
               <span className="se-mdock__count" data-tone={errors ? 'error' : issues.length ? 'warn' : 'ok'}>{issues.length}</span>
               Problèmes
             </button>
-            <button type="button" className="se-mdock__btn" disabled={!dirty} onClick={revert}>
+            <button type="button" className="se-mdock__btn" disabled={!dirty} onClick={revert} aria-label="Annuler les modifications (revenir à la disposition publiée)">
               <IcoRedo size={18} style={{ transform: 'scaleX(-1)' }} />
-              Annuler les modif.
+              Annuler
             </button>
           </div>
         )}
-        <p className="se-mnote">Édition simplifiée sur téléphone : sélection, position et rotation au clavier ou par pas de grille. Glisser-déposer et poignée de rotation sur ordinateur.</p>
+        {!selected && !sheet && <p className="se-mnote">Sur téléphone : toucher un élément, puis régler sa position et sa rotation dans la fiche. Glisser-déposer sur ordinateur.</p>}
         <p className="sr-only">{summary}</p>
         {resetDialog}
       </div>
@@ -632,10 +644,10 @@ function Toolbar({
         ))}
       </div>
       <span className="se-toolbar__sep" aria-hidden />
-      <button type="button" className="se-tool" aria-pressed={preset === 'top'} onClick={togglePreset} title={preset === 'top' ? 'Vue 3/4 (P)' : 'Vue plan (P)'} aria-label={preset === 'top' ? 'Passer en vue 3/4 (P)' : 'Passer en vue plan (P)'}>
+      <button type="button" className="se-tool" aria-pressed={preset === 'top'} onClick={togglePreset} title={preset === 'top' ? 'Vue 3/4 (T)' : 'Vue plan (T)'} aria-label={preset === 'top' ? 'Passer en vue 3/4 (T)' : 'Passer en vue plan (T)'}>
         {preset === 'top' ? <IcoCube /> : <IcoPlan />}
       </button>
-      <button type="button" className="se-tool se-tool--text" aria-pressed={snapOn} onClick={() => setSnapOn(!snapOn)} title="Aimanter à la grille (G)" aria-label={`Aimanter à la grille de ${String(step).replace('.', ',')} m (G)`}>
+      <button type="button" className="se-tool se-tool--text" aria-pressed={snapOn} onClick={() => setSnapOn(!snapOn)} title="Aimanter à la grille (S)" aria-label={`Aimanter à la grille de ${String(step).replace('.', ',')} m (S)`}>
         <IcoGrid />
         <span>{String(step).replace('.', ',')} m</span>
       </button>

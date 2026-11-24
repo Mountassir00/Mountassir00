@@ -51,7 +51,7 @@
 .o3-tip span { color: var(--c-ink-muted); font-weight: 600; }
 
 /* object card (glass) */
-.o3-card-anchor { pointer-events: auto; z-index: 40; }
+.o3-card-anchor { position: absolute; left: 0; top: 0; z-index: 40; pointer-events: auto; will-change: transform; }
 .o3-card {
   width: 300px; padding: 12px 12px 12px 14px; border-radius: 22px; color: var(--c-ink);
   background: color-mix(in oklab, var(--c-raised) 74%, transparent); border: 1px solid color-mix(in oklab, #ffffff 55%, var(--c-line));
@@ -69,7 +69,7 @@ html[data-motion='none'] .o3-card, html[data-motion='state'] .o3-card { animatio
 .o3-avatar--prim { border-radius: 11px; background: linear-gradient(135deg, color-mix(in oklab, var(--c-accent) 70%, #fff), var(--c-accent)); box-shadow: none; }
 .o3-card__status { margin: 8px 0 2px; }
 .o3-card__kv { margin: 6px 0 0; display: grid; gap: 5px; font-size: 0.78rem; }
-.o3-card__kv > div { display: grid; grid-template-columns: 100px 1fr; gap: 8px; }
+.o3-card__kv > div { display: grid; grid-template-columns: 96px 1fr; gap: 8px; }
 .o3-card__kv dt { color: var(--c-ink-muted); }
 .o3-card__kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .o3-usage { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }

@@ -95,10 +95,11 @@ function rampTexture(stage: Stage3D) {
 
 function plaqueTexture(stage: Stage3D, pal: ScenePalette) {
   const c = document.createElement('canvas');
-  c.width = 512;
-  c.height = 96;
+  c.width = 384;
+  c.height = 72;
   const g = c.getContext('2d')!;
   const dark = pal.scheme === 'dark';
+  g.scale(0.75, 0.75);
   g.fillStyle = dark ? '#151922' : '#ffffff';
   g.beginPath();
   g.roundRect(0, 0, 512, 96, 18);
@@ -197,7 +198,7 @@ export function buildShell(stage: Stage3D, opts: ShellOptions): Shell {
   group.add(statics);
 
   // walls read against the floor: a touch darker / warmer than the floor in light themes, lifted in dark ones
-  const wallCol = dark ? pal.slab.clone().lerp(pal.raised, 0.55) : pal.floor.clone().lerp(new THREE.Color('#d9dbe2'), 0.55);
+  const wallCol = dark ? pal.slab.clone().lerp(pal.raised, 0.85) : pal.floor.clone().lerp(new THREE.Color('#d9dbe2'), 0.55);
   const mats = {
     wall: kit.matte(`#${wallCol.getHexString()}`, 0.92),
     frame: kit.plastic(dark ? '#0e1117' : '#3a404c', { roughness: 0.35, clearcoat: 0.4 }),
@@ -288,8 +289,8 @@ export function buildShell(stage: Stage3D, opts: ShellOptions): Shell {
     // sun patches on the floor (day) / cool window glow (evening)
     const ramp = rampTexture(stage);
     const patchMat = owned(new THREE.MeshBasicMaterial({
-      color: amb === 'day' ? '#fff1cf' : '#8fa2ff', alphaMap: ramp, transparent: true, depthWrite: false, toneMapped: false,
-      opacity: amb === 'day' ? (dark ? 0.16 : 0.55) : dark ? 0.12 : 0.18, blending: dark ? THREE.AdditiveBlending : THREE.NormalBlending,
+      color: amb === 'day' ? '#ffe3a1' : '#8fa2ff', alphaMap: ramp, transparent: true, depthWrite: false, toneMapped: false,
+      opacity: amb === 'day' ? (dark ? 0.18 : 0.42) : dark ? 0.12 : 0.18, blending: dark ? THREE.AdditiveBlending : THREE.NormalBlending,
     }));
     const len = Math.min(2.8, D * 0.25);
     for (const x of backSlots) {
@@ -307,6 +308,15 @@ export function buildShell(stage: Stage3D, opts: ShellOptions): Shell {
       group.add(m);
     }
   }
+
+  // soft darker ground around the room so the closed room reads as one object (under the faded grid)
+  const apron = new THREE.Mesh(kit.disc(Math.max(W, D) * 1.25, 48), owned(new THREE.MeshBasicMaterial({
+    color: dark ? '#000000' : pal.floor.clone().lerp(new THREE.Color('#aab1c0'), 0.55), map: kit.gradient(), transparent: true, depthWrite: false, toneMapped: false,
+    opacity: dark ? 0.5 : 0.75,
+  })));
+  apron.position.y = -0.085;
+  apron.renderOrder = -2;
+  group.add(apron);
 
   markStatic(statics);
   bakeStatic(statics);

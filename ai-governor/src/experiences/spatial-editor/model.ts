@@ -4,7 +4,7 @@
  * element library and placement helpers. No React, no Three.js.
  */
 import type { Catalog } from '@sdk';
-import { PRIMITIVE_LABEL, type PrimitiveKind, type SpatialLayout, type SpatialPrimitive } from '@ds/three';
+import { PRIMITIVE_LABEL, reconcileLayout, type PrimitiveKind, type SpatialLayout, type SpatialPrimitive } from '@ds/three';
 
 export const DEG = Math.PI / 180;
 const BOARDS: PrimitiveKind[] = ['kanban', 'whiteboard', 'board'];
@@ -150,8 +150,11 @@ export function validate(layout: SpatialLayout, catalog: Catalog): Validation {
       } else seenDept.set(b.id, p.id);
     }
   }
-  for (const d of catalog.departments) {
-    if (!seenDept.has(d.id)) issues.push({ id: `miss:${d.id}`, kind: 'missing', dept: d.id, text: `${d.name} n’a pas de poste : les vues 3D en ajouteront un automatiquement` });
+  // departments without a station: exactly those the 3D views will add on their own (reconcileLayout)
+  for (const p of reconcileLayout(layout, catalog).primitives) {
+    if (!p.tags?.includes('auto') || p.binding?.kind !== 'department') continue;
+    const d = catalog.departments.find((x) => x.id === p.binding!.id);
+    issues.push({ id: `miss:${p.binding.id}`, kind: 'missing', dept: p.binding.id, text: `${d?.name ?? p.binding.id} n’a pas de poste : les vues 3D en ajouteront un automatiquement` });
   }
   return { issues, flagged };
 }
