@@ -121,7 +121,10 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
   const agendaSig = JSON.stringify(agenda);
 
   const qualityTier = quality.level === 'high' ? 'h' : quality.level === 'standard' ? 's' : 'l';
-  const insets = useMemo(() => ({ left: showList && !phone ? 266 : 0, top: phone ? 40 : 48 }), [showList, phone]);
+  const portrait = phone || width < 560;
+  const insetLeft = showList && !phone ? 266 : 0;
+  const insetTop = phone ? 70 : 48;
+  const insets = useMemo(() => ({ left: insetLeft, top: insetTop, portrait }), [insetLeft, insetTop, portrait]);
   const insetsRef = useRef(insets);
   insetsRef.current = insets;
   useEffect(() => {
@@ -166,7 +169,13 @@ export default function HQ3D({ host, config, quality, device }: ExperienceProps)
   }, [ctl, quality, evening]);
 
   /* ---------------- data → scene ---------------- */
-  const placements = useMemo(() => computePlacements(state, catalog, building), [state, catalog, building]);
+  // previous result: agents keep their post while they stay in a room
+  const prevPlacements = useRef<Map<string, Placement> | undefined>(undefined);
+  const placements = useMemo(() => {
+    const next = computePlacements(state, catalog, building, prevPlacements.current);
+    prevPlacements.current = next;
+    return next;
+  }, [state, catalog, building]);
   const statuses = useMemo(() => {
     const m = new Map<string, FigureStatus>();
     for (const a of catalog.agents) {

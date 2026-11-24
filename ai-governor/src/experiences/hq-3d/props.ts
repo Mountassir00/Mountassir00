@@ -31,10 +31,10 @@ export function createTreadmill(kit: MaterialKit, tone: ColorLike): THREE.Group 
   g.name = 'treadmill';
   const dark = kit.plastic('#22262f', { roughness: 0.35, clearcoat: 0.5 });
   merged(kit, g, 'tread:base', dark, () => [
-    { geometry: kit.roundedBox(0.82, 0.12, 1.75, 0.05), position: [0, 0.06, 0] },
-    { geometry: kit.roundedBox(0.07, 1.15, 0.07, 0.03), position: [-0.36, 0.62, -0.72], rotation: [0.18, 0, 0] },
-    { geometry: kit.roundedBox(0.07, 1.15, 0.07, 0.03), position: [0.36, 0.62, -0.72], rotation: [0.18, 0, 0] },
-    { geometry: kit.roundedBox(0.8, 0.26, 0.16, 0.05), position: [0, 1.18, -0.84], rotation: [-0.5, 0, 0] },
+    { geometry: kit.roundedBox(0.82, 0.12, 1.75, 0.05, 2), position: [0, 0.06, 0] },
+    { geometry: kit.roundedBox(0.07, 1.15, 0.07, 0.03, 2), position: [-0.36, 0.62, -0.72], rotation: [0.18, 0, 0] },
+    { geometry: kit.roundedBox(0.07, 1.15, 0.07, 0.03, 2), position: [0.36, 0.62, -0.72], rotation: [0.18, 0, 0] },
+    { geometry: kit.roundedBox(0.8, 0.26, 0.16, 0.05, 2), position: [0, 1.18, -0.84], rotation: [-0.5, 0, 0] },
   ]);
   add(g, kit.roundedBox(0.62, 0.025, 1.45, 0.012, 1), kit.matte('#3a3f4a', 0.9), [0, 0.13, 0.08], [0, 0, 0], { cast: false });
   merged(kit, g, 'tread:rails', kit.metal('chrome'), () => [
@@ -50,9 +50,9 @@ export function createWeightRack(kit: MaterialKit, tone: ColorLike): THREE.Group
   const g = new THREE.Group();
   g.name = 'weight-rack';
   merged(kit, g, 'rack:frame', kit.metal('dark'), () => [
-    { geometry: kit.roundedBox(1.3, 0.05, 0.42, 0.02), position: [0, 0.03, 0] },
-    { geometry: kit.roundedBox(0.06, 1.0, 0.06, 0.02), position: [-0.6, 0.5, 0] },
-    { geometry: kit.roundedBox(0.06, 1.0, 0.06, 0.02), position: [0.6, 0.5, 0] },
+    { geometry: kit.roundedBox(1.3, 0.05, 0.42, 0.02, 2), position: [0, 0.03, 0] },
+    { geometry: kit.roundedBox(0.06, 1.0, 0.06, 0.02, 2), position: [-0.6, 0.5, 0] },
+    { geometry: kit.roundedBox(0.06, 1.0, 0.06, 0.02, 2), position: [0.6, 0.5, 0] },
     { geometry: kit.cylinder(0.022, 0.022, 1.32, 10), position: [0, 0.92, 0], rotation: [0, 0, Math.PI / 2] },
     { geometry: kit.cylinder(0.018, 0.018, 1.2, 10), position: [0, 0.5, 0.05], rotation: [0, 0, Math.PI / 2] },
   ]);
@@ -69,7 +69,7 @@ export function createWeightRack(kit: MaterialKit, tone: ColorLike): THREE.Group
 export function createTableFootball(kit: MaterialKit): THREE.Group {
   const g = new THREE.Group();
   g.name = 'table-football';
-  add(g, kit.roundedBox(1.25, 0.24, 0.72, 0.04), kit.wood('oak'), [0, 0.8, 0]);
+  add(g, kit.roundedBox(1.25, 0.24, 0.72, 0.04, 2), kit.wood('oak'), [0, 0.8, 0]);
   add(g, kit.roundedBox(1.12, 0.02, 0.6, 0.01, 1), kit.matte('#3f9a5b', 0.8), [0, 0.92, 0], [0, 0, 0], { cast: false });
   merged(kit, g, 'foot:legs', kit.metal('dark'), () =>
     ([[-0.55, -0.3], [0.55, -0.3], [-0.55, 0.3], [0.55, 0.3]] as Array<[number, number]>).map(([x, z]) => ({ geometry: kit.roundedBox(0.07, 0.7, 0.07, 0.02, 1), position: [x, 0.35, z] as V3 })),
@@ -84,8 +84,8 @@ export function createTableFootball(kit: MaterialKit): THREE.Group {
 export function createBar(kit: MaterialKit, tone: ColorLike, width = 2.2): THREE.Group {
   const g = new THREE.Group();
   g.name = 'bar';
-  add(g, kit.roundedBox(width, 1.0, 0.55, 0.05), kit.plastic(tone, { roughness: 0.5, clearcoat: 0.2 }), [0, 0.5, 0]);
-  add(g, kit.roundedBox(width + 0.12, 0.05, 0.68, 0.02), kit.wood('oak'), [0, 1.03, 0.04]);
+  add(g, kit.roundedBox(width, 1.0, 0.55, 0.05, 2), kit.plastic(tone, { roughness: 0.5, clearcoat: 0.2 }), [0, 0.5, 0]);
+  add(g, kit.roundedBox(width + 0.12, 0.05, 0.68, 0.02, 2), kit.wood('oak'), [0, 1.03, 0.04]);
   merged(kit, g, `bar:stools:${width}`, kit.metal('dark'), () =>
     [-1, 0, 1].flatMap((i) => [
       { geometry: kit.cylinder(0.025, 0.025, 0.7, 8), position: [i * (width / 3), 0.35, 0.6] as V3 },
@@ -94,7 +94,7 @@ export function createBar(kit: MaterialKit, tone: ColorLike, width = 2.2): THREE
   );
   merged(kit, g, `bar:seats:${width}`, kit.plastic('#f1f1f3', { roughness: 0.55 }), () => [-1, 0, 1].map((i) => ({ geometry: kit.cylinder(0.19, 0.17, 0.06, 18), position: [i * (width / 3), 0.73, 0.6] as V3 })));
   // espresso machine
-  add(g, kit.roundedBox(0.36, 0.32, 0.3, 0.04), kit.metal('brushed'), [-width / 2 + 0.35, 1.22, -0.06]);
+  add(g, kit.roundedBox(0.36, 0.32, 0.3, 0.04, 2), kit.metal('brushed'), [-width / 2 + 0.35, 1.22, -0.06]);
   return g;
 }
 
@@ -104,10 +104,10 @@ export function createReceptionDesk(kit: MaterialKit, tone: ColorLike): THREE.Gr
   g.name = 'reception-desk';
   const shell = kit.plastic('#f4f5f8', { roughness: 0.35 });
   merged(kit, g, 'rec:body', shell, () => [
-    { geometry: kit.roundedBox(2.4, 1.05, 0.5, 0.08), position: [0, 0.525, 0] },
-    { geometry: kit.roundedBox(0.5, 1.05, 1.1, 0.08), position: [-1.2, 0.525, 0.35] },
+    { geometry: kit.roundedBox(2.4, 1.05, 0.5, 0.08, 2), position: [0, 0.525, 0] },
+    { geometry: kit.roundedBox(0.5, 1.05, 1.1, 0.08, 2), position: [-1.2, 0.525, 0.35] },
   ]);
-  add(g, kit.roundedBox(2.5, 0.05, 0.62, 0.02), kit.wood('oak'), [0, 1.08, 0]);
+  add(g, kit.roundedBox(2.5, 0.05, 0.62, 0.02, 2), kit.wood('oak'), [0, 1.08, 0]);
   add(g, kit.roundedBox(2.36, 0.05, 0.02, 0.01, 1), kit.emissive(tone), [0, 0.32, -0.26], [0, 0, 0], { cast: false });
   // screen for the receptionist
   add(g, kit.roundedBox(0.5, 0.31, 0.025, 0.01, 1), kit.plastic('#1b1f28', { roughness: 0.25 }), [0.5, 1.3, 0.12], [0, Math.PI, 0]);
@@ -119,7 +119,7 @@ export function createReceptionDesk(kit: MaterialKit, tone: ColorLike): THREE.Gr
 export function createMeetingTable(kit: MaterialKit, length = 3.4): THREE.Group {
   const g = new THREE.Group();
   g.name = 'meeting-table';
-  add(g, kit.roundedBox(length, 0.06, 1.15, 0.04), kit.wood('walnut'), [0, 0.74, 0]);
+  add(g, kit.roundedBox(length, 0.06, 1.15, 0.04, 2), kit.wood('walnut'), [0, 0.74, 0]);
   merged(kit, g, `meet:legs:${length}`, kit.metal('dark'), () => [
     { geometry: kit.roundedBox(0.08, 0.72, 0.8, 0.02, 1), position: [-length / 2 + 0.35, 0.36, 0] },
     { geometry: kit.roundedBox(0.08, 0.72, 0.8, 0.02, 1), position: [length / 2 - 0.35, 0.36, 0] },
@@ -159,7 +159,28 @@ export function createWallScreen(kit: MaterialKit): THREE.Group {
 /** Low cabinet (desk side, archives…), front at +Z. */
 export function createCabinet(kit: MaterialKit, tone: ColorLike, w = 1.2): THREE.Group {
   const g = new THREE.Group();
-  add(g, kit.roundedBox(w, 0.72, 0.45, 0.04), kit.plastic('#f2f3f6', { roughness: 0.4 }), [0, 0.36, 0]);
+  add(g, kit.roundedBox(w, 0.72, 0.45, 0.04, 2), kit.plastic('#f2f3f6', { roughness: 0.4 }), [0, 0.36, 0]);
   add(g, kit.geo(`hq:cab:handles:${w}`, () => mergeParts([-1, 1].map((s) => ({ geometry: kit.roundedBox(0.16, 0.02, 0.02, 0.008, 1), position: [s * w * 0.25, 0.55, 0.235] as V3 })))), kit.plastic(tone, { roughness: 0.4 }));
+  return g;
+}
+
+/**
+ * Light workstation (≈ 150 triangles instead of ≈ 3 000 for the kit's desk
+ * equipment): table, legs, monitor, and a privacy panel in the pole's tone.
+ * The user stands on the +Z side, the screen faces +Z.
+ */
+export function createWorkstation(kit: MaterialKit, tone: ColorLike): THREE.Group {
+  const g = new THREE.Group();
+  g.name = 'workstation';
+  add(g, kit.roundedBox(1.25, 0.05, 0.66, 0.02, 1), kit.wood('oak'), [0, 0.74, 0]);
+  merged(kit, g, 'ws:legs', kit.metal('dark'), () => [
+    { geometry: kit.box(0.05, 0.72, 0.56), position: [-0.56, 0.36, 0] },
+    { geometry: kit.box(0.05, 0.72, 0.56), position: [0.56, 0.36, 0] },
+    { geometry: kit.box(0.04, 0.2, 0.04), position: [0, 0.86, -0.18] },
+  ]);
+  add(g, kit.box(0.56, 0.33, 0.03), kit.plastic('#1b1f28', { roughness: 0.25 }), [0, 1.11, -0.2]);
+  add(g, kit.plane(0.52, 0.29), kit.screen(), [0, 1.11, -0.184], [0, 0, 0], { cast: false });
+  add(g, kit.roundedBox(1.25, 0.42, 0.04, 0.02, 1), kit.plastic(tone, { roughness: 0.7, clearcoat: 0.05 }), [0, 0.98, -0.34]);
+  add(g, kit.box(0.34, 0.015, 0.12), kit.plastic('#f2f3f6', { roughness: 0.4 }), [0.05, 0.775, 0.1]);
   return g;
 }

@@ -40,7 +40,12 @@ export function homeSpace(b: Building, a: AgentDef): Space | undefined {
   return b.reception ?? b.spaces[0];
 }
 
-export function computePlacements(state: Pick<GovernorState, 'agents' | 'tasks'>, catalog: Pick<Catalog, 'agents'>, b: Building): Map<string, Placement> {
+/**
+ * `prev` = the previous result: an agent who stays in the same room keeps its
+ * post (nobody shuffles when someone else arrives or leaves); newcomers take
+ * the first free post — in the meeting room, next to a colleague on the same task.
+ */
+export function computePlacements(state: Pick<GovernorState, 'agents' | 'tasks'>, catalog: Pick<Catalog, 'agents'>, b: Building, prev?: Map<string, Placement>): Map<string, Placement> {
   const out = new Map<string, Placement>();
   const robots: Array<{ a: AgentDef; space: Space; reason: Reason; taskId?: string; order: number }> = [];
   catalog.agents.forEach((a, order) => {
@@ -81,9 +86,36 @@ export function computePlacements(state: Pick<GovernorState, 'agents' | 'tasks'>
     l.push(r);
     bySpace.set(r.space.id, l);
   }
-  for (const [, list] of bySpace) {
+  for (const [spaceId, list] of bySpace) {
     list.sort((x, y) => (x.reason === 'meeting' && y.reason === 'meeting' ? (x.taskId ?? '~').localeCompare(y.taskId ?? '~') : 0) || x.order - y.order);
-    list.forEach((r, i) => out.set(r.a.id, { spaceId: r.space.id, slot: i, kind: 'post', reason: r.reason, taskId: r.taskId }));
+    const taken = new Set<number>();
+    const slots = new Map<string, number>();
+    for (const r of list) {
+      const p = prev?.get(r.a.id);
+      if (p && p.spaceId === spaceId && p.kind === 'post' && !taken.has(p.slot)) {
+        taken.add(p.slot);
+        slots.set(r.a.id, p.slot);
+      }
+    }
+    for (const r of list) {
+      if (slots.has(r.a.id)) continue;
+      let slot = -1;
+      if (r.reason === 'meeting' && r.taskId) {
+        for (const o of list) {
+          const s0 = o !== r && o.taskId === r.taskId ? slots.get(o.a.id) : undefined;
+          if (s0 == null) continue;
+          slot = [s0 + 1, s0 - 1, s0 + 2, s0 - 2].find((c) => c >= 0 && !taken.has(c)) ?? -1;
+          if (slot >= 0) break;
+        }
+      }
+      if (slot < 0) {
+        slot = 0;
+        while (taken.has(slot)) slot++;
+      }
+      taken.add(slot);
+      slots.set(r.a.id, slot);
+    }
+    for (const r of list) out.set(r.a.id, { spaceId, slot: slots.get(r.a.id)!, kind: 'post', reason: r.reason, taskId: r.taskId });
   }
   // fixed devices
   const devCount = new Map<string, number>();

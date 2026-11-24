@@ -174,7 +174,9 @@ export function planBuilding(catalog: Pick<Catalog, 'departments' | 'nodes'>): B
       wingDrafts.set(w, []);
       wingOrder.push(w);
     }
-    wingDrafts.get(w)!.push({ id: `d-${d.id}`, role: 'department', name: d.name, caption: `Pôle ${w}`, wing: w, dept: d, tone: d.tone, equipment: d.equipment, weight: 1 });
+    // one floor tone per wing (its first department's tone): the poles read at a glance
+    const wingTone = wingDrafts.get(w)![0]?.tone ?? d.tone;
+    wingDrafts.get(w)!.push({ id: `d-${d.id}`, role: 'department', name: d.name, caption: `Pôle ${w}`, wing: w, dept: d, tone: wingTone, equipment: d.equipment, weight: 1 });
   }
   const commons: Draft[] = [
     { id: 'meeting', role: 'meeting', name: 'Salle de réunion', caption: 'Collaborations sur une même tâche', wing: COMMONS_WING, tone: 'p3', equipment: ['meeting', 'board'], weight: 1 },

@@ -17,6 +17,7 @@ import {
 } from './plan';
 import {
   createBar, createCabinet, createFloorLamp, createMeetingTable, createReceptionDesk, createRug, createTableFootball, createTreadmill, createWallScreen, createWeightRack,
+  createWorkstation,
 } from './props';
 
 export interface Spot {
@@ -110,7 +111,7 @@ function floorColor(kit: MaterialKit, s: Space): THREE.Color {
     case 'reception':
       return surfaceTint(kit, p.tone[s.tone] ?? p.accent, 0.14);
     default:
-      return surfaceTint(kit, p.tone[s.tone] ?? p.accent, 0.2);
+      return surfaceTint(kit, p.tone[s.tone] ?? p.accent, kit.dark ? 0.24 : 0.26);
   }
 }
 
@@ -214,8 +215,10 @@ export function buildHQ(stage: Stage3D, b: Building, opts: BuildOptions): HQScen
 
   /* ---------------- rooms ---------------- */
   const rooms = new Map<string, Furnished>();
+  // plants are costly (≈ 2 k triangles): one per wing, plus the common spaces
+  const greenery = new Set(b.wings.map((w) => w.spaceIds[0]));
   for (const s of b.spaces) {
-    const f = furnish(stage, s, opts);
+    const f = furnish(stage, s, opts, s.role !== 'department' || greenery.has(s.id));
     root.add(f.group);
     rooms.set(s.id, f);
   }
@@ -253,10 +256,10 @@ export function buildHQ(stage: Stage3D, b: Building, opts: BuildOptions): HQScen
 /* Furnishing                                                           */
 /* ------------------------------------------------------------------ */
 
-function furnish(stage: Stage3D, s: Space, opts: BuildOptions): Furnished & { group: THREE.Group } {
+function furnish(stage: Stage3D, s: Space, opts: BuildOptions, plants: boolean): Furnished & { group: THREE.Group } {
   const kit = stage.kit;
   const pal = kit.palette;
-  const tone = pal.tone[s.tone] ?? pal.accent;
+  const tone = pal.tone[s.dept?.tone ?? s.tone] ?? pal.accent;
   const w = s.rect.x1 - s.rect.x0;
   const d = ROOM_DEPTH;
   const flip = s.doorSide < 0;
@@ -284,7 +287,7 @@ function furnish(stage: Stage3D, s: Space, opts: BuildOptions): Furnished & { gr
   let seat: Spot | undefined;
   let board: GlassBoard | undefined;
   const plantCorner = () => {
-    if (opts.simplified) return;
+    if (opts.simplified || !plants) return;
     const px = doorX > 0 ? -w / 2 + 0.5 : w / 2 - 0.5;
     put(createPlant(kit), px, d / 2 - 0.5, 0, 0.3);
   };
@@ -374,7 +377,7 @@ function furnish(stage: Stage3D, s: Space, opts: BuildOptions): Furnished & { gr
         // executive: big desk facing the door (seat behind it), board + round table
         const dx = w / 4 + 0.1;
         const dz = -0.75;
-        const desk = createDesk(kit, { laptop: true, monitors: 1, chair: true, plant: !opts.simplified, width: 1.9 });
+        const desk = createDesk(kit, { laptop: true, monitors: 1, chair: true, plant: false, width: 1.9 });
         put(desk, dx, dz, Math.PI, 1.0);
         seat = world(dx + 0.15, dz - 0.86, 0);
         const mx = -w / 4 + 0.05;
@@ -394,8 +397,7 @@ function furnish(stage: Stage3D, s: Space, opts: BuildOptions): Furnished & { gr
         // three workstations facing the back wall
         const sp = Math.min(1.85, (w - 1.5) / 2);
         for (let i = -1; i <= 1; i++) {
-          put(createEquipment(kit, 'desk', tone), i * sp, 0.35, 0, 0.55);
-          if (!opts.simplified) put(createChair(kit), i * sp, 1.15, Math.PI).scale.setScalar(0.85);
+          put(createWorkstation(kit, surfaceTint(kit, tone, kit.dark ? 0.5 : 0.45)), i * sp, 0.35, 0, 0.55);
           posts.push(world(i * sp + 0.38, 1.0, Math.PI - 0.25));
         }
         // more places near the features (busy rooms)

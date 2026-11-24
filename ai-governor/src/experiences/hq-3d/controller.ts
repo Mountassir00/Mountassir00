@@ -69,6 +69,8 @@ export interface FlowPairSpec {
 }
 
 const EYE = 1.55;
+/** Robots a little larger than in the office views: they must read from the overview. */
+const ROBOT_SCALE = 1.2;
 const FPV_DIST = 0.4;
 const OVERVIEW_FOV = 30;
 const VISIT_FOV = 60;
@@ -96,6 +98,7 @@ export class HQController {
   private listeners: Array<() => void> = [];
   private fp = { x: 0, z: 0, az: 0, polar: 88 * DEG };
   private keys = new Set<string>();
+  private lastStepAt = 0;
   private walk: { pts: P2[]; cum: number[]; len: number; t0: number; dur: number; endAz: number | null } | null = null;
   private fov: { from: number; to: number; t0: number; ms: number } | null = null;
   private drag: { id: number; x: number; y: number; sx: number; sy: number; type: string; moved: boolean; t: number } | null = null;
@@ -144,7 +147,7 @@ export class HQController {
       let object: THREE.Group;
       let kind: Fig['kind'];
       if (def.kind === 'llm') {
-        object = createRobot(kit, { color, accessory: def.avatar.accessory, scale: 1 });
+        object = createRobot(kit, { color, accessory: def.avatar.accessory, scale: ROBOT_SCALE });
         kind = 'robot';
       } else if (def.kind === 'script') {
         object = createConsole(kit, { color });
@@ -166,10 +169,10 @@ export class HQController {
         // red beacon above an agent in error (static, no blinking loop)
         const beacon = new THREE.Group();
         const bulb = new THREE.Mesh(kit.sphere(0.075, 16, 10), kit.emissive(kit.palette.status.error));
-        bulb.position.y = 1.62;
+        bulb.position.y = 1.62 * ROBOT_SCALE;
         const halo = new THREE.Mesh(kit.disc(0.22, 24), kit.glowDisc(kit.palette.status.error, 0.9));
         halo.rotation.x = Math.PI / 2;
-        halo.position.y = 1.62;
+        halo.position.y = 1.62 * ROBOT_SCALE;
         halo.renderOrder = 3;
         beacon.add(bulb, halo);
         beacon.visible = false;
@@ -217,32 +220,64 @@ export class HQController {
     stage.updateShadows();
   }
 
-  private insets = { left: 0, top: 0 };
+  private insets: { left: number; top: number; portrait?: boolean } = { left: 0, top: 0 };
 
   /**
    * Computes the overview "home" (whole building, iso 3/4) so that it sits in
    * the part of the canvas not covered by overlays (`left`/`top` in px), and
    * goes there when `go` (instant on first build).
    */
-  frameHome(insets: { left: number; top: number }, go: boolean | 'animate' = false) {
+  frameHome(insets: { left: number; top: number; portrait?: boolean }, go: boolean | 'animate' = false) {
     this.insets = insets;
     const b = this.b;
     if (!b) return;
     const rig = this.stage.rig;
     const saved = rig.view;
     const savedOpts = { ...rig.opts };
+    const h0 = this.home;
+    const atHome = !!h0 && Math.abs(h0.distance - saved.distance) < 0.5 && Math.abs(h0.azimuth - saved.azimuth) < 1 && Math.abs(h0.polar - saved.polar) < 1 && Math.hypot(h0.target[0] - saved.target[0], h0.target[2] - saved.target[2]) < 0.5;
     if (this.overviewOpts) Object.assign(rig.opts, this.overviewOpts);
     const cam = this.stage.camera as THREE.PerspectiveCamera;
     const fov = cam.fov;
     cam.fov = OVERVIEW_FOV;
-    const box = new THREE.Box3(new THREE.Vector3(b.bounds.x0, 0, b.bounds.z0), new THREE.Vector3(b.bounds.x1, 0, b.bounds.z1));
-    rig.setView({ azimuth: 36, polar: 50 }, true);
-    rig.fit(box, true);
-    const w = Math.max(1, this.stage.size.w);
-    const free = Math.max(0.45, (w - insets.left) / w);
-    rig.setView({ distance: Math.min(rig.opts.maxDistance, rig.view.distance * (0.97 / Math.sqrt(free))), target: [0, 0, b.depth * 0.03] }, true);
-    rig.panBy(insets.left / 2, insets.top / 2);
-    rig.setView(rig.view, true);
+    cam.updateProjectionMatrix();
+    const { w, h } = this.stage.size;
+    // free area of the canvas (overlays: list on the left, strip on top, toolbar at the bottom)
+    const fx0 = insets.left + 14;
+    const fx1 = w - (insets.portrait ? 10 : 34);
+    const fy0 = insets.top + 14;
+    const fy1 = h - 62;
+    const corners: THREE.Vector3[] = [];
+    for (const x of [b.bounds.x0, b.bounds.x1]) for (const z of [b.bounds.z0, b.bounds.z1]) for (const y of [0, LOW_H]) corners.push(new THREE.Vector3(x, y, z));
+    const out = { x: 0, y: 0, visible: false, depth: 0 };
+    const bbox = () => {
+      let x0 = Infinity;
+      let x1 = -Infinity;
+      let y0 = Infinity;
+      let y1 = -Infinity;
+      for (const c of corners) {
+        this.stage.project(c, out);
+        x0 = Math.min(x0, out.x);
+        x1 = Math.max(x1, out.x);
+        y0 = Math.min(y0, out.y);
+        y1 = Math.max(y1, out.y);
+      }
+      return { x0, x1, y0, y1 };
+    };
+    // portrait screens: nearly frontal (entrance at the bottom, like the plan) to use the width
+    rig.setView({ azimuth: insets.portrait ? 10 : 36, polar: insets.portrait ? 42 : 50, target: [0, 0, 0], distance: 60 }, true);
+    let d = 60;
+    for (let i = 0; i < 4; i++) {
+      const bb = bbox();
+      const f = Math.max((bb.x1 - bb.x0) / Math.max(80, fx1 - fx0), (bb.y1 - bb.y0) / Math.max(80, fy1 - fy0));
+      d = clamp(d * f, rig.opts.minDistance, rig.opts.maxDistance);
+      rig.setView({ distance: d }, true);
+    }
+    for (let i = 0; i < 3; i++) {
+      const bb = bbox();
+      rig.panBy((fx0 + fx1) / 2 - (bb.x0 + bb.x1) / 2, (fy0 + fy1) / 2 - (bb.y0 + bb.y1) / 2);
+      rig.setView(rig.view, true);
+    }
     this.home = rig.view;
     rig.setHome(this.home);
     cam.fov = fov;
@@ -254,6 +289,8 @@ export class HQController {
     }
     if (go === 'animate') {
       rig.setView(saved, true);
+      // the visitor moved the camera: keep their view, only the home changes
+      if (!atHome) return;
       rig.opts.tweenMs = this.flightMs();
       rig.setView(this.home, this.flightMs() === 0);
     }
@@ -315,7 +352,7 @@ export class HQController {
       f.object.position.copy(to);
       f.object.rotation.y = spot.yaw;
       f.object.scale.setScalar(1);
-      this.stage.contact.set(`fig:${f.def.id}`, to.x, to.z, 0.34);
+      this.stage.contact.set(`fig:${f.def.id}`, to.x, to.z, 0.34 * ROBOT_SCALE);
       return;
     }
     const from = f.object.position.clone();
@@ -418,7 +455,7 @@ export class HQController {
           f.object.scale.setScalar(1);
           f.path = null;
         } else wants = true;
-        stage.contact.set(`fig:${f.def.id}`, f.object.position.x, f.object.position.z, 0.34 * f.object.scale.x);
+        stage.contact.set(`fig:${f.def.id}`, f.object.position.x, f.object.position.z, 0.34 * ROBOT_SCALE * f.object.scale.x);
       }
       const pf = f.partnerId ? this.figs.get(f.partnerId) : undefined;
       wants = setRobotStatus(f.object as Robot, f.status, t, { figure: walking ? 0 : fa, indicator: ia, partner: pf ? partner.copy(pf.object.position) : null }) || wants;
@@ -467,12 +504,31 @@ export class HQController {
         this.events.onPlace(place);
       }
     } else {
-      const t = rig.target;
-      const d = rig.distance;
-      const p = toPlan(b, { x: t.x, z: t.z });
-      const w = Math.min(b.width + 4, d * 0.62);
-      const h = Math.min(b.depth + 4, d * 0.4);
-      v = { x: Math.round((p.x - w / 2) * 2) / 2, y: Math.round((p.y - h / 2) * 2) / 2, w: Math.round(w * 2) / 2, h: Math.round(h * 2) / 2 };
+      // footprint of the visible free area on the floor
+      const { w, h } = this.stage.size;
+      const pts = [
+        [this.insets.left, this.insets.top], [w, this.insets.top], [w, h], [this.insets.left, h],
+      ].map(([x, y]) => rig.floorPoint(x, y));
+      let x0 = Infinity;
+      let x1 = -Infinity;
+      let z0 = Infinity;
+      let z1 = -Infinity;
+      for (const q of pts) {
+        if (!q) continue;
+        x0 = Math.min(x0, q.x);
+        x1 = Math.max(x1, q.x);
+        z0 = Math.min(z0, q.z);
+        z1 = Math.max(z1, q.z);
+      }
+      const m = 1;
+      const bx0 = Math.max(b.bounds.x0 - m, x0);
+      const bx1 = Math.min(b.bounds.x1 + m, x1);
+      const bz0 = Math.max(b.bounds.z0 - m, z0);
+      const bz1 = Math.min(b.bounds.z1 + m, z1);
+      const p = toPlan(b, { x: bx0, z: bz0 });
+      v = Number.isFinite(bx0 + bx1 + bz0 + bz1) && bx1 > bx0 && bz1 > bz0
+        ? { x: Math.round(p.x * 2) / 2, y: Math.round(p.y * 2) / 2, w: Math.round((bx1 - bx0) * 2) / 2, h: Math.round((bz1 - bz0) * 2) / 2 }
+        : { x: 0, y: 0, w: 0, h: 0 };
       if (this.lastPlace) {
         this.lastPlace = '';
         this.events.onPlace(null);
@@ -494,7 +550,7 @@ export class HQController {
     const f = this.figs.get(id);
     if (!f) return this.hiddenPoint();
     const p = f.object.position;
-    const y = f.kind === 'robot' ? 1.5 * f.object.scale.x + p.y : f.kind === 'person' ? 1.38 : f.kind === 'drone' ? 1.3 : 1.18;
+    const y = f.kind === 'robot' ? 1.42 * ROBOT_SCALE * f.object.scale.x + p.y : f.kind === 'person' ? 1.38 : f.kind === 'drone' ? 1.3 : 1.18;
     if (this.mode === 'visit' && this.b) {
       const c = { x: this.fp.x, z: this.fp.z };
       if (Math.hypot(p.x - c.x, p.z - c.z) > 18 || blocked(this.b, c, { x: p.x, z: p.z })) return this.hiddenPoint();
@@ -795,9 +851,12 @@ export class HQController {
       return true;
     }
     if (this.keys.size && this.stage.quality.motion !== 'none') {
-      this.step(dt);
+      // own clock: slow frames (software GPU, busy tab) must not slow the walk down
+      const real = this.lastStepAt ? Math.min(0.25, (nowMs - this.lastStepAt) / 1000) : Math.min(0.05, dt);
+      this.lastStepAt = nowMs;
+      if (real > 0) this.step(real);
       wants = true;
-    }
+    } else this.lastStepAt = 0;
     return wants;
   }
 
