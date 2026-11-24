@@ -1,0 +1,20 @@
+# Personal data must NEVER be committed — this repository may be public.
+*.db
+*.db-wal
+*.db-shm
+*.db.*
+*.mcbk
+*.manifest.json
+exports/
+backups/
+data/
+.mountassir/
+*.restoring*
+*.pre-restore-*
+
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
