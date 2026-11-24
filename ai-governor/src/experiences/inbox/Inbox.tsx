@@ -8,7 +8,7 @@
  */
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { IconArrowUpRight, IconCheck, IconChevron, NatureBadge } from '@ds';
-import { fmtRelative, useGovernor, type Decision, type ExperienceProps, type HostApi } from '@sdk';
+import { displaySummary, fmtRelative, useGovernor, type Decision, type ExperienceProps, type HostApi } from '@sdk';
 import { Autopilot } from './Autopilot';
 import { jobsOf } from './autopilot';
 import { Avatar, Review, StatePill, type SubTab } from './Review';
@@ -197,7 +197,7 @@ export default function Inbox({ host, config, device }: ExperienceProps) {
             <ul className="ib-more__list">
               {recos.map((r) => (
                 <li key={r.id}>
-                  <span className="t-small">{r.summary}</span>
+                  <span className="t-small">{displaySummary(r, g.canViewConfidential)}</span>
                   <span className="t-micro t-muted">
                     {r.type === 'recommendation' ? 'Recommandation' : 'Mise à jour'} · {fmtRelative(r.ts, g.now)}
                   </span>

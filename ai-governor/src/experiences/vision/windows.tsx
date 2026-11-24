@@ -197,7 +197,7 @@ export function notifications(g: GovernorSnapshot): Notif[] {
     if (i.state === 'open') out.push({ id: i.id, ts: i.ts, kind: 'incident', title: displaySummary({ summary: i.summary, confidentiality: 'confidential' }, g.canViewConfidential), sub: `Sécurité · gravité ${i.severity === 'high' || i.severity === 'critical' ? 'élevée' : i.severity === 'medium' ? 'moyenne' : 'faible'}`, nature: i.nature });
   for (const c of Object.values(g.state.connectors))
     if (c.status !== 'connected') out.push({ id: c.id, ts: c.since, kind: 'connector', title: `${c.name} : ${c.status === 'degraded' ? 'dégradé' : c.status === 'auth-required' ? 'authentification requise' : 'déconnecté'}`, sub: 'Connecteur', nature: c.nature });
-  for (const u of [...g.state.feed.updates, ...g.state.feed.recommendations].slice(-4)) out.push({ id: u.id, ts: u.ts, kind: 'update', title: u.summary, sub: u.type === 'recommendation' ? 'Recommandation' : 'Mise à jour détectée', nature: u.nature });
+  for (const u of [...g.state.feed.updates, ...g.state.feed.recommendations].slice(-4)) out.push({ id: u.id, ts: u.ts, kind: 'update', title: displaySummary(u, g.canViewConfidential), sub: u.type === 'recommendation' ? 'Recommandation' : 'Mise à jour détectée', nature: u.nature });
   const rank = { incident: 0, decision: 1, connector: 2, update: 3 } as const;
   return out.sort((a, b) => rank[a.kind] - rank[b.kind] || b.ts - a.ts);
 }

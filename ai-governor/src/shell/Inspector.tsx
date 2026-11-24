@@ -47,6 +47,9 @@ export function Inspector() {
   } else if (sel?.kind === 'task') {
     title = 'Tâche';
     body = <TaskPanel id={sel.id} />;
+  } else if (sel?.kind === 'incident') {
+    title = 'Incident';
+    body = <IncidentPanel id={sel.id} />;
   }
   return (
     <Drawer label={`Inspecteur : ${title}`} title={title} onClose={close}>
@@ -363,6 +366,45 @@ function AgentPanel({ id }: { id: string }) {
       <p className="t-micro t-muted" style={{ marginTop: 12 }}>
         Résumés opérationnels issus des événements enregistrés. Le raisonnement interne des modèles n’est ni collecté ni affiché.
       </p>
+    </div>
+  );
+}
+
+const SEVERITY: Record<string, string> = { low: 'Faible', medium: 'Moyenne', high: 'Élevée', critical: 'Critique' };
+
+function IncidentPanel({ id }: { id: string }) {
+  const g = useGovernor();
+  const idx = useCatalogIndex();
+  const inc = g.state.incidents[id];
+  const events = useEntityEvents((e) => e.type === 'security.incident' && (e.attrs?.incidentId === id || e.id === id), 12);
+  if (!inc) return <p>Incident introuvable à cet instant de la chronologie.</p>;
+  return (
+    <div>
+      <p>{displaySummary(inc, g.canViewConfidential)}</p>
+      <dl className="kv">
+        <dt>Gravité</dt>
+        <dd>{SEVERITY[inc.severity] ?? inc.severity}</dd>
+        <dt>État</dt>
+        <dd>{inc.state === 'open' ? 'Ouvert' : 'Résolu'}</dd>
+        <dt>Détecté</dt>
+        <dd className="num">{fmtTime(inc.ts, true)}</dd>
+        {inc.departmentId && (
+          <>
+            <dt>Département</dt>
+            <dd>
+              <button type="button" className="btn btn--ghost btn--sm" onClick={() => ui.set({ selection: { kind: 'department', id: inc.departmentId! } })}>
+                {idx.departments.get(inc.departmentId)?.name ?? inc.departmentId}
+              </button>
+            </dd>
+          </>
+        )}
+        <dt>Nature</dt>
+        <dd>
+          <NatureBadge nature={inc.nature} />
+        </dd>
+      </dl>
+      <h3 className="section-title">Journal</h3>
+      <Log events={events} />
     </div>
   );
 }

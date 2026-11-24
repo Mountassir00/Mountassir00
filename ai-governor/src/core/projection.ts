@@ -42,6 +42,8 @@ export interface TaskRuntime extends Usage {
   resultRef?: string;
   dependsOn: string[];
   remainingSteps?: number;
+  /** Steps announced when the task was created (remainingSteps then decreases). */
+  totalSteps?: number;
   requiresApproval?: string;
   nature: DataNature;
   lastSummary?: string;
@@ -91,6 +93,8 @@ export interface Incident {
   state: 'open' | 'resolved';
   departmentId?: string;
   nature: DataNature;
+  /** Use displaySummary(incident, canViewConfidential) to show the summary. */
+  confidentiality: GovEvent['confidentiality'];
 }
 
 export interface SkillState {
@@ -125,6 +129,8 @@ export interface FeedItem {
   tokensSaved?: number;
   avoidedCostUsd?: number;
   attrs?: GovEvent['attrs'];
+  /** Use displaySummary(item, canViewConfidential) to show the summary. */
+  confidentiality: GovEvent['confidentiality'];
 }
 
 export interface Totals extends Usage {
@@ -223,6 +229,7 @@ function feedItem(e: GovEvent): FeedItem {
     tokensSaved: e.metrics?.tokensSaved,
     avoidedCostUsd: e.metrics?.avoidedCostUsd,
     attrs: e.attrs,
+    confidentiality: e.confidentiality,
   };
 }
 
@@ -306,6 +313,7 @@ export function applyEvent(s: GovernorState, e: GovEvent): void {
       t.priority = (str(attrs.priority, t.priority) as Priority) || 'normal';
       t.dependsOn = str(attrs.dependsOn).split(',').filter(Boolean);
       t.remainingSteps = num(attrs.remainingSteps);
+      t.totalSteps = num(attrs.remainingSteps);
       t.requiresApproval = attrs.requiresApproval ? str(attrs.requiresApproval) : undefined;
       t.agentId = e.actor?.id ?? t.agentId;
       t.departmentId = e.department ?? t.departmentId;
@@ -420,6 +428,7 @@ export function applyEvent(s: GovernorState, e: GovEvent): void {
         u.tools[tool] = (u.tools[tool] ?? 0) + 1;
         if (skill) u.skills[skill] = (u.skills[skill] ?? 0) + 1;
       }
+      if (t && typeof attrs.remainingSteps === 'number') t.remainingSteps = attrs.remainingSteps;
       T.toolCalls++;
       if (skill && s.skills[skill]) s.skills[skill].uses++;
       const conn = e.destination && (e.destination.kind === 'connector' || e.destination.kind === 'mcp') ? s.connectors[e.destination.id] : undefined;
@@ -519,6 +528,7 @@ export function applyEvent(s: GovernorState, e: GovEvent): void {
         state: (str(attrs.state, 'open') as Incident['state']) || 'open',
         departmentId: e.department ?? prev?.departmentId,
         nature: e.nature,
+        confidentiality: e.confidentiality,
       };
       pushFeed(s.feed.security, feedItem(e));
       break;

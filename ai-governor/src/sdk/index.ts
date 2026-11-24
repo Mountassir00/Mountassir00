@@ -25,7 +25,9 @@ export {
   bucketize, byModel, recentFlows, sumUsage, beforeAfter, departmentLoad, eventDensity, natureMix, pickBucketMs, matches, categoryOf,
   PERIOD_LABEL, CATEGORY_LABEL,
 } from '@core/selectors';
-export type { Command, DispatchResult, Interaction } from '@core/commands';
+export type { Command, CommandPolicy, ConfirmLevel, DispatchResult, Interaction, Risk } from '@core/commands';
+/** Read-only: the risk and confirmation a command will need (the gateway still decides). */
+export { policyFor as describePolicy } from '@core/commands';
 export { PRICE_TABLE_SOURCE } from '@core/pricing';
 
 export const SDK_VERSION = '1.0.0';

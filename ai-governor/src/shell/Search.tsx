@@ -41,7 +41,21 @@ export function Search({ entries }: { entries: RegistryEntry[] }) {
     ];
     const nq = norm(q.trim());
     if (!nq) return all.slice(0, 12);
-    return all.filter((h) => norm(`${h.label} ${h.hint}`).includes(nq)).slice(0, 20);
+    // Label matches outrank hint matches (typing « Vision » must not surface
+    // every department whose mission mentions « supervision » first).
+    const score = (h: Hit) => {
+      const l = norm(h.label);
+      if (l === nq) return 0;
+      if (l.startsWith(nq)) return 1;
+      if (l.includes(nq)) return 2;
+      return norm(h.hint).includes(nq) ? 3 : -1;
+    };
+    return all
+      .map((h, i) => ({ h, i, s: score(h) }))
+      .filter((x) => x.s >= 0)
+      .sort((a, b) => a.s - b.s || a.i - b.i)
+      .map((x) => x.h)
+      .slice(0, 20);
   }, [g.catalog, entries, q, viewCommands]);
   if (!open) return null;
   return (

@@ -75,6 +75,22 @@ describe('projection & replay', () => {
     expect(store.getEvents().length).toBe(events.length + 1);
   });
 
+  it('keeps the announced step count while steps are consumed (llm and tool calls)', async () => {
+    const { store } = await demoStore();
+    const tasks = Object.values(store.getLive().tasks).filter((t) => t.totalSteps != null);
+    expect(tasks.length).toBeGreaterThan(0);
+    for (const t of tasks) {
+      if (t.remainingSteps != null) expect(t.remainingSteps).toBeLessThanOrEqual(t.totalSteps!);
+    }
+  });
+
+  it('carries confidentiality onto incidents and feed items', async () => {
+    const { store } = await demoStore();
+    const s = store.getLive();
+    for (const i of Object.values(s.incidents)) expect(i.confidentiality).toBeTruthy();
+    for (const f of s.feed.security) expect(f.confidentiality).toBeTruthy();
+  });
+
   it('replay does not mutate the live state', async () => {
     const { store, events } = await demoStore();
     const liveCalls = store.getLive().totals.llmCalls;

@@ -5,6 +5,7 @@
  */
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import {
+  displaySummary,
   beforeAfter, bucketize, byModel, fmtCompact, fmtDuration, fmtInt, fmtPct, fmtRelative, fmtTime, fmtUsd, modelLabel, natureMix,
   useCatalogIndex, useGovernor, PRICE_TABLE_SOURCE, type DataNature, type ExperienceProps, type TaskRuntime,
 } from '@sdk';
@@ -415,7 +416,7 @@ export default function ControlCenter({ config, host }: ExperienceProps) {
                     <GRefresh size={18} />
                   </span>
                   <span className="cc-row__text">
-                    <b>{f.summary}</b>
+                    <b>{displaySummary(f, g.canViewConfidential)}</b>
                     <span>
                       {f.type === 'recommendation' ? 'Recommandation' : 'Mise à jour détectée'} · {fmtRelative(f.ts, g.now)}
                     </span>
@@ -464,7 +465,7 @@ export default function ControlCenter({ config, host }: ExperienceProps) {
                     <GHistory size={18} />
                   </span>
                   <span className="cc-row__text">
-                    <b>{c.summary}</b>
+                    <b>{displaySummary(c, g.canViewConfidential)}</b>
                     <span>
                       {c.type === 'config.changed' ? 'Configuration' : c.type.startsWith('skill') ? 'Skill' : 'Intervention'} · {fmtTime(c.ts, true)}
                     </span>

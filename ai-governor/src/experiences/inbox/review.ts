@@ -5,7 +5,7 @@
  * the derivation says so; in demo mode an illustrative diff is produced and
  * explicitly labelled "simulé".
  */
-import { fmtUsd, modelLabel, type Catalog, type ConnectorState, type DataNature, type Decision, type GovEvent, type GovernorState } from '@sdk';
+import { describePolicy, fmtUsd, modelLabel, type Catalog, type ConnectorState, type DataNature, type Decision, type GovEvent, type GovernorState } from '@sdk';
 
 export const DAY = 86_400_000;
 export const HOUR = 3_600_000;
@@ -166,11 +166,11 @@ export interface Check {
   nature?: DataNature;
 }
 
+const CONFIRM_TEXT = { none: 'aucune confirmation', simple: 'confirmation simple', explicit: 'confirmation explicite', typed: 'saisie de « CONFIRMER »' } as const;
+
+/** Read from the gateway's own policy (describePolicy), so the label can never drift from what will be asked. */
 export function confirmationFor(d: Decision, verdict: 'go' | 'test' | 'nogo'): string {
-  const spends = (d.costDeltaUsd ?? 0) > 0;
-  if (d.durable && verdict === 'go') return 'saisie de « CONFIRMER »';
-  if (spends && verdict !== 'nogo') return 'confirmation explicite';
-  return 'confirmation simple';
+  return CONFIRM_TEXT[describePolicy({ type: 'decision.resolve', decisionId: d.id, verdict, durable: d.durable, costDeltaUsd: d.costDeltaUsd }).confirm];
 }
 
 export function checksOf(d: Decision): Check[] {

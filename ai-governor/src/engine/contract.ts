@@ -9,7 +9,7 @@ import type { PeriodPreset } from '@core/selectors';
 import type { ExperienceManifest } from './manifest';
 import type { QualitySettings } from './quality';
 
-export type SelectionKind = 'agent' | 'department' | 'node' | 'flow' | 'task' | 'decision';
+export type SelectionKind = 'agent' | 'department' | 'node' | 'flow' | 'task' | 'decision' | 'incident';
 
 export interface Selection {
   kind: SelectionKind;
