@@ -14,7 +14,6 @@ import type { PlanGeom, RoomBox } from './geometry';
 
 type Pt = [number, number];
 const P = (pts: Pt[]) => pts.map(([a, b]) => `${a.toFixed(1)},${b.toFixed(1)}`).join(' ');
-const at = (z: number) => `translate(0 ${(-z * 32).toFixed(1)})`;
 
 export interface RoomLive {
   running: number;
@@ -111,7 +110,7 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
     const dimmed = p.dimDept(d.id);
     const selected = p.selectedDept === d.id;
     const perRow = 3;
-    const positions = slots.map((_, i) => ({ x: r.x + 0.55 + (i % perRow) * 1.75, y: r.y + 1.75 + Math.floor(i / perRow) * 1.75 }));
+    const positions = slots.map((_, i) => ({ x: r.x + 0.45 + (i % perRow) * 1.45, y: r.y + 1.45 + Math.floor(i / perRow) * 1.5 }));
     const here = slots.filter((s) => s.here);
     const aria = [
       `${d.name} — ${d.mission}`,
@@ -151,7 +150,7 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
         <g className="tw-room__decor" aria-hidden>
           <IsoBackWalls x={r.x} y={r.y} w={r.w} d={r.d} h={0.55} fill="var(--tw-wall)" />
           {equipment[0] && <Equipment kind={equipment[0]} x={r.x + 0.35} y={r.y + 0.25} active={anyActive} tone={tone} />}
-          {equipment[1] && <Equipment kind={equipment[1]} x={r.x + r.w - 1.75} y={r.y + 0.25} active={anyActive} tone={tone} />}
+          {equipment[1] && <Equipment kind={equipment[1]} x={r.x + r.w - 1.6} y={r.y + 0.25} active={anyActive} tone={tone} />}
           <Plant x={r.x + r.w - 0.45} y={r.y + r.d - 0.5} />
           {slots.map((s, i) =>
             s.agent.kind === 'script' || s.agent.kind === 'service' ? null : (
@@ -188,7 +187,7 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
                 selected={p.selectedAgent === s.agent.id}
                 dimmed={p.dimAgent(s.agent.id)}
                 where={`poste ${d.name}`}
-                scale={1.05}
+                scale={1.25}
                 onSelect={() => p.onSelectAgent(s.agent.id)}
               />
               {p.showLabels && (
@@ -217,18 +216,16 @@ export const FloorPlan = memo(function FloorPlan(p: FloorPlanProps) {
   };
 
   const L = G.landing;
-  const [ex, ey] = iso(L.x + L.w / 2, L.y + 0.6, 0);
+  const [ex, ey] = iso(L.x + L.w / 2, L.y + L.d / 2, 0);
   return (
     <g className="tw-plan">
       <IsoFloor x={G.slab.x} y={G.slab.y} w={G.slab.w} d={G.slab.d} fill="var(--tw-slab)" thickness={0.35} grid={false} />
       <IsoBackWalls x={G.slab.x} y={G.slab.y} w={G.slab.w} d={G.slab.d} h={0.9} fill="var(--tw-facade)" />
       {ordered.map(room)}
       <g aria-hidden className="tw-landing-area">
-        <IsoFloor x={L.x} y={L.y} w={L.w} d={L.d} fill="var(--tw-landing-floor)" grid={false} />
-        <IsoBox x={L.x + 0.3} y={L.y - 0.05} w={L.w - 0.6} d={0.35} h={1.6} fill="var(--tw-glass)" className="tw-lift" />
-        <g transform={at(0)}>
-          <line className="tw-lift__seam" x1={iso(L.x + L.w / 2, L.y + 0.3, 0)[0]} y1={iso(L.x + L.w / 2, L.y + 0.3, 0)[1]} x2={iso(L.x + L.w / 2, L.y + 0.3, 1.5)[0]} y2={iso(L.x + L.w / 2, L.y + 0.3, 1.5)[1]} />
-        </g>
+        <IsoFloor x={L.x} y={L.y} w={L.w} d={L.d} fill="var(--tw-landing-floor)" thickness={0.35} grid={false} />
+        <IsoBox x={L.x + 0.25} y={L.y + 0.2} w={1.0} d={1.0} h={1.8} fill="var(--tw-glass)" className="tw-lift" />
+        <line className="tw-lift__seam" x1={iso(L.x + 0.75, L.y + 1.2, 0)[0]} y1={iso(L.x + 0.75, L.y + 1.2, 0)[1]} x2={iso(L.x + 0.75, L.y + 1.2, 1.65)[0]} y2={iso(L.x + 0.75, L.y + 1.2, 1.65)[1]} />
         <text className="tw-agentlabel tw-agentlabel--away" x={ex} y={ey + 30} textAnchor="middle">
           {p.shaftLinks ? `Ascenseur · ${p.shaftLinks} échange${p.shaftLinks > 1 ? 's' : ''} récent${p.shaftLinks > 1 ? 's' : ''}` : 'Ascenseur'}
         </text>

@@ -4,7 +4,7 @@
  * scene is memoised on (catalog, order, grouping, device, gap).
  */
 import { iso, type Bounds } from '@ds';
-import type { Catalog, DepartmentDef, FlowView, GovernorState } from '@sdk';
+import type { Catalog, DepartmentDef, FlowView, GovEvent, GovernorState } from '@sdk';
 
 /** Platform footprint in world units (tiles). */
 export const PW = 4;
@@ -236,4 +236,153 @@ export function neighbourSlot(placed: Placed[], from: number, dir: 'ArrowLeft' |
     if (!best || score < best.score) best = { slot: p.slot, score };
   }
   return best?.slot ?? null;
+}
+
+/* ---------------- hub arrangement ---------------- */
+
+/** Radius (world units) of the central hub platform. */
+export const HUB_R = 4.6;
+
+/** The department that becomes the hub: the executive office, else the one served by the orchestrator, else the first. */
+export function pickHubDept(catalog: Catalog): DepartmentDef | undefined {
+  return (
+    catalog.departments.find((d) => d.id === 'executive') ??
+    catalog.departments.find((d) => d.engineIds.includes('governor')) ??
+    catalog.departments[0]
+  );
+}
+
+/** Ring order: departments grouped by pole so each pole reads as an arc around the hub. */
+export function hubCatalog(catalog: Catalog, hubId: string | undefined): Catalog {
+  const groups = [...new Set(catalog.departments.map((d) => d.group))];
+  const departments = catalog.departments.filter((d) => d.id !== hubId).sort((a, b) => groups.indexOf(a.group) - groups.indexOf(b.group));
+  return { ...catalog, departments };
+}
+
+export function hubRingRadius(n: number, gap: number): number {
+  const clear = HUB_R + PW * 0.71 + gap + 1.6;
+  if (n <= 1) return clear;
+  const chord = PW * 1.414 + gap * 0.45 + 0.6;
+  return Math.max(clear, chord / (2 * Math.sin(Math.PI / n)));
+}
+
+export interface HubPlacement {
+  placed: Placed[];
+  /** World centre of the hub. */
+  hub: { x: number; y: number; sx: number; sy: number };
+  R: number;
+}
+
+/**
+ * Ring: departments evenly spaced on a circle around the hub (starting at the
+ * top of the screen, clockwise). Columns (phones): the hub on top, two
+ * screen-aligned columns below it.
+ */
+export function placeHub(items: Item[], mode: 'ring' | 'columns', gap: number, minSlots = 0): HubPlacement {
+  const n = Math.max(items.length, minSlots);
+  const all: Item[] = [...items];
+  for (let i = items.length; i < n; i++) all.push({ kind: 'empty', key: `empty-${i}` });
+  if (mode === 'ring') {
+    const R = hubRingRadius(n, gap);
+    const placed = all.map((item, slot) => {
+      const th = (-3 * Math.PI) / 4 + (slot * 2 * Math.PI) / Math.max(1, n);
+      const cx = R * Math.cos(th);
+      const cy = R * Math.sin(th);
+      const [sx, sy] = iso(cx, cy, 0);
+      return { item, slot, x: cx - PW / 2, y: cy - PD / 2, sx, sy };
+    });
+    return { placed, hub: { x: 0, y: 0, sx: 0, sy: 0 }, R };
+  }
+  const cols = 2;
+  const rows = Math.max(1, Math.ceil(n / cols));
+  const placed = all.map((item, slot) => {
+    const { x, y } = slotPosition(slot, cols, rows, 'columns', gap);
+    const [sx, sy] = iso(x + PW / 2, y + PD / 2, 0);
+    return { item, slot, x, y, sx, sy };
+  });
+  // Hub centred above the first row: a world shift (d, d) moves 32·d px straight up on screen.
+  const top = placed.length ? Math.min(...placed.map((p) => p.sy)) : 0;
+  const lift = (top - (HUB_R * 22.63 + 64 + 92)) / 32;
+  const hx = lift;
+  const hy = lift;
+  const [sx, sy] = iso(hx, hy, 0);
+  return { placed, hub: { x: hx, y: hy, sx, sy }, R: 0 };
+}
+
+export function hubBounds(h: HubPlacement, thickness: number): Bounds {
+  const b = sceneBounds(h.placed, thickness);
+  const rx = HUB_R * 45.25;
+  const ry = HUB_R * 22.63;
+  return {
+    minX: Math.min(b.minX, h.hub.sx - rx - 20),
+    maxX: Math.max(b.maxX, h.hub.sx + rx + 20),
+    minY: Math.min(b.minY, h.hub.sy - ry - 120),
+    maxY: Math.max(b.maxY, h.hub.sy + ry + 40),
+  };
+}
+
+/** Straight walkway from the hub rim to a platform (world coordinates). */
+export function spokeEnds(h: HubPlacement, p: Placed): { a: [number, number]; b: [number, number] } {
+  const cx = p.x + PW / 2;
+  const cy = p.y + PD / 2;
+  const dx = cx - h.hub.x;
+  const dy = cy - h.hub.y;
+  const len = Math.hypot(dx, dy) || 1;
+  return { a: [h.hub.x + (dx / len) * (HUB_R - 0.2), h.hub.y + (dy / len) * (HUB_R - 0.2)], b: [cx, cy] };
+}
+
+/** Phones: a spine from the hub down between the two columns, then a short branch to the platform. */
+export function spineBranch(h: HubPlacement, p: Placed): string {
+  const right = p.sx >= h.hub.sx;
+  const lane = h.hub.sx + (right ? 3 : -3);
+  const startY = h.hub.sy + HUB_R * 22.63;
+  const vx = p.sx + (right ? -PW * 32 : PW * 32);
+  return `M${lane.toFixed(1)},${startY.toFixed(1)} L${lane.toFixed(1)},${p.sy.toFixed(1)} L${vx.toFixed(1)},${p.sy.toFixed(1)}`;
+}
+
+/**
+ * Walkways lit by recorded traffic in the window: exchanges with the hub
+ * (its engines or the queues they feed), tasks dispatched by the hub's queue,
+ * and department-to-department exchanges or collaborations (relayed by the hub).
+ */
+export function hubSpokeStates(
+  catalog: Catalog, hubId: string, flows: FlowView[], events: readonly GovEvent[], state: GovernorState, standing: Map<string, string>,
+): Map<string, 'active' | 'error'> {
+  const hub = catalog.departments.find((d) => d.id === hubId);
+  const hubNodes = new Set<string>(hub?.engineIds ?? []);
+  for (const e of catalog.edges) {
+    if (!hubNodes.has(e.from) || (e.kind !== 'writes' && e.kind !== 'calls')) continue;
+    if (catalog.nodes.find((n) => n.id === e.to)?.kind === 'queue') hubNodes.add(e.to);
+  }
+  const ids = new Set(catalog.departments.map((d) => d.id));
+  const deptOfEvent = new Map<string, string | undefined>();
+  for (const e of events) deptOfEvent.set(e.id, e.department);
+  const out = new Map<string, 'active' | 'error'>();
+  const mark = (dept: string | undefined, failed: boolean) => {
+    if (!dept || dept === hubId || !ids.has(dept)) return;
+    if (failed) out.set(dept, 'error');
+    else if (!out.has(dept)) out.set(dept, 'active');
+  };
+  for (const f of flows) {
+    const failed = f.status === 'failed';
+    const fromDept = deptOfEvent.get(f.id) ?? standing.get(f.from);
+    const toDept = standing.get(f.to);
+    if (hubNodes.has(f.to) || toDept === hubId) mark(fromDept, failed);
+    else if (hubNodes.has(f.from) || fromDept === hubId) mark(toDept, failed);
+    else if (fromDept && toDept && fromDept !== toDept) {
+      mark(fromDept, failed);
+      mark(toDept, failed);
+    }
+  }
+  for (const e of events) if (e.type === 'task.created' && hubNodes.has(e.origin.id)) mark(e.department, false);
+  for (const a of Object.values(state.agents)) {
+    if (a.status !== 'collaborating' || !a.collaboratingWith) continue;
+    const da = standing.get(a.id);
+    const db = standing.get(a.collaboratingWith);
+    if (da && db && da !== db) {
+      mark(da, false);
+      mark(db, false);
+    }
+  }
+  return out;
 }

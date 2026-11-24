@@ -129,8 +129,9 @@ export interface BuildingProps {
   ariaFor: (f: Floor) => string;
 }
 
+/** Distant skyline [x, y, w, d, h]: silhouettes only, never lit (no invented activity). */
 const CITY: Array<[number, number, number, number, number]> = [
-  [-8, -4, 3, 2.6, 4.6], [-5.5, -8.5, 2.6, 3, 7.4], [-1.5, -11, 4, 3, 9.5], [4, -10.5, 3, 2.4, 6.2], [9.5, -8, 3.2, 3, 8.4], [12.5, -3.5, 2.4, 2.4, 4.2],
+  [-9, -6, 2, 1.6, 2.6], [-7, -10, 1.8, 1.8, 4.2], [-3, -13, 2.4, 1.8, 5.4], [3.5, -14, 2, 2, 4.6], [9, -12, 2.2, 1.8, 5.8], [13, -8, 1.8, 1.6, 3.4], [14.5, -3, 1.6, 1.6, 2.2],
 ];
 
 export const Building = memo(function Building(p: BuildingProps) {
@@ -321,6 +322,7 @@ export const Building = memo(function Building(p: BuildingProps) {
           <g
             key={f.id}
             className="tw-floor"
+            data-floor={f.id}
             role="button"
             tabIndex={0}
             aria-label={p.ariaFor(f)}

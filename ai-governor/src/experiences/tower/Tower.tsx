@@ -64,17 +64,35 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
   const [legend, setLegend] = useState(false);
   const zp = useRef<ZoomPanHandle>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const selfSelect = useRef(false);
 
+  // Focus follows navigation (opened floor → back button; back → the floor we came from).
+  const focusAfterNav = useRef<string | null | undefined>(undefined);
   const openFloor = useCallback(
     (id: string | null) => {
-      setFloorIdState(id);
+      setFloorIdState((prev) => {
+        focusAfterNav.current = id ? '__back' : prev;
+        return id;
+      });
       host.setLocal('floor', id);
       const f = id ? floors.find((x) => x.id === id) : null;
       host.announce(f ? `${levelLong(f)} : ${f.id}, ${plural(f.depts.length, 'département', 'départements')}.` : 'Vue d’ensemble de l’immeuble.');
     },
     [floors, host],
   );
+
+  useEffect(() => {
+    const target = focusAfterNav.current;
+    if (target === undefined) return;
+    focusAfterNav.current = undefined;
+    const t = setTimeout(() => {
+      const root = rootRef.current;
+      const el = target === '__back' ? root?.querySelector<HTMLElement>('.tw-back') : target ? root?.querySelector<HTMLElement>(`[data-floor="${CSS.escape(target)}"]`) : null;
+      el?.focus();
+    }, 60);
+    return () => clearTimeout(t);
+  }, [floorId]);
 
   const togglePanel = () => {
     setPanelOpen((v) => {
@@ -294,6 +312,7 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
       showMinimap={false}
       onZoomBucket={setBucket}
       onBackgroundClick={() => select(null)}
+      defs={<PoolDefs />}
       maxZoom={2.6}
     >
       <g className="tw-world" data-amb={amb}>
@@ -408,11 +427,11 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
   /* ---------- phone ---------- */
   if (mobile) {
     return (
-      <div className="tw-root tw-root--mobile" data-amb={amb} onKeyDown={onRootKey}>
+      <div ref={rootRef} className="tw-root tw-root--mobile" data-amb={amb} data-suspended={quality.suspended || undefined} onKeyDown={onRootKey}>
+        <div className="tw-sky" aria-hidden data-stars={night && !minimal ? 'on' : undefined} />
         {floor ? (
           <>
             <div className="tw-mstage" ref={stageRef}>
-              <div className="tw-sky" aria-hidden data-stars={night && !minimal ? 'on' : undefined} />
               {scene}
             </div>
             <div className="tw-mtop">{crumbs}</div>
@@ -439,9 +458,9 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
 
   /* ---------- desktop / tablet ---------- */
   return (
-    <div className="tw-root" data-amb={amb} data-panel={panelOpen ? 'open' : 'closed'} data-device={device} onKeyDown={onRootKey}>
+    <div ref={rootRef} className="tw-root" data-amb={amb} data-panel={panelOpen ? 'open' : 'closed'} data-device={device} data-suspended={quality.suspended || undefined} onKeyDown={onRootKey}>
+      <div className="tw-sky" aria-hidden data-stars={night && !minimal ? 'on' : undefined} />
       <div className="tw-stage" ref={stageRef}>
-        <div className="tw-sky" aria-hidden data-stars={night && !minimal ? 'on' : undefined} />
         {scene}
         <div className="tw-toolbar">{crumbs}</div>
         {legend && !floor && <Legend />}
@@ -459,7 +478,7 @@ export default function Tower({ host, config, quality, device }: ExperienceProps
               <h2 className="t-h2">{floor ? floor.id : 'Siège'}</h2>
               {floor && <TallyDots t={tallies.get(floor.id) ?? { work: 0, wait: 0, error: 0, pending: 0 }} />}
             </div>
-            <button type="button" className="icon-btn tw-panel__close" onClick={togglePanel} aria-label="Replier le panneau" aria-expanded aria-controls="tw-panel">
+            <button type="button" className="icon-btn tw-panel__close" onClick={togglePanel} aria-label="Replier le panneau" aria-controls="tw-panel">
               <IconSidebar size={18} />
             </button>
           </header>
@@ -482,11 +501,20 @@ function SpillDefs() {
     <>
       {(['work', 'wait', 'error'] as const).map((k) => (
         <linearGradient key={k} id={`tw-spill-${k}`} x1="0" y1="1" x2="0" y2="0">
-          <stop offset="0" stopColor={`var(--tw-win-${k})`} stopOpacity="0" />
-          <stop offset="1" stopColor={`var(--tw-win-${k})`} stopOpacity="0.45" />
+          <stop offset="0" style={{ stopColor: `var(--tw-win-${k})`, stopOpacity: 0 }} />
+          <stop offset="1" style={{ stopColor: `var(--tw-win-${k})`, stopOpacity: 0.45 }} />
         </linearGradient>
       ))}
     </>
+  );
+}
+
+function PoolDefs() {
+  return (
+    <radialGradient id="tw-pool">
+      <stop offset="0" style={{ stopColor: 'var(--tw-win-work)', stopOpacity: 0.32 }} />
+      <stop offset="1" style={{ stopColor: 'var(--tw-win-work)', stopOpacity: 0 }} />
+    </radialGradient>
   );
 }
 
@@ -531,7 +559,6 @@ function MobileTower({ floors, bays, tallies, ariaFor, onOpen, night, highlighte
 }) {
   return (
     <div className="tw-mlist" data-night={night || undefined}>
-      <div className="tw-sky tw-sky--fixed" aria-hidden data-stars={night ? 'on' : undefined} />
       <header className="tw-mhead">
         <h2 className="t-h2">Siège</h2>
         <p className="t-small t-muted">
@@ -545,7 +572,7 @@ function MobileTower({ floors, bays, tallies, ariaFor, onOpen, night, highlighte
           const t = tallies.get(f.id) ?? { work: 0, wait: 0, error: 0, pending: 0 };
           return (
             <li key={f.id} data-role={f.role}>
-              <button type="button" className="tw-mfloor" onClick={() => onOpen(f.id)} aria-label={ariaFor(f)} data-highlighted={highlighted === f.id || undefined}>
+              <button type="button" className="tw-mfloor" data-floor={f.id} onClick={() => onOpen(f.id)} aria-label={ariaFor(f)} data-highlighted={highlighted === f.id || undefined}>
                 <span className="tw-mfloor__lvl">{levelLabel(f)}</span>
                 <span className="tw-mfloor__body">
                   <span className="tw-mfloor__name">{f.id}</span>

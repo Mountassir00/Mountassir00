@@ -5,13 +5,15 @@
  * and folds into group plates so it stays readable as the system grows.
  */
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
-import { IsoFlowPath, ZoomPan, toneVar, type ZoomBucket, type ZoomPanHandle } from '@ds';
-import { departmentLoad, recentFlows, useGovernor, type AgentDef, type AgentStatus, type DepartmentDef, type ExperienceProps } from '@sdk';
+import { IsoFlowPath, ZoomPan, iso, toneVar, type ZoomBucket, type ZoomPanHandle } from '@ds';
+import { PERIOD_LABEL, departmentLoad, recentFlows, useGovernor, type AgentDef, type AgentStatus, type DataNature, type DepartmentDef, type ExperienceProps } from '@sdk';
 import {
-  PD, PW, activeLinks, buildItems, cablePath, neighbourSlot, orderedDepartments, pairKey, placeItems, sceneBounds, staticLinks,
-  type DeptLink, type LayoutMode, type Placed,
+  HUB_R, PD, PW, activeLinks, buildItems, cablePath, hubBounds, hubCatalog, hubSpokeStates, neighbourSlot, orderedDepartments, pairKey, pickHubDept, placeHub, placeItems,
+  sceneBounds, spineBranch, spokeEnds, staticLinks,
+  type DeptLink, type HubPlacement, type LayoutMode, type Placed,
 } from './layout';
 import { Caption, ClusterPlate, EmptySlot, Platform, isActive, topFace, type Chip, type FigureSpec } from './parts';
+import { HubPlatform, TaskStatusPanel, Walkway, inwardCaption, unIso } from './hub';
 import './modular-office.css';
 
 const FLOW_WINDOW = 15 * 60_000;
@@ -32,6 +34,8 @@ export default function ModularOffice({ host, config, quality, device }: Experie
   const showLinks = config.showLinks !== false;
   const showIndicators = config.showIndicators !== false;
   const mode: LayoutMode = device === 'mobile' ? 'columns' : 'diamond';
+  /** Hub arrangement: the orchestrator's office in the centre, the departments in a ring around it. */
+  const hubMode = config.arrangement === 'hub';
 
   const [order, setOrder] = useState<string[]>(() => host.getLocal<string[]>('order', []));
   const [reorganizing, setReorganizing] = useState(false);
@@ -44,28 +48,38 @@ export default function ModularOffice({ host, config, quality, device }: Experie
   const selfSelect = useRef(false);
 
   const nDepts = catalog.departments.length;
+  // The hub keeps every department on its ring at any zoom; it only folds into poles on phones (or when asked).
   const groupingActive =
-    !reorganizing && (groupingCfg === 'always' || (groupingCfg === 'auto' && ((nDepts > 12 && bucket === 'far') || (device === 'mobile' && nDepts > 6))));
+    !reorganizing &&
+    (groupingCfg === 'always' ||
+      (groupingCfg === 'auto' && (hubMode ? device === 'mobile' && nDepts > 6 : (nDepts > 12 && bucket === 'far') || (device === 'mobile' && nDepts > 6))));
   const far = bucket === 'far';
   const detail: 'full' | 'reduced' | 'minimal' = quality.level === 'minimal' ? 'minimal' : quality.level === 'eco' ? 'reduced' : 'full';
 
   /* ---------- layout (memoised; independent from live data) ---------- */
-  const { slots, newIds } = useMemo(() => orderedDepartments(catalog, order), [catalog, order]);
+  const hubDept = useMemo(() => (hubMode ? pickHubDept(catalog) : undefined), [hubMode, catalog]);
+  const { slots, newIds } = useMemo(() => orderedDepartments(hubMode ? hubCatalog(catalog, hubDept?.id) : catalog, order), [hubMode, catalog, hubDept, order]);
   const groups = useMemo(() => [...new Set(catalog.departments.map((d) => d.group))], [catalog]);
   const items = useMemo(() => buildItems(slots, newIds, groupingActive, expanded), [slots, newIds, groupingActive, expanded]);
   // Folded groups seen from afar get wider corridors so their (enlarged) captions breathe.
   const layoutGap = groupingActive && far && device !== 'mobile' ? gap + 3 : gap;
-  const { placed } = useMemo(() => placeItems(items, mode, layoutGap, reorganizing ? items.length + 1 : 0), [items, mode, layoutGap, reorganizing]);
+  const hubPlace = useMemo<HubPlacement | null>(
+    () => (hubMode ? placeHub(items, device === 'mobile' ? 'columns' : 'ring', gap, reorganizing ? items.length + 1 : 0) : null),
+    [hubMode, items, device, gap, reorganizing],
+  );
+  const gridPlaced = useMemo(() => (hubMode ? [] : placeItems(items, mode, layoutGap, reorganizing ? items.length + 1 : 0).placed), [hubMode, items, mode, layoutGap, reorganizing]);
+  const placed = hubPlace ? hubPlace.placed : gridPlaced;
   // Bounds cover the ungrouped layout too, so folding into groups on zoom-out never changes
   // the scene extent (which would refit the view and undo the zoom).
-  const bucketDriven = groupingCfg === 'auto' && device !== 'mobile';
+  const bucketDriven = groupingCfg === 'auto' && device !== 'mobile' && !hubMode;
   const bounds = useMemo(() => {
+    if (hubPlace) return hubBounds(hubPlace, thickness * 1.5);
     if (!bucketDriven) return sceneBounds(placed, thickness * 1.5);
     const full = placeItems(buildItems(slots, newIds, false, new Set()), mode, gap, reorganizing ? slots.length + 1 : 0).placed;
     const a = sceneBounds(placed, thickness * 1.5);
     const b = sceneBounds(full, thickness * 1.5);
     return { minX: Math.min(a.minX, b.minX), minY: Math.min(a.minY, b.minY), maxX: Math.max(a.maxX, b.maxX), maxY: Math.max(a.maxY, b.maxY) };
-  }, [bucketDriven, placed, slots, newIds, mode, gap, reorganizing, thickness]);
+  }, [hubPlace, bucketDriven, placed, slots, newIds, mode, gap, reorganizing, thickness]);
   const byKey = useMemo(() => new Map(placed.map((p) => [p.item.key, p])), [placed]);
   const deptItemKey = useMemo(() => {
     const m = new Map<string, string>();
@@ -102,9 +116,10 @@ export default function ModularOffice({ host, config, quality, device }: Experie
     const load = new Map(departmentLoad(state, catalog).map((l) => [l.dept.id, l]));
     const flows = recentFlows(g.windowEvents(g.now - FLOW_WINDOW, g.now), g.now, FLOW_WINDOW);
     const active = activeLinks(catalog, flows, state, standing);
-    return { standing, here, owners, tasks, load, active };
+    const spokes = hubDept ? hubSpokeStates(catalog, hubDept.id, flows, g.windowEvents(g.now - FLOW_WINDOW, g.now), state, standing) : new Map<string, 'active' | 'error'>();
+    return { standing, here, owners, tasks, load, active, spokes };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [g.version, g.now, catalog, state]);
+  }, [g.version, g.now, catalog, state, hubDept]);
 
   const statusOf = useCallback((id: string): AgentStatus => state.agents[id]?.status ?? 'idle', [state]);
 
@@ -281,7 +296,7 @@ export default function ModularOffice({ host, config, quality, device }: Experie
 
   /* ---------- links ---------- */
   const linkEls = useMemo(() => {
-    if (!showLinks) return [];
+    if (!showLinks || hubMode) return [];
     const pairs = new Map<string, { a: Placed; b: Placed; kind: DeptLink['kind']; state: 'idle' | 'active' | 'error'; depts: Set<string> }>();
     const consider = (l: DeptLink, st: 'idle' | 'active' | 'error') => {
       const ka = deptItemKey.get(l.a);
@@ -307,7 +322,41 @@ export default function ModularOffice({ host, config, quality, device }: Experie
       consider({ a, b, kind: 'flow' }, st);
     }
     return [...pairs.values()].map((p, i) => ({ ...p, key: `${p.a.item.key}>${p.b.item.key}`, lane: ((i % 5) - 2) * 0.14 }));
-  }, [showLinks, links, live.active, deptItemKey, byKey]);
+  }, [showLinks, hubMode, links, live.active, deptItemKey, byKey]);
+
+  /* ---------- hub: walkways, centre, task status ---------- */
+  const spokeEls = useMemo(() => {
+    if (!hubPlace) return [];
+    const rank = { idle: 0, active: 1, error: 2 } as const;
+    return hubPlace.placed.flatMap((p) => {
+      const it = p.item;
+      if (it.kind === 'empty') return [];
+      const depts = it.kind === 'dept' ? [it.dept.id] : it.depts.map((d) => d.id);
+      let st: 'idle' | 'active' | 'error' = 'idle';
+      for (const id of depts) {
+        const v = live.spokes.get(id) ?? 'idle';
+        if (rank[v] > rank[st]) st = v;
+      }
+      return [{ key: it.key, p, depts, state: st }];
+    });
+  }, [hubPlace, live.spokes]);
+
+  const hubFigures: FigureSpec[] = useMemo(() => {
+    if (!hubDept) return [];
+    return (live.here.get(hubDept.id) ?? [])
+      .map((a) => ({ a, s: statusOf(a.id), ts: state.agents[a.id]?.lastEventTs ?? 0 }))
+      .sort((x, y) => Number(isActive(y.s)) - Number(isActive(x.s)) || y.ts - x.ts)
+      .slice(0, 3)
+      .map(({ a, s: st }) => ({ agent: a, status: st, selected: selection?.kind === 'agent' && selection.id === a.id, dimmed: filters.agents.length > 0 && !filters.agents.includes(a.id) }));
+  }, [hubDept, live.here, statusOf, state.agents, selection, filters.agents]);
+
+  // Collapsed by default: the four counters stay visible without hiding the right side of the ring.
+  const [taskPanelOpen] = useState(() => host.getLocal<boolean>('taskPanel', false));
+  const taskNature: DataNature = useMemo(() => {
+    const ts = Object.values(state.tasks);
+    if (!ts.length) return 'unavailable';
+    return ts.some((t) => t.nature === 'demo') ? 'demo' : 'real';
+  }, [state.tasks]);
 
   const drawOrder = useMemo(() => [...placed].sort((a, b) => a.x + a.y - (b.x + b.y) || a.x - b.x), [placed]);
 
@@ -334,13 +383,13 @@ export default function ModularOffice({ host, config, quality, device }: Experie
   );
 
   return (
-    <div className="mo-root">
+    <div className="mo-root" data-hub={hubMode || undefined}>
       <ZoomPan
         ref={zp}
         bounds={bounds}
-        label="Bureau modulaire : plateformes des départements"
+        label={hubMode ? 'Hub central : le bureau de direction au centre, les départements en anneau' : 'Bureau modulaire : plateformes des départements'}
         minimap={minimap}
-        showMinimap={device !== 'mobile'}
+        showMinimap={device !== 'mobile' && !hubMode}
         onZoomBucket={setBucket}
         onBackgroundClick={() => {
           if (picked) {
@@ -361,6 +410,51 @@ export default function ModularOffice({ host, config, quality, device }: Experie
             );
           })}
         </g>
+        {hubPlace && hubPlace.R > 0 && (
+          <ellipse className="mo-ringtrack" cx={hubPlace.hub.sx} cy={hubPlace.hub.sy} rx={hubPlace.R * 45.25} ry={hubPlace.R * 22.63} aria-hidden />
+        )}
+        {hubPlace && showLinks && (
+          <g className="mo-spokes">
+            {spokeEls.map((sp) => {
+              const dim = (!!selectedDept && selectedDept !== hubDept?.id && !sp.depts.includes(selectedDept)) || sp.depts.every(deptFiltered);
+              const ends = spokeEnds(hubPlace, sp.p);
+              const A = iso(ends.a[0], ends.a[1], -0.04);
+              const B = iso(ends.b[0], ends.b[1], -0.04);
+              const d = device === 'mobile' ? spineBranch(hubPlace, sp.p) : `M${A[0].toFixed(1)},${A[1].toFixed(1)} L${B[0].toFixed(1)},${B[1].toFixed(1)}`;
+              return (
+                <g key={sp.key} className="mo-spoke" data-state={dim ? 'dim' : sp.state}>
+                  {device !== 'mobile' && <Walkway a={ends.a} b={ends.b} />}
+                  <IsoFlowPath d={d} state={dim ? 'dim' : sp.state} />
+                </g>
+              );
+            })}
+          </g>
+        )}
+        {hubPlace && hubDept && (
+          <HubPlatform
+            dept={hubDept}
+            cx={hubPlace.hub.x}
+            cy={hubPlace.hub.y}
+            figures={hubFigures}
+            active={hubFigures.some((f) => isActive(f.status))}
+            traffic={spokeEls.some((sp) => sp.state !== 'idle')}
+            selected={selection?.kind === 'department' && selection.id === hubDept.id}
+            dimmed={deptFiltered(hubDept.id)}
+            shadows={quality.shadows}
+            far={far}
+            figureScale={figureScale}
+            ariaLabel={`Centre du hub. ${ariaFor(hubDept)}`}
+            hitRef={(el) => void hitRefs.current.set(hubDept.id, el)}
+            onActivate={() => !reorganizing && select({ kind: 'department', id: hubDept.id })}
+            onKey={(e) => {
+              if ((e.key === 'Enter' || e.key === ' ') && !reorganizing) {
+                e.preventDefault();
+                select({ kind: 'department', id: hubDept.id });
+              }
+            }}
+            onSelectAgent={(id) => select({ kind: 'agent', id })}
+          />
+        )}
         {drawOrder.map((p) => {
           const it = p.item;
           if (it.kind === 'empty') {
@@ -439,9 +533,39 @@ export default function ModularOffice({ host, config, quality, device }: Experie
           );
         })}
         <g className="mo-captions">
+          {hubPlace && hubDept && (() => {
+            const sc = far ? 1.35 : 1;
+            const [wx, wy] = unIso(hubPlace.hub.sx, hubPlace.hub.sy + HUB_R * 22.63 * 0.34);
+            return <Caption key="hub" x={wx} y={wy} dy={0} title={hubDept.name} chips={chipsFor(hubDept.id)} far={far} scale={sc} selected={selectedDept === hubDept.id} />;
+          })()}
           {drawOrder.map((p) => {
             const it = p.item;
             if (it.kind === 'empty') return null;
+            if (hubPlace && device !== 'mobile') {
+              // Ring: the caption sits on the hub side of its platform, so neighbours on the ring never collide.
+              const sc = far ? 1.35 : 1;
+              const title = it.kind === 'cluster' ? `${it.group} · ${it.depts.length}` : it.dept.name;
+              const chips = it.kind === 'cluster' ? clusterChips(it.depts) : chipsFor(it.dept.id);
+              const withChips = chips.length > 0 && !far;
+              const halfW = (Math.max(title.length * 7.6, chips.length * 44) / 2) * sc;
+              const halfH = (withChips ? 46 : 24) / 2 * sc;
+              const c = inwardCaption(p.sx, p.sy, hubPlace.hub.sx, hubPlace.hub.sy, halfW, halfH);
+              const [wx, wy] = unIso(c.x, c.y - halfH);
+              return (
+                <Caption
+                  key={it.key}
+                  x={wx}
+                  y={wy}
+                  dy={0}
+                  title={title}
+                  chips={chips}
+                  isNew={it.kind === 'dept' ? it.isNew : undefined}
+                  far={it.kind === 'cluster' ? false : far}
+                  scale={sc}
+                  selected={it.kind === 'dept' ? selectedDept === it.dept.id : !!selectedDept && it.depts.some((d) => d.id === selectedDept)}
+                />
+              );
+            }
             if (it.kind === 'cluster') {
               return (
                 <Caption key={it.key} x={p.x + PW} y={p.y + PD} dy={thickness * 1.5 * 32} title={`${it.group} · ${it.depts.length}`} chips={clusterChips(it.depts)} far={false} scale={far ? 1.9 : 1} />
@@ -505,10 +629,36 @@ export default function ModularOffice({ host, config, quality, device }: Experie
         )}
       </div>
 
-      {legend && !reorganizing && <Legend />}
+      {legend && !reorganizing && <Legend hub={hubMode} />}
+
+      {hubMode && (
+        <TaskStatusPanel
+          tasks={state.tasks}
+          from={g.range.from}
+          to={g.range.to}
+          now={g.now}
+          nature={taskNature}
+          periodLabel={PERIOD_LABEL[g.period.preset]}
+          agentName={(id) => (id ? catalog.agents.find((a) => a.id === id)?.name ?? id : 'Non attribuée')}
+          deptName={(id) => (id ? nameOf(id) : '—')}
+          selectedTask={selection?.kind === 'task' ? selection.id : undefined}
+          onSelect={(id) => select({ kind: 'task', id })}
+          initialOpen={taskPanelOpen}
+          onOpenChange={(v) => host.setLocal('taskPanel', v)}
+          mobile={device === 'mobile'}
+        />
+      )}
 
       <div className="sr-only">
-        <h2>Bureau modulaire</h2>
+        <h2>{hubMode ? 'Hub central' : 'Bureau modulaire'}</h2>
+        {hubMode && hubDept && (
+          <p>
+            Au centre, {hubDept.name} ({ariaFor(hubDept)}). Les autres départements sont disposés en anneau, regroupés par pôle, chacun relié au centre par une passerelle.
+            {spokeEls.some((sp) => sp.state !== 'idle')
+              ? ` Passerelles actives (échanges enregistrés, 15 min) : ${spokeEls.filter((sp) => sp.state !== 'idle').map((sp) => `${sp.depts.map(nameOf).join(', ')}${sp.state === 'error' ? ' (échec)' : ''}`).join(' ; ')}.`
+              : ' Aucune passerelle active : aucun échange enregistré avec le centre dans les 15 dernières minutes.'}
+          </p>
+        )}
         <p>
           {plural(nDepts, 'département', 'départements')} représentés par des plateformes. Les personnages sont des agents IA, les machines des scripts ou services ; les
           cubes représentent les tâches en cours ou en attente. Les liaisons s’animent uniquement lors d’échanges enregistrés.
@@ -523,7 +673,7 @@ export default function ModularOffice({ host, config, quality, device }: Experie
   );
 }
 
-function Legend() {
+function Legend({ hub }: { hub: boolean }) {
   const sw = (fill: string, dashed = false) => (
     <svg width={22} height={16} viewBox="-11 -10 22 16" aria-hidden>
       <path d="M0 -8 L9 -3.5 L0 1 L-9 -3.5 Z" style={{ fill, stroke: 'var(--c-ink)', strokeOpacity: 0.6, strokeDasharray: dashed ? '2 2' : undefined }} />
@@ -542,7 +692,11 @@ function Legend() {
       <svg width={22} height={10} viewBox="0 0 22 10" aria-hidden>
         <path d="M1 5 H21" style={{ stroke: 'var(--st-working)', strokeWidth: 2.5, strokeDasharray: '2 5', strokeLinecap: 'round' }} />
       </svg>
-      <span>Liaison animée : échange enregistré dans les 15 dernières minutes. Immobile : dépendance déclarée.</span>
+      <span>
+        {hub
+          ? 'Passerelle éclairée : échange enregistré avec le centre (appel, tâche confiée par la file, collaboration) dans les 15 dernières minutes. Éteinte : aucun échange.'
+          : 'Liaison animée : échange enregistré dans les 15 dernières minutes. Immobile : dépendance déclarée.'}
+      </span>
       <span style={{ fontWeight: 700, textAlign: 'center' }}>◆</span>
       <span>Pastilles : tâches (▶), en attente (…), erreurs (!), décisions (◆), incidents (▲).</span>
       <span />

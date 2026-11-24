@@ -33,7 +33,7 @@ export function levelZ(g: TowerGeom, level: number): number {
 }
 
 export function pillWidth(name: string) {
-  return 46 + name.length * 7.6 + 128;
+  return Math.max(name.length * 7.5, 160) + 64;
 }
 
 export function towerGeom(floors: Floor[], bays: number, H: number, showShaft: boolean): TowerGeom {
@@ -55,9 +55,9 @@ export function towerGeom(floors: Floor[], bays: number, H: number, showShaft: b
   const top = iso(N - 0.9, 0.9, zRoof + 2.2)[1];
   const bounds: Bounds = {
     minX: labelRight - maxPill - 14,
-    maxX: Math.max(iso(N + (showShaft ? 1 : 0), D - 1.15, 0)[0], iso(N + 2.6, -1.2, 0)[0]) + 30,
-    minY: Math.min(top, iso(0, 0, zTop + 1)[1]) - 26,
-    maxY: iso(N + 2.4, D + 2.2, 0)[1] + 8,
+    maxX: iso(N + 1, D - 1.15, 0)[0] + 36,
+    minY: Math.min(top, iso(0, 0, zTop + (showShaft ? 1.2 : 0))[1]) - 22,
+    maxY: iso(N + 1, D, 0)[1] + 34,
   };
   return { N, D, H, regular, roof, zRoof, zTop, pent, shaft, labelRight, bounds };
 }
@@ -70,11 +70,11 @@ export function baySpans(count: number, x0: number, width: number): Array<[numbe
 
 /* ---------------- floor plan ---------------- */
 
-export const RW = 6;
-export const RD = 5;
+export const RW = 5;
+export const RD = 4.4;
 const CORR = 1.5;
 const M = 0.5;
-const LANDING = 2.6;
+const FRONT = 2.4;
 
 export interface RoomBox {
   dept: DepartmentDef;
@@ -100,11 +100,12 @@ export function planGeom(floor: Floor): PlanGeom {
     const r = Math.floor(i / cols);
     return { dept, x: M + c * RW, y: M + r * (RD + CORR), w: RW - 0.25, d: RD };
   });
-  const w = cols * RW + M * 2 + LANDING;
-  const d = rows * RD + (rows - 1) * CORR + M * 2 + 1.1;
+  const w = cols * RW + M * 2;
+  const d = rows * RD + (rows - 1) * CORR + M * 2 + FRONT;
   const slab = { x: 0, y: 0, w, d };
-  const landing = { x: cols * RW + M + 0.2, y: d - 3.4, w: LANDING - 0.5, d: 2.6 };
-  const corners = [iso(0, 0, 0), iso(w, 0, 0), iso(w, d, 0), iso(0, d, 0)];
+  // The lift stands outside the slab, against its right side (never over a room label).
+  const landing = { x: w, y: d - 2.6, w: 1.5, d: 2.1 };
+  const corners = [iso(0, 0, 0), iso(w + 1.5, 0, 0), iso(w + 1.5, d, 0), iso(0, d, 0)];
   const bounds: Bounds = {
     minX: Math.min(...corners.map((c) => c[0])) - 30,
     maxX: Math.max(...corners.map((c) => c[0])) + 30,
