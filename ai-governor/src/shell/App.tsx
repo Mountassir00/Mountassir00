@@ -174,6 +174,8 @@ function AppInner() {
   // Keyboard shortcuts (documented in Réglages).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // A view that handled the key itself (e.g. a canvas with focus) wins.
+      if (e.defaultPrevented) return;
       if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && !isTyping(e))) {
         e.preventDefault();
         ui.set({ searchOpen: true });
