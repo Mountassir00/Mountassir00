@@ -919,7 +919,7 @@ Calculés par `veille_tools.py stats` à partir de `index.json`, publiés dans l
 |---|---|---|
 | Lecture de pages bloquée | Fait constaté (2026-11-24) : environnement `limited`, aucun domaine autorisé | Mode recherche seule (§7.4) ; ouvrir des domaines (§2.3) |
 | Géolocalisation de la recherche | **À vérifier** : la description de l'outil de recherche indique « US-only » ; l'effet sur les résultats français et espagnols n'est pas mesuré | Lors du premier passage mensuel, tester 10 requêtes témoins FR et ES sur des sources connues du catalogue et consigner le taux de réponse |
-| Domaines absents des résultats | Fait constaté : sur 72 requêtes ciblées, 16 n'ont renvoyé aucune page du domaine visé (FR, EN et ES confondus : p. ex. sportune.fr, evenementiel.net, actu.fr, sportspromedia.com, gamesindustry.biz, tomorrowland.com) ; cause non établie | Ne pas conclure à l'absence d'information ; utiliser `allowed_domains` ; marquer la source « non vérifiée » |
+| Domaines absents des résultats | Fait constaté : sur 73 requêtes, 14 nommaient un domaine précis et n'ont renvoyé aucune page de ce domaine, en français, anglais et espagnol (p. ex. sportune.fr, evenementiel.net, actu.fr, sportspromedia.com, gamesindustry.biz, tomorrowland.com, palco23.com) ; cause non établie (le paramètre `allowed_domains` n'était pas utilisé) | Ne pas conclure à l'absence d'information ; utiliser `allowed_domains` ; marquer la source « non vérifiée » |
 | Résumés de recherche générés | Le texte renvoyé par l'outil est une synthèse ; des dates incohérentes y ont été signalées par l'outil lui-même | Jamais citable (§7.4) |
 | Plafond de recherches | Fait constaté : 200 par tour, partagé entre agents | Budgets §5.1 ; éviter de lancer deux cadences dans le même tour |
 | Paywalls | Plusieurs sources spécialisées sont partiellement payantes | Tag `acces:partiel`, recoupement |
@@ -936,7 +936,7 @@ Calculés par `veille_tools.py stats` à partir de `index.json`, publiés dans l
 
 ## 14. Coût par passage (estimation raisonnée)
 
-Aucun tarif n'est cité ici : les tarifs n'ont pas pu être vérifiés dans la session de rédaction. Le coût se calcule à partir d'unités mesurables et des tarifs en vigueur au moment du calcul, lus sur la page officielle du fournisseur.
+Aucun tarif n'est cité ici : les tarifs n'ont pas pu être vérifiés dans la session de rédaction de ce document. Les tarifs, leur statut de vérification et le chiffrage mensuel de la veille relèvent de `10-couts.md` (§6 pour la veille V1). Le coût se calcule à partir d'unités mesurables et des tarifs en vigueur au moment du calcul, lus sur la page officielle du fournisseur.
 
 ### 14.1 Unités par passage (estimations)
 
@@ -951,12 +951,12 @@ Aucun tarif n'est cité ici : les tarifs n'ont pas pu être vérifiés dans la s
 Raisonnement et hypothèses :
 - **H-C1** — un résultat de recherche occupe de l'ordre de 0,5 à 1,5 k tokens (estimation d'après la longueur des réponses observées pendant la rédaction).
 - **H-C2** — une page lue occupe de 2 à 8 k tokens selon sa longueur (estimation).
-- **H-C3** — le contrat lu à chaque passage (ce document, schémas, README, `sources.json`) représente environ 55 k tokens (≈ 230 ko de texte, à raison d'environ 4 caractères par token) ; `index.json` grossit d'environ 0,4 k tokens par fiche.
+- **H-C3** — le contrat lu à chaque passage (ce document, deux schémas, README, `sources.json`) pèse environ 160 ko (mesuré le 2026-11-24), soit de l'ordre de 40 à 45 k tokens à raison de 3,5 à 4 caractères par token (estimation) ; `index.json` grossit d'environ 0,4 k tokens par fiche.
 - **H-C4** — une fiche rédigée représente 1 à 2 k tokens produits ; une analyse grille 3 à 5 k.
 - **H-C5** — une session agentique relit son contexte à chaque étape : le volume total traité est un multiple du volume nouveau, atténué par la mise en cache du contexte. Ce multiple n'est pas connu : il se **mesure**.
 - **H-C6** — validation humaine : 4 à 8 minutes par fiche (ouvrir les URL, requalifier), 20 à 40 minutes par analyse (hypothèse à mesurer).
 
-Ordre de grandeur pour un passage quotidien en lecture de pages : 55 k (contrat) + 40 × 1 k (recherches) + 15 × 5 k (lectures) + 8 × 1,5 k (fiches) ≈ **180 k tokens de contenu nouveau**, avant le multiplicateur H-C5. En mode recherche seule, retirer les lectures (≈ 105 k).
+Ordre de grandeur pour un passage quotidien en lecture de pages : 45 k (contrat) + 40 × 1 k (recherches) + 15 × 5 k (lectures) + 8 × 1,5 k (fiches) ≈ **170 k tokens de contenu nouveau**, avant le multiplicateur H-C5. En mode recherche seule, retirer les lectures (≈ 100 k).
 
 ### 14.2 Formule
 
@@ -985,5 +985,326 @@ mkdir -p /tmp/veille && awk '/^# --- DEBUT veille_tools.py ---$/{f=1} f{print} /
 Commandes (depuis la racine du dépôt) : `slug`, `check`, `doublons`, `validate`, `index`, `stats`. Testé le 2026-11-24 sur un jeu d'essai hors dépôt (détection de doublon par clé, trigrammes et URL ; refus de A/B et de `fait_verifie` en mode recherche seule ; détection de courriel ; index avec statuts issus de `validations.json` ; indicateurs).
 
 ```python
-@@ANNEXE_A@@
+# --- DEBUT veille_tools.py ---
+#!/usr/bin/env python3
+"""EVENT LAB - outils de veille (docs/06-systeme-de-veille.md, annexe A).
+
+A lancer depuis la racine du depot (le dossier qui contient event-lab/).
+  python3 veille_tools.py slug "Texte"
+  python3 veille_tools.py check --name NOM [--organizer ORG] [--country XX] [--date AAAA-MM-JJ] [--url URL]
+  python3 veille_tools.py doublons
+  python3 veille_tools.py validate
+  python3 veille_tools.py index
+  python3 veille_tools.py stats [--since AAAA-MM-JJ] [--until AAAA-MM-JJ]
+Code retour : 0 = OK, 1 = erreurs (validate) ou doublons detectes (check, doublons).
+"""
+import argparse
+import datetime as dt
+import json
+import re
+import statistics
+import sys
+import unicodedata
+from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+
+ROOT = Path("event-lab")
+VEILLE = ROOT / "knowledge" / "veille"
+SCHEMAS = ROOT / "schemas"
+SIM_THRESHOLD = 0.8      # [param] docs/07 section 9
+DATE_WINDOW_DAYS = 30    # [param] docs/07 section 9
+SMALL = {"independant", "association", "startup"}
+GRID = ["inscriptions", "billetterie", "files_attente", "accueil", "ambiance", "sequencage", "temps_morts",
+        "regles", "visibilite", "animations", "restauration", "accessibilite", "securite", "benevoles",
+        "experience_athletes", "satisfaction", "communication", "sponsors", "rentabilite", "medias", "environnement"]
+PERSONAL = [re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+"), re.compile(r"(?:\+33|\b0)[1-9](?:[ .-]?\d{2}){4}\b")]
+
+
+def slug(s):
+    if not s:
+        return "inconnu"
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-") or "inconnu"
+
+
+def trigrams(s):
+    t = "  " + slug(s).replace("-", " ") + " "
+    return {t[i:i + 3] for i in range(len(t) - 2)}
+
+
+def jaccard(a, b):
+    x, y = trigrams(a), trigrams(b)
+    return len(x & y) / len(x | y) if (x | y) else 0.0
+
+
+def year_of(date_str):
+    return date_str[:4] if date_str and re.match(r"\d{4}", date_str) else "inconnu"
+
+
+def dedupe_key(name, organizer, year):
+    return f"{slug(name)}|{slug(organizer)}|{year}"
+
+
+def canon_url(u):
+    p = urlsplit((u or "").strip())
+    q = [(k, v) for k, v in parse_qsl(p.query) if not k.lower().startswith("utm_") and k.lower() not in {"fbclid", "gclid"}]
+    host = p.netloc.lower()
+    host = host[4:] if host.startswith("www.") else host
+    return urlunsplit(("https", host, p.path.rstrip("/") or "/", urlencode(q), ""))
+
+
+def parse_date(s):
+    try:
+        return dt.date.fromisoformat((s or "")[:10])
+    except ValueError:
+        return None
+
+
+def ref_date(e):
+    return parse_date(e.get("event_date")) or parse_date(e.get("published_at"))
+
+
+def load_entries():
+    out = []
+    for p in sorted(VEILLE.glob("[0-9][0-9][0-9][0-9]/[0-9][0-9]/W-*.json")):
+        try:
+            out.append((p, json.loads(p.read_text(encoding="utf-8"))))
+        except json.JSONDecodeError as ex:
+            out.append((p, ex))
+    return out
+
+
+def load_json(path, default):
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else default
+
+
+def distinct(e, other_id):
+    return f"distinct_de:{other_id}" in (e.get("tags") or [])
+
+
+def compare(name, country, d0, url, e):
+    reasons = []
+    sim = jaccard(name, e.get("event_name", ""))
+    d1 = ref_date(e)
+    if sim >= SIM_THRESHOLD:
+        if country and e.get("country") == country and d0 and d1 and abs((d0 - d1).days) <= DATE_WINDOW_DAYS:
+            reasons.append(f"similarite_{sim:.2f}_meme_pays_dates")
+        else:
+            reasons.append(f"similarite_{sim:.2f}_a_examiner")
+    if url and any(canon_url(s.get("url")) == canon_url(url) for s in e.get("sources", [])):
+        reasons.append("url_deja_citee")
+    return reasons
+
+
+def cmd_slug(a):
+    print(slug(a.text))
+    return 0
+
+
+def cmd_check(a):
+    key = dedupe_key(a.name, a.organizer, year_of(a.date))
+    d0 = parse_date(a.date)
+    hits = 0
+    print(f"dedupe_key candidate : {key}")
+    for p, e in load_entries():
+        if not isinstance(e, dict):
+            continue
+        reasons = (["cle_identique"] if e.get("dedupe_key") == key else []) + compare(a.name, a.country, d0, a.url, e)
+        if reasons:
+            hits += 1
+            print(f"DOUBLON POSSIBLE {e.get('id')} ({p}) : {', '.join(reasons)}")
+    if not hits:
+        print("Aucun doublon detecte.")
+    return 1 if hits else 0
+
+
+def cmd_doublons(a):
+    items = [e for _, e in load_entries() if isinstance(e, dict)]
+    found = 0
+    for i, x in enumerate(items):
+        for y in items[i + 1:]:
+            if distinct(x, y.get("id")) or distinct(y, x.get("id")):
+                continue
+            reasons = (["cle_identique"] if x.get("dedupe_key") == y.get("dedupe_key") else [])
+            reasons += compare(x.get("event_name", ""), x.get("country"), ref_date(x), None, y)
+            urls_x = {canon_url(s.get("url")) for s in x.get("sources", [])}
+            if urls_x & {canon_url(s.get("url")) for s in y.get("sources", [])}:
+                reasons.append("url_commune")
+            if reasons:
+                found += 1
+                print(f"{x.get('id')} <-> {y.get('id')} : {', '.join(reasons)}")
+    print(f"{found} paire(s) a examiner.")
+    return 1 if found else 0
+
+
+def validator(name):
+    try:
+        import jsonschema
+    except ImportError:
+        sys.exit("jsonschema absent : pip install jsonschema")
+    schema = json.loads((SCHEMAS / name).read_text(encoding="utf-8"))
+    return jsonschema.Draft202012Validator(schema)
+
+
+def cmd_validate(a):
+    errors, warnings = [], []
+    wv, ev = validator("watch-entry.schema.json"), validator("error-entry.schema.json")
+    for p, e in load_entries():
+        if not isinstance(e, dict):
+            errors.append(f"{p} : JSON invalide ({e})")
+            continue
+        for err in wv.iter_errors(e):
+            errors.append(f"{p} : schema : {err.message}")
+        fid = e.get("id", "")
+        if not re.fullmatch(r"W-\d{8}-[a-z0-9-]+", fid) or p.stem != fid:
+            errors.append(f"{p} : id '{fid}' invalide ou different du nom de fichier")
+        elif fid[2:6] != p.parent.parent.name or fid[6:8] != p.parent.name:
+            errors.append(f"{p} : dossier AAAA/MM different de la date de l'id")
+        expected = dedupe_key(e.get("event_name"), e.get("organizer"), year_of(e.get("event_date") or e.get("published_at")))
+        if e.get("dedupe_key") != expected:
+            warnings.append(f"{p} : dedupe_key '{e.get('dedupe_key')}' attendu '{expected}'")
+        tags = e.get("tags") or []
+        if not any(t.startswith("langue:") for t in tags):
+            errors.append(f"{p} : tag langue:xx manquant")
+        if "lecture:page" not in tags and "lecture:resultat_recherche" not in tags:
+            errors.append(f"{p} : tag lecture:page ou lecture:resultat_recherche manquant")
+        n = len(e.get("sources", []))
+        for c in e.get("claims", []):
+            si = c.get("source_index")
+            if si is not None and not 0 <= si < n:
+                errors.append(f"{p} : claim source_index {si} hors limites")
+            if c.get("status") == "fait_verifie" and "lecture:resultat_recherche" in tags:
+                errors.append(f"{p} : fait_verifie interdit sans lecture de page (section 7.4)")
+        if e.get("reliability") in {"A", "B"} and "lecture:resultat_recherche" in tags:
+            errors.append(f"{p} : fiabilite {e.get('reliability')} interdite sans lecture de page (section 7.4)")
+        text = json.dumps(e, ensure_ascii=False)
+        for rx in PERSONAL:
+            if rx.search(text):
+                errors.append(f"{p} : donnee personnelle possible (courriel ou telephone)")
+    for p in sorted((VEILLE / "analyses").glob("*/*/A-*.json")):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as ex:
+            errors.append(f"{p} : JSON invalide ({ex})")
+            continue
+        for dim in d.get("dimensions", []):
+            if dim.get("code") not in GRID:
+                errors.append(f"{p} : dimension inconnue {dim.get('code')}")
+            s = dim.get("score")
+            if s is not None and (not isinstance(s, int) or not 1 <= s <= 5):
+                errors.append(f"{p} : note hors 1-5 pour {dim.get('code')}")
+            if s is not None and not dim.get("source_urls"):
+                errors.append(f"{p} : note sans source pour {dim.get('code')}")
+    for p in sorted((VEILLE / "propositions-erreurs").glob("E-PROP-*.json")):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as ex:
+            errors.append(f"{p} : JSON invalide ({ex})")
+            continue
+        for err in ev.iter_errors(d):
+            errors.append(f"{p} : schema erreur : {err.message}")
+    for w in warnings:
+        print("AVERTISSEMENT", w)
+    for e in errors:
+        print("ERREUR", e)
+    print(f"{len(errors)} erreur(s), {len(warnings)} avertissement(s).")
+    return 1 if errors else 0
+
+
+def cmd_index(a):
+    validations = load_json(VEILLE / "validations.json", {})
+    rows = []
+    for p, e in load_entries():
+        if not isinstance(e, dict):
+            continue
+        v = validations.get(e.get("id"), {})
+        status = v.get("status", "a_valider")
+        updates = sorted(t[4:] for t in (e.get("tags") or []) if t.startswith("maj:"))
+        revalidation = bool(v and updates and updates[-1] > v.get("at", ""))
+        if revalidation:
+            status = "a_valider"
+        rows.append({
+            "id": e.get("id"), "path": str(p.relative_to(VEILLE)), "event_name": e.get("event_name"),
+            "organizer": e.get("organizer"), "country": e.get("country"), "sector_family": e.get("sector_family"),
+            "organizer_scale": e.get("organizer_scale"), "event_date": e.get("event_date"),
+            "published_at": e.get("published_at"), "collected_at": e.get("collected_at"), "cadence": e.get("cadence"),
+            "reliability": e.get("reliability"), "dedupe_key": e.get("dedupe_key"),
+            "language": next((t[7:] for t in (e.get("tags") or []) if t.startswith("langue:")), None),
+            "read": "lecture:page" in (e.get("tags") or []),
+            "small_organizer": e.get("organizer_scale") in SMALL,
+            "status": status, "revalidation": revalidation,
+            "validated_by": v.get("by"), "validated_at": v.get("at"), "merged_into": None,
+        })
+        for old in e.get("merged_from") or []:
+            rows.append({"id": old, "path": None, "event_name": e.get("event_name"), "status": "fusionne",
+                         "merged_into": e.get("id")})
+    rows.sort(key=lambda r: r["id"] or "")
+    index = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+             "schema": "schemas/watch-entry.schema.json", "count": len(rows), "entries": rows}
+    (VEILLE / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"index.json : {len(rows)} entree(s).")
+    return 0
+
+
+def pct(n, d):
+    return f"{100 * n / d:.0f} %" if d else "n/a"
+
+
+def cmd_stats(a):
+    idx = load_json(VEILLE / "index.json", {"entries": []})
+    since, until = parse_date(a.since) or dt.date.min, parse_date(a.until) or dt.date.max
+    rows = [r for r in idx["entries"] if r.get("path") and since <= (parse_date(r.get("collected_at")) or dt.date.min) <= until]
+    merged = [r for r in idx["entries"] if r.get("status") == "fusionne"]
+    n = len(rows)
+    fams = {r.get("sector_family") for r in rows if r.get("sector_family") and r.get("sector_family") != "autre"}
+    pub = [r for r in rows if r["status"] == "publie"]
+    fresh = [((parse_date(r["collected_at"]) - parse_date(r["published_at"])).days) for r in rows
+             if parse_date(r.get("collected_at")) and parse_date(r.get("published_at"))]
+    today = dt.date.today()
+    backlog = [r for r in rows if r["status"] == "a_valider" and parse_date(r.get("collected_at"))
+               and (today - parse_date(r["collected_at"])).days > 14]
+    langs = {}
+    for r in rows:
+        langs[r.get("language")] = langs.get(r.get("language"), 0) + 1
+    print("| Indicateur | Valeur |\n|---|---|")
+    print(f"| Fiches sur la periode | {n} |")
+    print(f"| Familles couvertes (hors autre) | {len(fams)}/15 : {', '.join(sorted(fams))} |")
+    print(f"| Part petits organisateurs | {pct(sum(r['small_organizer'] for r in rows), n)} |")
+    print(f"| Langues | {', '.join(f'{k}: {pct(v, n)}' for k, v in sorted(langs.items(), key=lambda kv: str(kv[0])))} |")
+    print(f"| Fraicheur mediane (jours) | {statistics.median(fresh) if fresh else 'n/a'} |")
+    print(f"| Fiches lues (lecture:page) | {pct(sum(r['read'] for r in rows), n)} |")
+    print(f"| Publiees A ou B | {pct(sum(r['reliability'] in ('A', 'B') for r in pub), len(pub))} |")
+    print(f"| Taux de traitement (publie + rejete) | {pct(sum(r['status'] in ('publie', 'rejete') for r in rows), n)} |")
+    print(f"| Backlog a valider > 14 j | {len(backlog)} |")
+    print(f"| Fusions (total depot) | {len(merged)} |")
+    return 0
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    s = sub.add_parser("slug")
+    s.add_argument("text")
+    c = sub.add_parser("check")
+    c.add_argument("--name", required=True)
+    c.add_argument("--organizer")
+    c.add_argument("--country")
+    c.add_argument("--date")
+    c.add_argument("--url")
+    sub.add_parser("doublons")
+    sub.add_parser("validate")
+    sub.add_parser("index")
+    st = sub.add_parser("stats")
+    st.add_argument("--since")
+    st.add_argument("--until")
+    a = ap.parse_args()
+    if not ROOT.is_dir():
+        sys.exit("Lancer depuis la racine du depot (dossier contenant event-lab/).")
+    return {"slug": cmd_slug, "check": cmd_check, "doublons": cmd_doublons, "validate": cmd_validate,
+            "index": cmd_index, "stats": cmd_stats}[a.cmd](a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+# --- FIN veille_tools.py ---
 ```

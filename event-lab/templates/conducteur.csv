@@ -1,0 +1,16 @@
+heure_debut;heure_fin;duree_min;sequence;espace;responsable;intervenants;son;lumiere;video;micro;notes;critique
+;;;Montage — installation des espaces;;;;;;;;;
+;;;Contrôle technique son / lumière / vidéo / énergie;;;;;;;;;
+;;;Arrivée des équipes et briefing général;;;;;;;;;
+;;;Ouverture des portes — accueil du public;;;;;;;;;
+;;;Accréditation des participants;;;;;;;;;
+;;;Échauffement des participants;;;;;;;;;
+;;;Cérémonie d'ouverture;;;;;;;;;
+;;;Compétition — phase 1;;;;;;;;;
+;;;Transition — pause et animation;;;;;;;;;
+;;;Compétition — phase finale;;;;;;;;;
+;;;Remise des récompenses;;;;;;;;;
+;;;Clôture — départ du public;;;;;;;;;
+;;;Démontage;;;;;;;;;
+;;;État des lieux de sortie et remise des clés;;;;;;;;;
+09:30;09:45;15;EX-P-04 — EXEMPLE FICTIF : Ouverture des portes;EX-accueil;Responsable accueil;Bénévoles accueil (3);SON: musique d'ambiance volume 1;LUM: plein feu salle;VID: boucle écran d'accueil;MIC: annonce d'ouverture à 09:30;Supprimer cette ligne avant usage;oui

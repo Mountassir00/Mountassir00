@@ -198,7 +198,7 @@ Format des critères d'acceptation : **Soit** (contexte) / **Quand** (action) / 
 | F-080 | Verrouiller une brique et régénérer une seule direction | S | MVP Op. | Soit une brique verrouillée, Quand je régénère la direction, Alors la brique est conservée |
 | F-081 | Accepter un événement sans discipline : aucun filtrage par discipline | M | MVP Op. | Soit une discipline vide, Alors la génération aboutit et `identity.disciplines = []` |
 | F-082 | Nom et pitch : gabarit en MVP (nom provisoire à renommer) ; rédaction par LLM en V1 (A§2.9), sans chiffres, sources ni retours d'expérience générés | M | MVP Op. ; V1 | Soit un concept généré, Alors son nom est préfixé « Provisoire — » jusqu'au renommage |
-| F-083 | Enregistrer une direction comme concept `draft` `0.1.0` (`event-config`), avec le brief, les hypothèses et la graine | M | MVP Op. | Soit « Retenir », Alors le concept apparaît dans Concepts, en statut draft |
+| F-083 | Enregistrer une direction comme concept `draft` `0.1.0` (`event-config`), avec le brief, les hypothèses et la graine | M | MVP Op. | Soit « Retenir », Alors le concept apparaît dans Concepts, en statut draft (dépendance D-19) |
 | F-084 | Avant revue, documenter l'intérêt pour le public, les participants et l'organisateur (`audiences[].motivation` par rôle) | S | MVP Op. | Soit aucune motivation de rôle `participant`, Quand je soumets en revue, Alors refus |
 
 ### 6.6 Adaptation aux infrastructures (brief §8)
@@ -294,7 +294,7 @@ Format des critères d'acceptation : **Soit** (contexte) / **Quand** (action) / 
 
 | ID | Exigence | Prio | Ph./St. | Critère d'acceptation |
 |---|---|---|---|---|
-| F-230 | Statuts `draft` → `review` → `validated` → `archived`, et retour `review` → `draft`. Toute autre transition est refusée | M | MVP Op. | Soit une version `validated`, Alors le retour en `draft` est impossible |
+| F-230 | Statuts `draft` → `review` → `validated` → `archived`, retour `review` → `draft`, abandon `draft` → `archived`. Toute autre transition est refusée | M | MVP Op. | Soit une version `validated`, Alors le retour en `draft` est impossible |
 | F-231 | Immutabilité : une version `validated` n'est pas modifiable. Son empreinte SHA-256 (JSON canonique) est stockée et contrôlée à chaque chargement | M | MVP Op. | Soit un fichier validé altéré à la main, Quand l'appli charge, Alors l'alerte « version altérée » s'affiche et l'édition reste bloquée |
 | F-232 | Nouvelle version depuis une version validée : `draft` `x.(y+1).0`, `parent.relation = new_version`, entrée d'historique | M | MVP Op. | Soit 1.2.0 validée, Alors « Nouvelle version » crée 1.3.0 draft, avec parent 1.2.0 |
 | F-233 | Clonage : nouvel `id`, version `0.1.0`, `parent.relation = clone` | M | MVP Op. | Soit un clone, Alors l'original est inchangé (même empreinte) |
@@ -420,6 +420,9 @@ Ces exigences supposent des champs absents ou ambigus. Ce document ne modifie pa
 | D-16 | Pas de champs pour les parcours, le calendrier éditorial, le volet commercial ni les sections rédigées du blueprint | F-150, F-153, F-178, F-211 |
 | D-17 | `ratings` accepte toute clé en minuscules (`additionalProperties` inopérant). Le pas de 0,5 n'est pas contraint | F-191 |
 | D-18 | Statut de revue absent de `watch-entry` : la publication est portée par le dossier (`_inbox/` → `watch/`) | F-028 |
+| D-19 | Pas de champ pour le brief source ni pour la graine du générateur. Convention provisoire : texte dans `history[0].decisions` | F-075, F-083 |
+| D-20 | Pas de champ pour les invariants du format (règles et briques non modifiables) et les paramètres adaptables, nécessaires à l'adaptation et à la licence (doc 05, W7) | F-234 |
+| D-21 | Une version de réalisation suivie d'une proposition améliorée donne `x.(y+2).0`, alors qu'A§10 prévoit `x.(y+1).0` pour la proposition | F-250, F-253 |
 
 ## 13. Indicateurs de succès de l'outil (recette MVP)
 

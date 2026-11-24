@@ -1,0 +1,25 @@
+id;categorie;libelle;montant;base;certitude;optionnel;priorite;decalage_paiement_J;source
+D-01;lieu;Location du lieu et charges;;fixed;;;;;
+D-02;lieu;Nettoyage et remise en état;;fixed;;;;;
+D-03;technique;Sonorisation (location et technicien);;fixed;;;;;
+D-04;technique;Éclairage scénique;;fixed;;;;;
+D-05;technique;Écran et vidéo;;fixed;;;;;
+D-06;technique;Groupe électrogène ou raccordement provisoire;;fixed;;;;;
+D-07;materiel_sportif;Matériel de compétition (location ou achat);;fixed;;;;;
+D-08;materiel_sportif;Chronométrage et affichage des scores;;fixed;;;;;
+D-09;scenographie;Décor, mobilier et habillage;;fixed;;;;;
+D-10;signaletique_impression;Signalétique et impressions;;fixed;;;;;
+D-11;securite_secours;Dispositif prévisionnel de secours (association agréée de sécurité civile);;fixed;;;;;
+D-12;securite_secours;Agents de sécurité et contrôle d'accès;;fixed;;;;;
+D-13;personnel;Personnel salarié ou prestataire;;fixed;;;;;
+D-14;benevoles;Repas, tenues et défraiement des bénévoles;;fixed;;;;;
+D-15;restauration_achats;Achats buvette et restauration (coût par spectateur);;per_attendee;;;;;
+D-16;communication;Communication et publicité;;fixed;;;;;
+D-17;recompenses;Récompenses et trophées;;fixed;;;;;
+D-18;recompenses;Dotation par participant (tenue, ravitaillement);;per_participant;;;;;
+D-19;assurance;Assurance responsabilité civile organisateur;;fixed;;;;;
+D-20;droits_taxes;Droits de diffusion musicale (Sacem);;fixed;;;;;
+D-21;digital_billetterie;Frais de billetterie et d'inscription en ligne (ramenés au spectateur);;per_attendee;;;;;
+D-22;transport_logistique;Transport et livraisons du matériel;;fixed;;;;;
+D-23;administratif;Frais bancaires et administratifs;;fixed;;;;;
+EX-D-99;exemple;EXEMPLE FICTIF — Location de 20 barrières;400;fixed;devis;non;1;-30;S-EX

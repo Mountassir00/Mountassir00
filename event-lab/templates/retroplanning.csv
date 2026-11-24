@@ -1,0 +1,27 @@
+jalon;echeance_relative_J;responsable;livrable;dependances;statut;go_no_go
+Validation du lieu et des dates;-120;Directeur de projet;Accord écrit de l'exploitant + document ERP du lieu (type, catégorie, effectif autorisé);;a_faire;
+Inventaire des démarches réglementaires applicables;-120;Directeur de projet;compliance[] renseigné : démarche, autorité, échéance, source (checklist sécurité);Validation du lieu et des dates;a_faire;
+Budget prévisionnel v1 et plan de financement;-110;Trésorier;budget.csv et recettes.csv chiffrés avec certitude;Validation du lieu et des dates;a_faire;
+Premier contact avec une association agréée de sécurité civile;-100;Responsable sécurité;Grille d'évaluation des risques DPS en cours avec l'association;Validation du lieu et des dates;a_faire;
+Dépôt des démarches à délai long;-90;Directeur de projet;Accusés de dépôt (ex. utilisation exceptionnelle de l'ERP, dérogation boissons en enceinte sportive, manifestation sur la voie publique) selon l'inventaire;Inventaire des démarches réglementaires applicables;a_faire;
+GO/NO-GO 1 — lieu et démarches;-90;Directeur de projet;Décision écrite dans history[].decisions;Dépôt des démarches à délai long | Budget prévisionnel v1 et plan de financement;a_faire;Lieu confirmé par écrit ET toutes les démarches dont le délai légal est d'au moins deux mois déposées
+Lancement du démarchage des partenaires;-90;Responsable partenariats;Dossier de sponsoring PPTX + liste de cibles;GO/NO-GO 1 — lieu et démarches;a_faire;
+Ouverture des inscriptions participants;-75;Responsable compétition;Règlement publié + formulaire d'inscription en ligne;GO/NO-GO 1 — lieu et démarches;a_faire;
+Ouverture de la billetterie;-60;Responsable billetterie;Billetterie en ligne ouverte, tarifs publiés;GO/NO-GO 1 — lieu et démarches;a_faire;
+Lancement du recrutement des bénévoles;-60;Coordinateur bénévoles;Fiches de poste publiées;GO/NO-GO 1 — lieu et démarches;a_faire;
+GO/NO-GO 2 — financier;-60;Trésorier;Ratio recettes sécurisées / dépenses engagées calculé (docs/07 §7.5);Lancement du démarchage des partenaires;a_faire;Ratio recettes sécurisées / dépenses engagées supérieur ou égal au seuil fixé par l'organisateur [À COMPLÉTER : seuil]
+Commandes et réservations du matériel et des prestataires;-45;Régisseur général;Devis signés (certitude devis dans budget.csv);GO/NO-GO 2 — financier;a_faire;
+Dépôt des déclarations à délai d'un mois;-45;Directeur de projet;Accusés de dépôt ou récépissés selon l'inventaire;Inventaire des démarches réglementaires applicables;a_faire;
+Campagne de communication — phase d'annonce;-45;Chargé de communication;Calendrier éditorial lancé (section 30);Ouverture de la billetterie;a_faire;
+GO/NO-GO 3 — conformité;-30;Directeur de projet;État de compliance[] à jour;Dépôt des démarches à délai long | Dépôt des déclarations à délai d'un mois;a_faire;Aucun point de conformité obligatoire en a_verifier ou non_conforme (porte conformité, docs/07 §1.5)
+Programme et conducteur finalisés;-21;Régisseur général;conducteur.csv complet, transitions nommées;GO/NO-GO 3 — conformité;a_faire;
+Demande d'autorisation de diffusion musicale;-21;Chargé de production;Demande déposée auprès de la Sacem (au moins 15 jours avant selon les sources consultées, à vérifier);;a_faire;
+Attestation d'assurance responsabilité civile;-15;Directeur de projet;Attestation reçue et transmise aux autorités qui l'exigent;;a_faire;
+Formation et briefing des bénévoles;-14;Coordinateur bénévoles;Feuille d'émargement de la formation;Lancement du recrutement des bénévoles;a_faire;
+GO/NO-GO 4 — opérationnel;-7;Directeur de projet;Confirmations écrites des prestataires et effectifs;Commandes et réservations du matériel et des prestataires | Formation et briefing des bénévoles;a_faire;Tous les prestataires confirmés par écrit ET effectifs présents supérieurs ou égaux aux besoins (C13) ET DPS confirmé par l'association
+Décision de configuration selon la météo;-3;Directeur de projet;Décision écrite : configuration de base ou de secours;GO/NO-GO 4 — opérationnel;a_faire;
+Montage, contrôle technique et briefing général;-1;Régisseur général;Checklist J-1 signée;GO/NO-GO 4 — opérationnel;a_faire;
+Bilan à chaud;3;Directeur de projet;bilan.md sections 1, 2, 5, 8;;a_faire;
+Transmission du programme des œuvres diffusées;10;Chargé de production;Programme transmis à la Sacem (dans les 10 jours selon les sources consultées, à vérifier);Demande d'autorisation de diffusion musicale;a_faire;
+Bilan complet;30;Directeur de projet;bilan.md complet + bilan-donnees.xlsx;Bilan à chaud;a_faire;
+Proposition de version suivante;45;Directeur de projet;Version draft x.(y+1).0 soumise à approbation;Bilan complet;a_faire;
