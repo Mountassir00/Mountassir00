@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" width="400" height="340" role="img" aria-labelledby="t d">
+  <title id="t">LA GRILLE 3x3 — logo vertical (fonds clairs)</title>
+  <desc id="d">Création originale EVENT LAB. Marque centrée au-dessus du mot-symbole et de la pastille 3x3, pour formats carrés et verticaux (affiche, maillot, réseaux). Texte à vectoriser pour la production.</desc>
+  <g transform="translate(130 24)" fill="none" stroke="#121417" stroke-width="4" stroke-linejoin="round">
+    <rect x="0" y="0" width="40" height="24" rx="5" fill="#FFC629"/>
+    <rect x="0" y="34" width="40" height="24" rx="5"/>
+    <rect x="0" y="68" width="40" height="24" rx="5"/>
+    <rect x="50" y="12" width="40" height="24" rx="5"/>
+    <rect x="50" y="46" width="40" height="24" rx="5"/>
+    <rect x="50" y="80" width="40" height="24" rx="5"/>
+    <rect x="100" y="24" width="40" height="24" rx="5"/>
+    <rect x="100" y="58" width="40" height="24" rx="5"/>
+    <rect x="100" y="92" width="40" height="24" rx="5"/>
+  </g>
+  <text x="200" y="226" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="64" fill="#121417" textLength="360" lengthAdjust="spacingAndGlyphs">LA GRILLE</text>
+  <rect x="144" y="248" width="112" height="46" rx="8" fill="#FF5B1A"/>
+  <text x="200" y="283" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="34" fill="#121417">3x3</text>
+</svg>

@@ -1,0 +1,1168 @@
+[
+  {
+    "id": "SRC-001",
+    "name": "NBA Communications",
+    "url": "https://pr.nba.com/",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communiqués de la ligue : règles, calendrier, partenariats, sanctions. Archives par année, catégorie, tag. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-002",
+    "name": "FIBA — Newsroom",
+    "url": "https://about.fiba.basketball/en/news",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Actualités FIBA (compétitions, 3x3, calendriers, rapports tels que le Migration Report). La recherche renvoie ce sous-domaine plutôt que fiba.basketball. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-003",
+    "name": "NFL Football Operations — Updates",
+    "url": "https://operations.nfl.com/updates/football-ops/",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Règles, arbitrage, calendrier, initiatives de la ligue ; fil paginé. Changements de règles = source A. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-004",
+    "name": "UFC — News",
+    "url": "https://www.ufc.com/news",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Annonces d'événements et conférences ; utile pour la dramaturgie des présentations (brief §6). Contenu promotionnel : ne retenir que les faits. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-005",
+    "name": "FIA — News",
+    "url": "https://www.fia.com/news",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Source primaire des règlements F1 et sport automobile (formats de qualification, règlements techniques et sportifs). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-006",
+    "name": "Formula 1 — Latest",
+    "url": "https://www.formula1.com/en/latest",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Actualité éditoriale du promoteur F1 (formats de week-end, expérience fan). Les règlements font foi sur fia.com. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-007",
+    "name": "Kings League",
+    "url": "https://kingsleague.pro/",
+    "type": "officiel",
+    "sector_families": [
+      "sport",
+      "tv_media"
+    ],
+    "scale": "grandes_organisations",
+    "language": "es",
+    "country": "ES",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Football à 7 créé par Gerard Piqué, lancé à Barcelone en 2022 d'après la page d'accueil ; plusieurs marchés (ex. /americas), Queens League. Analyser la logique, ne pas reprendre la marque (brief §6). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-008",
+    "name": "Baller League UK",
+    "url": "https://ballerleague.uk/",
+    "type": "officiel",
+    "sector_families": [
+      "sport",
+      "tv_media"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Publications officielles (saisons, forum de supporters). Ligue récente : statut start-up/grande organisation à qualifier fiche par fiche. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-009",
+    "name": "CIO — Actualités",
+    "url": "https://olympics.com/ioc/news",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Décisions de la commission exécutive, programme des Jeux, processus d'attribution. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-010",
+    "name": "FIFA — Communiqués",
+    "url": "https://inside.fifa.com/en/organisation/media/all-media-releases",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communiqués officiels (compétitions, billetterie, gouvernance). Les instantanés indexés peuvent dater : vérifier la date sur la page. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-011",
+    "name": "UEFA — News & media",
+    "url": "https://www.uefa.com/news-media/",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communiqués, documents de match, règlements. Le canal média accrédité (accès restreint) est hors périmètre. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-012",
+    "name": "ATP Tour — Media releases",
+    "url": "https://www.atptour.com/en/media/media-releases",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communiqués (calendrier, partenariats, innovations fan). Version espagnole : /es/media/media-releases. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-013",
+    "name": "Comité international paralympique — News",
+    "url": "https://www.paralympic.org/news",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Sports paralympiques (brief §3) : compétitions, classification, accessibilité. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-014",
+    "name": "Esports World Cup — News",
+    "url": "https://esportsworldcup.com/news",
+    "type": "officiel",
+    "sector_families": [
+      "esport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communiqués (/en/press-releases/...). Changement de nom de l'organisation rapporté par la presse en 2026 : à confirmer sur le site. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-015",
+    "name": "Red Bull — Événements",
+    "url": "https://redbull.com/ie-en/events",
+    "type": "officiel",
+    "sector_families": [
+      "sport",
+      "musique_festival",
+      "esport",
+      "activation_marque"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Événements passés et à venir (déclinaisons locales /xx-xx/events). Médias : Red Bull Content Pool, https://redbullmediahouse.com/en/red-bull-content-pool (plateforme B2B, contenus éditoriaux sur compte). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-016",
+    "name": "Disney Parks Blog",
+    "url": "https://disneyparksblog.com/latest-posts",
+    "type": "officiel",
+    "sector_families": [
+      "parc_loisirs",
+      "spectacle"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Annonces officielles parcs, attractions, événements. Ton promotionnel : ne garder que dates, mécaniques et capacités annoncées. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-017",
+    "name": "Coachella — Festival info",
+    "url": "https://coachella.com/festival-info",
+    "type": "officiel",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Pas de newsroom : pages pratiques (application, accès, FAQ, camping) utiles pour la grille (billetterie, accès, files d'attente). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-018",
+    "name": "Tomorrowland",
+    "url": "https://www.tomorrowland.com/",
+    "type": "officiel",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "BE",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Cité par le brief. Site officiel NON renvoyé par la recherche le 2026-11-24 (seule la presse tierce est apparue). Ouvrir et confirmer l'URL avant usage.",
+    "verified_at": "2026-11-24",
+    "verification": "non_verifie"
+  },
+  {
+    "id": "SRC-019",
+    "name": "FISE — Festival international des sports extrêmes",
+    "url": "https://www.fise.fr/en/what-fise",
+    "type": "officiel",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Sports urbains (Montpellier) ; organisateur de taille intermédiaire. Cas utile pour H2 (sport urbain). Chiffres de fréquentation divergents selon les sources : à recouper. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-020",
+    "name": "FF Sport U (FFSU)",
+    "url": "https://sport-u.com/",
+    "type": "officiel",
+    "sector_families": [
+      "sport",
+      "universitaire"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Championnats universitaires, règlements par discipline (PDF), rapport d'activité annuel. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-021",
+    "name": "Fédération de la Haute Couture et de la Mode — Actualités",
+    "url": "https://www.fhcm.paris/fr/news",
+    "type": "officiel",
+    "sector_families": [
+      "mode_luxe"
+    ],
+    "scale": "grandes_organisations",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Calendriers officiels Paris Fashion Week et Haute Couture Week (provisoires puis définitifs). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-022",
+    "name": "SportBusiness — News",
+    "url": "https://www.sportbusiness.com/category/news/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport",
+      "esport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "quotidienne",
+    "notes": "Droits médias, sponsoring, gouvernance, nominations. Accès aux contenus complets à vérifier (abonnement possible) : ne pas contourner. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-023",
+    "name": "Front Office Sports",
+    "url": "https://frontofficesports.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "quotidienne",
+    "notes": "Business du sport nord-américain (médias, finance, stades, technologie). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-024",
+    "name": "SportsPro",
+    "url": "https://www.sportspromedia.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Média business du sport (Londres) décrit par des sources tierces ; le site lui-même n'a PAS été renvoyé par la recherche. Confirmer l'URL avant usage.",
+    "verified_at": "2026-11-24",
+    "verification": "non_verifie"
+  },
+  {
+    "id": "SRC-025",
+    "name": "2Playbook",
+    "url": "https://www.2playbook.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "mixte",
+    "language": "es",
+    "country": "ES",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Business du sport en Espagne ; rapports sectoriels payants. Paywall partiel : ne pas contourner. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-026",
+    "name": "Le Sport Business",
+    "url": "https://lesportbusiness.com/rubrique/sport-business-actualite-info-marketing/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Média français marketing et partenariats sportifs. Fiabilité éditoriale non établie : C par défaut tant que non recoupé. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-027",
+    "name": "Event Marketer — Industry News",
+    "url": "https://www.eventmarketer.com/category/industry-news/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "activation_marque",
+      "salon_pro"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Marketing expérientiel. Cas primés (Ex Awards) = description des agences : D/C sans recoupement. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-028",
+    "name": "BizBash — Latest news",
+    "url": "https://www.bizbash.com/latest-news",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "activation_marque",
+      "salon_pro"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Événementiel d'entreprise et activations (groupe Informa). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-029",
+    "name": "Skift Meetings",
+    "url": "https://skift.com/meetings/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "salon_pro",
+      "tourisme"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Industrie des rencontres et salons : rachats, technologies événementielles, contexte géopolitique. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-030",
+    "name": "Eventoplus",
+    "url": "https://www.eventoplus.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "salon_pro",
+      "activation_marque"
+    ],
+    "scale": "mixte",
+    "language": "es",
+    "country": "ES",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Groupe média MICE espagnol (magazine, annuaire, Premios eventoplus). Cas primés = déclaratif. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-031",
+    "name": "DéplacementsPros — MICE",
+    "url": "https://www.deplacementspros.com/mice",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "salon_pro",
+      "tourisme"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Actualité française du tourisme d'affaires et des salons ; reprend notamment les baromètres UNIMEV. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-032",
+    "name": "CB News",
+    "url": "https://www.cbnews.fr/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "activation_marque",
+      "tv_media"
+    ],
+    "scale": "grandes_organisations",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Communication, marketing, médias en France (activations, sponsoring, événementiel). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-033",
+    "name": "Pollstar",
+    "url": "https://news.pollstar.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "musique_festival",
+      "spectacle"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Industrie du live (tournées, salles, billetterie). Pour un chiffre de billetterie, vérifier qui l'a déclaré (organisateur ou mesure). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-034",
+    "name": "IQ Magazine",
+    "url": "https://www.iqmagazine.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Live music international (lié à l'ILMC). L'ancien domaine iq-mag.net reste indexé. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-035",
+    "name": "Music Business Worldwide",
+    "url": "https://www.musicbusinessworldwide.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Business de la musique, dont live, billetterie et concentration du secteur. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-036",
+    "name": "Festival Insights",
+    "url": "https://www.festivalinsights.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Industrie des festivals (production, durabilité, prestataires). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-037",
+    "name": "Esports Insider",
+    "url": "https://esportsinsider.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "esport"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Business de l'e-sport. Flux RSS : https://esportsinsider.com/feed/ (vu via un agrégateur). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-038",
+    "name": "Blooloop",
+    "url": "https://blooloop.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "parc_loisirs",
+      "exposition_immersive"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Parcs, musées, attractions, expériences immersives ; dossiers tendances annuels utiles en trimestrielle. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-039",
+    "name": "IAAPA — Latest news",
+    "url": "https://iaapa.org/news/latestnews",
+    "type": "institution",
+    "sector_families": [
+      "parc_loisirs"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Association mondiale des parcs et attractions : communiqués, magazine Funworld, bilans de l'IAAPA Expo. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-040",
+    "name": "No Proscenium",
+    "url": "https://www.noproscenium.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "exposition_immersive",
+      "spectacle"
+    ],
+    "scale": "independants",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Théâtre immersif et XR ; nombreuses petites compagnies : source de signaux faibles. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-041",
+    "name": "Room Escape Artist",
+    "url": "https://roomescapeartist.com/",
+    "type": "communaute",
+    "sector_families": [
+      "jeu"
+    ],
+    "scale": "independants",
+    "language": "en",
+    "country": "US",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Blog de joueurs (fondateurs non exploitants selon leur page) ; rapport sur l'industrie US des escape games. Avis = opinions, jamais faits. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-042",
+    "name": "C21Media",
+    "url": "https://www.c21media.net/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "tv_media",
+      "jeu"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Formats TV et jeux télévisés (rubrique Formats Lab). Accès complet à vérifier. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-043",
+    "name": "FashionUnited (FR)",
+    "url": "https://fashionunited.fr/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "mode_luxe"
+    ],
+    "scale": "grandes_organisations",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Business de la mode ; reprend les calendriers FHCM et les formats de défilés. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-044",
+    "name": "L'Écho touristique",
+    "url": "https://www.lechotouristique.com/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "tourisme",
+      "parc_loisirs"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Tourisme en France, dont parcs de loisirs (SNELAC) et événements touristiques. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-045",
+    "name": "Banque des Territoires — actualités des collectivités",
+    "url": "https://www.banquedesterritoires.fr/",
+    "type": "presse_specialisee",
+    "sector_families": [
+      "sport",
+      "communautaire",
+      "tourisme"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Politiques locales : appels à projets sport (ex. Impact 2024), équipements, vie associative. Signaux faibles territoriaux. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-046",
+    "name": "Ministère des Sports — Données du sport en France",
+    "url": "https://www.sports.gouv.fr/organisation/publications/statistiques/",
+    "type": "institution",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Publications INJEP : baromètre national des pratiques sportives (avec le CREDOC), chiffres clés, licences. Voir aussi les notes SportEco : https://www.sports.gouv.fr/notes-d-analyse-sport-eco-1543. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-047",
+    "name": "Ministère des Sports — Organiser ou soutenir des événements éco-responsables",
+    "url": "https://www.sports.gouv.fr/sites/default/files/2026-04/organiser-ou-soutenir-des-v-nements-co-responsables-48501.pdf",
+    "type": "institution",
+    "sector_families": [
+      "sport",
+      "communautaire"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Référence pour la dimension « impact environnemental » de la grille (§9). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-048",
+    "name": "ADEME — Communication et événements responsables",
+    "url": "https://agirpourlatransition.ademe.fr/entreprises/communication-responsable",
+    "type": "institution",
+    "sector_families": [
+      "salon_pro",
+      "musique_festival",
+      "sport",
+      "communautaire"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Ressources pour réduire l'empreinte des manifestations ; renvois vers des guides régionaux. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-049",
+    "name": "Centre national de la musique (CNM)",
+    "url": "https://cnm.fr/",
+    "type": "institution",
+    "sector_families": [
+      "musique_festival",
+      "spectacle"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Étude annuelle « Diffusion live » (créée en 2005 par le CNV) et communiqués de synthèse (PDF). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-050",
+    "name": "Ministère de la Culture — Billetterie du spectacle vivant",
+    "url": "https://www.culture.gouv.fr/Media/Presse/billetterie-du-spectacle-vivant",
+    "type": "institution",
+    "sector_families": [
+      "spectacle",
+      "musique_festival"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Analyses du DEPS (données CNM et ASTP) ; voir aussi les chiffres clés du DEPS. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-051",
+    "name": "CNC — Statistiques",
+    "url": "https://www.cnc.fr/cinema/etudes-et-rapports/statistiques",
+    "type": "institution",
+    "sector_families": [
+      "cinema"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Estimations mensuelles de fréquentation, étude « Le public du cinéma », bilans annuels. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-052",
+    "name": "vie-publique.fr — Rapports publics",
+    "url": "https://www.vie-publique.fr/",
+    "type": "institution",
+    "sector_families": [
+      "sport",
+      "spectacle",
+      "cinema",
+      "esport",
+      "musique_festival"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Rapports publics (Cour des comptes, Parlement, CESE) en PDF et fiches « en bref ». Source A pour un rapport officiel ; ex. rapports de la Cour des comptes sur Paris 2024 hébergés en PDF. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-053",
+    "name": "France Esports",
+    "url": "https://www.france-esports.org/",
+    "type": "institution",
+    "sector_families": [
+      "esport"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Baromètre annuel avec Médiamétrie (éditions 2018 à 2023 repérées), rapports d'activité. Étude DGE complémentaire : https://www.entreprises.gouv.fr/fr/etudes-et-statistiques/dossiers-de-la-dge/analyse-du-marche-et-perspectives-pour-l-esport. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-054",
+    "name": "UNIMEV",
+    "url": "https://www.unimev.fr/",
+    "type": "institution",
+    "sector_families": [
+      "salon_pro"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Union française des métiers de l'événement : Event Data Book, baromètres, enquêtes emploi (PDF). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-055",
+    "name": "France Festivals",
+    "url": "https://www.francefestivals.com/",
+    "type": "institution",
+    "sector_families": [
+      "musique_festival",
+      "spectacle"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "Fédération de festivals : études SoFEST! (CEPEL, CNRS), cartographie des festivals avec le ministère de la Culture. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-056",
+    "name": "Atout France — Comprendre et anticiper les tendances",
+    "url": "https://www.atout-france.fr/en/understanding-and-anticipating-trends",
+    "type": "institution",
+    "sector_families": [
+      "tourisme",
+      "salon_pro"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Données et études tourisme et MICE ; certaines publications payantes ou réservées aux adhérents. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-057",
+    "name": "Médiamétrie — Actualités et analyses",
+    "url": "https://www.mediametrie.fr/en/news-glance",
+    "type": "etude",
+    "sector_families": [
+      "tv_media",
+      "esport"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "FR",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Mesure d'audience (TV, internet, radio) : mesure tierce, B par défaut, A pour ses propres résultats publiés. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-058",
+    "name": "Ministerio de Educación, FP y Deportes — Estadísticas deportivas",
+    "url": "https://www.educacionfpydeportes.gob.es/servicios-al-ciudadano/estadisticas/deportes.html",
+    "type": "institution",
+    "sector_families": [
+      "sport"
+    ],
+    "scale": "mixte",
+    "language": "es",
+    "country": "ES",
+    "cadence_suggeree": "annuelle",
+    "notes": "Anuario de Estadísticas Deportivas et base DEPORTEData. Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-059",
+    "name": "APM — Asociación de Promotores Musicales",
+    "url": "https://www.apmusicales.com/",
+    "type": "institution",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "mixte",
+    "language": "es",
+    "country": "ES",
+    "cadence_suggeree": "annuelle",
+    "notes": "Anuario de la Música en Vivo, cité par la presse espagnole. Site référencé par un tiers (Interacció, Diputació de Barcelona) mais NON renvoyé directement : confirmer l'URL.",
+    "verified_at": "2026-11-24",
+    "verification": "non_verifie"
+  },
+  {
+    "id": "SRC-060",
+    "name": "UFI — Research",
+    "url": "https://www.ufi.org/research",
+    "type": "etude",
+    "sector_families": [
+      "salon_pro"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Global Exhibition Barometer (éditions repérées en février et juillet), statistiques mondiales. L'URL /research est celle annoncée par UFI dans ses rapports. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-061",
+    "name": "TEA / AECOM — Theme Index",
+    "url": "https://aecom.com/insights/theme-index/",
+    "type": "etude",
+    "sector_families": [
+      "parc_loisirs",
+      "exposition_immersive"
+    ],
+    "scale": "grandes_organisations",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "annuelle",
+    "notes": "Fréquentation des principaux parcs et musées ; archives des rapports. Dernière édition repérée par recherche : 2023 (à vérifier). Vérif. : URL exacte renvoyée par la recherche.",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-062",
+    "name": "Esports Charts",
+    "url": "https://escharts.com/news",
+    "type": "agregateur",
+    "sector_families": [
+      "esport"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Audiences (pic, moyenne, heures vues) sur plateformes publiques ; hors plateformes chinoises selon sa page records ; non affilié aux organisateurs. Mesure tierce : B. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-063",
+    "name": "Recherches & Solidarités",
+    "url": "https://recherches-solidarites.org/",
+    "type": "etude",
+    "sector_families": [
+      "communautaire"
+    ],
+    "scale": "independants",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "annuelle",
+    "notes": "« La France associative en mouvement » (édition annuelle, octobre) : créations d'associations, bénévolat. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-064",
+    "name": "A Greener Future (ex-A Greener Festival)",
+    "url": "https://www.agreenerfuture.com/",
+    "type": "institution",
+    "sector_families": [
+      "musique_festival",
+      "sport",
+      "salon_pro"
+    ],
+    "scale": "mixte",
+    "language": "en",
+    "country": "GB",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Organisme à but non lucratif : certification durabilité d'événements, retours d'audits. Changement de nom rapporté par Festival Insights. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-065",
+    "name": "HelloAsso — Blog et pages d'événements associatifs",
+    "url": "https://www.helloasso.com/blog/",
+    "type": "communaute",
+    "sector_families": [
+      "communautaire",
+      "sport",
+      "universitaire"
+    ],
+    "scale": "independants",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "hebdomadaire",
+    "notes": "Pages publiques d'événements (helloasso.com/associations/<asso>/evenements/...) pour repérer des formats locaux. Blog promotionnel. Ne jamais relever de données de participants ni d'organisateurs personnes physiques. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-066",
+    "name": "Animafac",
+    "url": "https://animafac.net/",
+    "type": "communaute",
+    "sector_families": [
+      "universitaire",
+      "communautaire"
+    ],
+    "scale": "independants",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "trimestrielle",
+    "notes": "Réseau national d'associations étudiantes : rencontres FOCUS, formations, rapports d'activité. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-067",
+    "name": "Ulule",
+    "url": "https://www.ulule.com/",
+    "type": "communaute",
+    "sector_families": [
+      "communautaire",
+      "musique_festival"
+    ],
+    "scale": "independants",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Campagnes de financement de festivals et d'événements : montant collecté = donnée plateforme ; promesses du porteur = déclaratif (D). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-068",
+    "name": "France 3 Régions",
+    "url": "https://france3-regions.franceinfo.fr/",
+    "type": "presse_generale",
+    "sector_families": [
+      "communautaire",
+      "sport",
+      "musique_festival"
+    ],
+    "scale": "independants",
+    "language": "fr",
+    "country": "FR",
+    "cadence_suggeree": "quotidienne",
+    "notes": "Antennes régionales : couverture d'événements locaux (rubriques par région, ex. /normandie/). Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-069",
+    "name": "Google Actualités",
+    "url": "https://news.google.com/",
+    "type": "agregateur",
+    "sector_families": [
+      "sport",
+      "esport",
+      "musique_festival",
+      "communautaire"
+    ],
+    "scale": "mixte",
+    "language": "fr",
+    "country": "INT",
+    "cadence_suggeree": "quotidienne",
+    "notes": "Pages « topics » pour repérer ; ne jamais citer l'agrégateur : remonter à l'article d'origine. Vérif. : domaine et rubrique confirmés par la recherche (page exacte non renvoyée).",
+    "verified_at": "2026-11-24",
+    "verification": "verifie"
+  },
+  {
+    "id": "SRC-070",
+    "name": "Reddit — r/festivals",
+    "url": "https://www.reddit.com/r/festivals/",
+    "type": "communaute",
+    "sector_families": [
+      "musique_festival"
+    ],
+    "scale": "independants",
+    "language": "en",
+    "country": "INT",
+    "cadence_suggeree": "mensuelle",
+    "notes": "Vu uniquement via des miroirs tiers. Retours de participants = signaux, jamais faits. Lecture manuelle ; vérifier les conditions d'utilisation avant toute collecte ; aucune donnée d'auteur.",
+    "verified_at": "2026-11-24",
+    "verification": "non_verifie"
+  }
+]

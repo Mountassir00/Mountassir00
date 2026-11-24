@@ -1,0 +1,1184 @@
+{
+  "id": "la-grille-3x3",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "LA GRILLE 3x3",
+    "tagline": "Le matin, on se qualifie. L'après-midi, on joue sa place.",
+    "pitch": "Tournoi de basket 3x3 amateur d'une journée dans un gymnase municipal. Le matin, chaque équipe passe sur un parcours technique chronométré en trois sessions éliminatoires (Q1, Q2, Q3), selon la logique des qualifications du sport automobile. Le classement obtenu est révélé sur écran comme une grille de départ et place les équipes en serpentin dans les poules de l'après-midi. Le format donne un enjeu dès l'arrivée, crée un temps fort spectateur avant midi et remplace le tirage au sort ou le niveau déclaré par un critère mesuré sur place. Organisation : association loi 1901 locale ; EVENT LAB fournit le format et la coordination.",
+    "disciplines": [
+      "basketball 3x3"
+    ],
+    "sectors": [
+      "sport amateur",
+      "sports mécaniques (logique transposée)"
+    ],
+    "directions": [
+      "accessible",
+      "optimise"
+    ],
+    "objectives": [
+      "Donner à chaque équipe un enjeu sportif dès le matin (aucune équipe ne joue « pour rien » avant les poules)",
+      "Équilibrer les poules par un critère mesuré sur place plutôt que déclaré",
+      "Créer un temps fort spectateur avant midi (révélation de la grille)",
+      "Rester accessible : 5 € l'entrée, gratuit -12 ans, 60 € l'équipe",
+      "Produire un format documenté reproductible par d'autres associations"
+    ],
+    "audiences": [
+      {
+        "segment": "Équipes Open amateurs (16 équipes de 4)",
+        "role": "participant",
+        "motivation": "Jouer beaucoup, enjeu dès le matin, être reconnu (pole position)",
+        "willingness_to_pay": "60 € par équipe (paramètre imposé) ; aucune donnée de marché sourcée — hypothèse à tester"
+      },
+      {
+        "segment": "Équipes Féminines (8 équipes de 4)",
+        "role": "participant",
+        "motivation": "Catégorie dédiée, même mise en scène que l'Open",
+        "willingness_to_pay": "60 € par équipe (paramètre imposé)"
+      },
+      {
+        "segment": "Familles, amis, licenciés des clubs locaux",
+        "role": "spectateur",
+        "motivation": "Sortie gratuite pour les enfants, suspense de la grille, finales",
+        "willingness_to_pay": "5 € l'entrée (imposé) ; gratuit -12 ans"
+      },
+      {
+        "segment": "Commerces et PME locales",
+        "role": "sponsor",
+        "motivation": "Visibilité locale, association à la « pole position »",
+        "willingness_to_pay": "Hypothèse : 300 à 1 500 € par partenaire"
+      },
+      {
+        "segment": "Bénévoles de l'association",
+        "role": "benevole",
+        "motivation": "Rôles clairs (chrono, table de marque, buvette), reconnaissance",
+        "willingness_to_pay": "n/a"
+      },
+      {
+        "segment": "Association loi 1901 organisatrice",
+        "role": "organisateur",
+        "motivation": "Événement attractif sans réinventer l'organisation",
+        "willingness_to_pay": "Hypothèse : coordination EVENT LAB 1 500 € incluse dans le budget standard"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Qualifications par élimination en trois sessions (sport automobile)",
+        "source_sector": "sports mécaniques",
+        "borrowed_logic": "Sessions successives où les plus lents sont éliminés et figés à leur position ; la dernière session départage les meilleurs",
+        "adaptation": "Parcours technique par équipe en Q1/Q2/Q3 ; les positions déterminent le placement en serpentin dans les poules. Aucun nom, logo ni identité d'une compétition automobile n'est repris."
+      },
+      {
+        "source_event": "Coupe du monde FIBA 3x3 2018 (format de compétition)",
+        "source_sector": "basketball 3x3",
+        "borrowed_logic": "Placement des équipes en poules par ordre serpentin selon un classement",
+        "adaptation": "Le classement n'est pas un ranking fédéral mais le résultat des qualifications du matin",
+        "source_ref": "S-FIBA-WC2018"
+      },
+      {
+        "source_event": "Concours individuels FIBA 3x3 (2014) avec tours de qualification",
+        "source_sector": "basketball 3x3",
+        "borrowed_logic": "Épreuves d'habileté avec qualification puis finale",
+        "adaptation": "L'épreuve d'habileté devient collective et sert au tirage des poules au lieu d'être un concours annexe",
+        "source_ref": "S-FIBA-2014"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Journée de 10 h. Matin : qualifications chronométrées par équipe sur un parcours technique monté sur chaque terrain (2 parcours en parallèle). Q1 : toutes les équipes de la catégorie ; Q2 et Q3 : les meilleures. 11 h 30 : révélation de la grille sur écran, de la dernière place à la pole position. Après-midi : poules en serpentin (Open 4 × 4, Féminines 2 × 4), puis phase finale à élimination directe et finales sur le terrain central.",
+    "rules_summary": "Parcours en relais à 4 joueurs (slalom dribble, chaîne de passes sur cible, lay-up, tir mi-distance, tir à 3 points) ; un tir manqué impose une nouvelle tentative, plafonnée à 3, puis +5 s de pénalité. Open : Q1 16 équipes → les 4 plus lentes figées en 13–16 ; Q2 12 → 4 figées en 9–12 ; Q3 8 → ordre 1–8. Féminines : Q1 8 → 2 figées en 7–8 ; Q2 6 → 2 figées en 5–6 ; Q3 4 → ordre 1–4. Poules serpentin (Open A : 1-8-9-16, B : 2-7-10-15, C : 3-6-11-14, D : 4-5-12-13 ; Féminines A : 1-4-5-8, B : 2-3-6-7). Matchs selon le règlement FIBA 3x3 (10 min ou 21 points, horloge de tir 12 s). Les 2 premiers de chaque poule passent en phase finale.",
+    "duration_hours": 10,
+    "edition_cadence": "annuelle (1 samedi), déclinable en circuit de plusieurs dates",
+    "building_blocks": [
+      {
+        "type": "qualification",
+        "label": "Qualifications chronométrées Q1/Q2/Q3 par équipe",
+        "parameters": {
+          "open": {
+            "Q1": "16 → 12",
+            "Q2": "12 → 8",
+            "Q3": "8 classées"
+          },
+          "feminines": {
+            "Q1": "8 → 6",
+            "Q2": "6 → 4",
+            "Q3": "4 classées"
+          },
+          "duree_passage_s": 90,
+          "creneau_min": 2.5,
+          "parcours_paralleles": 2
+        }
+      },
+      {
+        "type": "regles",
+        "label": "Poules en serpentin puis élimination directe (règlement FIBA 3x3)",
+        "parameters": {
+          "poules_open": 4,
+          "poules_feminines": 2,
+          "equipes_par_poule": 4,
+          "qualifies_par_poule": 2,
+          "match_min": 10,
+          "changement_min": 3
+        }
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Révélation de la grille",
+        "parameters": {
+          "ordre": "de la dernière place à la pole",
+          "support": "écran + annonce micro",
+          "duree_min": 20
+        }
+      },
+      {
+        "type": "interaction_public",
+        "label": "Pronostic gratuit de la pole position",
+        "parameters": {
+          "acces": "QR code, gratuit, sans achat",
+          "lot": "maillot ou bon partenaire"
+        }
+      },
+      {
+        "type": "recompenses",
+        "label": "Trophées pole position, meilleure remontée (écart grille → classement final), vainqueurs",
+        "parameters": {}
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Grille et résultats en direct (page web statique + écran)",
+        "parameters": {
+          "repli": "tableau papier"
+        }
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Partenaire de la pole et partenaire du chrono",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Billetterie 5 €, inscriptions 60 €/équipe, buvette, partenariats locaux, subvention",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Formats verticaux : dernier passage de Q3, révélation de la pole, élimination au dixième",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 20,
+      "central": 24,
+      "ambitieux": 24
+    },
+    "team_size": 4,
+    "categories": [
+      "Open (16 équipes)",
+      "Féminines (8 équipes)"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 250,
+      "central": 450,
+      "ambitieux": 700
+    },
+    "paying_share": 0.7,
+    "arrival_profile": [
+      {
+        "from_min": 0,
+        "to_min": 120,
+        "share": 0.2
+      },
+      {
+        "from_min": 120,
+        "to_min": 300,
+        "share": 0.35
+      },
+      {
+        "from_min": 300,
+        "to_min": 480,
+        "share": 0.3
+      },
+      {
+        "from_min": 480,
+        "to_min": 600,
+        "share": 0.15
+      }
+    ],
+    "avg_dwell_min": 150
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 1056,
+    "spaces": [
+      {
+        "id": "terrain-1",
+        "type": "aire_de_jeu",
+        "label": "Terrain 3x3 n°1 (central, finales)",
+        "width_m": 15,
+        "length_m": 11,
+        "area_m2": 165
+      },
+      {
+        "id": "terrain-2",
+        "type": "aire_de_jeu",
+        "label": "Terrain 3x3 n°2",
+        "width_m": 15,
+        "length_m": 11,
+        "area_m2": 165
+      },
+      {
+        "id": "tribune",
+        "type": "tribune",
+        "label": "Tribunes fixes ou gradins mobiles",
+        "standing": false,
+        "accessible_pmr": true
+      },
+      {
+        "id": "accueil",
+        "type": "accueil",
+        "label": "Accueil, contrôle billets et inscriptions"
+      },
+      {
+        "id": "buvette",
+        "type": "restauration",
+        "label": "Buvette (boissons sans alcool par défaut)"
+      },
+      {
+        "id": "vestiaires",
+        "type": "vestiaire"
+      },
+      {
+        "id": "sanitaires",
+        "type": "sanitaire",
+        "accessible_pmr": true
+      },
+      {
+        "id": "secours",
+        "type": "secours",
+        "label": "Poste de secours"
+      },
+      {
+        "id": "regie",
+        "type": "regie",
+        "label": "Table de marque, chrono, régie écran"
+      },
+      {
+        "id": "photo",
+        "type": "zone_photo",
+        "label": "Arche « grille de départ »"
+      }
+    ],
+    "power_kw": 9,
+    "internet": "4G suffisante ; Wi-Fi utile pour la grille en direct",
+    "notes": "Gymnase municipal type 44 × 24 m (paramètre imposé). Deux terrains 3x3 de 15 × 11 m tracés au sol (ruban), un panier par terrain. Effectif autorisé de l'ERP à obtenir auprès de l'exploitant : 700 spectateurs uniques sur la journée ne signifie pas 700 présents simultanément (pic estimé par hypothèse à 40 % des uniques)."
+  },
+  "competition": {
+    "stages": [
+      {
+        "id": "q1-open",
+        "label": "Q1 Open",
+        "type": "time_trial",
+        "entrants": 16,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 12
+      },
+      {
+        "id": "q1-fem",
+        "label": "Q1 Féminines",
+        "type": "time_trial",
+        "entrants": 8,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 6
+      },
+      {
+        "id": "q2-open",
+        "label": "Q2 Open",
+        "type": "time_trial",
+        "entrants": 12,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 8
+      },
+      {
+        "id": "q2-fem",
+        "label": "Q2 Féminines",
+        "type": "time_trial",
+        "entrants": 6,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 4
+      },
+      {
+        "id": "q3-open",
+        "label": "Q3 Open",
+        "type": "time_trial",
+        "entrants": 8,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 8
+      },
+      {
+        "id": "q3-fem",
+        "label": "Q3 Féminines",
+        "type": "time_trial",
+        "entrants": 4,
+        "slot_duration_min": 2,
+        "changeover_min": 0.5,
+        "parallel_units": 2,
+        "advance": 4
+      },
+      {
+        "id": "poules",
+        "label": "Poules Open (4 × 4) et Féminines (2 × 4)",
+        "type": "round_robin",
+        "entrants": 24,
+        "groups": 6,
+        "slot_duration_min": 10,
+        "changeover_min": 3,
+        "parallel_units": 2,
+        "advance": 12
+      },
+      {
+        "id": "finale-open",
+        "label": "Phase finale Open",
+        "type": "single_elimination",
+        "entrants": 8,
+        "slot_duration_min": 10,
+        "changeover_min": 3,
+        "parallel_units": 2
+      },
+      {
+        "id": "finale-fem",
+        "label": "Phase finale Féminines",
+        "type": "single_elimination",
+        "entrants": 4,
+        "slot_duration_min": 10,
+        "changeover_min": 3,
+        "parallel_units": 2
+      }
+    ]
+  },
+  "program": [
+    {
+      "id": "montage",
+      "label": "Montage parcours, tracés, écran, buvette",
+      "kind": "montage",
+      "start_min": -120,
+      "duration_min": 120,
+      "owner_role": "coordinateur EVENT LAB"
+    },
+    {
+      "id": "accueil",
+      "label": "Accueil équipes, contrôle titres de participation",
+      "kind": "accueil",
+      "start_min": 0,
+      "duration_min": 30,
+      "depends_on": [
+        "montage"
+      ],
+      "owner_role": "association"
+    },
+    {
+      "id": "qualifs",
+      "label": "Qualifications Q1/Q2/Q3 (Open et Féminines)",
+      "kind": "competition",
+      "start_min": 30,
+      "duration_min": 105,
+      "depends_on": [
+        "accueil"
+      ],
+      "critical": true,
+      "cues": [
+        "musique de session",
+        "annonce des éliminés de session"
+      ]
+    },
+    {
+      "id": "grille",
+      "label": "Révélation de la grille",
+      "kind": "ceremonie",
+      "start_min": 150,
+      "duration_min": 20,
+      "depends_on": [
+        "qualifs"
+      ],
+      "cues": [
+        "écran",
+        "micro",
+        "noir salle si possible"
+      ]
+    },
+    {
+      "id": "poules",
+      "label": "Matchs de poules (36 matchs, 2 terrains)",
+      "kind": "competition",
+      "start_min": 180,
+      "duration_min": 270,
+      "depends_on": [
+        "grille"
+      ],
+      "critical": true
+    },
+    {
+      "id": "finales",
+      "label": "Phase finale et finales sur terrain central",
+      "kind": "competition",
+      "start_min": 465,
+      "duration_min": 105,
+      "depends_on": [
+        "poules"
+      ],
+      "critical": true
+    },
+    {
+      "id": "ceremonie",
+      "label": "Remise des trophées (pole, remontée, vainqueurs)",
+      "kind": "ceremonie",
+      "start_min": 575,
+      "duration_min": 20,
+      "depends_on": [
+        "finales"
+      ]
+    },
+    {
+      "id": "demontage",
+      "label": "Démontage",
+      "kind": "demontage",
+      "start_min": 600,
+      "duration_min": 90
+    }
+  ],
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-lieu",
+        "category": "lieu",
+        "label": "Mise à disposition du gymnase (souvent gratuite pour une association locale ; montant prudent)",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "e-chrono",
+        "category": "technique",
+        "label": "Chronométrage du parcours (cellules en location) ",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "e-av",
+        "category": "technique",
+        "label": "Sonorisation, écran ou vidéoprojecteur, micro",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "e-materiel",
+        "category": "materiel",
+        "label": "Ballons 3x3, horloges de tir, matériel de parcours, tracés",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -30
+      },
+      {
+        "id": "e-arbitrage",
+        "category": "competition",
+        "label": "Officiels et arbitres (indemnités)",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": 0
+      },
+      {
+        "id": "e-dps",
+        "category": "securite",
+        "label": "Dispositif prévisionnel de secours (association agréée, devis à obtenir)",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": 0
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance responsabilité civile organisateur (extension)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -30
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication (affiches, publicité locale, vidéo)",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -45
+      },
+      {
+        "id": "e-dotations",
+        "category": "recompenses",
+        "label": "Trophées et dotations",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 3,
+        "optional": true,
+        "pay_offset_days": -15
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Format et coordination EVENT LAB",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1,
+        "pay_offset_days": 15
+      },
+      {
+        "id": "e-scenographie",
+        "category": "scenographie",
+        "label": "Arche grille, signalétique, podium",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 3,
+        "optional": true,
+        "pay_offset_days": -15
+      },
+      {
+        "id": "e-repas",
+        "category": "logistique",
+        "label": "Repas bénévoles et officiels",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": 0
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-inscriptions",
+        "stream": "inscriptions",
+        "label": "Inscriptions 60 € par équipe",
+        "unit_amount": 60,
+        "basis": "per_participant",
+        "certainty": "probable",
+        "cash_offset_days": -20
+      },
+      {
+        "id": "r-billetterie",
+        "stream": "billetterie",
+        "label": "Entrée 5 € (gratuit -12 ans)",
+        "unit_amount": 5,
+        "basis": "per_paying_attendee",
+        "certainty": "probable",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "r-buvette",
+        "stream": "restauration",
+        "label": "Buvette : panier moyen 6 € (hypothèse), marge 55 % (hypothèse)",
+        "unit_amount": 6,
+        "basis": "per_attendee",
+        "margin_rate": 0.55,
+        "certainty": "probable",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "r-sponsors",
+        "stream": "sponsoring",
+        "label": "Partenaires locaux (à prospecter)",
+        "unit_amount": 3000,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": -15
+      },
+      {
+        "id": "r-subvention",
+        "stream": "subvention",
+        "label": "Subvention commune ou département (non demandée)",
+        "unit_amount": 2500,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 60
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "economique",
+      "label": "Configuration économique (≈ 6 k€, estimation)",
+      "description": "Chrono manuel, sonorisation du gymnase, écran prêté, dotations et scénographie réduites, officiels issus des clubs.",
+      "expense_overrides": {
+        "e-chrono": 100,
+        "e-av": 300,
+        "e-materiel": 600,
+        "e-arbitrage": 800,
+        "e-com": 500,
+        "e-dotations": 300,
+        "e-coordination": 1000,
+        "e-scenographie": 200,
+        "e-repas": 300
+      }
+    },
+    {
+      "id": "premium",
+      "label": "Configuration premium (≈ 24 k€, estimation)",
+      "description": "Écran LED et mise en lumière, chronométrage avec affichage, habillage complet, captation et diffusion en direct, animation DJ et speaker.",
+      "expense_overrides": {
+        "e-chrono": 1500,
+        "e-av": 3500,
+        "e-materiel": 1200,
+        "e-arbitrage": 1500,
+        "e-dps": 1200,
+        "e-assurance": 500,
+        "e-com": 2000,
+        "e-dotations": 2000,
+        "e-coordination": 3000,
+        "e-scenographie": 3000,
+        "e-repas": 800
+      },
+      "expense_additions": [
+        {
+          "id": "e-captation",
+          "category": "media",
+          "label": "Captation multicaméra et diffusion en direct",
+          "amount": 2500,
+          "basis": "fixed",
+          "certainty": "hypothese"
+        },
+        {
+          "id": "e-dj",
+          "category": "animation",
+          "label": "DJ et speaker",
+          "amount": 800,
+          "basis": "fixed",
+          "certainty": "hypothese"
+        }
+      ],
+      "revenue_overrides": {
+        "r-sponsors": 9000
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "offset_days": -150,
+      "label": "Dépôt de la demande de subvention",
+      "owner_role": "président de l'association",
+      "deliverable": "dossier déposé"
+    },
+    {
+      "offset_days": -90,
+      "label": "Convention gymnase et effectif autorisé obtenus",
+      "owner_role": "secrétaire",
+      "deliverable": "convention signée"
+    },
+    {
+      "offset_days": -60,
+      "label": "Ouverture des inscriptions",
+      "owner_role": "coordinateur EVENT LAB"
+    },
+    {
+      "offset_days": -45,
+      "label": "Go/no-go financier",
+      "owner_role": "trésorier",
+      "go_no_go": "Configuration standard maintenue seulement si ≥ 8 000 € de recettes externes sont signées ; sinon bascule en configuration économique"
+    },
+    {
+      "offset_days": -14,
+      "label": "Clôture des inscriptions (objectif 24 équipes)",
+      "owner_role": "coordinateur EVENT LAB",
+      "go_no_go": "Moins de 16 équipes : passage à une seule catégorie mixte de poules"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Blessures (entorses, chocs) sur le parcours chronométré et en match ; la pression du chrono pousse à la prise de risque",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "sol glissant",
+        "équipes sans échauffement",
+        "plots instables"
+      ],
+      "prevention": [
+        "échauffement encadré avant Q1",
+        "parcours sans saut ni contact",
+        "sol nettoyé entre sessions",
+        "poste de secours dimensionné par prestataire agréé"
+      ],
+      "continuity_plan": "Prise en charge par les secouristes ; remplacement autorisé d'un joueur ; neutralisation du passage et nouvelle tentative",
+      "owner_role": "responsable sécurité de l'association",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "securite",
+      "description": "Dépassement de l'effectif autorisé de l'ERP au pic (finales) et évacuation difficile",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [
+        "comptage > 80 % de l'effectif autorisé",
+        "circulations obstruées par des sacs"
+      ],
+      "prevention": [
+        "comptage entrées/sorties",
+        "jauge écrite dans la convention avec la mairie",
+        "circulations dégagées et balisées"
+      ],
+      "continuity_plan": "Fermeture temporaire des entrées, retransmission des finales sur écran dans le hall si disponible, annonce micro",
+      "owner_role": "responsable sécurité",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "financier",
+      "description": "Partenariats et subvention non obtenus : la configuration standard (≈ 11 k€) est déficitaire dans les trois scénarios tant que ces recettes restent hypothétiques (calcul §7.1 : −6,4 k€ au central)",
+      "probability": 4,
+      "impact": 3,
+      "critical": true,
+      "warning_signs": [
+        "moins de 4 000 € signés à J-60",
+        "aucune réponse de la commune à J-45"
+      ],
+      "prevention": [
+        "prospection partenaires dès J-120",
+        "dépôt de demande de subvention dès J-150",
+        "règle de décision écrite"
+      ],
+      "continuity_plan": "Go/no-go à J-45 : configuration standard maintenue seulement si au moins 8 000 € de recettes externes (partenaires + subvention) sont signées, seuil d'équilibre au central ; sinon bascule en configuration économique (≈ 6 k€ : chrono manuel, sonorisation du gymnase, écran prêté, dotations réduites)",
+      "owner_role": "trésorier",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "operationnel",
+      "description": "Les qualifications débordent et retardent les poules (programme de 10 h déjà dense)",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "Q1 terminée après 10 h 15",
+        "équipes absentes à l'appel"
+      ],
+      "prevention": [
+        "ordre de passage publié la veille",
+        "appel 2 créneaux avant",
+        "créneau fixe de 2 min 30"
+      ],
+      "continuity_plan": "Suppression de Q3 (classement sur Q2) ; matchs de poule à 8 min au lieu de 10",
+      "owner_role": "directeur de compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "technique",
+      "description": "Panne du chronométrage électronique ou de l'écran de grille",
+      "probability": 2,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "test de veille non concluant"
+      ],
+      "prevention": [
+        "test complet la veille",
+        "double chronométrage manuel systématique"
+      ],
+      "continuity_plan": "Chrono manuel (deux opérateurs, moyenne) et grille affichée sur tableau papier",
+      "owner_role": "régie",
+      "status": "ouvert"
+    },
+    {
+      "id": "R6",
+      "category": "reputationnel",
+      "description": "Le temps de parcours mesure l'habileté, pas le niveau de jeu : poules jugées déséquilibrées ou arbitraires",
+      "probability": 3,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "écarts de score très larges en poule",
+        "réclamations"
+      ],
+      "prevention": [
+        "test du parcours avec 2 clubs avant publication",
+        "règlement expliqué en 2 minutes à l'accueil"
+      ],
+      "continuity_plan": "Analyse corrélation grille/résultats après l'édition ; ajustement du parcours en version 0.2",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Utilisation du gymnase (ERP de type X) : convention avec la commune et effectif autorisé pour cette configuration",
+      "authority": "Commune, exploitant de l'ERP",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -90
+    },
+    {
+      "id": "C2",
+      "item": "Assurance de responsabilité civile de l'organisateur d'une manifestation sportive (obligation prévue par le Code du sport, art. L321-1 — référence à vérifier)",
+      "authority": "Assureur de l'association",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C3",
+      "item": "Dispositif prévisionnel de secours dimensionné par une association agréée (référentiel national DPS — texte à vérifier)",
+      "authority": "Association agréée de sécurité civile",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C4",
+      "item": "Buvette temporaire : autorisation municipale ; vente d'alcool en principe interdite dans les installations sportives sauf dérogations limitées (Code de la santé publique — articles à vérifier)",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C5",
+      "item": "Titres de participation et santé : licence, pass tournoi ou licence 3x3 si tournoi homologué FFBB ; certificat médical ou questionnaire pour les non-licenciés selon le régime applicable",
+      "authority": "FFBB, comité départemental",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60,
+      "source_ref": "S-FFBB-OPA"
+    },
+    {
+      "id": "C6",
+      "item": "Autorisation de la fédération délégataire si la manifestation est ouverte aux licenciés et donne lieu à remise de prix au-delà d'un seuil (Code du sport, art. L331-5 — à vérifier)",
+      "authority": "FFBB",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -90
+    },
+    {
+      "id": "C7",
+      "item": "Pronostic gratuit avec lot : règlement de jeu, gratuité totale, aucun achat requis (à défaut, risque de loterie prohibée)",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C8",
+      "item": "Données personnelles des inscrits et droit à l'image (dont mineurs) : information, consentements, durée de conservation",
+      "authority": "Association (responsable de traitement)",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -45
+    },
+    {
+      "id": "C9",
+      "item": "Diffusion de musique : déclaration et redevance Sacem",
+      "authority": "Sacem",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -15
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Équipes inscrites et payées",
+      "phase": "avant",
+      "target": 24,
+      "unit": "équipes",
+      "measure": "plateforme d'inscription à J-14"
+    },
+    {
+      "id": "K2",
+      "label": "Recettes externes sécurisées (partenaires + subvention), seuil d'équilibre de la configuration standard au central",
+      "phase": "avant",
+      "target": 8000,
+      "unit": "€",
+      "measure": "conventions signées à J-45"
+    },
+    {
+      "id": "K3",
+      "label": "Spectateurs uniques",
+      "phase": "pendant",
+      "target": 450,
+      "unit": "personnes",
+      "measure": "billetterie + comptage gratuits"
+    },
+    {
+      "id": "K4",
+      "label": "Retard maximal sur le programme",
+      "phase": "pendant",
+      "target": 20,
+      "unit": "min",
+      "measure": "conducteur horodaté"
+    },
+    {
+      "id": "K5",
+      "label": "Satisfaction participants sur l'intérêt des qualifications",
+      "phase": "apres",
+      "target": 4,
+      "unit": "/5",
+      "measure": "questionnaire J+2"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Révélation de la pole position (dernier nom affiché)",
+      "Dernier passage de Q3 avec chrono en direct",
+      "Équipe éliminée de Q1 au dixième de seconde",
+      "Remontée de la dernière de la grille en phase finale",
+      "Finales sur le terrain central"
+    ],
+    "photo_spots": [
+      "Arche « grille de départ » avec position de l'équipe",
+      "Podium pole position",
+      "Mur des chronos"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "YouTube Shorts",
+      "Facebook (communauté locale)",
+      "presse locale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Pronostic gratuit de la pole",
+      "target_role": "spectateur",
+      "description": "Le public pronostique la pole avant Q3 via QR code",
+      "fairness_note": "Gratuit, sans achat, un pronostic par personne, lot modeste ; règlement écrit"
+    },
+    {
+      "mechanic": "Trophée de la meilleure remontée",
+      "target_role": "participant",
+      "description": "Récompense l'équipe dont le classement final dépasse le plus sa place sur la grille",
+      "fairness_note": "Valorise les équipes mal classées le matin, limite l'effet démotivant d'une mauvaise qualification"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3 (combinaison nouvelle de briques connues). Le placement serpentin (FIBA) et les concours d'habileté avec qualifications (FIBA 3x3 2014) existent ; la transposition des qualifications éliminatoires du sport automobile au tirage des poules n'a pas été trouvée sous forme identique. Plausibilité du transfert jugée moyenne : un temps de parcours n'est qu'un indicateur partiel du niveau de jeu. Aucun recoupement identifié avec les titres de l'existant interne du porteur (BASK'EST LAB) communiqués.",
+        "evidence": "benchmark_source",
+        "improvements": [
+          "Intégrer au parcours une séquence de jeu réel (tir sous pression défensive) pour rapprocher la mesure du niveau de match"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Règles explicables en moins de 2 minutes, temps morts spectateurs faibles (deux terrains en continu). Côté participants, l'attente reste élevée (3 matchs de poule sur 4 h 30, estimation d'attente supérieure à 50 % du temps de présence), ce qui empêche une note supérieure.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Afficher pour chaque équipe son prochain créneau en direct",
+          "Ateliers ou concours courts pendant l'attente"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Matériel courant et disponible en location (chrono, écran, ballons) ; un point technique à sécuriser (chronométrage) avec plan B manuel. Ne descend pas à 3 car aucune technologie non maîtrisée.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Valider le parcours et le chrono lors d'une répétition avec un club"
+        ]
+      },
+      "viabilite_economique": {
+        "rating": 1.5,
+        "justification": "Entre ancres 1 et 3, proche de 1. Calcul §7.1 sur la configuration standard (≈ 11 k€, estimation) : −10,9 k€ au prudent, −6,4 k€ au central, −1,9 k€ à l'ambitieux, tant que partenaires et subvention restent hypothétiques. Il faut environ 8 k€ de recettes externes signées pour équilibrer le central. La configuration économique (≈ 6 k€) donne −0,7 k€ au central et +3,6 k€ à l'ambitieux. La configuration premium (≈ 24 k€) est très déficitaire sans un sponsoring de l'ordre de 20 k€. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Sécuriser 8 k€ de recettes externes avant J-45 ou basculer en configuration économique",
+          "Vendre la pole et le chrono à deux partenaires nommés"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3,
+        "justification": "Ancre 3. Deux à trois moments filmables (révélation de la grille, dernier passage de Q3, finales) et un décor identifiable (arche grille). Pas de contenu généré par les participants conçu à ce stade.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Carte « ma position sur la grille » générée automatiquement pour chaque équipe"
+        ]
+      },
+      "reproductibilite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Format reproductible dans tout gymnase avec matériel standard ; le manuel de reproduction n'existe pas encore (sera produit par le blueprint).",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Kit parcours standardisé (plan coté, liste de matériel) dans le blueprint"
+        ]
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Gymnase, playground extérieur et parvis possibles ; trois configurations (économique, standard, premium) sont chiffrées en ordre de grandeur, mais la configuration de capacité maximale et le repli météo extérieur restent à documenter.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Documenter la variante extérieure et sa configuration de secours"
+        ]
+      },
+      "accessibilite_inclusion": {
+        "rating": 3,
+        "justification": "Ancre 3. Accès PMR du gymnase, tarif réduit (gratuit -12 ans), catégorie Féminines dédiée. L'inclusion n'est pas conçue dans les règles (pas de catégorie handi ou mixte).",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Ajouter une catégorie à plafond de points (logique cap-12)"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 3,
+        "justification": "Ancre 3. Quatre sources (inscriptions, billetterie, buvette, partenaires) et une offre partenaire simple. Licence possible aux associations, mais une règle de jeu se protège mal : la valeur licenciable tient au kit et à l'outil, pas à l'idée.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Packager un kit licencié (outil de chrono/grille, plan de parcours, gabarits de communication)"
+        ]
+      },
+      "responsabilite_environnementale": {
+        "rating": 3,
+        "justification": "Ancre 3. Lieu existant, matériel loué, gobelets réutilisables prévus. Mobilités et mesure d'empreinte non traitées.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Incitation covoiturage entre équipes et parking vélo"
+        ]
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R2. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R2. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "9 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6, C7, C8, C9) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 9 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6, C7, C8, C9) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R2, R3), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R2, R3), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 61,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 4.8,
+        "experience_utilisateur": 6.0,
+        "faisabilite_technique": 3.0,
+        "viabilite_economique": 10.5,
+        "potentiel_mediatique": 4.0,
+        "reproductibilite": 3.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 2.0,
+        "potentiel_commercial": 2.0,
+        "responsabilite_environnementale": 2.0
+      },
+      "score_if_plus_one": 81.0
+    }
+  },
+  "hypotheses": [
+    "Paramètres imposés par le porteur : association loi 1901 organisatrice, gymnase 44 × 24 m, 2 terrains, 24 équipes de 4 (16 Open + 8 Féminines), 1 samedi, 250/450/700 spectateurs uniques, entrée 5 € (gratuit -12 ans), inscription 60 €/équipe, budget standard ≈ 11 k€, économique ≈ 6 k€, premium ≈ 22–25 k€ (estimations).",
+    "Part payante des spectateurs : 70 % (enfants -12 ans et invités exclus) — hypothèse.",
+    "Panier moyen buvette 6 € et marge 55 % — hypothèses non sourcées.",
+    "Gymnase mis à disposition à faible coût par la commune — hypothèse à confirmer.",
+    "Pic de présence simultanée estimé à 40 % des spectateurs uniques — hypothèse de dimensionnement à vérifier par le simulateur de flux.",
+    "Le temps de parcours est corrélé au niveau de jeu — hypothèse centrale du format, non démontrée."
+  ],
+  "sources": [
+    {
+      "id": "S-FFBB-OPA",
+      "title": "Guide Open Plus Access 3x3 saison 2025-2026",
+      "publisher": "Fédération française de basketball",
+      "url": "https://www.3x3ffbb.com/uploads/2026-01-07-7-3X3-DEVT-Guide-Open-Plus-Access-25-26-VF-695f71ca6ed7f.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "URL et contenu résumé obtenus via l'outil de recherche ; document non ouvert directement (lecture web bloquée par le réseau de la session)"
+    },
+    {
+      "id": "S-FIBA-WC2018",
+      "title": "FIBA 3x3 World Cup 2018 — Competition format",
+      "publisher": "FIBA",
+      "url": "https://www.fiba.basketball/3x3worldcup/2018/competition-format",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-FIBA-2014",
+      "title": "2014 FIBA 3x3 World Championships — system of competition",
+      "publisher": "FIBA",
+      "url": "https://www.fiba.basketball/en/news/2014-3x3wc-system-of-competition",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-FIBA-CH2018",
+      "title": "FIBA 3x3 Challengers 2018 — Competition format",
+      "publisher": "FIBA",
+      "url": "https://www.fiba.basketball/3x3challengers/2018/competition-format",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Création du concept à partir de la graine la-grille-3x3 avec les paramètres imposés par le porteur.",
+      "decisions": [
+        "Paramètres imposés conservés sans modification",
+        "Seuils d'élimination fixés à 16→12→8 (Open) et 8→6→4 (Féminines)",
+        "Go/no-go financier à J-45 ajouté"
+      ],
+      "approved_by": null
+    }
+  ]
+}

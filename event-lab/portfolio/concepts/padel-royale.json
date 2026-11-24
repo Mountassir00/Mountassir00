@@ -1,0 +1,672 @@
+{
+  "id": "padel-royale",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "PADEL ROYALE",
+    "tagline": "Les pistes s'éteignent une à une. Le dernier debout gagne.",
+    "pitch": "Soirée de padel en inscription individuelle avec partenaires tournants et classement individuel (logique déjà connue des formats americano et mexicano), à laquelle s'ajoute une mécanique d'élimination empruntée au « battle royale » du jeu vidéo : à chaque palier, une ou deux pistes s'éteignent et les joueurs au plus faible total individuel passent sur une piste de repêchage. Les quatre derniers jouent la finale sur la piste centrale, chacun associé tour à tour aux trois autres. Produit vendu aux clubs sous forme de kit (règlement, outil de rotation, signalétique, gabarits de communication). Différenciation réelle mais modeste : le cœur du format (rotation et classement individuel) existe déjà.",
+    "disciplines": [
+      "padel"
+    ],
+    "sectors": [
+      "sport amateur",
+      "clubs de raquette",
+      "jeu vidéo (logique transposée)"
+    ],
+    "directions": [
+      "optimise"
+    ],
+    "objectives": [
+      "Donner un enjeu et une narration à la soirée americano des clubs",
+      "Remplir des créneaux en heures creuses",
+      "Faire venir des joueurs sans partenaire",
+      "Créer une finale regardée par les joueurs éliminés"
+    ],
+    "audiences": [
+      {
+        "segment": "Joueurs de padel loisirs et intermédiaires sans partenaire fixe",
+        "role": "participant",
+        "motivation": "Jouer avec des inconnus de son niveau, enjeu, soirée sociale",
+        "willingness_to_pay": "Hypothèse : 30–40 € par joueur pour 3 h, balles et boisson incluses (aucune donnée de prix sourcée)"
+      },
+      {
+        "segment": "Gérants de clubs de padel",
+        "role": "organisateur",
+        "motivation": "Fidéliser, remplir les heures creuses, animer la communauté",
+        "willingness_to_pay": "Hypothèse : 100–200 € par soirée ou 49–99 € par mois de licence — à tester"
+      },
+      {
+        "segment": "Marques d'équipement et commerces locaux",
+        "role": "sponsor",
+        "motivation": "Visibilité auprès d'une communauté ciblée",
+        "willingness_to_pay": "Hypothèse : dotation en nature ou 200–500 € par soirée"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Format americano (padel)",
+        "source_sector": "padel",
+        "borrowed_logic": "Partenaires tournants, points individuels cumulés",
+        "adaptation": "Repris tel quel comme base : ce n'est pas une innovation du concept",
+        "source_ref": "S-PADEL-AMER"
+      },
+      {
+        "source_event": "Format mexicano (padel)",
+        "source_sector": "padel",
+        "borrowed_logic": "Appariements recalculés à chaque tour selon le classement",
+        "adaptation": "Appariement par classement dans chaque palier",
+        "source_ref": "S-PADEL-MEX"
+      },
+      {
+        "source_event": "King of the Court (padel)",
+        "source_sector": "padel",
+        "borrowed_logic": "Pistes hiérarchisées, piste du haut valorisée",
+        "adaptation": "La piste centrale devient la piste de finale ; les pistes ne montent ni ne descendent, elles ferment",
+        "source_ref": "S-PADEL-KOTC"
+      },
+      {
+        "source_event": "Genre « battle royale » (jeu vidéo)",
+        "source_sector": "esport / jeu vidéo",
+        "borrowed_logic": "Zone de jeu qui se réduit par paliers, survivants",
+        "adaptation": "Fermeture physique des pistes (lumière coupée) à heure fixe ; aucun nom ni élément d'un jeu existant n'est repris"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Soirée de 3 h pour 24 joueurs (6 pistes au départ). Palier 1 (6 pistes, 3 tours de 15 min) ; fermeture de 2 pistes ; palier 2 (4 pistes, 16 joueurs, 3 tours) ; fermeture de 2 pistes ; palier 3 (2 pistes, 8 joueurs, 2 tours) ; finale à 4 sur la piste centrale (3 manches, chaque joueur associé une fois à chacun des trois autres). Les éliminés rejoignent une piste de repêchage en americano libre : le meilleur du repêchage récupère une place au palier suivant.",
+    "rules_summary": "Points individuels = jeux gagnés par la paire à laquelle on appartient sur le tour. Appariement mexicano dans chaque palier (1 et 4 contre 2 et 3 sur chaque piste). À chaque fermeture, les joueurs au plus faible total cumulé quittent la compétition principale. Égalité : différence de jeux puis tirage au sort. Finale : 3 manches de 6 jeux, classement individuel.",
+    "duration_hours": 3,
+    "edition_cadence": "mensuelle par club ; circuit inter-clubs possible",
+    "building_blocks": [
+      {
+        "type": "regles",
+        "label": "Rotation des partenaires et classement individuel (base americano/mexicano)",
+        "parameters": {
+          "joueurs": 24,
+          "tour_min": 15
+        }
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Fermeture des pistes par paliers",
+        "parameters": {
+          "paliers": [
+            6,
+            4,
+            2,
+            1
+          ],
+          "eliminés_par_palier": [
+            8,
+            8,
+            4
+          ]
+        }
+      },
+      {
+        "type": "qualification",
+        "label": "Piste de repêchage",
+        "parameters": {
+          "places_rendues_par_palier": 1
+        }
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Extinction de la piste et annonce des éliminés",
+        "parameters": {
+          "cue": "coupure lumière de la piste + son"
+        }
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Classement individuel en direct sur écran (outil de rotation)",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Frais d'inscription individuels, bar du club, licence du kit",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Vidéo verticale de l'extinction des pistes et de la finale",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "individu",
+    "count": {
+      "prudent": 16,
+      "central": 24,
+      "ambitieux": 32
+    },
+    "categories": [
+      "niveau loisirs",
+      "niveau intermédiaire",
+      "mixte possible"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 10,
+      "central": 25,
+      "ambitieux": 40
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 90
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 1200,
+    "spaces": [
+      {
+        "id": "pistes",
+        "type": "aire_de_jeu",
+        "label": "4 à 6 pistes de padel de 20 × 10 m",
+        "area_m2": 1200
+      },
+      {
+        "id": "centrale",
+        "type": "aire_de_jeu",
+        "label": "Piste centrale visible depuis le bar"
+      },
+      {
+        "id": "bar",
+        "type": "restauration",
+        "label": "Bar ou club-house"
+      }
+    ],
+    "power_kw": 2,
+    "internet": "Wi-Fi du club pour l'outil de rotation",
+    "notes": "Club existant avec au moins 4 pistes. La commande lumière par piste est un plus pour la mise en scène ; sinon signalétique « piste fermée »."
+  },
+  "competition": {
+    "stages": [
+      {
+        "id": "palier-1",
+        "label": "Palier 1 (6 pistes)",
+        "type": "battle_royale",
+        "entrants": 24,
+        "slot_duration_min": 15,
+        "changeover_min": 2,
+        "parallel_units": 6,
+        "advance": 16
+      },
+      {
+        "id": "palier-2",
+        "label": "Palier 2 (4 pistes)",
+        "type": "battle_royale",
+        "entrants": 16,
+        "slot_duration_min": 15,
+        "changeover_min": 2,
+        "parallel_units": 4,
+        "advance": 8
+      },
+      {
+        "id": "palier-3",
+        "label": "Palier 3 (2 pistes)",
+        "type": "battle_royale",
+        "entrants": 8,
+        "slot_duration_min": 15,
+        "changeover_min": 2,
+        "parallel_units": 2,
+        "advance": 4
+      },
+      {
+        "id": "finale",
+        "label": "Finale à 4",
+        "type": "round_robin",
+        "entrants": 4,
+        "groups": 1,
+        "slot_duration_min": 15,
+        "changeover_min": 2,
+        "parallel_units": 1
+      }
+    ]
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-pistes",
+        "category": "lieu",
+        "label": "Coût d'opportunité des pistes en heures creuses (≈ 4 pistes-équivalent × 3 h × 15 €)",
+        "amount": 180,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-balles",
+        "category": "materiel",
+        "label": "Balles",
+        "amount": 100,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-animateur",
+        "category": "personnel",
+        "label": "Animateur / juge-arbitre (5 h)",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-licence",
+        "category": "prestation",
+        "label": "Licence du kit PADEL ROYALE par soirée",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 2
+      },
+      {
+        "id": "e-dotations",
+        "category": "recompenses",
+        "label": "Dotations finale",
+        "amount": 200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 3,
+        "optional": true
+      },
+      {
+        "id": "e-boisson",
+        "category": "restauration",
+        "label": "Boisson offerte par joueur",
+        "amount": 3,
+        "basis": "per_participant",
+        "certainty": "estimation",
+        "priority": 2
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-inscriptions",
+        "stream": "inscriptions",
+        "label": "Inscription individuelle 35 €",
+        "unit_amount": 35,
+        "basis": "per_participant",
+        "certainty": "probable",
+        "cash_offset_days": -3
+      },
+      {
+        "id": "r-bar",
+        "stream": "restauration",
+        "label": "Bar : 5 € par spectateur, marge 60 % (hypothèses)",
+        "unit_amount": 5,
+        "basis": "per_attendee",
+        "margin_rate": 0.6,
+        "certainty": "probable"
+      },
+      {
+        "id": "r-sponsor",
+        "stream": "sponsoring",
+        "label": "Partenaire de la piste centrale",
+        "unit_amount": 300,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Blessures liées à l'enchaînement de tours sans repos (claquages, chocs contre les vitres)",
+      "probability": 2,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "joueurs de niveau hétérogène sur une même piste"
+      ],
+      "prevention": [
+        "échauffement collectif",
+        "2 min de pause entre tours",
+        "inscription par niveau"
+      ],
+      "continuity_plan": "Remplacement par le meilleur du repêchage ; trousse de secours et procédure d'appel des secours affichée",
+      "owner_role": "animateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "reputationnel",
+      "description": "Frustration des joueurs éliminés tôt qui ont payé autant que les finalistes",
+      "probability": 4,
+      "impact": 3,
+      "critical": true,
+      "warning_signs": [
+        "départs après le palier 1",
+        "avis négatifs"
+      ],
+      "prevention": [
+        "piste de repêchage garantissant un temps de jeu minimal de 2 h",
+        "élimination annoncée dans le règlement"
+      ],
+      "continuity_plan": "Si le temps de jeu des éliminés passe sous 2 h, convertir la piste de repêchage en americano libre jusqu'à la fin",
+      "owner_role": "gérant du club",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "financier",
+      "description": "Format copiable sans coût par n'importe quel club : la licence ne trouve pas preneur",
+      "probability": 4,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "clubs testant le format puis le reproduisant sans licence"
+      ],
+      "prevention": [
+        "valeur placée dans l'outil et le classement inter-clubs plutôt que dans la règle"
+      ],
+      "continuity_plan": "Repositionner le produit en événement de contenu gratuit pour un partenaire ou abandonner la licence",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "operationnel",
+      "description": "Désistements de dernière minute qui cassent le nombre multiple de 4",
+      "probability": 3,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "moins de 24 confirmations à J-1"
+      ],
+      "prevention": [
+        "liste d'attente",
+        "paiement à l'inscription"
+      ],
+      "continuity_plan": "Joueur du club en remplaçant ; palier 1 à 5 pistes",
+      "owner_role": "animateur",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Assurance responsabilité civile de l'organisateur (club) couvrant les non-membres",
+      "authority": "Assureur du club",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Si la soirée est présentée comme tournoi homologué ou ouverte aux licenciés avec prix : règles fédérales applicables (autorisation de la fédération délégataire au-delà d'un seuil de prix — Code du sport, art. L331-5, à vérifier)",
+      "authority": "Fédération délégataire du padel",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Données des joueurs et classement public : information RGPD, droit d'opposition à l'affichage du nom",
+      "authority": "Club (responsable de traitement)",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Usage du terme « royale » / « battle royale » : vérifier l'absence de droits antérieurs (INPI, EUIPO)",
+      "authority": "Conseil en propriété industrielle",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Taux de remplissage de la soirée",
+      "phase": "avant",
+      "target": 100,
+      "unit": "% (24 joueurs)",
+      "measure": "inscriptions payées à J-2"
+    },
+    {
+      "id": "K2",
+      "label": "Temps de jeu minimal d'un joueur éliminé au palier 1",
+      "phase": "pendant",
+      "target": 120,
+      "unit": "min",
+      "measure": "relevé de l'outil de rotation"
+    },
+    {
+      "id": "K3",
+      "label": "Taux de réinscription à la soirée suivante",
+      "phase": "apres",
+      "target": 50,
+      "unit": "%",
+      "measure": "inscrits revenus / inscrits"
+    },
+    {
+      "id": "K4",
+      "label": "Clubs ayant payé une licence après une soirée test",
+      "phase": "apres",
+      "target": 3,
+      "unit": "clubs",
+      "measure": "contrats signés sur 10 clubs testés"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Extinction d'une piste en pleine soirée",
+      "Annonce des éliminés sur écran",
+      "Retour d'un joueur par le repêchage",
+      "Dernier point de la finale à 4"
+    ],
+    "photo_spots": [
+      "Piste centrale éclairée, autres pistes éteintes"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "groupes de messagerie du club"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Classement individuel cumulé et repêchage",
+      "target_role": "participant",
+      "description": "Chaque jeu compte pour le total individuel ; une place rendue par palier au meilleur du repêchage",
+      "fairness_note": "Inscription par niveau pour éviter des écarts trop forts ; règles d'égalité publiées avant la soirée"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Le cœur du format (rotation des partenaires, classement individuel, appariement par classement) existe à l'identique dans l'americano et le mexicano ; la piste centrale et la hiérarchie des pistes existent dans le King of the Court. La seule brique nouvelle trouvée est la fermeture des pistes par paliers avec repêchage ; aucune source ne décrit ce format sous forme identique.",
+        "evidence": "benchmark_source",
+        "improvements": [
+          "Ajouter un classement individuel inter-clubs persistant (circuit) qui crée une valeur que le club ne peut pas reproduire seul"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Règles compréhensibles en moins de 2 minutes, rythme soutenu (tours de 15 min). L'élimination crée une expérience inégale entre finalistes et éliminés ; le repêchage limite le problème sans le supprimer.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Garantir 2 h de jeu à chaque joueur quelle que soit son élimination"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Pistes existantes, outils de rotation déjà disponibles sur le marché, aucune compétence rare ; plan B tableur.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Au scénario central, les inscriptions couvrent à peine les coûts si les pistes sont valorisées en heures creuses ; au prudent (16 joueurs), la perte dépasse 40 % des dépenses. L'intérêt économique pour le club est la fidélisation, non la marge de la soirée. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Seuil de déclenchement à 20 inscrits payés à J-3"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3,
+        "justification": "Ancre 3. Deux à trois moments filmables (extinction des pistes, annonce des éliminés, finale). Audience limitée à la communauté du club.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Gabarit vidéo verticale fourni dans le kit"
+        ]
+      },
+      "reproductibilite": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Un club peut reproduire le format avec un règlement d'une page et un outil de rotation ; cette facilité est aussi la faiblesse commerciale du concept.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 2,
+        "justification": "Entre ancres 1 et 3. Un seul type de lieu réaliste : club disposant d'au moins 4 pistes. Les pistes temporaires existent pour de grands événements mais sont hors budget à cette échelle.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Variante 3 pistes pour 16 joueurs"
+        ]
+      },
+      "accessibilite_inclusion": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Inscription par niveau et mixité possibles ; prix élevé pour un public jeune ; aucun aménagement handi conçu.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Soirées par niveau et tarif réduit étudiants"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Trois sources (inscriptions, bar, partenaire de piste) ; la licence est peu crédible car la règle n'est pas protégeable et se copie sans coût.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Monétiser l'outil et le circuit plutôt que la règle"
+        ]
+      },
+      "responsabilite_environnementale": {
+        "rating": 3,
+        "justification": "Ancre 3. Infrastructures existantes, faible matériel ; déplacements en voiture probables, balles non recyclées.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Collecte et recyclage des balles"
+        ]
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : aucun. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : aucun. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "4 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 4 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R2), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R2), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 62,
+      "grade": "C",
+      "confidence": 0.37,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 6.0,
+        "experience_utilisateur": 6.0,
+        "faisabilite_technique": 1.5,
+        "viabilite_economique": 7.5,
+        "potentiel_mediatique": 4.0,
+        "reproductibilite": 1.0,
+        "adaptabilite_lieux": 4.8,
+        "accessibilite_inclusion": 2.5,
+        "potentiel_commercial": 2.5,
+        "responsabilite_environnementale": 2.0
+      },
+      "score_if_plus_one": 80.0
+    }
+  },
+  "hypotheses": [
+    "Prix d'inscription 35 € par joueur : hypothèse non sourcée.",
+    "Coût d'opportunité des pistes en heures creuses : 15 € par piste et par heure, hypothèse.",
+    "Les clubs paient une licence pour un format qu'ils pourraient copier : hypothèse jugée fragile."
+  ],
+  "sources": [
+    {
+      "id": "S-PADEL-AMER",
+      "title": "Americano (padel) — article explicatif",
+      "publisher": "padel.fyi",
+      "url": "https://www.padel.fyi/articles/americano/",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-PADEL-MEX",
+      "title": "Mexicano format",
+      "publisher": "Skedge (éditeur de logiciel)",
+      "url": "https://skedge-web.web.app/resources/mexicano-format",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-PADEL-KOTC",
+      "title": "Padel tournament formats: americano, king of the court",
+      "publisher": "Padelbrowser",
+      "url": "https://www.padelbrowser.com/blog/padel-tournament-formats-americano-king-of-the-court",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-FLT-PROG",
+      "title": "Règlement officiel — tournoi progressif (padel)",
+      "publisher": "Fédération luxembourgeoise de tennis",
+      "url": "https://padel.flt.lu/media/69bd203fc1038_reglement-officiel-tournoi-progressif.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-ONEPOINT",
+      "title": "One Point Challenge Tour: a padel tournament and festival with a high-octane format on the Île de Puteaux",
+      "publisher": "Sortiraparis",
+      "url": "https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/349160-one-point-challenge-tour-a-padel-tournament-and-festival-in-a-knockout-format-on-ile-de-puteaux",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-WECOURTS",
+      "title": "Changelog — live results (support du format King of the Court avec affichage TV)",
+      "publisher": "WeCourts",
+      "url": "https://wecourts.featurebase.app/en/changelog/live-results",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé et différencié après vérification : americano, mexicano et King of the Court existent ; la fermeture des pistes par paliers avec repêchage n'a pas été trouvée sous forme identique.",
+      "decisions": [
+        "Base americano/mexicano assumée comme existante",
+        "Ajout du repêchage pour limiter la frustration des éliminés"
+      ],
+      "approved_by": null
+    }
+  ]
+}

@@ -1,0 +1,724 @@
+{
+  "id": "hors-bureau",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "HORS-BUREAU",
+    "tagline": "La saison inter-entreprises qui se joue sur votre parking, à 18 h.",
+    "pitch": "Remplace la graine pit-crew-cup (team building « arrêt au stand »), abandonnée car le produit est déjà vendu à l'identique par de nombreux prestataires. HORS-BUREAU est une saison inter-entreprises de 6 soirées et une finale, organisée directement dans la zone d'activités, sur un parking ou une pelouse après la journée de travail : pas de déplacement, 3 h par soirée, épreuves mixtes conçues pour que la condition physique ne décide pas seule du résultat (balle au but sans contact, relais de précision, énigme collective, épreuve de coordination), classement cumulé, food-trucks et finale ouverte aux familles. Un kit mobile (marquage, buts et paniers mobiles, éclairage, sonorisation, conteneur) transforme le parking en terrain. Les challenges inter-entreprises existent déjà ; la différenciation tient au lieu (la zone elle-même), au format en saison et aux épreuves accessibles aux non-sportifs.",
+    "disciplines": [
+      "multi-épreuves (balle au but sans contact, relais, précision, énigmes)"
+    ],
+    "sectors": [
+      "entreprise / ressources humaines",
+      "immobilier d'entreprise",
+      "sport loisir"
+    ],
+    "directions": [
+      "optimise",
+      "communautaire"
+    ],
+    "objectives": [
+      "Créer de la cohésion inter-services et inter-entreprises sans déplacement",
+      "Animer les zones d'activités après 18 h",
+      "Inclure les salariés non sportifs dans un format compétitif",
+      "Générer des revenus récurrents par saison"
+    ],
+    "audiences": [
+      {
+        "segment": "Entreprises de 50 à 1 000 salariés d'une même zone d'activités",
+        "role": "participant",
+        "motivation": "Cohésion, marque employeur, contenu LinkedIn, qualité de vie au travail",
+        "willingness_to_pay": "Hypothèse : 1 200 € par équipe et par saison (environ 10 salariés en rotation) — non testée"
+      },
+      {
+        "segment": "Associations de zones d'activités, clubs d'entreprises, chambres de commerce",
+        "role": "organisateur",
+        "motivation": "Animer et rendre attractive la zone",
+        "willingness_to_pay": "Hypothèse : contribution de 2 000 € par saison"
+      },
+      {
+        "segment": "Prestataires de la zone (banques, assureurs, restauration)",
+        "role": "sponsor",
+        "motivation": "Visibilité auprès de toutes les entreprises de la zone",
+        "willingness_to_pay": "Hypothèse : 1 000–3 000 € par saison"
+      },
+      {
+        "segment": "Food-trucks",
+        "role": "prestataire",
+        "motivation": "Clientèle captive du soir",
+        "willingness_to_pay": "Hypothèse : 50 € de droit de place par soirée"
+      },
+      {
+        "segment": "Familles des salariés (finale)",
+        "role": "spectateur",
+        "motivation": "Soirée festive gratuite",
+        "willingness_to_pay": "0 €"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Défi inter-entreprises (relais, Grand Poitiers ; 28e édition à Beauvais)",
+        "source_sector": "sport entreprise",
+        "borrowed_logic": "Compétition inter-entreprises à forte participation",
+        "adaptation": "Saison de 6 soirées dans la zone plutôt qu'un événement unique en centre-ville",
+        "source_ref": "S-DEFI-POITIERS"
+      },
+      {
+        "source_event": "League of Défense (Paris La Défense)",
+        "source_sector": "sport entreprise",
+        "borrowed_logic": "Challenge décalé au pied des bureaux",
+        "adaptation": "Kit mobile pour des zones d'activités ordinaires, saison et classement cumulé",
+        "source_ref": "S-LEAGUE-DEFENSE"
+      },
+      {
+        "source_event": "Faites vos jeux en entreprise ; olympiades à points cumulés (Inovallée)",
+        "source_sector": "sport entreprise",
+        "borrowed_logic": "Classement mensuel ou cumulé entre entreprises",
+        "adaptation": "Classement cumulé sur des épreuves mixtes physiques et cognitives",
+        "source_ref": "S-FVJE"
+      },
+      {
+        "source_event": "Contre-la-montre par équipes (cyclisme)",
+        "source_sector": "cyclisme",
+        "borrowed_logic": "Le temps de l'équipe est pris sur un coéquipier de rang donné, pas sur le plus rapide",
+        "adaptation": "Sur les relais, le score retenu est celui du 4e membre de l'équipe : l'équipe gagne en aidant ses moins rapides"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Saison de printemps ou d'automne : 6 jeudis tous les 15 jours de 18 h à 21 h, puis finale. Chaque soirée : 3 épreuves en rotation (une physique, une de précision, une cognitive ou de coordination), équipes de 6 sur le terrain parmi 10 inscrits, au moins 2 femmes et 2 « non-sportifs » déclarés dans chaque épreuve. Classement cumulé de saison. Food-trucks à partir de 19 h. Finale avec familles et remise des trophées.",
+    "rules_summary": "Points par épreuve selon le rang (10, 8, 6…). Relais : temps retenu = arrivée du 4e coéquipier. Joker : une fois par saison, une équipe double ses points sur une épreuve choisie avant la soirée. Aucune épreuve à contact ni sprint maximal sur bitume.",
+    "duration_hours": 3,
+    "edition_cadence": "2 saisons par an (printemps, automne) de 6 soirées + finale",
+    "building_blocks": [
+      {
+        "type": "regles",
+        "label": "Épreuves mixtes et règle du 4e coéquipier",
+        "parameters": {
+          "epreuves_par_soiree": 3,
+          "joueurs_sur_terrain": 6,
+          "inscrits_par_equipe": 10
+        }
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Classement cumulé de saison et joker",
+        "parameters": {}
+      },
+      {
+        "type": "scenographie",
+        "label": "Kit mobile qui transforme un parking en terrain",
+        "parameters": {
+          "surface_m2": 1200,
+          "montage_h": 1.5
+        }
+      },
+      {
+        "type": "fidelisation",
+        "label": "Saisons successives, palmarès des entreprises",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Partenaire de saison de la zone, food-trucks",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Kit de contenus LinkedIn par entreprise après chaque soirée",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Droits d'équipe, contribution de l'association de zone, sponsor, droits de place",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 8,
+      "central": 12,
+      "ambitieux": 16
+    },
+    "team_size": 10,
+    "categories": [
+      "équipes d'entreprise mixtes"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 80,
+      "central": 150,
+      "ambitieux": 250
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 150
+  },
+  "venue_requirements": {
+    "setting": "exterieur",
+    "min_area_m2": 1200,
+    "spaces": [
+      {
+        "id": "terrain",
+        "type": "aire_de_jeu",
+        "label": "Parking dégagé et fermé à la circulation, ou pelouse",
+        "area_m2": 1200
+      },
+      {
+        "id": "food",
+        "type": "restauration",
+        "label": "Emplacement food-trucks"
+      },
+      {
+        "id": "stockage",
+        "type": "stockage",
+        "label": "Conteneur du kit sur place pendant la saison"
+      },
+      {
+        "id": "secours",
+        "type": "secours"
+      }
+    ],
+    "power_kw": 6,
+    "internet": "4G pour le classement en direct",
+    "notes": "Accord écrit du propriétaire ou du gestionnaire du parking, fermeture aux véhicules à partir de 17 h 30 ; repli couvert (entrepôt, salle) à identifier pour la pluie."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-kit",
+        "category": "materiel",
+        "label": "Kit mobile : location, transport, montage (7 soirées × 600 €)",
+        "amount": 4200,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-animateurs",
+        "category": "personnel",
+        "label": "Deux animateurs (7 × 5 h × 35 €/h chacun)",
+        "amount": 2450,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-secours",
+        "category": "securite",
+        "label": "Secouriste ou poste de secours par soirée",
+        "amount": 1050,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC organisateur pour la saison",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-contenus",
+        "category": "media",
+        "label": "Photos et vidéos par soirée",
+        "amount": 1750,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-finale",
+        "category": "recompenses",
+        "label": "Trophées et habillage de la finale",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 3,
+        "optional": true
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Coordination EVENT LAB de la saison",
+        "amount": 2000,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-consommables",
+        "category": "consommables",
+        "label": "Chasubles, eau, petit matériel par équipe",
+        "amount": 30,
+        "basis": "per_participant",
+        "certainty": "estimation",
+        "priority": 2
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-equipes",
+        "stream": "inscriptions",
+        "label": "Droit d'équipe 1 200 € par saison",
+        "unit_amount": 1200,
+        "basis": "per_participant",
+        "certainty": "probable",
+        "cash_offset_days": -21
+      },
+      {
+        "id": "r-zone",
+        "stream": "subvention",
+        "label": "Contribution de l'association de zone",
+        "unit_amount": 2000,
+        "basis": "fixed",
+        "certainty": "probable",
+        "cash_offset_days": -30
+      },
+      {
+        "id": "r-sponsor",
+        "stream": "sponsoring",
+        "label": "Partenaire de saison",
+        "unit_amount": 2000,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      },
+      {
+        "id": "r-foodtrucks",
+        "stream": "autre",
+        "label": "Droits de place food-trucks (2 × 50 € × 6 soirées)",
+        "unit_amount": 600,
+        "basis": "fixed",
+        "certainty": "probable"
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "offset_days": -60,
+      "label": "Accord écrit du gestionnaire du site",
+      "owner_role": "EVENT LAB"
+    },
+    {
+      "offset_days": -30,
+      "label": "Go/no-go de saison",
+      "owner_role": "EVENT LAB",
+      "go_no_go": "Lancer seulement avec au moins 10 équipes ayant payé ; sinon report ou saison courte de 4 soirées"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Chutes sur bitume, véhicule entrant sur le parking pendant l'activité",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "voitures encore stationnées à 17 h 45",
+        "barrières absentes"
+      ],
+      "prevention": [
+        "fermeture physique de l'accès véhicules",
+        "aucune épreuve de sprint ou de contact sur bitume",
+        "dalles amortissantes sur la zone de jeu collectif",
+        "secouriste présent"
+      ],
+      "continuity_plan": "Arrêt immédiat de l'épreuve, bascule sur les épreuves statiques ; procédure d'alerte",
+      "owner_role": "animateur principal",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "meteo",
+      "description": "Pluie ou froid : soirée annulée en extérieur",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "prévision défavorable à J-2"
+      ],
+      "prevention": [
+        "saisons placées en avril-juin et septembre-octobre",
+        "repli couvert identifié"
+      ],
+      "continuity_plan": "Repli dans un entrepôt ou une salle de la zone avec épreuves cognitives ; report en fin de saison",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "financier",
+      "description": "Moins de 10 équipes : perte importante au scénario prudent (environ un tiers des dépenses)",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "moins de 6 lettres d'intention à J-60"
+      ],
+      "prevention": [
+        "prévente par l'association de zone",
+        "go/no-go à J-30"
+      ],
+      "continuity_plan": "Saison courte de 4 soirées ou report, sans engagement de la location du kit avant le go",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "operationnel",
+      "description": "Participation qui s'érode au fil de la saison (fatigue de fin de journée)",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "moins de 6 présents par équipe en soirée 3"
+      ],
+      "prevention": [
+        "rotation de 10 inscrits par équipe",
+        "soirées de 3 h maximum"
+      ],
+      "continuity_plan": "Fusion temporaire d'équipes incomplètes",
+      "owner_role": "animateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "juridique",
+      "description": "Accident d'un salarié pendant une activité organisée par ou pour l'employeur : qualification et couverture à clarifier",
+      "probability": 2,
+      "impact": 4,
+      "critical": false,
+      "warning_signs": [],
+      "prevention": [
+        "clarification contractuelle avec chaque entreprise",
+        "avis d'un juriste en droit social"
+      ],
+      "continuity_plan": "Déclaration selon la qualification retenue ; assureur informé",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Autorisation écrite du propriétaire ou gestionnaire du parking (site privé) et vérification du règlement de copropriété ou de la zone",
+      "authority": "Propriétaire, gestionnaire de zone",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Assurance responsabilité civile organisateur ; articulation avec la couverture des salariés (qualification d'un accident pendant l'activité)",
+      "authority": "Assureur, juriste en droit social",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Food-trucks : autorisations des exploitants, règles d'hygiène ; vente d'alcool exclue par défaut",
+      "authority": "Exploitants, mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Sonorisation en soirée près d'habitations éventuelles : bruits de voisinage",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Droit à l'image des salariés et usage des contenus par les entreprises (consentements)",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Équipes payées au go/no-go",
+      "phase": "avant",
+      "target": 12,
+      "unit": "équipes",
+      "measure": "factures réglées à J-30"
+    },
+    {
+      "id": "K2",
+      "label": "Présence moyenne par équipe et par soirée",
+      "phase": "pendant",
+      "target": 7,
+      "unit": "salariés",
+      "measure": "feuilles de présence"
+    },
+    {
+      "id": "K3",
+      "label": "Part des participants se déclarant non sportifs",
+      "phase": "pendant",
+      "target": 30,
+      "unit": "%",
+      "measure": "inscription"
+    },
+    {
+      "id": "K4",
+      "label": "Réinscription des entreprises à la saison suivante",
+      "phase": "apres",
+      "target": 70,
+      "unit": "%",
+      "measure": "contrats"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Avant/après : parking gris à 17 h, arène éclairée à 18 h 30",
+      "Victoire d'une équipe portée par ses non-sportifs sur la règle du 4e coéquipier",
+      "Classement cumulé révélé en finale"
+    ],
+    "photo_spots": [
+      "Arche de la saison aux couleurs de la zone",
+      "Podium de finale"
+    ],
+    "channels": [
+      "LinkedIn",
+      "Instagram",
+      "intranets des entreprises",
+      "presse économique locale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Classement cumulé et joker",
+      "target_role": "participant",
+      "description": "Points par épreuve, joker unique par saison",
+      "fairness_note": "Épreuves mixtes, règle du 4e coéquipier, quotas de non-sportifs déclarés pour réduire l'avantage des équipes très sportives"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Les challenges inter-entreprises existent sous de nombreuses formes (relais d'un jour, challenge au pied des tours de La Défense, classement mensuel, olympiades à points cumulés). Les éléments distinctifs — saison dans la zone même, kit mobile, règle du 4e coéquipier empruntée au contre-la-montre par équipes — forment une combinaison nouvelle mais d'écart limité. Vérification d'un format identique incomplète (budget de recherche épuisé). Recoupement interne partiel avec « L'Échelle de l'Est — saison des défis » du porteur (logique de saison de défis, en basket) : HORS-BUREAU s'en distingue par le public (entreprises), le lieu (zone d'activités) et l'absence de basket.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "experience_utilisateur": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Aucun déplacement, 3 h par soirée, épreuves accessibles, temps morts limités par la rotation ; fatigue de fin de journée et météo pèsent sur l'expérience.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Matériel courant en location ; points à sécuriser : sol bitumé, fermeture aux véhicules, éclairage, repli pluie, logistique de kit sur 7 soirées.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Stocker le kit en conteneur sur site pour la saison"
+        ]
+      },
+      "viabilite_economique": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Le calcul §7.1 donne un excédent au central (12 équipes) mais une perte d'environ un tiers des dépenses au prudent (8 équipes). Le go/no-go à 10 équipes payées réduit l'exposition sans la supprimer. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Prévente par l'association de zone avant engagement du kit"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3,
+        "justification": "Ancre 3. Contenu fort pour LinkedIn et la presse économique locale (avant/après du parking), faible portée grand public.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Kit standardisé et manuel d'animation transférables à toute zone d'activités ; dépend de la relation avec l'association de zone.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Parking, pelouse de campus d'entreprise, cour, entrepôt en repli ; configuration de capacité maximale non documentée.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Inclusion des non-sportifs et mixité inscrites dans les règles (quotas, règle du 4e coéquipier) ; aménagements handicap à concevoir épreuve par épreuve.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Variante à plafond de points (logique cap-12)"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Quatre sources (équipes, zone, sponsor, food-trucks), revenus récurrents par saison, offre licenciable à des animateurs régionaux. Demande inter-entreprises attestée par la participation à des formats voisins (718 équipes à un défi inter-entreprises en 2023).",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Les participants sont déjà sur place (déplacements quasi nuls), kit réemployé sur toute la saison, restauration locale ; mesure d'empreinte non prévue.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1, R3), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1, R3), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.35,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 6.0,
+        "experience_utilisateur": 4.5,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 7.5,
+        "potentiel_mediatique": 4.0,
+        "reproductibilite": 2.0,
+        "adaptabilite_lieux": 2.4,
+        "accessibilite_inclusion": 1.5,
+        "potentiel_commercial": 1.0,
+        "responsabilite_environnementale": 1.0
+      },
+      "score_if_plus_one": 84.0
+    }
+  },
+  "hypotheses": [
+    "Prix 1 200 € par équipe et par saison : hypothèse non testée.",
+    "Location et transport du kit 600 € par soirée : hypothèse.",
+    "Parkings de zone suffisamment vides et fermables à 17 h 30 : hypothèse à vérifier site par site.",
+    "La graine pit-crew-cup est abandonnée : produit identique vendu par plusieurs prestataires."
+  ],
+  "sources": [
+    {
+      "id": "S-DEFI-POITIERS",
+      "title": "Défi inter-entreprises : bravo aux entreprises participantes",
+      "publisher": "Grand Poitiers",
+      "url": "https://grandpoitiers.fr/information-transversale/actualites/defi-inter-entreprises-bravo-aux-entreprises-participantes-40083/pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (718 équipes, 2 872 participants en 2023)"
+    },
+    {
+      "id": "S-BEAUVAIS",
+      "title": "Beauvais accueillera le 1er octobre la 28e édition du Défi inter-entreprises",
+      "publisher": "La Gazette France",
+      "url": "https://www.lagazettefrance.fr/article/beauvais-accueillera-le-1er-octobre-la-28e-edition-du-defi-inter-entreprises",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-LEAGUE-DEFENSE",
+      "title": "« League of Défense », le challenge complètement barré pour souder les salariés de La Défense",
+      "publisher": "Defense-92",
+      "url": "https://www.defense-92.fr/animation/league-of-defense-le-challenge-completement-barre-pour-souder-les-salaries-de-la-defense-81296",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche (près de 900 participants, 26 entreprises)"
+    },
+    {
+      "id": "S-FVJE",
+      "title": "Faites vos jeux en entreprise",
+      "publisher": "MEDEF (avec FFSE et SPART)",
+      "url": "https://www.medef.com/actualites-download/faites-vos-jeux-en-entreprise-1",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-INOVALLEE",
+      "title": "Olympiades — calcul des points",
+      "publisher": "Inovallée",
+      "url": "https://www.inovallee.com/wp-content/uploads/2026/07/CALCUL-DES-POINTS.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-EPISOD",
+      "title": "Règlement Corporate Challenge mars 2026",
+      "publisher": "EPISOD",
+      "url": "https://corporatechallenge.episod.com/sites/default/files/pdf/reglement_corporate_challenge_mars_2026.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-PIT-RBR",
+      "title": "Pit Stop Game (incentive / team building)",
+      "publisher": "Red Bull Ring",
+      "url": "https://www.redbullring.com/en/business/incentives-teambuilding/non-vehicle-incentives/pit-stop-game/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche — preuve de non-originalité de la graine remplacée"
+    },
+    {
+      "id": "S-PIT-EVENTUROUS",
+      "title": "Pitstop Challenge",
+      "publisher": "Eventurous",
+      "url": "https://www.eventurous.co.uk/outdoor-team-building/pitstop-challenge/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (groupes jusqu'à 300)"
+    },
+    {
+      "id": "S-PIT-DAYTONA",
+      "title": "Team building",
+      "publisher": "Daytona",
+      "url": "https://daytona.co.uk/team-building",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-PIT-CHILLI",
+      "title": "Pit Stop Challenge",
+      "publisher": "Chillisauce",
+      "url": "https://chillisauce.com/events/do-team-challenges/go-5e3d2dfd06038327d8914f78",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Création en remplacement de la graine pit-crew-cup.",
+      "decisions": [
+        "pit-crew-cup abandonnée : team building « arrêt au stand » vendu à l'identique (Red Bull Ring, Daytona, Eventurous, Chillisauce…)",
+        "Marché B2B conservé, mais avec un modèle récurrent par saison au lieu d'une animation ponctuelle"
+      ],
+      "approved_by": null
+    }
+  ]
+}

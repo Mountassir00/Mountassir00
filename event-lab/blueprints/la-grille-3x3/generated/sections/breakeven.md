@@ -1,0 +1,3 @@
+- **Prudent** : seuil à **2 036 spectateurs uniques** (écart fixe à couvrir 12 772 €, marge par spectateur 6,27 €).
+- **Central** : seuil à **1 060 spectateurs uniques** (écart fixe à couvrir 6 947 €, marge par spectateur 6,55 €).
+- **Ambitieux** : seuil à **100 spectateurs uniques** (écart fixe à couvrir 665 €, marge par spectateur 6,69 €).

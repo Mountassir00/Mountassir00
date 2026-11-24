@@ -1,0 +1,738 @@
+{
+  "id": "silent-arena",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "SILENT ARENA",
+    "tagline": "La ville dort. Le match, lui, se joue dans vos oreilles.",
+    "pitch": "Tournoi nocturne de foot à 5 ou de futsal de rue (toute discipline de nuit possible) sur un city-stade, une cour ou un toit situé en zone sensible au bruit. Aucune enceinte : le public porte des casques sans fil à trois canaux — commentaire en direct, DJ, micro de l'arbitre et du coach pendant les temps morts — et un quatrième canal d'audiodescription pour les spectateurs déficients visuels. L'arbitrage et le chronométrage passent par des signaux lumineux (pas de sifflet ni de buzzer sonore). La contrainte de lieu devient l'expérience. Briques existantes : casques « silent disco » dans des événements sportifs, retransmission du micro de l'arbitre aux spectateurs au rugby ; la combinaison en compétition conçue pour le silence n'a pas été trouvée. Recoupement interne signalé : le porteur dispose déjà, en basket, de « La Veillée — tournoi nocturne de gymnase » et de « Les Nocturnes — 3x3 au score cible » ; SILENT ARENA est donc positionné hors basket et comme une couche « silence » applicable à tout tournoi de nuit, y compris ces formats.",
+    "disciplines": [
+      "football à 5 / futsal de rue",
+      "toute compétition nocturne (module)"
+    ],
+    "sectors": [
+      "sport amateur urbain",
+      "festivals (silent disco)",
+      "rugby (audio arbitre)",
+      "audiodescription"
+    ],
+    "directions": [
+      "experimental",
+      "hybride"
+    ],
+    "objectives": [
+      "Rendre possible un événement sportif nocturne là où le bruit l'interdit",
+      "Offrir une expérience d'écoute choisie (commentaire, musique, arbitre)",
+      "Proposer aux villes une animation de soirée estivale pour les jeunes, compatible avec le voisinage",
+      "Intégrer l'audiodescription dès la conception"
+    ],
+    "audiences": [
+      {
+        "segment": "Jeunes 14–30 ans des quartiers denses",
+        "role": "spectateur",
+        "motivation": "Sortie nocturne gratuite ou peu chère, ambiance",
+        "willingness_to_pay": "Hypothèse : 0–3 € + caution casque ; signal : une soirée de retransmission sportive en casques a facturé 10 $ la location (Bangkok, 2023)"
+      },
+      {
+        "segment": "Équipes amateurs 3x3",
+        "role": "participant",
+        "motivation": "Jouer de nuit, être commenté",
+        "willingness_to_pay": "Hypothèse : 20–40 € par équipe"
+      },
+      {
+        "segment": "Services jeunesse, sport et politique de la ville des communes",
+        "role": "organisateur",
+        "motivation": "Animation nocturne sans plainte de voisinage",
+        "willingness_to_pay": "Hypothèse : 8–10 k€ par soirée clé en main (non testée)"
+      },
+      {
+        "segment": "Marques audio, opérateurs télécoms",
+        "role": "sponsor",
+        "motivation": "Démonstration produit, canal sponsorisé",
+        "willingness_to_pay": "Hypothèse : 1–3 k€ par soirée"
+      },
+      {
+        "segment": "Spectateurs déficients visuels",
+        "role": "spectateur",
+        "motivation": "Suivre un match grâce à un canal d'audiodescription",
+        "willingness_to_pay": "gratuit"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Casques silent disco dans des événements sportifs (prestataire)",
+        "source_sector": "festival / événementiel",
+        "borrowed_logic": "Diffusion sans enceinte, canaux multiples sélectionnables",
+        "adaptation": "Canaux dédiés au commentaire, à l'arbitre et à l'audiodescription",
+        "source_ref": "S-QUIET-SPORT"
+      },
+      {
+        "source_event": "Retransmission du micro de l'arbitre aux spectateurs (rugby)",
+        "source_sector": "rugby",
+        "borrowed_logic": "Le spectateur entend les décisions de l'arbitre",
+        "adaptation": "Canal arbitre et coach en direct pendant les temps morts",
+        "source_ref": "S-WR-REFCOMMS"
+      },
+      {
+        "source_event": "Cécifoot et goalball (silence du public pendant le jeu)",
+        "source_sector": "sport paralympique",
+        "borrowed_logic": "Le silence comme règle de spectacle",
+        "adaptation": "Le silence est la règle du lieu, l'ambiance passe par le casque",
+        "source_ref": "S-PARA-SILENT"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Soirée de 20 h à 0 h 30. Remise des casques contre caution à l'entrée. 10 à 16 équipes de foot à 5, poules puis élimination directe sur un terrain unique éclairé (city-stade ou terrain de futsal extérieur). Trois canaux : (1) commentaire en direct par deux commentateurs, (2) DJ, (3) arbitre et coach ; canal 4 : audiodescription. La couleur des voyants des casques indique le canal choisi, ce qui crée l'image de l'événement. Arbitrage et horloge de tir signalés par lumières.",
+    "rules_summary": "Règlement de foot à 5 loisir (matchs de 2 × 8 min), sauf : coup de sifflet remplacé par signal lumineux et geste de l'arbitre, fin de période signalée par lumière, temps mort de 30 s avec micro du coach diffusé sur le canal 3. Public : encouragements par gestes et lumières recommandés ; aucune sonorisation extérieure.",
+    "duration_hours": 4.5,
+    "edition_cadence": "série estivale de 4 à 8 soirées par ville",
+    "building_blocks": [
+      {
+        "type": "experience_digitale",
+        "label": "Casques sans fil multicanaux (3 + audiodescription)",
+        "parameters": {
+          "casques": 300,
+          "canaux": 4
+        }
+      },
+      {
+        "type": "son_lumiere",
+        "label": "Arbitrage et chrono lumineux, aucun son extérieur",
+        "parameters": {}
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Voyants colorés des casques comme décor vivant",
+        "parameters": {}
+      },
+      {
+        "type": "interaction_public",
+        "label": "Choix du canal, vote du joueur de la soirée par QR code",
+        "parameters": {}
+      },
+      {
+        "type": "regles",
+        "label": "Foot à 5 adapté au silence",
+        "parameters": {
+          "equipes": 14
+        }
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Canal sponsorisé (marque audio)",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Prestation vendue à la ville, entrée symbolique, sponsor, buvette sans alcool",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Vidéos « ce que vous n'entendez pas » : plan silencieux puis son du casque",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 10,
+      "central": 14,
+      "ambitieux": 16
+    },
+    "team_size": 7,
+    "categories": [
+      "Open mixte",
+      "Féminines si effectif suffisant"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 150,
+      "central": 250,
+      "ambitieux": 350
+    },
+    "paying_share": 0.8,
+    "avg_dwell_min": 120
+  },
+  "venue_requirements": {
+    "setting": "exterieur",
+    "min_area_m2": 800,
+    "spaces": [
+      {
+        "id": "terrain",
+        "type": "aire_de_jeu",
+        "label": "City-stade ou terrain de foot à 5 extérieur éclairé"
+      },
+      {
+        "id": "casques",
+        "type": "accueil",
+        "label": "Stand de remise et de retour des casques"
+      },
+      {
+        "id": "public",
+        "type": "tribune",
+        "label": "Zone public debout ou gradins",
+        "standing": true
+      },
+      {
+        "id": "regie",
+        "type": "regie",
+        "label": "Régie audio et commentateurs"
+      },
+      {
+        "id": "secours",
+        "type": "secours"
+      }
+    ],
+    "power_kw": 15,
+    "internet": "4G pour le vote ; la diffusion audio est locale (radio)",
+    "notes": "Éclairage de jeu suffisant indispensable ; repli intérieur (gymnase proche d'habitations) en cas de pluie."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-casques",
+        "category": "technique",
+        "label": "Location de 300 casques et émetteurs (hypothèse ≈ 5 € par casque)",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-audio",
+        "category": "technique",
+        "label": "Technicien audio et DJ",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-commentateurs",
+        "category": "animation",
+        "label": "Deux commentateurs",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-eclairage",
+        "category": "technique",
+        "label": "Éclairage complémentaire de jeu",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-arbitrage",
+        "category": "competition",
+        "label": "Arbitres et table de marque (foot à 5)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-signaux",
+        "category": "materiel",
+        "label": "Kit de signaux lumineux (arbitrage, horloge de tir)",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-securite",
+        "category": "securite",
+        "label": "Agents de sécurité et poste de secours",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC et casse/perte des casques",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication",
+        "amount": 700,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Format et coordination EVENT LAB",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-hygiene",
+        "category": "consommables",
+        "label": "Protections hygiéniques de casque",
+        "amount": 0.3,
+        "basis": "per_attendee",
+        "certainty": "estimation",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-ville",
+        "stream": "autre",
+        "label": "Prestation clé en main vendue à la ville",
+        "unit_amount": 9000,
+        "basis": "fixed",
+        "certainty": "probable"
+      },
+      {
+        "id": "r-billetterie",
+        "stream": "billetterie",
+        "label": "Entrée symbolique 3 €",
+        "unit_amount": 3,
+        "basis": "per_paying_attendee",
+        "certainty": "probable"
+      },
+      {
+        "id": "r-sponsor",
+        "stream": "sponsoring",
+        "label": "Canal sponsorisé (marque audio)",
+        "unit_amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      },
+      {
+        "id": "r-buvette",
+        "stream": "restauration",
+        "label": "Buvette sans alcool : 3 € par spectateur, marge 50 %",
+        "unit_amount": 3,
+        "basis": "per_attendee",
+        "margin_rate": 0.5,
+        "certainty": "probable"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "reglementaire",
+      "description": "Le bruit résiduel du public (cris, applaudissements, conversations) dépasse ce que le voisinage tolère : le casque supprime la sonorisation, pas la foule",
+      "probability": 4,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "plaintes lors du test",
+        "riverains aux fenêtres"
+      ],
+      "prevention": [
+        "choix d'un site à distance minimale des façades",
+        "consignes de célébration silencieuse (gestes, lumières)",
+        "fin à 0 h 30",
+        "information préalable des riverains"
+      ],
+      "continuity_plan": "Arrêt de la phase publique à 23 h et fin du tournoi en format réduit ; repli dans un gymnase",
+      "owner_role": "coordinateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "securite",
+      "description": "Rassemblement nocturne de jeunes : tensions, intrusions, sécurité des spectateurs dans un site ouvert",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "regroupements hors périmètre",
+        "alcool introduit"
+      ],
+      "prevention": [
+        "périmètre délimité",
+        "agents de sécurité dimensionnés par prestataire",
+        "médiateurs de la ville",
+        "éclairage des abords"
+      ],
+      "continuity_plan": "Arrêt de la soirée sur décision du responsable sécurité ; procédure d'évacuation éclairée",
+      "owner_role": "responsable sécurité",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "securite",
+      "description": "Spectateurs casqués qui n'entendent pas une alerte ou une consigne d'évacuation",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [],
+      "prevention": [
+        "message d'alerte prioritaire injecté sur tous les canaux",
+        "signal lumineux général",
+        "mégaphone de secours"
+      ],
+      "continuity_plan": "Coupure des canaux et diffusion du message d'évacuation sur tous les canaux + lumières",
+      "owner_role": "régie",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "technique",
+      "description": "Perte ou casse de casques, interférences radio, batteries",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "taux de retour < 95 % à la première soirée"
+      ],
+      "prevention": [
+        "caution (pièce d'identité ou paiement)",
+        "test radio sur site",
+        "casques de réserve"
+      ],
+      "continuity_plan": "Repli sur un seul canal mixé ; diffusion sur téléphones si réseau suffisant",
+      "owner_role": "technicien audio",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "sante",
+      "description": "Volume d'écoute excessif au casque pendant plusieurs heures",
+      "probability": 2,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [],
+      "prevention": [
+        "volume maximal limité côté émetteur",
+        "pauses d'écoute annoncées"
+      ],
+      "continuity_plan": "Réduction générale du niveau d'émission",
+      "owner_role": "technicien audio",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Occupation du domaine public ou convention d'usage du site, arrêté municipal d'horaires",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Bruits de voisinage : réglementation applicable au bruit du public la nuit (Code de la santé publique — articles à vérifier)",
+      "authority": "Mairie, préfecture",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Sons amplifiés : vérifier si la réglementation sur les niveaux sonores (décret de 2017 sur les sons amplifiés) s'applique à une diffusion au casque",
+      "authority": "ARS / juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Fréquences radio des émetteurs utilisées dans des bandes libres autorisées",
+      "authority": "Fournisseur des casques",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Dispositif de sécurité et de secours dimensionné par des prestataires agréés ; rassemblement nocturne déclaré",
+      "authority": "Mairie, préfecture, association agréée",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C6",
+      "item": "Diffusion de musique : Sacem ; buvette sans alcool : autorisation municipale",
+      "authority": "Sacem, mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C7",
+      "item": "Mineurs présents de nuit : autorisation parentale pour les participants mineurs, politique d'accueil des mineurs spectateurs",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Plaintes de riverains",
+      "phase": "pendant",
+      "target": 0,
+      "unit": "plaintes",
+      "measure": "registre mairie et police municipale"
+    },
+    {
+      "id": "K2",
+      "label": "Taux de retour des casques",
+      "phase": "pendant",
+      "target": 98,
+      "unit": "%",
+      "measure": "comptage retour"
+    },
+    {
+      "id": "K3",
+      "label": "Spectateurs gardant le casque plus de 60 min",
+      "phase": "pendant",
+      "target": 60,
+      "unit": "%",
+      "measure": "relevé à la remise/retour"
+    },
+    {
+      "id": "K4",
+      "label": "Villes signant une série après une soirée test",
+      "phase": "apres",
+      "target": 1,
+      "unit": "ville",
+      "measure": "bon de commande"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Plan large silencieux d'un but puis même plan avec le son du casque",
+      "Foule aux voyants de couleur qui change de canal",
+      "Décision de l'arbitre entendue en direct",
+      "Temps mort du coach diffusé"
+    ],
+    "photo_spots": [
+      "Mur de casques lumineux à l'entrée",
+      "Terrain éclairé dans la ville endormie"
+    ],
+    "channels": [
+      "TikTok",
+      "Instagram Reels",
+      "YouTube Shorts",
+      "presse locale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Vote du joueur de la soirée",
+      "target_role": "spectateur",
+      "description": "Vote par QR code pendant la finale",
+      "fairness_note": "Un vote par casque, gratuit"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Les briques existent séparément (casques multicanaux dans des événements sportifs selon un prestataire, micro de l'arbitre retransmis aux spectateurs au rugby). Aucune compétition conçue entièrement pour le silence (arbitrage lumineux, canaux, audiodescription) n'a été trouvée. Transposition festival → sport cohérente. Recoupement interne avec deux formats nocturnes de basket du porteur (La Veillée, Les Nocturnes) : la différenciation tient au dispositif silencieux, non au fait de jouer la nuit.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Expérience d'écoute choisie et commentée ; contreparties : file d'attente de remise des casques, port prolongé, conversations entre spectateurs gênées.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Remise des casques par QR code pré-réservé pour réduire la file"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Matériel disponible en location ; trois points techniques à sécuriser (remise/retour des casques, alerte d'évacuation sur casques, arbitrage sans sifflet), plus l'éclairage de nuit.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Répétition technique sur site avec 20 casques"
+        ]
+      },
+      "viabilite_economique": {
+        "rating": 2,
+        "justification": "Entre ancres 1 et 3. Le calcul §7.1 donne un déficit au central (prestation ville probable mais non signée, sponsor hypothétique). L'équilibre exige une prestation ville d'environ 10 k€ signée. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Vendre une série de soirées pour amortir l'habillage et la coordination"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Image forte et identifiable (voyants colorés, contraste silence/son), formats verticaux conçus ; pas encore de contenu généré par les participants intégré.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Canal enregistré par les spectateurs pour leurs propres vidéos"
+        ]
+      },
+      "reproductibilite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Kit loué et règlement adaptable partout ; dépend de commentateurs de qualité.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Conçu pour les lieux contraints (cour, toit, city-stade, parvis) et transposable en intérieur ; repli gymnase prévu.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Canal d'audiodescription conçu dans le format ; le public sourd ou malentendant perd le commentaire, ce qui exige un sous-titrage sur écran non encore prévu.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Écran de sous-titrage du commentaire",
+          "Interprète LSF pour la finale"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 3,
+        "justification": "Ancre 3. Prestation ville, sponsor de canal, entrée, buvette ; licence possible aux loueurs de casques.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Réduction de la pollution sonore, matériel loué et réemployé ; batteries et consommables d'hygiène à gérer.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "R2 et R3 (sécurité, impact ≥ 4) sont traités par prévention ; le dimensionnement relève d'un prestataire agréé. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R2, R3. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "Point le plus incertain du portefeuille avec cap-12 : bruit du public la nuit. || calcul : 7 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6, C7) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1, R2, R3), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1, R2, R3), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 3.6,
+        "experience_utilisateur": 6.0,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 9.0,
+        "potentiel_mediatique": 2.0,
+        "reproductibilite": 3.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 1.5,
+        "potentiel_commercial": 2.0,
+        "responsabilite_environnementale": 1.5
+      },
+      "score_if_plus_one": 84.0
+    }
+  },
+  "hypotheses": [
+    "Location casques ≈ 5 € par unité et par soirée : hypothèse à confirmer par devis.",
+    "Prix de la prestation vendue à une ville : 9 000 € (hypothèse, aucun acheteur testé).",
+    "Le bruit du public restera acceptable avec des consignes : hypothèse critique, non démontrée."
+  ],
+  "sources": [
+    {
+      "id": "S-QUIET-SPORT",
+      "title": "Sporting Events — Silent Disco",
+      "publisher": "Quiet Events (prestataire, déclaratif)",
+      "url": "https://www.quietevents.com/collections/sporting-events",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-QUIET-NOISE",
+      "title": "Noise ordinances & silent disco events",
+      "publisher": "Quiet Events (prestataire, déclaratif)",
+      "url": "https://www.quietevents.com/collections/noise-ordinances-silent-disco-events",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche ; la page reconnaît que le bruit de la foule et les règles locales s'appliquent toujours"
+    },
+    {
+      "id": "S-USOPEN-SILENT",
+      "title": "US Open Fan Week introduces their first Silent Disco Party",
+      "publisher": "Quiet Events (blog)",
+      "url": "https://www.quietevents.com/blogs/quiet-events-blog/us-open-fan-week-introduces-their-first-silent-disco-party",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-WR-REFCOMMS",
+      "title": "Referee communications",
+      "publisher": "World Rugby",
+      "url": "https://www.world.rugby/the-game/game-systems/match-technology/referee-communications",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-ESPN-REFLINK",
+      "title": "Referee link available for fans",
+      "publisher": "ESPN",
+      "url": "https://www.espn.com.au/rugby/story/_/id/15347938/referee-link-available-fans",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-SILENT-SB",
+      "title": "Silent Super Bowl tip-toes into Ace Cafe this weekend",
+      "publisher": "Bungalower",
+      "url": "https://bungalower.com/2023/02/08/silent-super-bowl-tip-toes-into-ace-cafe-this-weekend/",
+      "published_at": "2023-02-08",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche (location de casque à 10 $)"
+    },
+    {
+      "id": "S-PARA-SILENT",
+      "title": "Paralympics fans learn when to be silent and when to make noise at sports for the visually impaired",
+      "publisher": "ABC News (AP)",
+      "url": "https://abcnews.go.com/Sports/wireStory/paralympics-fans-learn-silent-make-noise-sports-visually-113321910",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé : les casques en événement sportif et l'audio arbitre existent séparément ; différenciation par l'arbitrage lumineux, le canal d'audiodescription et la conception pour lieux sensibles au bruit.",
+      "decisions": [
+        "Le bruit résiduel du public est classé risque critique",
+        "Ajout d'un canal d'alerte prioritaire sur tous les casques",
+        "Discipline principale déplacée du basket 3x3 vers le foot à 5 pour éviter le recoupement avec l'existant interne (La Veillée, Les Nocturnes)"
+      ],
+      "approved_by": null
+    }
+  ]
+}

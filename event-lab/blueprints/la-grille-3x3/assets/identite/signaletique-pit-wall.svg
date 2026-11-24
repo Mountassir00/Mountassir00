@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200mm" height="800mm" role="img" aria-labelledby="t d">
+  <title id="t">SIG-06 — Tableau d'appel du pit wall (1 200 x 800 mm, tableau magnétique ou effaçable)</title>
+  <desc id="d">Maquette originale EVENT LAB. Tableau d'appel des équipes par numéro de grille : sur le terrain, appelées (créneau suivant), à suivre. Numéros magnétiques réutilisables. Données fictives.</desc>
+  <rect width="1200" height="800" fill="#121417"/>
+  <text x="40" y="84" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="60" fill="#F4F1EA">PIT WALL</text>
+  <text x="40" y="128" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#8B9099">Appel par numéro de grille : présentez-vous dès l'appel</text>
+  <rect x="860" y="36" width="300" height="70" rx="10" fill="#FFC629"/>
+  <text x="1010" y="84" text-anchor="middle" font-family="IBM Plex Mono, Courier New, monospace" font-size="40" font-weight="700" fill="#121417">14:24</text>
+  <g font-family="Archivo Black, Arial Black, sans-serif" font-weight="900">
+    <text x="40" y="200" font-size="30" fill="#FFC629">SUR LE TERRAIN</text>
+    <text x="440" y="200" font-size="30" fill="#FF5B1A">APPELÉES (14:36)</text>
+    <text x="840" y="200" font-size="30" fill="#F4F1EA">À SUIVRE (14:48)</text>
+  </g>
+  <g font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="56">
+    <!-- colonne 1 -->
+    <rect x="40" y="230" width="340" height="200" rx="10" fill="#3A3F47"/>
+    <text x="60" y="280" font-size="26" fill="#8B9099">T1 · POULE E</text>
+    <text x="60" y="380" fill="#F4F1EA">F1 – F5</text>
+    <rect x="40" y="450" width="340" height="200" rx="10" fill="#3A3F47"/>
+    <text x="60" y="500" font-size="26" fill="#8B9099">T2 · POULE E</text>
+    <text x="60" y="600" fill="#F4F1EA">F4 – F8</text>
+    <!-- colonne 2 -->
+    <rect x="440" y="230" width="340" height="200" rx="10" fill="none" stroke="#FF5B1A" stroke-width="6"/>
+    <text x="460" y="280" font-size="26" fill="#8B9099">T1 · POULE B</text>
+    <text x="460" y="380" fill="#F4F1EA">02 – 10</text>
+    <rect x="440" y="450" width="340" height="200" rx="10" fill="none" stroke="#FF5B1A" stroke-width="6"/>
+    <text x="460" y="500" font-size="26" fill="#8B9099">T2 · POULE B</text>
+    <text x="460" y="600" fill="#F4F1EA">07 – 15</text>
+    <!-- colonne 3 -->
+    <rect x="840" y="230" width="320" height="200" rx="10" fill="none" stroke="#8B9099" stroke-width="4" stroke-dasharray="14 10"/>
+    <text x="860" y="280" font-size="26" fill="#8B9099">T1 · POULE F</text>
+    <text x="860" y="380" fill="#F4F1EA">F2 – F6</text>
+    <rect x="840" y="450" width="320" height="200" rx="10" fill="none" stroke="#8B9099" stroke-width="4" stroke-dasharray="14 10"/>
+    <text x="860" y="500" font-size="26" fill="#8B9099">T2 · POULE F</text>
+    <text x="860" y="600" fill="#F4F1EA">F3 – F7</text>
+  </g>
+  <text x="40" y="730" font-family="Archivo, Arial, sans-serif" font-size="26" fill="#F4F1EA">Absente 2 min après l'heure du créneau : forfait (règlement, art. 12). Eau gratuite au pit wall.</text>
+  <text x="40" y="770" font-family="Archivo, Arial, sans-serif" font-size="20" fill="#8B9099">Numéros fictifs. F = catégorie Féminines.</text>
+</svg>

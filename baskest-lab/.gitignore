@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-demo
+out/*.tmp
+*.log
+.DS_Store
+__pycache__
+
+# v0.4 : configuration locale du serveur (URL et clé publique Supabase) — jamais versionnée
+.env
+.env.*
+!.env.example
+dist-config

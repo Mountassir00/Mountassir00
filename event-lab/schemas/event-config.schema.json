@@ -1,0 +1,1465 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://event-lab.local/schemas/event-config.schema.json",
+  "title": "EventConfig",
+  "description": "Configuration structurée, versionnée et clonable d'un événement EVENT LAB. Un concept du portefeuille et un blueprint complet utilisent le même schéma ; seul le niveau de complétude change.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "status",
+    "identity",
+    "format",
+    "evaluation"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Identifiant stable (slug) commun à toutes les VERSIONS d'un événement. Un clone ou une adaptation à une autre ville / un autre lieu reçoit un identifiant dérivé (<id>-<ville> ou <id>-<lieu>) et pointe vers sa source via 'parent' : deux adaptations parallèles ne partagent donc jamais leurs numéros de version."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "review",
+        "validated",
+        "archived"
+      ],
+      "description": "Une version 'validated' est immuable : toute modification crée une nouvelle version 'draft' avec parent."
+    },
+    "maturity": {
+      "enum": [
+        "concept",
+        "blueprint",
+        "executed"
+      ],
+      "default": "concept"
+    },
+    "parent": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Lignée : version source en cas de nouvelle version, de clonage ou d'adaptation géographique.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "new_version",
+            "clone",
+            "city_adaptation",
+            "venue_adaptation"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "relation"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "name",
+        "tagline",
+        "disciplines",
+        "directions"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "pitch": {
+          "type": "string"
+        },
+        "disciplines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vide = événement sans discipline."
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "directions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "accessible",
+              "optimise",
+              "premium",
+              "experimental",
+              "hybride",
+              "communautaire"
+            ]
+          }
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audiences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "segment": {
+                "type": "string"
+              },
+              "role": {
+                "enum": [
+                  "spectateur",
+                  "participant",
+                  "benevole",
+                  "sponsor",
+                  "journaliste",
+                  "prestataire",
+                  "vip",
+                  "organisateur"
+                ]
+              },
+              "motivation": {
+                "type": "string"
+              },
+              "willingness_to_pay": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "segment",
+              "role"
+            ]
+          }
+        },
+        "inspirations": {
+          "type": "array",
+          "description": "Logique empruntée à d'autres secteurs. Jamais de reprise de marque, d'identité visuelle ou d'élément protégé.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_event": {
+                "type": "string"
+              },
+              "source_sector": {
+                "type": "string"
+              },
+              "borrowed_logic": {
+                "type": "string"
+              },
+              "adaptation": {
+                "type": "string"
+              },
+              "source_ref": {
+                "type": "string",
+                "description": "Identifiant d'une source dans 'sources'."
+              },
+              "not_borrowed": {
+                "type": "string",
+                "description": "Ce qui n'est PAS repris : nom, marque, identité visuelle, éléments protégés (07 §3)."
+              }
+            },
+            "required": [
+              "source_event",
+              "borrowed_logic",
+              "adaptation"
+            ]
+          }
+        }
+      }
+    },
+    "format": {
+      "type": "object",
+      "required": [
+        "summary",
+        "building_blocks"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "rules_summary": {
+          "type": "string"
+        },
+        "duration_hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "edition_cadence": {
+          "type": "string",
+          "description": "ex. 'annuelle', 'saison de 6 épisodes'"
+        },
+        "building_blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "block_id": {
+                "type": "string",
+                "description": "Référence à knowledge/building-blocks.json"
+              },
+              "type": {
+                "$ref": "#/$defs/blockType"
+              },
+              "label": {
+                "type": "string"
+              },
+              "parameters": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "type",
+              "label"
+            ]
+          }
+        }
+      }
+    },
+    "participants": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "enum": [
+            "individu",
+            "equipe"
+          ]
+        },
+        "count": {
+          "$ref": "#/$defs/scenarioNumber"
+        },
+        "team_size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "properties": {
+        "attendance": {
+          "$ref": "#/$defs/scenarioNumber",
+          "description": "Spectateurs uniques attendus par scénario."
+        },
+        "paying_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "arrival_profile": {
+          "type": "array",
+          "description": "Part des arrivées par créneau, en minutes depuis l'ouverture des portes (doors_open_min).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from_min": {
+                "type": "number"
+              },
+              "to_min": {
+                "type": "number"
+              },
+              "share": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "from_min",
+              "to_min",
+              "share"
+            ]
+          }
+        },
+        "avg_dwell_min": {
+          "type": "number"
+        },
+        "entry_lanes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Files de contrôle prévues à l'entrée (sinon dimensionnées par le simulateur, 07 §5)."
+        },
+        "doors_open_min": {
+          "type": "number",
+          "description": "Ouverture des portes, en minutes depuis 00:00 de J : origine de arrival_profile."
+        }
+      }
+    },
+    "venue_requirements": {
+      "type": "object",
+      "properties": {
+        "setting": {
+          "enum": [
+            "interieur",
+            "exterieur",
+            "mixte"
+          ]
+        },
+        "min_area_m2": {
+          "type": "number"
+        },
+        "spaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/space"
+          }
+        },
+        "power_kw": {
+          "type": "number"
+        },
+        "internet": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "venue": {
+      "$ref": "venue.schema.json",
+      "description": "Instance de lieu retenue (optionnelle au stade concept)."
+    },
+    "program": {
+      "type": "array",
+      "description": "Séquences horodatées en minutes depuis 00:00 du jour J (600 = 10:00 ; négatif = J-1). Sert au conducteur, aux simulations et au rétroplanning.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "start_min",
+          "duration_min",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "montage",
+              "accueil",
+              "competition",
+              "show",
+              "ceremonie",
+              "pause",
+              "animation",
+              "demontage",
+              "media"
+            ]
+          },
+          "start_min": {
+            "type": "number",
+            "description": "Minutes depuis 00:00 du jour J (négatif = veille)."
+          },
+          "duration_min": {
+            "type": "number",
+            "minimum": 0
+          },
+          "space": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "cues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tops son/lumière/micro/vidéo."
+          },
+          "critical": {
+            "type": "boolean",
+            "default": false
+          },
+          "stage_ref": {
+            "type": "string",
+            "description": "Lien vers competition.stages[].id quand la séquence correspond à une étape de compétition."
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Intervenants (rôles, pas de noms au stade blueprint)."
+          }
+        }
+      }
+    },
+    "competition": {
+      "type": "object",
+      "description": "Paramètres utilisés par le simulateur de durée de compétition.",
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "time_trial",
+                  "round_robin",
+                  "single_elimination",
+                  "double_elimination",
+                  "swiss",
+                  "battle_royale",
+                  "custom"
+                ]
+              },
+              "entrants": {
+                "type": "integer"
+              },
+              "groups": {
+                "type": "integer"
+              },
+              "slot_duration_min": {
+                "type": "number",
+                "description": "Durée d'un passage ou d'un match."
+              },
+              "changeover_min": {
+                "type": "number"
+              },
+              "parallel_units": {
+                "type": "integer",
+                "description": "Terrains, pistes ou stations simultanés."
+              },
+              "advance": {
+                "type": "integer",
+                "description": "Nombre qualifiés pour l'étape suivante."
+              },
+              "runs_per_entrant": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "time_trial : passages par entrant (défaut 1)"
+              },
+              "rounds": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "swiss : nombre de rondes"
+              },
+              "rest_min": {
+                "type": "number",
+                "description": "Repos minimal d'un participant entre deux créneaux"
+              },
+              "third_place": {
+                "type": "boolean",
+                "description": "single_elimination : petite finale"
+              },
+              "grand_final_reset": {
+                "type": "boolean",
+                "description": "double_elimination : finale rejouée"
+              },
+              "tiers": {
+                "type": "array",
+                "description": "battle_royale / custom : paliers successifs",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "slots": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "units_open": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "entrants",
+              "slot_duration_min",
+              "parallel_units"
+            ]
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "staff": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "role",
+              "count"
+            ],
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "status": {
+                "enum": [
+                  "salarie",
+                  "prestataire",
+                  "benevole",
+                  "partenaire"
+                ]
+              },
+              "hours": {
+                "type": "number"
+              },
+              "cost_per_hour": {
+                "type": "number"
+              },
+              "ratio_note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "equipment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item",
+              "qty"
+            ],
+            "properties": {
+              "item": {
+                "type": "string"
+              },
+              "qty": {
+                "type": "number"
+              },
+              "source": {
+                "enum": [
+                  "possede",
+                  "lieu",
+                  "location",
+                  "achat",
+                  "pret_partenaire",
+                  "sponsor"
+                ]
+              },
+              "unit_cost": {
+                "type": "number"
+              },
+              "power_w": {
+                "type": "number"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "on_generator": {
+                "type": "boolean",
+                "description": "Alimenté par groupe électrogène (maintenu en cas de défaillance électrique, 07 §8)."
+              }
+            }
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "default": "EUR"
+        },
+        "contingency_rate": {
+          "type": "number",
+          "default": 0.1
+        },
+        "expenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "category",
+              "label",
+              "amount",
+              "basis"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Montant fixe (basis=fixed) ou unitaire (per_attendee / per_participant)."
+              },
+              "basis": {
+                "enum": [
+                  "fixed",
+                  "per_attendee",
+                  "per_participant"
+                ]
+              },
+              "certainty": {
+                "enum": [
+                  "devis",
+                  "estimation",
+                  "hypothese"
+                ]
+              },
+              "optional": {
+                "type": "boolean",
+                "default": false
+              },
+              "priority": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3,
+                "description": "1 = indispensable, 3 = premier poste coupé en cas de réduction."
+              },
+              "pay_offset_days": {
+                "type": "integer",
+                "description": "Date de décaissement relative à J (négatif = avant)."
+              },
+              "source_ref": {
+                "type": "string"
+              },
+              "commit_offset_days": {
+                "type": "integer",
+                "description": "Date d'engagement (signature, commande) relative à J — sert au ratio recettes sécurisées / dépenses engagées (07 §7.5)."
+              },
+              "actual_amount": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Montant réel constaté (bilan post-événement)."
+              }
+            }
+          }
+        },
+        "revenues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "stream",
+              "label",
+              "unit_amount",
+              "basis",
+              "certainty"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "stream": {
+                "enum": [
+                  "billetterie",
+                  "inscriptions",
+                  "sponsoring",
+                  "subvention",
+                  "restauration",
+                  "merchandising",
+                  "premium",
+                  "digital",
+                  "licence",
+                  "autre"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "unit_amount": {
+                "type": "number",
+                "description": "Prix unitaire ou montant forfaitaire."
+              },
+              "basis": {
+                "enum": [
+                  "fixed",
+                  "per_paying_attendee",
+                  "per_attendee",
+                  "per_participant"
+                ]
+              },
+              "margin_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 1,
+                "description": "Part conservée (ex. marge buvette)."
+              },
+              "certainty": {
+                "enum": [
+                  "secured",
+                  "probable",
+                  "hypothetical"
+                ]
+              },
+              "cash_offset_days": {
+                "type": "integer",
+                "description": "Date d'encaissement relative à J."
+              },
+              "actual_amount": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Montant réel encaissé (bilan post-événement)."
+              },
+              "source_ref": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "object",
+      "description": "Paramètres de réalisation par scénario financier.",
+      "properties": {
+        "prudent": {
+          "$ref": "#/$defs/scenarioParams"
+        },
+        "central": {
+          "$ref": "#/$defs/scenarioParams"
+        },
+        "ambitieux": {
+          "$ref": "#/$defs/scenarioParams"
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "description",
+          "probability",
+          "impact"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "securite",
+              "reglementaire",
+              "operationnel",
+              "financier",
+              "meteo",
+              "technique",
+              "reputationnel",
+              "juridique",
+              "sante",
+              "environnement"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "probability": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "impact": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Risque critique : déclenche la porte éliminatoire si non traité."
+          },
+          "warning_signs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "prevention": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "continuity_plan": {
+            "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ouvert",
+              "traite",
+              "accepte"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compliance": {
+      "type": "array",
+      "description": "Points réglementaires et de sécurité. Un point obligatoire non conforme élimine le concept indépendamment de son score.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "item",
+          "mandatory",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "authority": {
+            "type": "string"
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "a_verifier",
+              "en_cours",
+              "conforme",
+              "non_conforme",
+              "non_applicable"
+            ]
+          },
+          "deadline_offset_days": {
+            "type": "integer"
+          },
+          "source_ref": {
+            "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "evidence_ref": {
+            "type": "string",
+            "description": "Pièce justificative (convention, attestation, récépissé)."
+          }
+        }
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "target"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "phase": {
+            "enum": [
+              "avant",
+              "pendant",
+              "apres"
+            ]
+          },
+          "target": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "unit": {
+            "type": "string"
+          },
+          "measure": {
+            "type": "string"
+          },
+          "actual": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "properties": {
+        "viral_moments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "photo_spots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gamification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mechanic": {
+            "type": "string"
+          },
+          "target_role": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "fairness_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "$ref": "evaluation.schema.json"
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hypothèses explicites posées faute de données."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "Historique des versions et décisions.",
+      "items": {
+        "type": "object",
+        "required": [
+          "version",
+          "date",
+          "summary"
+        ],
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "author": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "decisions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approved_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Variantes de configuration (économique, premium, capacité maximale, secours…) exprimées comme surcharges de la configuration de base.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "expense_overrides": {
+            "type": "object",
+            "description": "id de dépense → nouveau montant (null = supprimée)"
+          },
+          "expense_additions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "revenue_overrides": {
+            "type": "object",
+            "description": "id de recette → nouveau montant unitaire (null = supprimée)"
+          },
+          "revenue_additions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "audience_overrides": {
+            "type": "object"
+          },
+          "kind": {
+            "enum": [
+              "economique",
+              "standard",
+              "premium",
+              "capacite_max",
+              "secours",
+              "autre"
+            ],
+            "description": "Les 5 configurations du brief §8 sont des variantes typées."
+          },
+          "venue_overrides": {
+            "type": "object",
+            "description": "Surcharges du lieu (espaces, jauge, lieu de repli pour 'secours')."
+          },
+          "program_overrides": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Programme de remplacement (ex. format resserré de secours)."
+          }
+        }
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "description": "Jalons du rétroplanning, en jours relatifs à J.",
+      "items": {
+        "type": "object",
+        "required": [
+          "offset_days",
+          "label"
+        ],
+        "properties": {
+          "offset_days": {
+            "type": "integer"
+          },
+          "label": {
+            "type": "string"
+          },
+          "owner_role": {
+            "type": "string"
+          },
+          "deliverable": {
+            "type": "string"
+          },
+          "go_no_go": {
+            "type": "string",
+            "description": "Critère de décision si le jalon est un go/no-go."
+          },
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "a_faire",
+              "en_cours",
+              "fait",
+              "bloque"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "sponsor_packages": {
+      "type": "array",
+      "description": "Offres partenaires. Règle : price × quantity = unit_amount de la recette fixe liée (revenue_ref) ; un pack en nature (price = 0) n'a pas de recette liée.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "quantity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "revenue_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "exclusivity": {
+            "type": "string"
+          },
+          "counterparts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "active_variant": {
+      "type": "string",
+      "description": "Renseigné par le moteur quand une variante est appliquée."
+    },
+    "event_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date absolue de J (ISO 8601, AAAA-MM-JJ). Nulle au stade concept. Sert au calcul « jours avant J » des portes éliminatoires (07 §1.5) et du rétroplanning."
+    },
+    "generation": {
+      "type": "object",
+      "description": "Traçabilité d'un concept généré : brief source et graine (07 §2).",
+      "properties": {
+        "brief": {
+          "type": "object"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "engine_version": {
+          "type": "string"
+        }
+      }
+    },
+    "post_event": {
+      "type": "object",
+      "description": "Bilan post-événement attaché à une version exécutée (maturity = executed). Les montants réels sont dans actual_amount des lignes budgétaires, les KPIs dans kpis[].actual.",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "attendance_actual": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "participants_actual": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "incidents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "feedback_summary": {
+          "type": "string"
+        },
+        "lessons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proposed_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "evaluations_history": {
+      "type": "array",
+      "description": "Évaluations antérieures conservées (ex. prévisionnelle avant exécution, puis réelle).",
+      "items": {
+        "$ref": "evaluation.schema.json"
+      }
+    },
+    "organizer": {
+      "type": "object",
+      "description": "Structure organisatrice (sans données personnelles).",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "confidentiality": {
+      "enum": [
+        "prive",
+        "partenaires",
+        "public"
+      ],
+      "default": "prive"
+    }
+  },
+  "$defs": {
+    "blockType": {
+      "enum": [
+        "regles",
+        "qualification",
+        "recompenses",
+        "mise_en_scene",
+        "interaction_public",
+        "mecanique_jeu",
+        "experience_digitale",
+        "scenographie",
+        "son_lumiere",
+        "monetisation",
+        "fidelisation",
+        "activation_partenaire",
+        "creation_contenu"
+      ]
+    },
+    "scenarioNumber": {
+      "type": "object",
+      "properties": {
+        "prudent": {
+          "type": "number"
+        },
+        "central": {
+          "type": "number"
+        },
+        "ambitieux": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "prudent",
+        "central",
+        "ambitieux"
+      ]
+    },
+    "scenarioParams": {
+      "type": "object",
+      "properties": {
+        "realization": {
+          "type": "object",
+          "description": "Taux de réalisation appliqué aux recettes selon leur certitude.",
+          "properties": {
+            "secured": {
+              "type": "number"
+            },
+            "probable": {
+              "type": "number"
+            },
+            "hypothetical": {
+              "type": "number"
+            }
+          }
+        },
+        "cost_overrun": {
+          "type": "number",
+          "description": "Dérive appliquée aux dépenses estimées/hypothétiques (ex. 0.1 = +10 %)."
+        }
+      }
+    },
+    "space": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "aire_de_jeu",
+            "tribune",
+            "accueil",
+            "file_attente",
+            "restauration",
+            "vip",
+            "vestiaire",
+            "sanitaire",
+            "stockage",
+            "regie",
+            "media",
+            "activation_sponsor",
+            "secours",
+            "zone_photo",
+            "circulation",
+            "autre"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "area_m2": {
+          "type": "number"
+        },
+        "width_m": {
+          "type": "number"
+        },
+        "length_m": {
+          "type": "number"
+        },
+        "capacity": {
+          "type": "integer"
+        },
+        "standing": {
+          "type": "boolean"
+        },
+        "accessible_pmr": {
+          "type": "boolean"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "accessed_at": {
+          "type": "string"
+        },
+        "reliability": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "A officiel/primaire, B presse ou étude reconnue, C source secondaire non recoupée, D déclaratif/non vérifié."
+        }
+      }
+    }
+  }
+}

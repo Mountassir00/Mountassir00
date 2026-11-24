@@ -1,0 +1,665 @@
+{
+  "id": "draft-night",
+  "version": "0.1.0",
+  "status": "archived",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "DRAFT NIGHT",
+    "tagline": "Inscris-toi seul. Repars avec une équipe.",
+    "pitch": "Ligue amateur de foot à 5 (variante basket 5x5) réservée aux inscriptions individuelles. Une séance « combine » (ateliers et matchs courts) produit une évaluation croisée des joueurs ; une soirée de draft mise en scène répartit ensuite les joueurs entre des capitaines dotés d'un budget de points (draft aux enchères) pour garantir l'équilibre des équipes ; suit une saison courte de 6 semaines, une soirée d'échanges à mi-saison et une finale. Chaque saison repart d'une nouvelle draft. Le concept n'est pas original sur le principe : des ligues amateurs à draft existent déjà (exemple : une ligue de basket de Detroit annonce sa 47e saison). Sa valeur tient au problème qu'il résout — le joueur sans équipe — et à l'équilibre des équipes.",
+    "disciplines": [
+      "football à 5",
+      "basketball 5x5 (variante)"
+    ],
+    "sectors": [
+      "sport amateur",
+      "ligues professionnelles (logique transposée)",
+      "jeux de gestion (fantasy)"
+    ],
+    "directions": [
+      "communautaire",
+      "hybride"
+    ],
+    "objectives": [
+      "Permettre aux joueurs isolés d'entrer dans une ligue",
+      "Garantir des matchs serrés par l'équilibre des équipes",
+      "Créer un lien social qui fidélise d'une saison à l'autre",
+      "Fournir aux centres de foot à 5 un produit d'acquisition de joueurs individuels"
+    ],
+    "audiences": [
+      {
+        "segment": "Adultes 20–40 ans nouvellement arrivés dans une ville ou sans équipe",
+        "role": "participant",
+        "motivation": "Jouer régulièrement, rencontrer du monde, matchs équilibrés",
+        "willingness_to_pay": "Hypothèse : 70–90 € par saison de 6 semaines (non sourcée)"
+      },
+      {
+        "segment": "Centres de foot à 5 et salles de sport urbaines",
+        "role": "organisateur",
+        "motivation": "Remplir des créneaux, convertir des joueurs individuels en clients réguliers",
+        "willingness_to_pay": "Hypothèse : 300–500 € par saison de licence ou partage de recettes de 15 %"
+      },
+      {
+        "segment": "Amis et familles des joueurs",
+        "role": "spectateur",
+        "motivation": "Soirée de draft, jeu de pronostic gratuit sur la ligue",
+        "willingness_to_pay": "0 € (gratuit)"
+      },
+      {
+        "segment": "Bars et commerces de quartier",
+        "role": "sponsor",
+        "motivation": "Accueillir la soirée de draft, maillots floqués",
+        "willingness_to_pay": "Hypothèse : 150 € par équipe ou accueil en nature"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Ligue amateur de basket à draft (Detroit, 47e saison annoncée)",
+        "source_sector": "basket amateur",
+        "borrowed_logic": "Inscription individuelle, match de repérage, draft en direct par les capitaines",
+        "adaptation": "Repris comme base ; ajout d'un budget de points par capitaine et d'une nouvelle draft à chaque saison",
+        "source_ref": "S-DETROIT"
+      },
+      {
+        "source_event": "Draft de la Kings League (édition France, 2025)",
+        "source_sector": "football à 7 de divertissement",
+        "borrowed_logic": "Draft mise en scène comme spectacle",
+        "adaptation": "Mise en scène sobre dans un bar partenaire, sans célébrités ; aucun nom ni identité repris",
+        "source_ref": "S-KINGS-FR"
+      },
+      {
+        "source_event": "Young Star Game LNB (draft de jeunes joueurs)",
+        "source_sector": "basket professionnel",
+        "borrowed_logic": "Draft comme moment d'événement",
+        "adaptation": "Draft d'amateurs, ordre d'enchères plutôt qu'ordre de choix",
+        "source_ref": "S-LNB-YSG"
+      },
+      {
+        "source_event": "Jeux de type fantasy (ligues virtuelles)",
+        "source_sector": "jeu / médias sportifs",
+        "borrowed_logic": "Les fans composent une équipe virtuelle à partir de joueurs réels",
+        "adaptation": "Jeu gratuit pour l'entourage sur les joueurs amateurs de la ligue, sans mise ni gain monétaire"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Semaine 0 : combine de 2 h (ateliers chronométrés, matchs de 8 min) et évaluation croisée anonyme. Semaine 0 bis : soirée de draft (1 h 30) dans un bar partenaire : 6 capitaines élus disposent chacun de 100 points pour enchérir sur les joueurs, dont la mise à prix dépend de l'évaluation. Semaines 1 à 5 : championnat (chaque équipe joue une fois par semaine). Mi-saison : fenêtre d'échanges de 48 h. Semaine 6 : finale et remise des prix. Saison suivante : nouvelle draft.",
+    "rules_summary": "Équipes de 8 joueurs (5 sur le terrain), 6 équipes. Budget identique de 100 points par capitaine ; enchère minimale = mise à prix issue de l'évaluation ; un capitaine doit compléter 8 joueurs. Ordre de passage des joueurs tiré au sort par niveau (pas de « dernier choisi » affiché) ; les montants sont annoncés par lots, non par joueur, pour éviter l'humiliation publique. Matchs de 2 × 20 min.",
+    "duration_hours": 2.5,
+    "edition_cadence": "saisons de 6 semaines, 3 à 4 saisons par an",
+    "building_blocks": [
+      {
+        "type": "qualification",
+        "label": "Combine et évaluation croisée anonyme",
+        "parameters": {
+          "duree_h": 2,
+          "evaluateurs": "tous les joueurs + 2 encadrants"
+        }
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Soirée de draft aux enchères",
+        "parameters": {
+          "budget_points_capitaine": 100,
+          "equipes": 6,
+          "joueurs_par_equipe": 8
+        }
+      },
+      {
+        "type": "regles",
+        "label": "Championnat de 5 journées + finale, nouvelle draft à chaque saison",
+        "parameters": {}
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Fenêtre d'échanges à mi-saison",
+        "parameters": {
+          "duree_h": 48,
+          "echanges_max_par_equipe": 1
+        }
+      },
+      {
+        "type": "interaction_public",
+        "label": "Jeu de pronostic gratuit pour l'entourage (fantasy simplifiée)",
+        "parameters": {
+          "gratuit": true,
+          "lots": "symboliques"
+        }
+      },
+      {
+        "type": "fidelisation",
+        "label": "Historique de saisons, palmarès, ancienneté",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Bar hôte de la draft, sponsors de maillots",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Annonce des équipes, réaction des capitaines, résumé hebdomadaire",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "individu",
+    "count": {
+      "prudent": 36,
+      "central": 48,
+      "ambitieux": 56
+    },
+    "categories": [
+      "mixte",
+      "ligue féminine possible"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 30,
+      "central": 60,
+      "ambitieux": 100
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 90
+  },
+  "venue_requirements": {
+    "setting": "mixte",
+    "min_area_m2": 600,
+    "spaces": [
+      {
+        "id": "terrain",
+        "type": "aire_de_jeu",
+        "label": "Terrain de foot à 5 (centre urbain, gymnase ou city-stade)"
+      },
+      {
+        "id": "draft",
+        "type": "autre",
+        "label": "Salle ou bar pour la soirée de draft (60–100 personnes)"
+      }
+    ],
+    "power_kw": 1,
+    "internet": "nécessaire pour l'outil de draft et le pronostic",
+    "notes": "Le modèle suppose que le licencié est le centre de foot à 5 lui-même (pistes valorisées au coût d'opportunité en heures creuses)."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-terrain",
+        "category": "lieu",
+        "label": "Terrain : 6 soirées × 3 h × 60 € (coût d'opportunité en heures creuses)",
+        "amount": 1080,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-combine",
+        "category": "lieu",
+        "label": "Combine : 2 h de terrain",
+        "amount": 120,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-draft",
+        "category": "mise_en_scene",
+        "label": "Soirée de draft (écran, habillage ; bar partenaire)",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-arbitrage",
+        "category": "competition",
+        "label": "Arbitrage (17 matchs × 20 €)",
+        "amount": 340,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC organisateur (extension)",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-outil",
+        "category": "digital",
+        "label": "Outil de draft et pronostic (sans code)",
+        "amount": 100,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 2
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication réseaux sociaux",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-licence",
+        "category": "prestation",
+        "label": "Licence et coordination EVENT LAB par saison",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-maillots",
+        "category": "materiel",
+        "label": "Maillots réversibles",
+        "amount": 12,
+        "basis": "per_participant",
+        "certainty": "estimation",
+        "priority": 2
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-saison",
+        "stream": "inscriptions",
+        "label": "Saison 75 € par joueur",
+        "unit_amount": 75,
+        "basis": "per_participant",
+        "certainty": "probable",
+        "cash_offset_days": -14
+      },
+      {
+        "id": "r-sponsors",
+        "stream": "sponsoring",
+        "label": "Sponsors de maillots (4 × 150 €)",
+        "unit_amount": 600,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "offset_days": -21,
+      "label": "Go/no-go de saison",
+      "owner_role": "centre licencié",
+      "go_no_go": "Lancer seulement avec au moins 40 joueurs payés ; sinon ligue à 4 équipes ou report"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Blessures en foot à 5 (contacts, chocs contre les parois)",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "matchs tendus",
+        "cartons répétés"
+      ],
+      "prevention": [
+        "arbitre à chaque match",
+        "règle anti-tacle",
+        "échauffement"
+      ],
+      "continuity_plan": "Remplacement par joueur de réserve inscrit ; procédure d'appel des secours",
+      "owner_role": "centre licencié",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "reputationnel",
+      "description": "Humiliation des joueurs choisis en dernier ou valorisés bas lors de la draft publique",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "désinscriptions après la draft",
+        "commentaires négatifs"
+      ],
+      "prevention": [
+        "annonce des montants par lots",
+        "ordre de passage tiré au sort par niveau",
+        "évaluation anonyme"
+      ],
+      "continuity_plan": "Repli sur une draft non publique (capitaines seuls) avec seule annonce des équipes complètes",
+      "owner_role": "animateur de la draft",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "operationnel",
+      "description": "Abandons en cours de saison qui déséquilibrent les équipes",
+      "probability": 4,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "absences en semaine 2"
+      ],
+      "prevention": [
+        "paiement intégral à l'inscription",
+        "liste de réserve"
+      ],
+      "continuity_plan": "Réservistes attribués par l'organisateur selon le budget de points restant",
+      "owner_role": "centre licencié",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "financier",
+      "description": "Marge mince : au scénario prudent (36 joueurs), perte d'environ un tiers des dépenses",
+      "probability": 3,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "moins de 40 inscrits à J-21"
+      ],
+      "prevention": [
+        "go/no-go à J-21"
+      ],
+      "continuity_plan": "Ligue à 4 équipes de 9 joueurs",
+      "owner_role": "centre licencié",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "juridique",
+      "description": "Évaluations de joueurs = données personnelles ; diffusion de notes nominatives",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "demande d'accès ou d'effacement"
+      ],
+      "prevention": [
+        "notes non publiées, seules les mises à prix par tranche",
+        "suppression en fin de saison"
+      ],
+      "continuity_plan": "Suppression immédiate des évaluations sur demande",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Assurance responsabilité civile de l'organisateur et information des joueurs sur l'assurance de personnes",
+      "authority": "Assureur",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Certificat médical ou questionnaire de santé pour les non-licenciés selon le régime applicable",
+      "authority": "Juriste / fédération",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "RGPD : évaluation croisée des joueurs (base légale, information, durée de conservation, droit d'opposition)",
+      "authority": "CNIL (référentiel)",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Jeu de pronostic gratuit avec lots : règlement, gratuité totale, aucune mise",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Soirée de draft dans un bar : capacité de l'établissement, musique (Sacem)",
+      "authority": "Exploitant du bar, Sacem",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Joueurs individuels payés à J-21",
+      "phase": "avant",
+      "target": 48,
+      "unit": "joueurs",
+      "measure": "plateforme de paiement"
+    },
+    {
+      "id": "K2",
+      "label": "Écart moyen de buts par match",
+      "phase": "pendant",
+      "target": 3,
+      "unit": "buts (max)",
+      "measure": "feuilles de match"
+    },
+    {
+      "id": "K3",
+      "label": "Réinscription à la saison suivante",
+      "phase": "apres",
+      "target": 60,
+      "unit": "%",
+      "measure": "inscrits saison n+1 / saison n"
+    },
+    {
+      "id": "K4",
+      "label": "Joueurs devenus clients réguliers du centre hors ligue",
+      "phase": "apres",
+      "target": 20,
+      "unit": "%",
+      "measure": "CRM du centre"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Enchère disputée sur un joueur",
+      "Révélation des équipes complètes",
+      "Échange de mi-saison",
+      "Finale entre deux équipes formées six semaines plus tôt par inconnus"
+    ],
+    "photo_spots": [
+      "Pupitre de draft avec maillot de l'équipe"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "groupes de messagerie de la ligue"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Draft aux enchères à budget égal",
+      "target_role": "participant",
+      "description": "Chaque capitaine compose son équipe avec 100 points",
+      "fairness_note": "Évaluation anonyme, annonce par lots, aucune donnée de valeur individuelle publiée"
+    },
+    {
+      "mechanic": "Pronostic gratuit de l'entourage",
+      "target_role": "spectateur",
+      "description": "Les proches composent une équipe virtuelle avec les joueurs de la ligue",
+      "fairness_note": "Gratuit, sans mise ni gain monétaire"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 2,
+        "justification": "Entre ancres 1 et 3, proche de 1. Le principe (inscription individuelle, repérage, draft en direct) existe déjà dans des ligues amateurs (Detroit) et, en version spectacle, dans la Kings League et le Young Star Game LNB. Les ajouts (enchères à budget égal, nouvelle draft à chaque saison, pronostic de l'entourage) sont des variantes connues ailleurs.",
+        "evidence": "benchmark_source",
+        "improvements": [
+          "Ne pas vendre le concept sur l'originalité mais sur le problème du joueur isolé"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Le format lève la barrière d'entrée du joueur sans équipe et produit des matchs plus équilibrés. Le risque d'humiliation à la draft publique, partiellement traité par l'annonce par lots, retient la note.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Tester la draft publique contre une draft fermée sur deux saisons"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Terrains existants, outil sans code, compétences locales ; deux points à sécuriser (outil d'enchères, gestion des abandons) avec repli manuel.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Le calcul §7.1 donne un quasi-équilibre au central (48 joueurs) et une perte d'environ un tiers des dépenses au prudent. La valeur réelle pour le centre est l'acquisition de clients (non modélisée).",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Mesurer la valeur vie client des joueurs recrutés pour fonder le prix de licence"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3,
+        "justification": "Ancre 3. La draft est un moment filmable ; l'audience reste celle des joueurs et de leur entourage.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. La longévité d'une ligue amateur à draft (47 saisons annoncées à Detroit) indique que le modèle tient dans la durée ; manuel encore à rédiger.",
+        "evidence": "benchmark_source",
+        "improvements": [
+          "Manuel d'animateur de draft"
+        ]
+      },
+      "adaptabilite_lieux": {
+        "rating": 3,
+        "justification": "Ancre 3. Centre de foot à 5, gymnase ou city-stade ; la soirée de draft exige un bar ou une salle.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3,
+        "justification": "Ancre 3. L'inscription individuelle est une forme d'inclusion sociale ; ligue mixte possible ; pas d'aménagement handi conçu.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Module de plafond de points incluant le niveau (logique cap-12)"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Revenus récurrents par saison, sponsors de maillots, licence aux centres ; propriété peu protégeable.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 3,
+        "justification": "Ancre 3. Joueurs locaux, infrastructures existantes, maillots réutilisés d'une saison à l'autre ; mobilités non traitées.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": ""
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": ""
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": ""
+      }
+    },
+    "computed": {}
+  },
+  "hypotheses": [
+    "Prix de saison 75 € par joueur : hypothèse.",
+    "Terrain valorisé à 60 €/h en heures creuses : hypothèse (licencié = centre de foot à 5).",
+    "Six équipes de huit joueurs.",
+    "Les joueurs acceptent une évaluation croisée anonyme : hypothèse à tester."
+  ],
+  "sources": [
+    {
+      "id": "S-DETROIT",
+      "title": "Men's Draft Basketball — Season 47",
+      "publisher": "Come Play Detroit (LeagueLab)",
+      "url": "https://comeplaydetroit.leaguelab.com/league/99463/details",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-KINGS-FR",
+      "title": "80 joueurs draftés, des stars du football, des influenceurs : la Kings League est lancée en France",
+      "publisher": "Soccerway / Flashscore",
+      "url": "https://fr.soccerway.com/actualites/80-joueurs-draftes-des-stars-du-football-des-influenceurs-la-kings-league-est-lancee-en-france/p04ZPYJ8",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-KINGS-DRAFT",
+      "title": "Kings League Draft: How does it work?",
+      "publisher": "Spieltimes",
+      "url": "https://www.spieltimes.io/news/kings-league-draft-how-does-it-work-where-to-watch-live",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-LNB-YSG",
+      "title": "Young Star Game 2026: France's top basketball hopefuls face off in Levallois",
+      "publisher": "Sortiraparis",
+      "url": "https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/335199-young-star-game-meilleurs-espoirs-basket-francais-levallois",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-MPLS",
+      "title": "Adult Basketball — Player Registration Fall 2026 (inscription individuelle, équipes formées par l'organisateur)",
+      "publisher": "Minneapolis Park & Recreation Board",
+      "url": "https://teamsideline.com/sites/minneapolisparks/program/116032/Adult-Basketball-Player-Registration-Fall-2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé avec différenciation limitée : des ligues amateurs à draft existent (Detroit). Ajouts : enchères à budget égal, nouvelle draft par saison, garde-fous contre l'humiliation, pronostic gratuit.",
+      "decisions": [
+        "Originalité notée basse (2/5) sans complaisance",
+        "Licencié cible : centres de foot à 5"
+      ],
+      "approved_by": null
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept retiré du portefeuille et archivé : recoupe l'existant interne du porteur (BASK'EST LAB : « QUADRA — 4x4 draft mystère » et « VITRINE — showcase & draft live », draft sur scène par capitaines) en plus de l'existant externe (ligue amateur à draft de Detroit, Kings League). Remplacé par repar-arene (hors sport).",
+      "decisions": [
+        "Retrait du portefeuille actif",
+        "Mécanique de draft à budget de points conservée comme brique réutilisable"
+      ],
+      "approved_by": null
+    }
+  ]
+}

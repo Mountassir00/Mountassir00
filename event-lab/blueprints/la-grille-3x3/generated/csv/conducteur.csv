@@ -1,0 +1,25 @@
+heure_debut;heure_fin;duree_min;sequence;type;espace;responsable;tops;critique
+J-1 18:00;J-1 21:30;210;Montage J-1 : marquage des terrains, grille au sol, écran, PLV;montage;T1;Responsable logistique;;
+07:00;08:30;90;Montage J : sono, régie, chronométrage, accueil, buvette;montage;;Responsable logistique;;
+08:30;09:00;30;Tests techniques : son, vidéo, chronométrage, page de scores;montage;;Régisseur;;oui
+09:00;09:45;45;Accueil des équipes : vérifications, bracelets, numéros;accueil;HALL;Responsable accueil;;
+09:30;09:35;5;Ouverture des portes au public;accueil;HALL;Responsable accueil;;
+09:45;10:00;15;Briefing capitaines : parcours, règlement, réclamations;accueil;PW;Responsable compétition;;
+10:00;10:10;10;Ouverture : présentation du format et du parcours (démonstration);show;T1;Speaker;Jingle d'ouverture / Démonstration du parcours par un bénévole;
+10:10;10:35;25;Q1 Open — 16 équipes, 2 stations;competition;T1 + T2;Responsable compétition;Compte à rebours avant chaque run / Affichage des temps;
+10:35;10:47;12;Q1 Féminines — 8 équipes, 2 stations;competition;T1 + T2;Responsable compétition;;
+10:50;11:05;15;Q2 Open — 10 équipes, 2 stations;competition;T1 + T2;Responsable compétition;;
+11:05;11:17;12;Q3 Féminines — top 4, un par un, terrain central;competition;T1;Responsable compétition;Lumière salle réduite si possible / Silence avant départ / Jingle de pole;
+11:20;11:32;12;Q3 Open — top 4, un par un, terrain central;competition;T1;Responsable compétition;Q3 présentée par le partenaire / Jingle de pole;
+11:35;11:50;15;Révélation de la grille et placement serpentin des poules;show;SC;Speaker;Écran : animation de la grille / Remise du trophée de la pole;
+11:50;13:00;70;Pause déjeuner + concours public « Ta place sur la grille »;animation;T2;Responsable animation;;
+13:00;16:36;216;Poules — 36 matchs (4 Open + 2 Féminines), 2 terrains, créneaux de 12 min;competition;T1 + T2;Responsable compétition;;
+16:36;17:00;24;Show de mi-parcours : défi public et annonce du tableau final;show;T1;Speaker;;
+17:00;17:30;30;Quarts de finale Open — 2 créneaux de 15 min;competition;T1 + T2;Responsable compétition;;
+17:30;17:45;15;Demi-finales Féminines;competition;T1 + T2;Responsable compétition;;
+17:45;18:00;15;Demi-finales Open;competition;T1 + T2;Responsable compétition;;
+18:00;18:10;10;Entracte : entrée des finalistes par numéro de grille;show;T1;Speaker;;
+18:10;18:25;15;Finale Féminines — terrain central;competition;T1;Responsable compétition;;oui
+18:30;18:45;15;Finale Open — terrain central;competition;T1;Responsable compétition;;oui
+18:50;19:10;20;Podiums, récompenses, photo officielle sur la grille;ceremonie;PH;Speaker;;oui
+19:10;21:00;110;Démontage, nettoyage, restitution du lieu;demontage;;Responsable logistique;;

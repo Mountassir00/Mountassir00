@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-labelledby="t d">
+  <title id="t">LA GRILLE 3x3 — logo monochrome</title>
+  <desc id="d">Création originale EVENT LAB. Version une couleur (asphalte #121417) pour tampon, gravure, fax, impression une couleur, fonds unis clairs. La pole est pleine, la pastille 3x3 est au trait.</desc>
+  <g transform="translate(24 42)" fill="none" stroke="#121417" stroke-width="4" stroke-linejoin="round">
+    <rect x="0" y="0" width="40" height="24" rx="5" fill="#121417"/>
+    <rect x="0" y="34" width="40" height="24" rx="5"/>
+    <rect x="0" y="68" width="40" height="24" rx="5"/>
+    <rect x="50" y="12" width="40" height="24" rx="5"/>
+    <rect x="50" y="46" width="40" height="24" rx="5"/>
+    <rect x="50" y="80" width="40" height="24" rx="5"/>
+    <rect x="100" y="24" width="40" height="24" rx="5"/>
+    <rect x="100" y="58" width="40" height="24" rx="5"/>
+    <rect x="100" y="92" width="40" height="24" rx="5"/>
+  </g>
+  <text x="186" y="112" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="72" fill="#121417" textLength="424" lengthAdjust="spacingAndGlyphs">LA GRILLE</text>
+  <rect x="188" y="130" width="108" height="42" rx="7" fill="none" stroke="#121417" stroke-width="4"/>
+  <text x="242" y="163" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="34" fill="#121417">3x3</text>
+</svg>

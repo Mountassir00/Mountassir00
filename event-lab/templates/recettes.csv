@@ -1,0 +1,8 @@
+id;flux;libelle;montant_unitaire;base;taux_marge;certitude;decalage_encaissement_J
+R-01;billetterie;Billets spectateurs (prix moyen pondéré de tous les tarifs payants);;per_paying_attendee;1;;
+R-02;inscriptions;Droits d'inscription des participants;;per_participant;1;;
+R-03;sponsoring;Partenaire — palier à préciser (une ligne par palier de sponsor_packages);;fixed;1;;
+R-04;subvention;Subvention d'une collectivité ou d'un organisme;;fixed;1;;
+R-05;restauration;Buvette et restauration (panier moyen par spectateur);;per_attendee;;;
+R-06;merchandising;Produits dérivés (panier moyen par spectateur);;per_attendee;;;
+EX-R-99;sponsoring;EXEMPLE FICTIF — Partenaire local palier Bronze;500;fixed;1;secured;-15

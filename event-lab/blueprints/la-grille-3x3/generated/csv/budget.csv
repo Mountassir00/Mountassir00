@@ -1,0 +1,27 @@
+id;categorie;libelle;montant;base;certitude;optionnel;priorite;decalage_paiement_J
+E01;Lieu;Mise à disposition du gymnase (tarif associatif municipal);400;fixed;hypothese;non;1;-15
+E02;Assurance;Assurance responsabilité civile organisateur (1 journée);400;fixed;estimation;non;1;-30
+E03;Sécurité et secours;Dispositif prévisionnel de secours (association agréée);500;fixed;estimation;non;1;-7
+E04;Sécurité et secours;Agents de sécurité / SSIAP selon exigences de l'exploitant;500;fixed;estimation;non;1;-7
+E05;Compétition;Arbitres (4 indemnités journée);320;fixed;estimation;non;1;0
+E06;Compétition;Ballons 3x3 (8);240;fixed;estimation;non;2;-30
+E07;Compétition;Marquage des terrains et de la grille au sol (adhésif parquet);120;fixed;estimation;non;1;-10
+E08;Compétition;Chronométrage des qualifications (location);300;fixed;estimation;non;1;-10
+E09;Technique;Sonorisation + micros + animation musicale;900;fixed;estimation;non;2;-7
+E10;Technique;Vidéoprojection grand format (écran de la grille);600;fixed;estimation;non;1;-7
+E11;Animation;Speaker / animateur;400;fixed;estimation;non;2;0
+E12;Signalétique;Signalétique, bâches, kakémonos, numéros de grille;800;fixed;estimation;non;2;-21
+E13;Récompenses;Trophées et dotations;600;fixed;estimation;non;2;-14
+E14;Communication;Impressions (affiches, flyers, programme);250;fixed;estimation;non;2;-45
+E14b;Communication;Publicité payante sur les réseaux sociaux (engagée après le go/no-go de J-30);350;fixed;estimation;oui;3;-25
+E15;Contenu;Vidéaste freelance (formats verticaux, aftermovie court);600;fixed;estimation;oui;3;7
+E16;Bénévoles;T-shirts staff (45);270;fixed;estimation;oui;3;-21
+E17;Bénévoles;Repas bénévoles, officiels et prestataires (55);550;fixed;estimation;non;2;0
+E18;Droits;Droits musicaux (barème à vérifier);200;fixed;hypothese;non;1;-7
+E19;Logistique;Location utilitaire + carburant;150;fixed;estimation;non;2;-1
+E20;Logistique;Matériel divers (gobelets consignés, rubalise, consommables);400;fixed;estimation;non;2;-7
+E21;Coordination;Coordination de production et licence du format (prestation studio);1500;fixed;hypothese;non;2;30
+E22;Buvette;Achats buvette (coût marchandises ≈ 40 % du chiffre d'affaires);2.4;per_attendee;estimation;non;1;-2
+E23;Accessibilité;Aménagements accessibilité (signalétique facile à lire, réservation PMR);150;fixed;estimation;non;2;-14
+E24;Logistique;Matériel complémentaire (radios, compteurs, dossards, grille magnétique, passe-câbles, casques anti-bruit);450;fixed;estimation;non;1;-10
+E25;Billetterie;Frais de paiement par carte sur place (hypothèse, ramenés à chaque spectateur);0.15;per_attendee;hypothese;non;2;7

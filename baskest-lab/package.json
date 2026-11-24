@@ -1,0 +1,40 @@
+{
+  "name": "baskest-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BASK'EST LAB — Basketball Event Intelligence & Innovation System (association Bask'Est, Nancy)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:demo": "vite build --mode demo",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "blueprint": "tsx scripts/generate-blueprint.ts",
+    "exports": "python3 scripts/export_office.py",
+    "check:concepts": "tsx scripts/check-concepts.ts",
+    "screenshots": "node scripts/screenshots.cjs docs/screenshots 2",
+    "eventlab:blueprint": "tsx ../event-lab/scripts/build-blueprint.ts",
+    "eventlab:validate": "tsx ../event-lab/scripts/validate.ts",
+    "db:test": "tsx scripts/db-test.ts",
+    "db:seed:generate": "tsx scripts/generate-seed.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.119.0",
+    "react": "19.2.9",
+    "react-dom": "19.2.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vite": "7.3.8",
+    "vite-plugin-pwa": "1.2.0",
+    "vite-plugin-singlefile": "2.3.4",
+    "vitest": "3.2.7"
+  }
+}

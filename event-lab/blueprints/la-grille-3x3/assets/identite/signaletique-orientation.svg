@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200mm" height="400mm" role="img" aria-labelledby="t d">
+  <title id="t">SIG-04 — Panneau directionnel (1 200 x 400 mm, bâche ou PVC)</title>
+  <desc id="d">Maquette originale EVENT LAB. Quatre directions : terrains, buvette, toilettes, poste de secours. Texte craie sur asphalte 16,36:1, flèches jaunes, capitales hauteur 60 mm lisibles à environ 18 m (règle indicative à vérifier). Ne remplace pas la signalétique de sécurité du lieu.</desc>
+  <rect width="1200" height="400" fill="#121417"/>
+  <g font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="64" fill="#F4F1EA">
+    <!-- ligne 1 : terrains -->
+    <g transform="translate(0 0)">
+      <circle cx="70" cy="50" r="32" fill="#FF5B1A"/>
+      <path d="M38 50 H102 M70 18 V82" stroke="#121417" stroke-width="5"/>
+      <text x="130" y="72">TERRAINS 1 · 2</text>
+      <path d="M1040 30 H1110 V12 L1160 50 L1110 88 V70 H1040 Z" fill="#FFC629"/>
+    </g>
+    <rect x="20" y="99" width="1160" height="2" fill="#3A3F47"/>
+    <!-- ligne 2 : buvette -->
+    <g transform="translate(0 100)">
+      <path d="M48 22 H92 L86 82 H54 Z" fill="#F4F1EA"/>
+      <path d="M76 22 L84 4" stroke="#F4F1EA" stroke-width="5"/>
+      <text x="130" y="72">BUVETTE · EAU GRATUITE</text>
+      <path d="M1160 30 H1090 V12 L1040 50 L1090 88 V70 H1160 Z" fill="#FFC629"/>
+    </g>
+    <rect x="20" y="199" width="1160" height="2" fill="#3A3F47"/>
+    <!-- ligne 3 : toilettes -->
+    <g transform="translate(0 200)">
+      <rect x="38" y="18" width="64" height="64" rx="8" fill="none" stroke="#F4F1EA" stroke-width="5"/>
+      <text x="70" y="62" text-anchor="middle" font-size="28">WC</text>
+      <text x="130" y="72">TOILETTES · PMR</text>
+      <path d="M1070 88 V40 H1052 L1100 0 L1148 40 H1130 V88 Z" fill="#FFC629"/>
+    </g>
+    <rect x="20" y="299" width="1160" height="2" fill="#3A3F47"/>
+    <!-- ligne 4 : secours (couleur de sécurité, blanc sur vert 4,81:1) -->
+    <g transform="translate(0 300)">
+      <rect x="38" y="18" width="64" height="64" fill="#00843D"/>
+      <path d="M62 30 H78 V42 H90 V58 H78 V70 H62 V58 H50 V42 H62 Z" fill="#FFFFFF"/>
+      <text x="130" y="72">POSTE DE SECOURS</text>
+      <path d="M1040 30 H1110 V12 L1160 50 L1110 88 V70 H1040 Z" fill="#FFC629"/>
+    </g>
+  </g>
+</svg>

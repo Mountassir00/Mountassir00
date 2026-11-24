@@ -1,0 +1,547 @@
+[
+  {
+    "id": "S-G2-01",
+    "title": "LA GRILLE 3x3 — configuration event.json v0.2.0 (draft) et tableaux générés (summary.json, sections, CSV)",
+    "publisher": "EVENT LAB",
+    "url": "blueprints/la-grille-3x3/event.json",
+    "published_at": "2026-11-24",
+    "accessed_at": "2026-11-24",
+    "reliability": "D",
+    "verification": "Lu intégralement (deux états du 24/11/2026 : avant et après la mise à jour de 18:37). Source de vérité du dossier ; contenu déclaratif (hypothèses H-01 à H-09).",
+    "cited_in": [
+      "13",
+      "39"
+    ]
+  },
+  {
+    "id": "S-G2-02",
+    "title": "07 — Algorithmes de génération, d'évaluation et de simulation (§4 à §8)",
+    "publisher": "EVENT LAB",
+    "url": "docs/07-algorithmes.md",
+    "published_at": "2026-11-24",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Lu intégralement ; contrat du moteur. Code du moteur (app/engine) également lu pour les calculs de puissance et d'incidents.",
+    "cited_in": [
+      "39"
+    ]
+  },
+  {
+    "id": "S-G2-03",
+    "title": "08 — Modèles documentaires (spécification des 40 sections, avertissement normatif, contrôles C1 à C16)",
+    "publisher": "EVENT LAB",
+    "url": "docs/08-modeles-documentaires.md",
+    "published_at": "2026-11-24",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Lu (sections 1 à 6).",
+    "cited_in": [
+      "39"
+    ]
+  },
+  {
+    "id": "S-G2-10",
+    "title": "Assurances et activités sportives (responsabilité civile, assurance individuelle accident) — fiche F2143",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/f2143",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "25",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-11",
+    "title": "Les manifestations sportives — fiche de la préfecture des Hauts-de-Seine",
+    "publisher": "Préfecture des Hauts-de-Seine",
+    "url": "https://www.hauts-de-seine.gouv.fr/contenu/telechargement/7806/59635/file/Les%20manifestations%20sportives.pdf",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-12",
+    "title": "Organiser une manifestation exceptionnelle dans un ERP (demande GN6)",
+    "publisher": "Nantes Métropole",
+    "url": "https://metropole.nantes.fr/mes-services-mon-quotidien/organiser-une-manifestation-exceptionnelle-dans-un-erp",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; page municipale illustrant une pratique locale ; délai d'un mois du texte non vérifié",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-13",
+    "title": "Fiche de synthèse des obligations des organisateurs de manifestations sportives (déclaration au maire au-delà de 1 500 personnes, CSI L211-11 et R211-22)",
+    "publisher": "Préfecture de l'Ain",
+    "url": "https://www.ain.gouv.fr/contenu/telechargement/24872/172534/file/-organiser-une-manifestation-t-l-charger-ici-la-fiche-de-synth-se-des-obligations-de-l-organisateurs-de-manifestations-sportives--3915(1).pdf",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-14",
+    "title": "Homologation des enceintes destinées à recevoir des manifestations ouvertes au public",
+    "publisher": "Ministère des Sports",
+    "url": "https://www.sports.gouv.fr/homologation-des-enceintes-destinees-recevoir-des-manifestations-ouvertes-au-public-839",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; incertitudes : « supérieur à » ou « supérieur ou égal à » 500 spectateurs en salle couverte, prise en compte des places debout",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-15",
+    "title": "Référentiel national relatif aux dispositifs prévisionnels de secours (RNMSC-DPS, arrêté du 7 novembre 2006)",
+    "publisher": "Ministère de l'Intérieur",
+    "url": "https://interieur.gouv.fr/fr/content/download/94241/736020/file/RNMSC%202006_10%20-%20DPS.pdf",
+    "published_at": "2006",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "24",
+      "26",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-16",
+    "title": "Secourisme et associations — les textes réglementaires",
+    "publisher": "Ministère de l'Intérieur",
+    "url": "https://www.interieur.gouv.fr/Le-ministere/Securite-civile/Documentation-technique/Secourisme-et-associations/Les-textes-reglementaires",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-17",
+    "title": "Sécurité dans les stades et manifestations (palpations par des agents habilités)",
+    "publisher": "Justice.fr (ministère de la Justice)",
+    "url": "https://www.justice.fr/fiche/securite-stades-match",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; seuil de 300 spectateurs rapporté, sources anciennes divergentes (1 500)",
+    "cited_in": [
+      "24",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-18",
+    "title": "Mise en œuvre du plan Vigipirate 2026",
+    "publisher": "Ministère de l'Intérieur",
+    "url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/mise-en-oeuvre-du-plan-vigipirate-2026",
+    "published_at": "2026",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié 2025-2026 (BASK'EST LAB R3) ; posture susceptible d'avoir changé",
+    "cited_in": [
+      "26",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-19",
+    "title": "Vigipirate — posture en vigueur",
+    "publisher": "Secrétariat général de la défense et de la sécurité nationale (SGDSN)",
+    "url": "https://www.sgdsn.gouv.fr/vigipirate",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié 2025-2026 (BASK'EST LAB R3)",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-20",
+    "title": "Buvette temporaire (débit de boissons temporaire) — fiche F24345",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F24345",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-21",
+    "title": "Les règles applicables à l'ouverture d'un débit de boissons",
+    "publisher": "associations.gouv.fr",
+    "url": "https://www.associations.gouv.fr/les-regles-applicables-a-l-ouverture-d-un-debit-de-boisson.html",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-22",
+    "title": "Code de la santé publique — section des débits de boissons temporaires (art. L3334-1 et suivants)",
+    "publisher": "Légifrance",
+    "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006171203",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-23",
+    "title": "Code de la santé publique — zones protégées et enceintes sportives (art. L3335-1 et suivants, dont L3335-4)",
+    "publisher": "Légifrance",
+    "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006171204",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-24",
+    "title": "SACEM — conditions « clubs sport amateurs et assimilés » (valables du 1er janvier au 31 décembre 2025), copie hébergée par la Fédération des foyers ruraux",
+    "publisher": "SACEM (copie tierce)",
+    "url": "https://foyersruraux.org/download/870/sacem/371670/rgat_clubs_sport_amateurs_assimiles2.pdf",
+    "published_at": "2025",
+    "accessed_at": "2026-11-24",
+    "reliability": "B",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : principe confirmé (BASK'EST LAB R3) ; montants 2026 à vérifier sur sacem.fr",
+    "cited_in": [
+      "26",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-25",
+    "title": "Diffusion de musique dans un lieu ou un événement (SACEM, SPRE) — fiche F3094",
+    "publisher": "Entreprendre.service-public.fr (DILA)",
+    "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F3094",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : principe confirmé (BASK'EST LAB R3)",
+    "cited_in": [
+      "20",
+      "26",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-26",
+    "title": "Loteries, tombolas et lotos — fiche F21565",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/associations/vosdroits/F21565",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-27",
+    "title": "Loterie : des pratiques commerciales réglementées",
+    "publisher": "DGCCRF (ministère de l'Économie)",
+    "url": "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques-et-les-faq/loterie-des-pratiques-commerciales-reglementees",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-28",
+    "title": "Code du sport — article L231-2-1 (certificat médical pour les compétitions)",
+    "publisher": "Légifrance",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045293843",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; application à un tournoi non fédéral non tranchée",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-29",
+    "title": "Tout savoir sur le certificat médical pour le sport",
+    "publisher": "Ministère des Sports",
+    "url": "https://www.sports.gouv.fr/tout-savoir-sur-le-certificat-medical-pour-le-sport-10299",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-30",
+    "title": "Simulateur : certificat médical pour la pratique sportive",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/simulateur/calcul/certificatMedical",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-31",
+    "title": "Partage de photos et vidéos de votre enfant sur les réseaux sociaux : quels sont les risques ?",
+    "publisher": "CNIL",
+    "url": "https://www.cnil.fr/fr/partage-de-photos-et-videos-de-votre-enfant-sur-les-reseaux-sociaux-quels-sont-les-risques",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-32",
+    "title": "Droit à l'image de l'enfant : obligations des parents",
+    "publisher": "Justice.fr (ministère de la Justice)",
+    "url": "https://www.justice.fr/fiche/droit-image-enfant-obligations-parents",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; loi n° 2024-120 du 19 février 2024",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-33",
+    "title": "Sport amateur (hors contrat) : questions-réponses RGPD",
+    "publisher": "CNIL",
+    "url": "https://www.cnil.fr/fr/sport-amateur-hors-contrat/questions-reponses",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : confirmé pour les recommandations de la CNIL (BASK'EST LAB R3)",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-34",
+    "title": "Sport amateur : conservation et destruction des données",
+    "publisher": "CNIL",
+    "url": "https://www.cnil.fr/fr/sport-amateur-hors-contrat/tester-votre-conformite-au-rgpd/conservation-et-destruction",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : confirmé pour les recommandations de la CNIL (BASK'EST LAB R3)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-35",
+    "title": "Guide RGPD des associations",
+    "publisher": "CNIL",
+    "url": "https://www.cnil.fr/sites/default/files/atoms/files/cnil-guide_association.pdf",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : confirmé pour les recommandations de la CNIL (BASK'EST LAB R3)",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-36",
+    "title": "FFBB 3x3 — FAQ (homologation des Opens, Pass Tournoi 3x3, profil FIBA 3x3)",
+    "publisher": "Fédération française de basket-ball",
+    "url": "https://www.3x3ffbb.com/page/faq",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : règles 3x3 FFBB saison 2025-2026 relevées par extraits (BASK'EST LAB R3) ; étendue de la couverture du Pass discutée",
+    "cited_in": [
+      "26",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-37",
+    "title": "Règlements généraux des Opens 3x3",
+    "publisher": "Fédération française de basket-ball",
+    "url": "https://api.ffbb.com/assets/2d1520c5-7307-4026-b2c2-3458f7077867?download=",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : relevé par extraits (BASK'EST LAB R3)",
+    "cited_in": [
+      "26",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-38",
+    "title": "Code du sport — article L331-5 (autorisation de la fédération délégataire pour les manifestations ouvertes aux licenciés avec prix au-delà d'un seuil)",
+    "publisher": "Légifrance",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025276085",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible) ; seuil de 3 000 € rapporté (A331-1)",
+    "cited_in": [
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-39",
+    "title": "Frais des bénévoles d'une association — fiche F1132",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/associations/vosdroits/F1132",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : confirmé pour les frais et le barème ; non vérifié pour les seuils des arbitres (BASK'EST LAB R3)",
+    "cited_in": [
+      "24"
+    ]
+  },
+  {
+    "id": "S-G2-40",
+    "title": "Manifestations sur la voie publique et occupation du domaine public par une association — fiche F21899",
+    "publisher": "Service-public.fr (DILA)",
+    "url": "https://www.service-public.gouv.fr/associations/vosdroits/F21899",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : existence du régime confirmée ; articles du CGPPP non vérifiés (BASK'EST LAB R3)",
+    "cited_in": [
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-41",
+    "title": "Guide du contrôle d'honorabilité des bénévoles",
+    "publisher": "Ministère des Sports",
+    "url": "https://www.sports.gouv.fr/sites/default/files/2023-01/guide-honorabilit-des-b-n-voles-3844.pdf",
+    "published_at": "2023",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "24",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-42",
+    "title": "Loi du 8 mars 2024 visant à renforcer la protection des mineurs et l'honorabilité dans le sport",
+    "publisher": "Vie-publique.fr (DILA)",
+    "url": "https://www.vie-publique.fr/loi/293058-loi-du-8-mars-2024-violences-sexuelles-dans-le-sport-protection-mineurs",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Confirmé par recoupement d'extraits indexés de la page officielle (travail de référence BASK'EST LAB R3, 24/11/2026) — version en vigueur à revérifier ; page non rouverte lors de cette rédaction (réseau indisponible)",
+    "cited_in": [
+      "24",
+      "32"
+    ]
+  },
+  {
+    "id": "S-G2-43",
+    "title": "FIBA 3x3 — règles officielles du basket 3x3",
+    "publisher": "FIBA",
+    "url": "https://www.fiba3x3.basketball/rules",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié 2025-2026 partiellement (BASK'EST LAB R2) : match de 10 min ou 21 points, horloge des tirs de 12 s, 3 joueurs + 1 remplaçant, règles 2026 en vigueur au 1er janvier 2026 (modification du check-ball). Dimensions du terrain NON confirmées.",
+    "cited_in": [
+      "21",
+      "37"
+    ]
+  },
+  {
+    "id": "S-G2-44",
+    "title": "BASK'EST — fiche de l'association (SIREN 940 128 069)",
+    "publisher": "Annuaire des entreprises (data.gouv.fr)",
+    "url": "https://annuaire-entreprises.data.gouv.fr/entreprise/bask-est-940128069",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié (BASK'EST LAB R1) : association déclarée, créée le 19/10/2024, siège à Nancy",
+    "cited_in": [
+      "37"
+    ]
+  },
+  {
+    "id": "S-G2-45",
+    "title": "Collecte « La Bask'Cup revient sur Nancy » (journée ouverte aux plus de 16 ans)",
+    "publisher": "HelloAsso (page de l'organisateur)",
+    "url": "https://www.helloasso.com/associations/bask-est/collectes/le-all-star-game-debarque-a-nancy",
+    "accessed_at": "2026-11-24",
+    "reliability": "D",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié pour le titre, l'URL et la condition d'âge (BASK'EST LAB R1) ; source déclarative de l'organisateur",
+    "cited_in": [
+      "37"
+    ]
+  },
+  {
+    "id": "S-G2-46",
+    "title": "Palais des Sports Jean-Weille (Nancy) — fiche équipement (6 000 places)",
+    "publisher": "Ministère des Sports",
+    "url": "https://www.sports.gouv.fr/palais-des-sports-jean-weille",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié (BASK'EST LAB, référentiel des lieux) ; jauge autorisée réelle selon la configuration validée",
+    "cited_in": [
+      "37"
+    ]
+  },
+  {
+    "id": "S-G2-47",
+    "title": "Les Opens Plus de Pau et Nancy annulés",
+    "publisher": "Fédération française de basket-ball",
+    "url": "https://www.ffbb.com/actualites/les-opens-plus-de-pau-et-nancy-annules",
+    "published_at": "2026",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié (observatoire des erreurs BASK'EST LAB) ; motifs rapportés : chaleur et réglementation locale",
+    "cited_in": [
+      "32",
+      "33",
+      "37"
+    ]
+  },
+  {
+    "id": "S-G2-48",
+    "title": "Open Stan — Open Plus 3x3 du comité de Meurthe-et-Moselle au parc de la Pépinière",
+    "publisher": "Comité de Meurthe-et-Moselle de basket-ball",
+    "url": "https://basket54.fr/open-stan/",
+    "accessed_at": "2026-11-24",
+    "reliability": "A",
+    "verification": "Non rouverte lors de cette rédaction (réseau indisponible) ; statut d'origine : vérifié (BASK'EST LAB R1)",
+    "cited_in": [
+      "37"
+    ]
+  }
+]

@@ -1,0 +1,700 @@
+{
+  "id": "carre-fest",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "CARRÉ FEST",
+    "tagline": "Un festival en kit pour 300 à 800 personnes, dans une cour, un parking ou une friche.",
+    "pitch": "Micro-festival modulaire livré en kit à une commune, une association ou un comité d'entreprise : scénographie inspirée des grands festivals (portail d'entrée, canopée lumineuse, totem central, salon de repos, spot photo, signalétique), paquet son et lumière, et surtout un manuel d'exploitation (plan de sécurité type, buvette, billetterie, rôles bénévoles, conducteur) et un guide de programmation d'artistes locaux. Le kit se monte en une journée par six personnes et un technicien. Thèmes interchangeables d'une édition à l'autre. Loué au week-end ou licencié (achat du kit + abonnement annuel aux thèmes et à la formation). Existant le plus proche : un kit culturel numérique déployé dans des communes avec un réseau national (coût minimum annoncé d'environ 40 000 €), des kits d'événement prêtés par des villes (sono, tentes, tables), des catalogues de matériel mutualisé intercommunal et un kit de micro-festival de voisinage au Royaume-Uni. Aucun ne combine scénographie de festival, manuel d'exploitation et thèmes renouvelés.",
+    "disciplines": [],
+    "sectors": [
+      "festivals de musique",
+      "fêtes locales et associatives",
+      "scénographie",
+      "collectivités territoriales"
+    ],
+    "directions": [
+      "premium",
+      "accessible"
+    ],
+    "objectives": [
+      "Donner à une fête locale la qualité d'expérience d'un festival",
+      "Réduire le temps de préparation et les erreurs d'organisation des bénévoles",
+      "Réemployer une scénographie sur de nombreuses éditions",
+      "Construire un actif physique louable et licenciable"
+    ],
+    "audiences": [
+      {
+        "segment": "Communes de 3 000 à 50 000 habitants (culture, fêtes, vie associative)",
+        "role": "organisateur",
+        "motivation": "Fête de quartier ou de village plus attractive sans agence",
+        "willingness_to_pay": "Hypothèse : 6 500 € le week-end en formule Standard — non testée"
+      },
+      {
+        "segment": "Comités des fêtes, associations culturelles, comités sociaux et économiques d'entreprise, bailleurs sociaux",
+        "role": "organisateur",
+        "motivation": "Événement fédérateur clé en main",
+        "willingness_to_pay": "Hypothèse : 3 500 € en formule Essentiel"
+      },
+      {
+        "segment": "Habitants, familles, jeunes adultes",
+        "role": "spectateur",
+        "motivation": "Ambiance festival près de chez soi, souvent gratuite",
+        "willingness_to_pay": "Selon l'organisateur : gratuit à 10 €"
+      },
+      {
+        "segment": "Artistes et associations locales",
+        "role": "prestataire",
+        "motivation": "Scène de qualité",
+        "willingness_to_pay": "n/a"
+      },
+      {
+        "segment": "Banques, mutuelles, distributeurs locaux",
+        "role": "sponsor",
+        "motivation": "Visibilité de proximité",
+        "willingness_to_pay": "Hypothèse : 500–2 000 € par édition côté organisateur"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Grands festivals de musique (scénographie immersive)",
+        "source_sector": "festival",
+        "borrowed_logic": "Portail d'entrée, zones thématiques, éclairage d'ambiance, spot photo",
+        "adaptation": "Ramené à 300–800 personnes, modulaire, montable par des bénévoles ; aucune identité de festival reprise"
+      },
+      {
+        "source_event": "Micro-Folie (kit culturel déployé dans des communes, réseau national)",
+        "source_sector": "politique culturelle",
+        "borrowed_logic": "Kit standard + réseau + formation des équipes locales",
+        "adaptation": "Appliqué au festival éphémère, en location ou licence",
+        "source_ref": "S-MICROFOLIE-PACA"
+      },
+      {
+        "source_event": "Kits d'événement de quartier prêtés par des villes",
+        "source_sector": "collectivités",
+        "borrowed_logic": "Matériel de base réservable",
+        "adaptation": "Ajout de la scénographie, du manuel d'exploitation et de thèmes",
+        "source_ref": "S-ARLINGTON"
+      },
+      {
+        "source_event": "Kit de micro-festival de voisinage",
+        "source_sector": "communautaire",
+        "borrowed_logic": "Festival de voisins prêt à monter",
+        "adaptation": "Version professionnelle avec plan de sécurité type",
+        "source_ref": "S-LANTERN"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Trois formules : Essentiel (300 personnes : portail, guirlandes, spot photo, signalétique, sono légère, manuel), Standard (550 : + canopée lumineuse, totem, salon, éclairage scénique, scène modulaire), Premium (800 : + habillage complet, deuxième scène, régie lumière avec technicien, contenu vidéo). Livraison J-1, montage par l'équipe locale encadrée par un technicien, démontage J+1. Thème de l'édition (ex. « jardin nocturne », « fête foraine rétro ») changeable chaque année.",
+    "rules_summary": "Pas de règle de compétition. Le manuel fixe : jauge maximale par configuration, plan de circulation, positions du kit selon la surface, check-lists de sécurité, rôles bénévoles, horaires sonores.",
+    "duration_hours": 8,
+    "edition_cadence": "location au week-end ; saison principale mai–septembre ; thèmes renouvelés chaque année",
+    "building_blocks": [
+      {
+        "type": "scenographie",
+        "label": "Kit modulaire (portail, canopée, totem, salon, signalétique)",
+        "parameters": {
+          "formules": [
+            "Essentiel",
+            "Standard",
+            "Premium"
+          ]
+        }
+      },
+      {
+        "type": "son_lumiere",
+        "label": "Paquet son et lumière avec préréglages",
+        "parameters": {}
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Thème d'édition et parcours d'entrée",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Spot photo signature, gabarits de communication",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Location au week-end, licence, abonnement aux thèmes, formation",
+        "parameters": {}
+      },
+      {
+        "type": "fidelisation",
+        "label": "Réseau des communes utilisatrices, thèmes annuels",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Emplacements partenaires intégrés à la scénographie",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "individu",
+    "count": {
+      "prudent": 0,
+      "central": 0,
+      "ambitieux": 0
+    },
+    "categories": [
+      "artistes et bénévoles locaux (fournis par l'organisateur)"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 300,
+      "central": 550,
+      "ambitieux": 800
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 180
+  },
+  "venue_requirements": {
+    "setting": "exterieur",
+    "min_area_m2": 600,
+    "spaces": [
+      {
+        "id": "entree",
+        "type": "accueil",
+        "label": "Portail d'entrée et contrôle"
+      },
+      {
+        "id": "scene",
+        "type": "aire_de_jeu",
+        "label": "Scène modulaire"
+      },
+      {
+        "id": "public",
+        "type": "circulation",
+        "label": "Zone public debout",
+        "standing": true
+      },
+      {
+        "id": "salon",
+        "type": "autre",
+        "label": "Salon de repos"
+      },
+      {
+        "id": "buvette",
+        "type": "restauration"
+      },
+      {
+        "id": "photo",
+        "type": "zone_photo"
+      },
+      {
+        "id": "secours",
+        "type": "secours"
+      }
+    ],
+    "power_kw": 25,
+    "internet": "non nécessaire",
+    "notes": "Cour d'école, parking, friche, square. Repli intérieur (salle polyvalente) possible pour la formule Essentiel. Ratio de surface et jauge à valider pour chaque site par l'organisateur et la mairie."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-amortissement",
+        "category": "materiel",
+        "label": "Amortissement du kit Standard (≈ 55 k€ sur 3 ans × 14 locations)",
+        "amount": 1300,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-transport",
+        "category": "logistique",
+        "label": "Camion et carburant (2 jours)",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-techniciens",
+        "category": "personnel",
+        "label": "Deux techniciens × 3 jours",
+        "amount": 1680,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-entretien",
+        "category": "materiel",
+        "label": "Consommables, réparations, nettoyage",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance du kit (quote-part)",
+        "amount": 250,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-stockage",
+        "category": "logistique",
+        "label": "Stockage (quote-part)",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-commercial",
+        "category": "prestation",
+        "label": "Vente, préparation du dossier site, accompagnement de l'organisateur",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-location",
+        "stream": "licence",
+        "label": "Location formule Standard (contrat signé, acompte versé)",
+        "unit_amount": 6500,
+        "basis": "fixed",
+        "certainty": "secured",
+        "cash_offset_days": -30
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "offset_days": -180,
+      "label": "Go/no-go de fabrication du kit",
+      "owner_role": "EVENT LAB",
+      "go_no_go": "Fabriquer le kit Standard seulement avec au moins 8 week-ends réservés avec acompte ; sinon MVP Essentiel en matériel loué ou réemployé"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Surpeuplement ou mouvement de foule dans un espace clos (cour, parking fermé)",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [
+        "file d'entrée qui déborde",
+        "comptage > 90 % de la jauge"
+      ],
+      "prevention": [
+        "jauge par configuration et par surface dans le manuel",
+        "comptage aux entrées",
+        "issues balisées et éclairées",
+        "dimensionnement sécurité par prestataire agréé"
+      ],
+      "continuity_plan": "Fermeture des entrées, ouverture des issues supplémentaires, arrêt de la scène",
+      "owner_role": "responsable sécurité de l'organisateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "securite",
+      "description": "Chute ou envol d'éléments de scénographie (vent), électrisation",
+      "probability": 2,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "vent fort annoncé"
+      ],
+      "prevention": [
+        "lestage calculé, seuil de vent d'arrêt dans le manuel",
+        "installation électrique vérifiée par technicien"
+      ],
+      "continuity_plan": "Démontage des éléments hauts au-delà du seuil de vent ; formule repliée",
+      "owner_role": "technicien EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "financier",
+      "description": "Taux d'utilisation du kit insuffisant (saison courte, demande saisonnière concentrée)",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "moins de 8 réservations à J-180 de la saison"
+      ],
+      "prevention": [
+        "go/no-go de fabrication",
+        "offre hors saison (marchés de Noël, salles)"
+      ],
+      "continuity_plan": "MVP en matériel loué, pas de fabrication tant que la demande n'est pas prouvée",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "meteo",
+      "description": "Pluie ou orage le jour J",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "vigilance orange"
+      ],
+      "prevention": [
+        "éléments résistants à la pluie",
+        "repli intérieur identifié"
+      ],
+      "continuity_plan": "Formule Essentiel en salle polyvalente ou report",
+      "owner_role": "organisateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "operationnel",
+      "description": "Équipe locale insuffisante pour le montage",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "moins de 6 bénévoles confirmés à J-7"
+      ],
+      "prevention": [
+        "exigence contractuelle de 6 personnes",
+        "formation vidéo du montage"
+      ],
+      "continuity_plan": "Technicien supplémentaire facturé ou formule réduite",
+      "owner_role": "organisateur",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Régime de l'événement selon le lieu et l'effectif : établissement temporaire, structures (chapiteaux, tentes) et plein air, avis de la commission de sécurité le cas échéant",
+      "authority": "Mairie, commission de sécurité",
+      "mandatory": true,
+      "status": "a_verifier",
+      "source_ref": "S-GUIDE-RASSEMBLEMENTS"
+    },
+    {
+      "id": "C2",
+      "item": "Déclarations préalables selon la nature du rassemblement (événement festif à caractère musical, seuils d'effectif)",
+      "authority": "Mairie, préfecture",
+      "mandatory": true,
+      "status": "a_verifier",
+      "source_ref": "S-GUIDE-RASSEMBLEMENTS"
+    },
+    {
+      "id": "C3",
+      "item": "Buvette temporaire : autorisation municipale et nombre limité d'autorisations annuelles par association (Code de la santé publique — à vérifier)",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Musique : déclaration et redevances Sacem ; niveaux sonores des sons amplifiés",
+      "authority": "Sacem, ARS",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Installation électrique temporaire conforme, vérifiée par une personne qualifiée",
+      "authority": "Électricien qualifié",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C6",
+      "item": "Accessibilité PMR des cheminements et de la scène, sanitaires adaptés",
+      "authority": "Organisateur, mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C7",
+      "item": "Assurance de l'organisateur (événement) et du loueur (kit), répartition contractuelle des responsabilités",
+      "authority": "Assureurs, juriste",
+      "mandatory": true,
+      "status": "a_verifier",
+      "source_ref": "S-MAIF-FESTIVAL"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Week-ends réservés avec acompte avant fabrication",
+      "phase": "avant",
+      "target": 8,
+      "unit": "week-ends",
+      "measure": "contrats"
+    },
+    {
+      "id": "K2",
+      "label": "Taux d'utilisation annuel du kit",
+      "phase": "apres",
+      "target": 14,
+      "unit": "locations par an",
+      "measure": "planning"
+    },
+    {
+      "id": "K3",
+      "label": "Satisfaction des organisateurs",
+      "phase": "apres",
+      "target": 4.5,
+      "unit": "/5",
+      "measure": "questionnaire J+7"
+    },
+    {
+      "id": "K4",
+      "label": "Réservation de l'année suivante",
+      "phase": "apres",
+      "target": 60,
+      "unit": "%",
+      "measure": "contrats"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Avant/après : parking vide à 10 h, festival à 21 h",
+      "Allumage de la canopée à la tombée de la nuit",
+      "Accéléré du montage par les habitants"
+    ],
+    "photo_spots": [
+      "Portail d'entrée thématisé",
+      "Totem central",
+      "Mur photo signature de l'édition"
+    ],
+    "channels": [
+      "Instagram",
+      "Facebook (communauté locale)",
+      "sites des communes",
+      "presse locale"
+    ]
+  },
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Kits culturels pour communes, kits d'événement prêtés par des villes, matériel mutualisé et kits de micro-festival existent. L'innovation porte sur le modèle (scénographie + manuel + thèmes renouvelés en location/licence) plus que sur l'expérience festivalière elle-même. Nom non vérifié (budget de recherche épuisé).",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "experience_utilisateur": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Parcours d'entrée, zones et repos conçus ; la qualité dépend de la programmation locale, hors du contrôle du kit.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Guide de programmation avec exemples de rythmes de soirée"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Éléments courants (structures, LED, sono) ; points à sécuriser : lestage au vent, alimentation électrique (groupe), logistique camion.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 2.5,
+        "justification": "Entre ancres 1 et 3. Par location, le calcul §7.1 donne +6 % au central et −4 % au prudent (base 4,5) ; décote de 1,5 pour un prix non testé et de 0,5 pour le risque d'investissement : l'ensemble repose sur 14 locations par an pour amortir environ 55 k€ de kit, hypothèse forte pour une saison concentrée de mai à septembre. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Prévente de 8 week-ends avant fabrication",
+          "Offre hors saison"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Décor identifiable et spots photo conçus ; audience locale.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Le kit standardisé et le manuel d'exploitation sont le produit lui-même.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Cour, parking, friche, square ; trois configurations de 300 à 800 personnes et repli intérieur.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3,
+        "justification": "Ancre 3. Cheminements PMR et salon de repos prévus, événements souvent gratuits ; pas d'inclusion conçue dans le contenu.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Module « festival calme » (horaires sensoriels adaptés)"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Location, licence, abonnement aux thèmes, formation, partenaires intégrés ; existence d'un marché communal pour des kits culturels coûteux (dispositif national à environ 40 k€ minimum annoncés).",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Scénographie réemployée sur de nombreuses éditions, LED, événement de proximité ; mesure d'empreinte à ajouter pour atteindre 5.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Bilan carbone simplifié par location"
+        ]
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1, R2. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1, R2. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "7 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6, C7) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 7 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6, C7) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1, R2, R3), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1, R2, R3), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 69,
+      "grade": "B",
+      "confidence": 0.35,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 6.0,
+        "experience_utilisateur": 4.5,
+        "faisabilite_technique": 4.5,
+        "viabilite_economique": 7.5,
+        "potentiel_mediatique": 3.0,
+        "reproductibilite": 1.0,
+        "adaptabilite_lieux": 0.8,
+        "accessibilite_inclusion": 2.0,
+        "potentiel_commercial": 1.0,
+        "responsabilite_environnementale": 0.5
+      },
+      "score_if_plus_one": 87.0
+    }
+  },
+  "hypotheses": [
+    "Prix de location Standard 6 500 € le week-end : hypothèse non testée.",
+    "Coût du kit Standard ≈ 55 k€ : hypothèse sans devis.",
+    "14 locations par an : hypothèse de taux d'utilisation à démontrer.",
+    "Le budget modélisé est celui du loueur (EVENT LAB) pour une location, pas celui de l'organisateur."
+  ],
+  "sources": [
+    {
+      "id": "S-MICROFOLIE-PACA",
+      "title": "Micro-Folies",
+      "publisher": "Ministère de la Culture — DRAC Provence-Alpes-Côte d'Azur",
+      "url": "https://www.culture.gouv.fr/regions/Drac-Provence-Alpes-Cote-d-Azur/politique-et-actions-culturelles/micro-folies",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche ; le coût minimum d'environ 40 000 € et la surface de 40–60 m² sont attribués au ministère par le résumé de l'outil, page exacte à confirmer"
+    },
+    {
+      "id": "S-MICROFOLIE-CHARTE",
+      "title": "Charte d'adhésion au réseau Micro-Folies",
+      "publisher": "Ministère de la Culture",
+      "url": "https://www.culture.gouv.fr/Media/Medias-creation-rapide/Charte-d-adhesion-au-reseau-Micro-Folies",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-ARLINGTON",
+      "title": "Event in a Box",
+      "publisher": "Downtown Arlington",
+      "url": "https://downtownarlington.org/do-business/the-creator-club/event-in-a-box",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (location 75 $ : sono, tente, table, micros)"
+    },
+    {
+      "id": "S-SURREY",
+      "title": "Neighbourhood Event Equipment",
+      "publisher": "City of Surrey",
+      "url": "https://surrey.ca/community/17127.aspx",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-LANTERN",
+      "title": "Lantern Company festival kit",
+      "publisher": "Trend Hunter",
+      "url": "https://www.trendhunter.com/trends/festival-kit1",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-FONTENAY",
+      "title": "Catalogue matériel mutualisé 2026",
+      "publisher": "Commune de Fontenay-Trésigny",
+      "url": "https://fontenay-tresigny.fr/wp-content/uploads/2026/04/Catalogue-Materiel-Mutualise-2026.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-GIRONDE",
+      "title": "Scènes d'été en Gironde — brochure 2026",
+      "publisher": "Département de la Gironde",
+      "url": "https://www.gironde.fr/sites/default/files/2025-12/A5-BrochurePrez-2026-25112025-WEB.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (prêt de matériel de scène sur demande écrite)"
+    },
+    {
+      "id": "S-GUIDE-RASSEMBLEMENTS",
+      "title": "Guide des rassemblements festifs (2021)",
+      "publisher": "Ministère de la Culture",
+      "url": "https://www.culture.gouv.fr/Media/Medias-creation-rapide/Guide_Rassemblements_Festifs_2021.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "URL obtenue par recherche ; contenu non lu (domaine bloqué dans la session) : ressource à consulter, pas une preuve de règle"
+    },
+    {
+      "id": "S-MAIF-FESTIVAL",
+      "title": "Organiser un festival — guide manifestations associations",
+      "publisher": "MAIF",
+      "url": "https://www.maif.fr/associationsetcollectivites/associations/guides-manifestations/organiser-festival",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé ; différenciation par le modèle (scénographie + manuel + thèmes) plutôt que par l'expérience. Go/no-go de fabrication ajouté.",
+      "decisions": [
+        "Aucune fabrication de kit sans 8 week-ends prévendus",
+        "Budget modélisé du point de vue du loueur"
+      ],
+      "approved_by": null
+    }
+  ]
+}

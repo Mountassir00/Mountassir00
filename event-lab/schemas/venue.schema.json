@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://event-lab.local/schemas/venue.schema.json",
+  "title": "Venue",
+  "description": "Description structurée d'un lieu, alimentée par saisie ou import (photos, plans, documents). Aucune implantation générée à partir de ces données ne vaut validation réglementaire ou technique.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "setting"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "description": "ex. gymnase, place publique, salle polyvalente, parking, friche, club"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "setting": {
+      "enum": [
+        "interieur",
+        "exterieur",
+        "mixte"
+      ]
+    },
+    "erp": {
+      "type": "object",
+      "description": "Classement ERP déclaré par l'exploitant (France).",
+      "properties": {
+        "type_erp": {
+          "type": "string",
+          "description": "ex. X (établissements sportifs couverts), PA (plein air), L (salles polyvalentes)"
+        },
+        "categorie": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "effectif_autorise": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Effectif maximal autorisé tel qu'il figure dans le document de l'exploitant. Par défaut, EVENT LAB le compare au total public + participants + personnel."
+        },
+        "document_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "width_m": {
+          "type": "number"
+        },
+        "length_m": {
+          "type": "number"
+        },
+        "height_m": {
+          "type": "number"
+        }
+      }
+    },
+    "spaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "aire_de_jeu",
+              "tribune",
+              "accueil",
+              "file_attente",
+              "restauration",
+              "vip",
+              "vestiaire",
+              "sanitaire",
+              "stockage",
+              "regie",
+              "media",
+              "activation_sponsor",
+              "secours",
+              "zone_photo",
+              "circulation",
+              "autre"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "width_m": {
+            "type": "number"
+          },
+          "length_m": {
+            "type": "number"
+          },
+          "area_m2": {
+            "type": "number"
+          },
+          "x_m": {
+            "type": "number",
+            "description": "Position (coin supérieur gauche) pour l'implantation 2D."
+          },
+          "y_m": {
+            "type": "number"
+          },
+          "capacity": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "fixed": {
+            "type": "boolean",
+            "description": "Élément non déplaçable (tribune fixe, poteau, local technique)."
+          }
+        }
+      }
+    },
+    "access_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "entree_public",
+              "sortie_secours",
+              "acces_technique",
+              "acces_pmr",
+              "acces_secours"
+            ]
+          },
+          "width_m": {
+            "type": "number"
+          },
+          "unites_de_passage": {
+            "type": "integer",
+            "description": "Unités de passage déclarées par l'exploitant (définition et largeurs à vérifier dans le règlement de sécurité ERP en vigueur)."
+          },
+          "x_m": {
+            "type": "number"
+          },
+          "y_m": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "utilities": {
+      "type": "object",
+      "properties": {
+        "power_kw_available": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "power_outlets": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "internet": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "water_points": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toilets": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toilets_pmr": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "changing_rooms": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "storage_m2": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "lighting": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "acoustics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "opening_hours": {
+          "type": "string"
+        },
+        "setup_window": {
+          "type": "string"
+        },
+        "teardown_window": {
+          "type": "string"
+        },
+        "noise_limits": {
+          "type": "string"
+        },
+        "weather_exposure": {
+          "type": "string"
+        },
+        "floor_protection": {
+          "type": "string"
+        },
+        "other": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rental_cost": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "photo",
+              "plan_pdf",
+              "plan_technique",
+              "video",
+              "modele_3d",
+              "notice_securite",
+              "fiche_equipements",
+              "autre"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

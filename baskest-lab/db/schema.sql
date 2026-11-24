@@ -1,0 +1,36 @@
+-- =============================================================================
+-- BASK'EST LAB / EVENT LAB — ANCIEN SCHÉMA, REMPLACÉ EN v0.4
+--
+-- Le schéma de base partagée est désormais UNIQUE et versionné en migrations :
+--     baskest-lab/supabase/migrations/*.sql   (à appliquer dans l'ordre des numéros)
+--     baskest-lab/supabase/seed.sql           (graine des connaissances partagées, générée)
+-- Documentation : event-lab/docs/14-socle-saas.md
+-- Tests : npm run db:test (PostgreSQL local jetable + simulation de l'authentification Supabase)
+--
+-- Ce fichier ne contient plus aucune instruction : l'exécuter ne fait rien.
+-- Contenu d'origine (v0.3, 21 tables) : git show v0.3.0:baskest-lab/db/schema.sql
+--
+-- Ce que la fusion a repris de l'ancien schéma :
+--   organisation (nom, SIREN, ville, marque)  -> public.organizations
+--   member (nom affiché, lien auth.users)     -> public.memberships
+--   member_role (president, tresorier, bureau, responsable_evenement, benevole,
+--   partenaire_lecture)                       -> rôles génériques lecteur / editeur /
+--                                                administrateur / proprietaire + libellé
+--                                                libre memberships.function_label
+--   « privé par défaut », validation avant publication
+--                                             -> RLS par organisation, versions validées
+--                                                par administrateur ou propriétaire
+-- Et de event-lab/docs/03-modele-de-donnees.md §5 :
+--   event, event_version (+ déclencheur d'immutabilité), building_block, error_entry,
+--   watch_entry, audit_log                    -> events, event_versions,
+--                                                event_version_status_history, audit_log,
+--                                                kb_building_blocks, kb_errors,
+--                                                kb_watch_sources, kb_watch_entries,
+--                                                kb_portfolio_concepts
+--
+-- Pas encore repris (modules qui restent stockés dans le navigateur en v0.4) :
+--   event_property, venue, edition, incident, watch_item, innovation, error_case,
+--   design_rule, concept / concept_version (concepts basket), analysis_run, evaluation,
+--   project, project_task, blueprint, approval_request, notification, post_event_audit.
+--   Ils seront ajoutés par de nouvelles migrations quand ces modules seront synchronisés.
+-- =============================================================================

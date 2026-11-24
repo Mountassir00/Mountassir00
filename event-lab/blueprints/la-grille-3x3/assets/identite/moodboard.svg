@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" width="1200" height="860" role="img" aria-labelledby="t d">
+  <title id="t">LA GRILLE 3x3 — planche d'ambiance (moodboard)</title>
+  <desc id="d">Planche originale EVENT LAB composée uniquement de formes, de couleurs et de typographie. Aucune photographie ni image de tiers. Huit vignettes : parquet et lignes de terrain, asphalte et craie, grille au sol, chrono, lumière de salle, ballon, pit wall, typographie.</desc>
+  <defs>
+    <radialGradient id="spot" cx="50%" cy="35%" r="65%">
+      <stop offset="0" stop-color="#FFF6DA"/>
+      <stop offset="0.35" stop-color="#8A7A55"/>
+      <stop offset="1" stop-color="#121417"/>
+    </radialGradient>
+    <pattern id="planches" width="40" height="280" patternUnits="userSpaceOnUse">
+      <rect width="40" height="280" fill="#C9935B"/>
+      <rect x="0" width="2" height="280" fill="#A8743F"/>
+      <rect x="20" y="0" width="1" height="120" fill="#B98348"/>
+      <rect x="0" y="140" width="40" height="1.5" fill="#A8743F"/>
+    </pattern>
+    <pattern id="grain" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#121417"/>
+      <circle cx="1.5" cy="2" r="0.6" fill="#2A2E34"/>
+      <circle cx="4.5" cy="4.5" r="0.5" fill="#22262B"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="860" fill="#F4F1EA"/>
+  <text x="40" y="56" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="30" fill="#121417">LA GRILLE 3x3 — PLANCHE D'AMBIANCE</text>
+  <text x="40" y="84" font-family="Archivo, Arial, sans-serif" font-size="16" fill="#3A3F47">Création originale — formes, couleurs, typographie. Aucune image de tiers. Les ambiances photo sont décrites en section 17.</text>
+
+  <!-- 1 Parquet -->
+  <g transform="translate(40 110)">
+    <rect width="260" height="280" fill="url(#planches)"/>
+    <path d="M0 200 H260" stroke="#F4F1EA" stroke-width="6"/>
+    <path d="M40 280 A110 110 0 0 1 220 280" fill="none" stroke="#F4F1EA" stroke-width="6"/>
+    <rect x="96" y="40" width="68" height="40" rx="8" fill="none" stroke="#121417" stroke-width="5"/>
+    <text x="130" y="68" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="20" fill="#121417">P1</text>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">PARQUET &amp; LIGNES</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Le gymnase tel qu'il est : bois, lignes</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">peintes, adhésif mat sur parquet.</text>
+  </g>
+
+  <!-- 2 Asphalte et craie -->
+  <g transform="translate(320 110)">
+    <rect width="260" height="280" fill="url(#grain)"/>
+    <g fill="none" stroke="#F4F1EA" stroke-width="3" stroke-dasharray="10 6" stroke-linecap="round">
+      <rect x="30" y="40" width="70" height="40" rx="6"/>
+      <rect x="150" y="70" width="70" height="40" rx="6"/>
+      <rect x="30" y="130" width="70" height="40" rx="6"/>
+      <rect x="150" y="160" width="70" height="40" rx="6"/>
+    </g>
+    <text x="65" y="67" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#FFC629">1</text>
+    <text x="185" y="97" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F4F1EA">2</text>
+    <text x="65" y="157" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F4F1EA">3</text>
+    <text x="185" y="187" text-anchor="middle" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F4F1EA">4</text>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">ASPHALTE &amp; CRAIE</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Culture playground : fond sombre, traits</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">à la craie, numéros tracés à la main.</text>
+  </g>
+
+  <!-- 3 Grille au sol en perspective -->
+  <g transform="translate(600 110)">
+    <rect width="260" height="280" fill="#2B2F35"/>
+    <g fill="none" stroke="#F4F1EA" stroke-width="4">
+      <path d="M70 60 L110 60 L116 84 L64 84 Z"/>
+      <path d="M150 80 L190 80 L198 106 L144 106 Z"/>
+      <path d="M58 120 L112 120 L120 152 L48 152 Z"/>
+      <path d="M142 144 L200 144 L210 180 L134 180 Z"/>
+      <path d="M44 196 L118 196 L128 240 L32 240 Z"/>
+      <path d="M128 222 L212 222 L226 272 L116 272 Z"/>
+    </g>
+    <path d="M64 84 L116 84 L110 60 L70 60 Z" fill="#FFC629"/>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">LA GRILLE AU SOL</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Emplacements décalés numérotés : décor</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">et spot photo officiel, vus en plongée.</text>
+  </g>
+
+  <!-- 4 Chrono -->
+  <g transform="translate(880 110)">
+    <rect width="280" height="280" fill="#121417"/>
+    <text x="24" y="60" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="22" fill="#FF5B1A">Q3</text>
+    <text x="24" y="150" font-family="IBM Plex Mono, Courier New, monospace" font-size="44" font-weight="700" fill="#FFC629">00:41.32</text>
+    <rect x="24" y="178" width="232" height="10" fill="#3A3F47"/>
+    <rect x="24" y="178" width="150" height="10" fill="#FFC629"/>
+    <text x="24" y="226" font-family="Archivo, Arial, sans-serif" font-size="16" fill="#F4F1EA">+0.24 sur la pole</text>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">CHRONO</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Chiffres à chasse fixe, centièmes, écarts :</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">le temps est le héros du matin.</text>
+  </g>
+
+  <!-- 5 Lumière -->
+  <g transform="translate(40 470)">
+    <rect width="260" height="280" fill="url(#spot)"/>
+    <ellipse cx="130" cy="230" rx="90" ry="16" fill="#F4F1EA" opacity="0.25"/>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">LUMIÈRE DE SALLE</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Salle baissée pour la Q3 si possible :</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">un seul cône de lumière sur le terrain.</text>
+  </g>
+
+  <!-- 6 Ballon -->
+  <g transform="translate(320 470)">
+    <rect width="260" height="280" fill="#3A3F47"/>
+    <circle cx="130" cy="135" r="92" fill="#FF5B1A"/>
+    <g fill="none" stroke="#121417" stroke-width="5">
+      <path d="M38 135 H222"/>
+      <path d="M130 43 V227"/>
+      <path d="M66 70 C110 105 110 165 66 200"/>
+      <path d="M194 70 C150 105 150 165 194 200"/>
+    </g>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">ÉNERGIE</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">L'orange signal : un seul accent chaud,</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">jamais en texte sur fond clair.</text>
+  </g>
+
+  <!-- 7 Pit wall -->
+  <g transform="translate(600 470)">
+    <rect width="260" height="280" fill="#F4F1EA" stroke="#121417" stroke-width="3"/>
+    <text x="20" y="40" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="18" fill="#121417">PIT WALL</text>
+    <g font-family="Archivo, Arial, sans-serif" font-size="14" fill="#121417">
+      <rect x="20" y="60" width="220" height="40" fill="#121417"/>
+      <text x="32" y="86" fill="#FFC629" font-weight="700">T1  ·  02 vs 15</text>
+      <rect x="20" y="110" width="220" height="40" fill="#121417"/>
+      <text x="32" y="136" fill="#F4F1EA" font-weight="700">T2  ·  07 vs 10</text>
+      <rect x="20" y="160" width="220" height="40" fill="none" stroke="#121417" stroke-width="2"/>
+      <text x="32" y="186">À l'appel : F2 · F7 · F3 · F6</text>
+      <rect x="20" y="210" width="220" height="40" fill="none" stroke="#121417" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="32" y="236">Suivant : 03 · 14 · 06 · 11</text>
+    </g>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">PIT WALL</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Tableau d'appel lisible à 10 m : numéros</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">de grille plutôt que noms d'équipes.</text>
+  </g>
+
+  <!-- 8 Typographie -->
+  <g transform="translate(880 470)">
+    <rect width="280" height="280" fill="#2D55E6"/>
+    <text x="20" y="72" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#F4F1EA">POLE.</text>
+    <text x="20" y="118" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="26" fill="#FFC629">GRILLE DE DÉPART</text>
+    <text x="20" y="160" font-family="Archivo, Arial, sans-serif" font-size="18" fill="#F4F1EA">Les qualifs décident de ta place.</text>
+    <text x="20" y="184" font-family="Archivo, Arial, sans-serif" font-size="18" fill="#F4F1EA">Le terrain décide du reste.</text>
+    <text x="20" y="240" font-family="IBM Plex Mono, Courier New, monospace" font-size="24" fill="#F4F1EA">01 02 03 04 05</text>
+    <text x="0" y="306" font-family="Archivo Black, Arial Black, sans-serif" font-weight="900" font-size="16" fill="#121417">TYPOGRAPHIE</text>
+    <text x="0" y="326" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">Capitales lourdes, phrases courtes,</text>
+    <text x="0" y="342" font-family="Archivo, Arial, sans-serif" font-size="13" fill="#3A3F47">chiffres à chasse fixe.</text>
+  </g>
+  <text x="40" y="846" font-family="Archivo, Arial, sans-serif" font-size="12" fill="#3A3F47">Valeurs de couleur : voir palette-typo.svg. Données affichées (temps, numéros) : fictives, à titre d'illustration.</text>
+</svg>

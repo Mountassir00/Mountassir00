@@ -1,0 +1,3597 @@
+{
+  "id": "la-grille-3x3",
+  "version": "0.2.0",
+  "status": "draft",
+  "maturity": "blueprint",
+  "parent": {
+    "id": "la-grille-3x3",
+    "version": "0.1.0",
+    "relation": "new_version"
+  },
+  "identity": {
+    "name": "LA GRILLE 3x3",
+    "tagline": "Les qualifs décident de ta place. Le terrain décide du reste.",
+    "pitch": "Un tournoi de basket 3x3 amateur d'une journée où le matin compte : chaque équipe joue sa place sur une grille de départ, en trois manches chronométrées éliminatoires. La grille, révélée sur grand écran, fixe les têtes de série des poules de l'après-midi. Du suspense dès 10 h et des moments filmables à chaque étape.",
+    "disciplines": [
+      "basketball 3x3"
+    ],
+    "sectors": [
+      "sport amateur",
+      "sport urbain"
+    ],
+    "directions": [
+      "accessible",
+      "optimise"
+    ],
+    "objectives": [
+      "Créer un rendez-vous 3x3 récurrent et identifiable dans une ville moyenne",
+      "Supprimer le temps mort du matin des tournois amateurs en lui donnant un enjeu (la place sur la grille)",
+      "Atteindre l'équilibre financier dès la 2e édition et constituer un format licenciable à d'autres associations"
+    ],
+    "audiences": [
+      {
+        "segment": "Joueurs et joueuses 3x3 amateurs 16–35 ans (licenciés ou non)",
+        "role": "participant",
+        "motivation": "Jouer beaucoup, se mesurer, vivre une ambiance de grand événement",
+        "willingness_to_pay": "Hypothèse : 15 € par joueur (60 € par équipe), à confronter aux tarifs des tournois locaux"
+      },
+      {
+        "segment": "Familles et amis des joueurs, public basket local",
+        "role": "spectateur",
+        "motivation": "Soutenir, passer un après-midi animé et peu cher",
+        "willingness_to_pay": "Hypothèse : 5 € la journée, gratuit -12 ans"
+      },
+      {
+        "segment": "Commerces et entreprises locales",
+        "role": "sponsor",
+        "motivation": "Visibilité auprès d'un public jeune local, image sportive",
+        "willingness_to_pay": "Hypothèse : 400 € à 4 000 € selon le pack"
+      },
+      {
+        "segment": "Bénévoles du club et de la ville",
+        "role": "benevole",
+        "motivation": "Contribuer, appartenir à l'équipe d'un événement qui a du style",
+        "willingness_to_pay": null
+      },
+      {
+        "segment": "Élus, partenaires institutionnels",
+        "role": "vip",
+        "motivation": "Politique sportive jeunesse, attractivité",
+        "willingness_to_pay": null
+      },
+      {
+        "segment": "Presse locale, créateurs de contenu basket",
+        "role": "journaliste",
+        "motivation": "Sujets visuels, histoires de quartier",
+        "willingness_to_pay": null
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Qualifications en sport automobile (format en trois manches éliminatoires)",
+        "source_sector": "sports mécaniques",
+        "borrowed_logic": "Manches éliminatoires successives qui figent progressivement les positions, dernière manche resserrée aux meilleurs, publication d'une grille de départ",
+        "adaptation": "Parcours technique chronométré par équipe ; Q1/Q2 sur deux stations en parallèle, Q3 un par un sur le terrain central ; la grille fixe les têtes de série des poules"
+      },
+      {
+        "source_event": "Révélations en direct des émissions et des tirages au sort",
+        "source_sector": "tv_media",
+        "borrowed_logic": "Moment de révélation collectif, suspense, écran géant",
+        "adaptation": "Révélation animée de la grille et du placement serpentin en poules"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Journée unique. Matin : qualifications chronométrées (Q1, Q2, Q3) sur un parcours technique par équipe → grille de départ par catégorie. Midi : révélation de la grille et constitution des poules par placement serpentin. Après-midi : 6 poules de 4 (4 Open, 2 Féminines) en règles 3x3 adaptées, puis phases finales (quarts Open, demi-finales, finales sur le terrain central), podiums.",
+    "rules_summary": "Règles officielles du 3x3 FIBA en vigueur (version à vérifier et à citer dans le règlement), avec adaptations amateurs déclarées : matchs de poule 8 minutes ou 15 points, phases finales 10 minutes ou 21 points. Qualifications : parcours technique identique pour toutes les équipes, 90 secondes maximum, temps + pénalités, 2 juges par station. Open : Q1 (16 équipes) fige les places 11 à 16, Q2 (10) fige 5 à 10, Q3 (4, un par un) attribue 1 à 4. Féminines : Q1 (8) fige 5 à 8, Q3 (4) attribue 1 à 4.",
+    "duration_hours": 10.5,
+    "edition_cadence": "annuelle (option : 2 éditions par an, printemps en salle / été en extérieur), cumulées dans un classement « Grille Series »",
+    "building_blocks": [
+      {
+        "type": "qualification",
+        "label": "Qualifications chronométrées en manches éliminatoires (Q1/Q2/Q3)",
+        "parameters": {
+          "stations": 2,
+          "run_max_s": 90,
+          "reset_s": 60,
+          "open": {
+            "q1": 16,
+            "q2": 10,
+            "q3": 4
+          },
+          "feminines": {
+            "q1": 8,
+            "q3": 4
+          }
+        }
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Placement serpentin des poules selon la grille",
+        "parameters": {
+          "open_pools": 4,
+          "fem_pools": 2,
+          "pool_size": 4
+        }
+      },
+      {
+        "type": "regles",
+        "label": "Règles 3x3 adaptées au temps disponible",
+        "parameters": {
+          "pool_game": "8 min ou 15 pts",
+          "ko_game": "10 min ou 21 pts"
+        }
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Révélation de la grille sur écran, annoncée par le speaker"
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Entrée des finalistes par numéro de grille"
+      },
+      {
+        "type": "recompenses",
+        "label": "Trophée de la pole + choix du terrain des matchs de poule pour l'équipe en pole"
+      },
+      {
+        "type": "interaction_public",
+        "label": "Concours public « Ta place sur la grille » pendant la pause"
+      },
+      {
+        "type": "interaction_public",
+        "label": "Prédiction gratuite de l'équipe en pole (sans achat)"
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Grille, poules et scores en direct sur une page web publique (QR code)"
+      },
+      {
+        "type": "scenographie",
+        "label": "Grille de départ marquée au sol, zone photo officielle"
+      },
+      {
+        "type": "scenographie",
+        "label": "Pit wall : zone équipes entre les deux terrains"
+      },
+      {
+        "type": "son_lumiere",
+        "label": "Habillage sonore des qualifs : compte à rebours, top départ, jingle de pole"
+      },
+      {
+        "type": "monetisation",
+        "label": "Billetterie journée, inscriptions, buvette, packs partenaires par manche et par terrain"
+      },
+      {
+        "type": "fidelisation",
+        "label": "Grille Series : points cumulés d'une édition à l'autre, passeport d'équipe"
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Q3 « présentée par » un partenaire, remise du trophée de la pole"
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Clips verticaux des runs Q3, de la révélation et des finales ; photo d'équipe sur la grille"
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 18,
+      "central": 24,
+      "ambitieux": 24
+    },
+    "team_size": 4,
+    "categories": [
+      "Open (16 équipes)",
+      "Féminines (8 équipes)"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 250,
+      "central": 450,
+      "ambitieux": 700
+    },
+    "paying_share": 0.7,
+    "arrival_profile": [
+      {
+        "from_min": 0,
+        "to_min": 120,
+        "share": 0.15
+      },
+      {
+        "from_min": 120,
+        "to_min": 210,
+        "share": 0.15
+      },
+      {
+        "from_min": 210,
+        "to_min": 420,
+        "share": 0.35
+      },
+      {
+        "from_min": 420,
+        "to_min": 540,
+        "share": 0.35
+      }
+    ],
+    "avg_dwell_min": 180,
+    "doors_open_min": 570
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 900,
+    "spaces": [
+      {
+        "id": "terrain",
+        "type": "aire_de_jeu",
+        "label": "Aire de jeu 3x3 (15 × 11 m, à vérifier) — dégagements en sus, à vérifier",
+        "width_m": 15,
+        "length_m": 11
+      },
+      {
+        "id": "tribune",
+        "type": "tribune",
+        "label": "Places assises",
+        "capacity": 250
+      },
+      {
+        "id": "accueil",
+        "type": "accueil",
+        "label": "Hall d'accueil (billetterie, buvette)",
+        "area_m2": 100
+      }
+    ],
+    "power_kw": 9,
+    "internet": "4G/5G suffisante pour la page de scores ; Wi-Fi du lieu apprécié",
+    "notes": "Deux paniers latéraux utilisables pour deux terrains 3x3 côte à côte. Positions des paniers à relever sur place : elles conditionnent l'implantation."
+  },
+  "venue": {
+    "id": "gymnase-archetype-44x24",
+    "name": "Gymnase municipal — archétype (à remplacer par le lieu réel)",
+    "type": "gymnase",
+    "city": "Ville moyenne française (hypothèse)",
+    "country": "FR",
+    "setting": "interieur",
+    "erp": {
+      "type_erp": "X",
+      "categorie": null,
+      "effectif_autorise": 600,
+      "document_ref": "HYPOTHÈSE : effectif à obtenir de l'exploitant (notice de sécurité, avis de la commission de sécurité)"
+    },
+    "dimensions": {
+      "width_m": 44,
+      "length_m": 28,
+      "height_m": 7
+    },
+    "spaces": [
+      {
+        "id": "T1",
+        "type": "aire_de_jeu",
+        "label": "Terrain 1 — central (qualifs Q3, finales)",
+        "width_m": 15,
+        "length_m": 11,
+        "x_m": 3,
+        "y_m": 1,
+        "fixed": false
+      },
+      {
+        "id": "T2",
+        "type": "aire_de_jeu",
+        "label": "Terrain 2",
+        "width_m": 15,
+        "length_m": 11,
+        "x_m": 26,
+        "y_m": 1,
+        "fixed": false
+      },
+      {
+        "id": "PW",
+        "type": "autre",
+        "label": "Pit wall — zone équipes et table de marque",
+        "width_m": 8,
+        "length_m": 9,
+        "x_m": 18,
+        "y_m": 1
+      },
+      {
+        "id": "SC",
+        "type": "regie",
+        "label": "Écran de la grille + régie speaker/vidéo",
+        "width_m": 6,
+        "length_m": 2,
+        "x_m": 19,
+        "y_m": 10.5
+      },
+      {
+        "id": "ZD",
+        "type": "tribune",
+        "label": "Zone spectateurs debout (front de terrain, portillons aux extrémités)",
+        "width_m": 38,
+        "length_m": 4,
+        "x_m": 3,
+        "y_m": 14,
+        "capacity": null,
+        "standing": true
+      },
+      {
+        "id": "PMR",
+        "type": "tribune",
+        "label": "Emplacements PMR avec vue dégagée",
+        "width_m": 5,
+        "length_m": 2,
+        "x_m": 19.5,
+        "y_m": 14,
+        "capacity": 8,
+        "accessible_pmr": true
+      },
+      {
+        "id": "AL",
+        "type": "circulation",
+        "label": "Allée de circulation et d'évacuation (largeur à valider)",
+        "width_m": 44,
+        "length_m": 2,
+        "x_m": 0,
+        "y_m": 18
+      },
+      {
+        "id": "PH",
+        "type": "zone_photo",
+        "label": "Grille au sol — zone photo officielle",
+        "width_m": 11,
+        "length_m": 4,
+        "x_m": 1,
+        "y_m": 20
+      },
+      {
+        "id": "SP",
+        "type": "activation_sponsor",
+        "label": "Stands partenaires",
+        "width_m": 13,
+        "length_m": 4,
+        "x_m": 30,
+        "y_m": 20
+      },
+      {
+        "id": "SEC",
+        "type": "secours",
+        "label": "Poste de secours",
+        "width_m": 4,
+        "length_m": 4,
+        "x_m": 13,
+        "y_m": 20
+      },
+      {
+        "id": "TF",
+        "type": "tribune",
+        "label": "Gradins fixes (hypothèse 250 places)",
+        "width_m": 44,
+        "length_m": 4,
+        "x_m": 0,
+        "y_m": 24,
+        "capacity": 250,
+        "fixed": true
+      },
+      {
+        "id": "HALL",
+        "type": "accueil",
+        "label": "Hall d'entrée : billetterie, accréditations, buvette (hors aire de jeu)",
+        "area_m2": 110
+      },
+      {
+        "id": "VEST",
+        "type": "vestiaire",
+        "label": "Vestiaires (2) — existants"
+      },
+      {
+        "id": "STOCK",
+        "type": "stockage",
+        "label": "Local matériel — existant"
+      }
+    ],
+    "access_points": [
+      {
+        "id": "E1",
+        "kind": "entree_public",
+        "x_m": 0,
+        "y_m": 19
+      },
+      {
+        "id": "S1",
+        "kind": "sortie_secours",
+        "x_m": 44,
+        "y_m": 19
+      },
+      {
+        "id": "S2",
+        "kind": "sortie_secours",
+        "x_m": 0,
+        "y_m": 8
+      },
+      {
+        "id": "TECH",
+        "kind": "acces_technique",
+        "x_m": 44,
+        "y_m": 6
+      },
+      {
+        "id": "PMR1",
+        "kind": "acces_pmr",
+        "x_m": 0,
+        "y_m": 19
+      }
+    ],
+    "utilities": {
+      "power_kw_available": null,
+      "internet": "à vérifier",
+      "toilets": null,
+      "toilets_pmr": null,
+      "changing_rooms": 2,
+      "lighting": "éclairage sportif existant",
+      "acoustics": "réverbération typique de salle de sport : sonorisation directive conseillée"
+    },
+    "constraints": {
+      "opening_hours": "à négocier : J-1 18:00 → J 21:30",
+      "setup_window": "J-1 18:00–21:30 et J 07:00–09:00",
+      "teardown_window": "J 19:10–21:00",
+      "floor_protection": "Adhésifs compatibles parquet sportif uniquement ; aucune boisson dans l'aire de jeu",
+      "other": [
+        "Positions des paniers latéraux à relever",
+        "Effectif autorisé à confirmer par l'exploitant",
+        "Enveloppe de 44 × 28 m : aire sportive 44 × 24 m + gradins fixes en bordure (y 24–28), à relever",
+        "Dimensions du terrain 3x3 et dégagements à vérifier dans le règlement officiel en vigueur",
+        "Largeurs et unités de passage de chaque accès à relever avec l'exploitant"
+      ]
+    },
+    "rental_cost": null
+  },
+  "program": [
+    {
+      "id": "m1",
+      "label": "Montage J-1 : marquage des terrains, grille au sol, écran, PLV",
+      "kind": "montage",
+      "start_min": -360,
+      "duration_min": 210,
+      "space": "T1",
+      "owner_role": "Responsable logistique"
+    },
+    {
+      "id": "m2",
+      "label": "Montage J : sono, régie, chronométrage, accueil, buvette",
+      "kind": "montage",
+      "start_min": 420,
+      "duration_min": 90,
+      "depends_on": [
+        "m1"
+      ],
+      "owner_role": "Responsable logistique"
+    },
+    {
+      "id": "t1",
+      "label": "Tests techniques : son, vidéo, chronométrage, page de scores",
+      "kind": "montage",
+      "start_min": 510,
+      "duration_min": 30,
+      "depends_on": [
+        "m2"
+      ],
+      "owner_role": "Régisseur",
+      "critical": true
+    },
+    {
+      "id": "a1",
+      "label": "Accueil des équipes : vérifications, bracelets, numéros",
+      "kind": "accueil",
+      "start_min": 540,
+      "duration_min": 45,
+      "space": "HALL",
+      "owner_role": "Responsable accueil"
+    },
+    {
+      "id": "a2",
+      "label": "Ouverture des portes au public",
+      "kind": "accueil",
+      "start_min": 570,
+      "duration_min": 5,
+      "space": "HALL",
+      "owner_role": "Responsable accueil"
+    },
+    {
+      "id": "b1",
+      "label": "Briefing capitaines : parcours, règlement, réclamations",
+      "kind": "accueil",
+      "start_min": 585,
+      "duration_min": 15,
+      "space": "PW",
+      "owner_role": "Responsable compétition"
+    },
+    {
+      "id": "q0",
+      "label": "Ouverture : présentation du format et du parcours (démonstration)",
+      "kind": "show",
+      "start_min": 600,
+      "duration_min": 10,
+      "space": "T1",
+      "owner_role": "Speaker",
+      "cues": [
+        "Jingle d'ouverture",
+        "Démonstration du parcours par un bénévole"
+      ]
+    },
+    {
+      "id": "q1",
+      "label": "Q1 Open — 16 équipes, 2 stations",
+      "kind": "competition",
+      "start_min": 610,
+      "duration_min": 25,
+      "space": "T1 + T2",
+      "owner_role": "Responsable compétition",
+      "cues": [
+        "Compte à rebours avant chaque run",
+        "Affichage des temps"
+      ],
+      "stage_ref": "q1-open"
+    },
+    {
+      "id": "q2",
+      "label": "Q1 Féminines — 8 équipes, 2 stations",
+      "kind": "competition",
+      "start_min": 635,
+      "duration_min": 12,
+      "space": "T1 + T2",
+      "owner_role": "Responsable compétition",
+      "stage_ref": "q1-fem"
+    },
+    {
+      "id": "q3",
+      "label": "Q2 Open — 10 équipes, 2 stations",
+      "kind": "competition",
+      "start_min": 650,
+      "duration_min": 15,
+      "space": "T1 + T2",
+      "owner_role": "Responsable compétition",
+      "stage_ref": "q2-open"
+    },
+    {
+      "id": "q4",
+      "label": "Q3 Féminines — top 4, un par un, terrain central",
+      "kind": "competition",
+      "start_min": 665,
+      "duration_min": 12,
+      "space": "T1",
+      "owner_role": "Responsable compétition",
+      "cues": [
+        "Lumière salle réduite si possible",
+        "Silence avant départ",
+        "Jingle de pole"
+      ],
+      "stage_ref": "q3-fem"
+    },
+    {
+      "id": "q5",
+      "label": "Q3 Open — top 4, un par un, terrain central",
+      "kind": "competition",
+      "start_min": 680,
+      "duration_min": 12,
+      "space": "T1",
+      "owner_role": "Responsable compétition",
+      "cues": [
+        "Q3 présentée par le partenaire",
+        "Jingle de pole"
+      ],
+      "stage_ref": "q3-open"
+    },
+    {
+      "id": "r1",
+      "label": "Révélation de la grille et placement serpentin des poules",
+      "kind": "show",
+      "start_min": 695,
+      "duration_min": 15,
+      "space": "SC",
+      "owner_role": "Speaker",
+      "cues": [
+        "Écran : animation de la grille",
+        "Remise du trophée de la pole"
+      ]
+    },
+    {
+      "id": "l1",
+      "label": "Pause déjeuner + concours public « Ta place sur la grille »",
+      "kind": "animation",
+      "start_min": 710,
+      "duration_min": 70,
+      "space": "T2",
+      "owner_role": "Responsable animation"
+    },
+    {
+      "id": "p1",
+      "label": "Poules — 36 matchs (4 Open + 2 Féminines), 2 terrains, créneaux de 12 min",
+      "kind": "competition",
+      "start_min": 780,
+      "duration_min": 216,
+      "space": "T1 + T2",
+      "depends_on": [
+        "r1"
+      ],
+      "owner_role": "Responsable compétition",
+      "stage_ref": "poules"
+    },
+    {
+      "id": "s1",
+      "label": "Show de mi-parcours : défi public et annonce du tableau final",
+      "kind": "show",
+      "start_min": 996,
+      "duration_min": 24,
+      "space": "T1",
+      "owner_role": "Speaker"
+    },
+    {
+      "id": "k1",
+      "label": "Quarts de finale Open — 2 créneaux de 15 min",
+      "kind": "competition",
+      "start_min": 1020,
+      "duration_min": 30,
+      "space": "T1 + T2",
+      "depends_on": [
+        "p1"
+      ],
+      "owner_role": "Responsable compétition",
+      "stage_ref": "ko-open"
+    },
+    {
+      "id": "k2",
+      "label": "Demi-finales Open",
+      "kind": "competition",
+      "start_min": 1065,
+      "duration_min": 15,
+      "space": "T1 + T2",
+      "depends_on": [
+        "k1"
+      ],
+      "owner_role": "Responsable compétition",
+      "stage_ref": "ko-open"
+    },
+    {
+      "id": "k3",
+      "label": "Demi-finales Féminines",
+      "kind": "competition",
+      "start_min": 1050,
+      "duration_min": 15,
+      "space": "T1 + T2",
+      "depends_on": [
+        "p1"
+      ],
+      "owner_role": "Responsable compétition",
+      "stage_ref": "ko-fem"
+    },
+    {
+      "id": "s2",
+      "label": "Entracte : entrée des finalistes par numéro de grille",
+      "kind": "show",
+      "start_min": 1080,
+      "duration_min": 10,
+      "space": "T1",
+      "owner_role": "Speaker"
+    },
+    {
+      "id": "f1",
+      "label": "Finale Féminines — terrain central",
+      "kind": "competition",
+      "start_min": 1090,
+      "duration_min": 15,
+      "space": "T1",
+      "depends_on": [
+        "k3"
+      ],
+      "owner_role": "Responsable compétition",
+      "critical": true,
+      "stage_ref": "ko-fem"
+    },
+    {
+      "id": "f2",
+      "label": "Finale Open — terrain central",
+      "kind": "competition",
+      "start_min": 1110,
+      "duration_min": 15,
+      "space": "T1",
+      "depends_on": [
+        "k2"
+      ],
+      "owner_role": "Responsable compétition",
+      "critical": true,
+      "stage_ref": "ko-open"
+    },
+    {
+      "id": "c1",
+      "label": "Podiums, récompenses, photo officielle sur la grille",
+      "kind": "ceremonie",
+      "start_min": 1130,
+      "duration_min": 20,
+      "space": "PH",
+      "owner_role": "Speaker",
+      "critical": true
+    },
+    {
+      "id": "d1",
+      "label": "Démontage, nettoyage, restitution du lieu",
+      "kind": "demontage",
+      "start_min": 1150,
+      "duration_min": 110,
+      "owner_role": "Responsable logistique"
+    }
+  ],
+  "competition": {
+    "stages": [
+      {
+        "id": "q1-open",
+        "label": "Q1 Open",
+        "type": "time_trial",
+        "entrants": 16,
+        "slot_duration_min": 1.5,
+        "changeover_min": 1,
+        "parallel_units": 2,
+        "advance": 10
+      },
+      {
+        "id": "q1-fem",
+        "label": "Q1 Féminines",
+        "type": "time_trial",
+        "entrants": 8,
+        "slot_duration_min": 1.5,
+        "changeover_min": 1,
+        "parallel_units": 2,
+        "advance": 4
+      },
+      {
+        "id": "q2-open",
+        "label": "Q2 Open",
+        "type": "time_trial",
+        "entrants": 10,
+        "slot_duration_min": 1.5,
+        "changeover_min": 1,
+        "parallel_units": 2,
+        "advance": 4
+      },
+      {
+        "id": "q3-fem",
+        "label": "Q3 Féminines",
+        "type": "time_trial",
+        "entrants": 4,
+        "slot_duration_min": 1.5,
+        "changeover_min": 1,
+        "parallel_units": 1
+      },
+      {
+        "id": "q3-open",
+        "label": "Q3 Open",
+        "type": "time_trial",
+        "entrants": 4,
+        "slot_duration_min": 1.5,
+        "changeover_min": 1,
+        "parallel_units": 1
+      },
+      {
+        "id": "poules",
+        "label": "Poules (6 × 4)",
+        "type": "round_robin",
+        "entrants": 24,
+        "groups": 6,
+        "slot_duration_min": 10,
+        "changeover_min": 2,
+        "parallel_units": 2,
+        "advance": 12
+      },
+      {
+        "id": "ko-open",
+        "label": "Tableau final Open (8)",
+        "type": "single_elimination",
+        "entrants": 8,
+        "slot_duration_min": 13,
+        "changeover_min": 2,
+        "parallel_units": 2
+      },
+      {
+        "id": "ko-fem",
+        "label": "Tableau final Féminines (4)",
+        "type": "single_elimination",
+        "entrants": 4,
+        "slot_duration_min": 13,
+        "changeover_min": 2,
+        "parallel_units": 2
+      }
+    ]
+  },
+  "resources": {
+    "staff": [
+      {
+        "role": "Directeur de l'événement",
+        "count": 1,
+        "status": "prestataire",
+        "hours": 14,
+        "ratio_note": "Coordination studio"
+      },
+      {
+        "role": "Trésorier",
+        "count": 1,
+        "status": "benevole",
+        "hours": 6,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable communication",
+        "count": 1,
+        "status": "benevole",
+        "hours": 11,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable bénévoles",
+        "count": 1,
+        "status": "benevole",
+        "hours": 12,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable buvette",
+        "count": 1,
+        "status": "benevole",
+        "hours": 11,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable animation",
+        "count": 1,
+        "status": "benevole",
+        "hours": 10,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable accueil",
+        "count": 1,
+        "status": "benevole",
+        "hours": 12,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable logistique",
+        "count": 1,
+        "status": "benevole",
+        "hours": 14,
+        "ratio_note": "Membre de l'équipe cœur (bureau ou commission de l'association)"
+      },
+      {
+        "role": "Responsable compétition",
+        "count": 1,
+        "status": "benevole",
+        "hours": 12
+      },
+      {
+        "role": "Arbitres (1 par terrain + 2 en rotation)",
+        "count": 4,
+        "status": "prestataire",
+        "hours": 9,
+        "ratio_note": "Indemnités à confirmer avec l'instance d'arbitrage locale"
+      },
+      {
+        "role": "Officiels de table / chrono de tir",
+        "count": 4,
+        "status": "benevole",
+        "hours": 9
+      },
+      {
+        "role": "Juges de qualifications (2 par station)",
+        "count": 4,
+        "status": "benevole",
+        "hours": 3
+      },
+      {
+        "role": "Speaker",
+        "count": 1,
+        "status": "prestataire",
+        "hours": 10,
+        "ratio_note": "Animation micro"
+      },
+      {
+        "role": "Régisseur",
+        "count": 1,
+        "status": "benevole",
+        "hours": 13,
+        "ratio_note": "Son, vidéo, écran de la grille, scores"
+      },
+      {
+        "role": "Accueil public et billetterie",
+        "count": 4,
+        "status": "benevole",
+        "hours": 10
+      },
+      {
+        "role": "Accueil équipes et accréditations",
+        "count": 2,
+        "status": "benevole",
+        "hours": 5
+      },
+      {
+        "role": "Orientation et placement",
+        "count": 3,
+        "status": "benevole",
+        "hours": 8
+      },
+      {
+        "role": "Buvette (2 caisses × 2, rotations)",
+        "count": 6,
+        "status": "benevole",
+        "hours": 6
+      },
+      {
+        "role": "Montage / démontage",
+        "count": 8,
+        "status": "benevole",
+        "hours": 6
+      },
+      {
+        "role": "Vidéaste (formats verticaux)",
+        "count": 1,
+        "status": "prestataire",
+        "hours": 9
+      },
+      {
+        "role": "Photographe bénévole",
+        "count": 1,
+        "status": "benevole",
+        "hours": 9
+      },
+      {
+        "role": "Référent accessibilité",
+        "count": 1,
+        "status": "benevole",
+        "hours": 10
+      },
+      {
+        "role": "Référent partenaires",
+        "count": 1,
+        "status": "benevole",
+        "hours": 9,
+        "ratio_note": "Partenaires et invités"
+      },
+      {
+        "role": "Secouristes (association agréée de sécurité civile)",
+        "count": 0,
+        "status": "prestataire",
+        "hours": 11,
+        "ratio_note": "Effectif fixé par l'association agréée selon le dimensionnement du dispositif — non calculé par EVENT LAB"
+      },
+      {
+        "role": "Agents de sécurité / SSIAP selon exigences de l'exploitant",
+        "count": 2,
+        "status": "prestataire",
+        "hours": 11,
+        "ratio_note": "À confirmer avec l'exploitant du lieu"
+      },
+      {
+        "role": "Bureau de l'association",
+        "count": 0,
+        "status": "benevole",
+        "ratio_note": "Instance de décision (go/no-go), non comptée dans les effectifs du jour J"
+      }
+    ],
+    "equipment": [
+      {
+        "item": "Sonorisation (2 enceintes + caisson + table + 2 micros HF)",
+        "qty": 1,
+        "source": "location",
+        "power_w": 2000
+      },
+      {
+        "item": "Vidéoprojecteur grande luminosité + écran 4 × 3 m (affichage de la grille)",
+        "qty": 1,
+        "source": "location",
+        "power_w": 800
+      },
+      {
+        "item": "Ordinateur de régie (grille, scores, page web)",
+        "qty": 1,
+        "source": "possede",
+        "power_w": 150
+      },
+      {
+        "item": "Chronométrage électronique des qualifications (cellules ou tablette)",
+        "qty": 2,
+        "source": "location",
+        "power_w": 50
+      },
+      {
+        "item": "Afficheurs de score et chronos de tir 3x3",
+        "qty": 2,
+        "source": "lieu",
+        "power_w": 200,
+        "notes": "À défaut : tablettes + chronos de tir portatifs"
+      },
+      {
+        "item": "Ballons 3x3 officiels",
+        "qty": 8,
+        "source": "achat"
+      },
+      {
+        "item": "Kit parcours de qualification par station : 5 plots, 4 haies souples, 2 cerceaux",
+        "qty": 2,
+        "source": "achat",
+        "notes": "2 stations identiques, contrôlées au mètre avant Q1"
+      },
+      {
+        "item": "Adhésif de marquage compatible parquet (terrains, grille au sol)",
+        "qty": 6,
+        "source": "achat"
+      },
+      {
+        "item": "Tables (accueil, marque, buvette)",
+        "qty": 10,
+        "source": "lieu"
+      },
+      {
+        "item": "Barrières ou potelets à sangle (front de la zone debout ≈ 2 × 38 m, linéaire à recalculer sur plan)",
+        "qty": 40,
+        "source": "lieu"
+      },
+      {
+        "item": "Réfrigérateurs buvette",
+        "qty": 2,
+        "source": "pret_partenaire",
+        "power_w": 600
+      },
+      {
+        "item": "Gobelets réutilisables consignés",
+        "qty": 500,
+        "source": "location"
+      },
+      {
+        "item": "Groupe électrogène de secours (option)",
+        "qty": 0,
+        "source": "location",
+        "notes": "Seulement si l'alimentation du lieu est jugée fragile"
+      },
+      {
+        "item": "Chronomètres manuels de secours",
+        "qty": 4,
+        "source": "achat"
+      },
+      {
+        "item": "Radios portatives",
+        "qty": 8,
+        "source": "location",
+        "power_w": 5
+      },
+      {
+        "item": "Compteurs manuels entrées / sorties",
+        "qty": 2,
+        "source": "achat"
+      },
+      {
+        "item": "Grille magnétique physique grand format (secours de l'écran)",
+        "qty": 1,
+        "source": "achat"
+      },
+      {
+        "item": "Passe-câbles et kit de protection du sol",
+        "qty": 1,
+        "source": "location"
+      },
+      {
+        "item": "Dossards d'équipe",
+        "qty": 100,
+        "source": "achat"
+      },
+      {
+        "item": "Terminaux de paiement par carte",
+        "qty": 2,
+        "source": "location",
+        "power_w": 5
+      },
+      {
+        "item": "Routeur 4G/5G (page de scores, billetterie)",
+        "qty": 1,
+        "source": "location",
+        "power_w": 15
+      },
+      {
+        "item": "Casques anti-bruit (enfants, personnes hypersensibles)",
+        "qty": 10,
+        "source": "achat"
+      },
+      {
+        "item": "Eau gratuite (fontaine ou bonbonnes)",
+        "qty": 1,
+        "source": "pret_partenaire"
+      }
+    ]
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "E01",
+        "category": "Lieu",
+        "label": "Mise à disposition du gymnase (tarif associatif municipal)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1,
+        "pay_offset_days": -15
+      },
+      {
+        "id": "E02",
+        "category": "Assurance",
+        "label": "Assurance responsabilité civile organisateur (1 journée)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -30
+      },
+      {
+        "id": "E03",
+        "category": "Sécurité et secours",
+        "label": "Dispositif prévisionnel de secours (association agréée)",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E04",
+        "category": "Sécurité et secours",
+        "label": "Agents de sécurité / SSIAP selon exigences de l'exploitant",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E05",
+        "category": "Compétition",
+        "label": "Arbitres (4 indemnités journée)",
+        "amount": 320,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": 0
+      },
+      {
+        "id": "E06",
+        "category": "Compétition",
+        "label": "Ballons 3x3 (8)",
+        "amount": 240,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -30
+      },
+      {
+        "id": "E07",
+        "category": "Compétition",
+        "label": "Marquage des terrains et de la grille au sol (adhésif parquet)",
+        "amount": 120,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -10
+      },
+      {
+        "id": "E08",
+        "category": "Compétition",
+        "label": "Chronométrage des qualifications (location)",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -10
+      },
+      {
+        "id": "E09",
+        "category": "Technique",
+        "label": "Sonorisation + micros + animation musicale",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E10",
+        "category": "Technique",
+        "label": "Vidéoprojection grand format (écran de la grille)",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E11",
+        "category": "Animation",
+        "label": "Speaker / animateur",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": 0
+      },
+      {
+        "id": "E12",
+        "category": "Signalétique",
+        "label": "Signalétique, bâches, kakémonos, numéros de grille",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -21
+      },
+      {
+        "id": "E13",
+        "category": "Récompenses",
+        "label": "Trophées et dotations",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -14
+      },
+      {
+        "id": "E14",
+        "category": "Communication",
+        "label": "Impressions (affiches, flyers, programme)",
+        "amount": 250,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -45
+      },
+      {
+        "id": "E14b",
+        "category": "Communication",
+        "label": "Publicité payante sur les réseaux sociaux (engagée après le go/no-go de J-30)",
+        "amount": 350,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "optional": true,
+        "priority": 3,
+        "pay_offset_days": -25
+      },
+      {
+        "id": "E15",
+        "category": "Contenu",
+        "label": "Vidéaste freelance (formats verticaux, aftermovie court)",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "optional": true,
+        "priority": 3,
+        "pay_offset_days": 7
+      },
+      {
+        "id": "E16",
+        "category": "Bénévoles",
+        "label": "T-shirts staff (45)",
+        "amount": 270,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "optional": true,
+        "priority": 3,
+        "pay_offset_days": -21
+      },
+      {
+        "id": "E17",
+        "category": "Bénévoles",
+        "label": "Repas bénévoles, officiels et prestataires (55)",
+        "amount": 550,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": 0
+      },
+      {
+        "id": "E18",
+        "category": "Droits",
+        "label": "Droits musicaux (barème à vérifier)",
+        "amount": 200,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E19",
+        "category": "Logistique",
+        "label": "Location utilitaire + carburant",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -1
+      },
+      {
+        "id": "E20",
+        "category": "Logistique",
+        "label": "Matériel divers (gobelets consignés, rubalise, consommables)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -7
+      },
+      {
+        "id": "E21",
+        "category": "Coordination",
+        "label": "Coordination de production et licence du format (prestation studio)",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 2,
+        "pay_offset_days": 30
+      },
+      {
+        "id": "E22",
+        "category": "Buvette",
+        "label": "Achats buvette (coût marchandises ≈ 40 % du chiffre d'affaires)",
+        "amount": 2.4,
+        "basis": "per_attendee",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -2
+      },
+      {
+        "id": "E23",
+        "category": "Accessibilité",
+        "label": "Aménagements accessibilité (signalétique facile à lire, réservation PMR)",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2,
+        "pay_offset_days": -14
+      },
+      {
+        "id": "E24",
+        "category": "Logistique",
+        "label": "Matériel complémentaire (radios, compteurs, dossards, grille magnétique, passe-câbles, casques anti-bruit)",
+        "amount": 450,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1,
+        "pay_offset_days": -10
+      },
+      {
+        "id": "E25",
+        "category": "Billetterie",
+        "label": "Frais de paiement par carte sur place (hypothèse, ramenés à chaque spectateur)",
+        "amount": 0.15,
+        "basis": "per_attendee",
+        "certainty": "hypothese",
+        "priority": 2,
+        "pay_offset_days": 7
+      }
+    ],
+    "revenues": [
+      {
+        "id": "R01",
+        "stream": "billetterie",
+        "label": "Entrée journée en prévente en ligne (5 €, hypothèse : 60 % des payants)",
+        "unit_amount": 3,
+        "basis": "per_paying_attendee",
+        "certainty": "probable",
+        "cash_offset_days": -7
+      },
+      {
+        "id": "R01b",
+        "stream": "billetterie",
+        "label": "Entrée journée sur place (5 €, hypothèse : 40 % des payants)",
+        "unit_amount": 2,
+        "basis": "per_paying_attendee",
+        "certainty": "probable",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R02",
+        "stream": "inscriptions",
+        "label": "Inscriptions équipes (60 € par équipe de 4)",
+        "unit_amount": 60,
+        "basis": "per_participant",
+        "certainty": "probable",
+        "cash_offset_days": -21
+      },
+      {
+        "id": "R03",
+        "stream": "restauration",
+        "label": "Buvette (dépense moyenne 6 € par spectateur)",
+        "unit_amount": 6,
+        "basis": "per_attendee",
+        "certainty": "probable",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R04",
+        "stream": "restauration",
+        "label": "Redevance food trucks (2 × 100 €)",
+        "unit_amount": 200,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R05",
+        "stream": "merchandising",
+        "label": "T-shirts LA GRILLE (marge nette sur 40 ventes)",
+        "unit_amount": 300,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R06",
+        "stream": "sponsoring",
+        "label": "Partenaire titre — acompte 50 % à la signature",
+        "unit_amount": 2000,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": -45
+      },
+      {
+        "id": "R06b",
+        "stream": "sponsoring",
+        "label": "Partenaire titre — solde 50 % après l'événement",
+        "unit_amount": 2000,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 7
+      },
+      {
+        "id": "R07",
+        "stream": "sponsoring",
+        "label": "Partenaires officiels (3 × 1 200 €)",
+        "unit_amount": 3600,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R08",
+        "stream": "sponsoring",
+        "label": "Partenaires locaux (4 × 400 €)",
+        "unit_amount": 1600,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 0
+      },
+      {
+        "id": "R09",
+        "stream": "subvention",
+        "label": "Subvention municipale (animation sportive)",
+        "unit_amount": 3000,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 60
+      },
+      {
+        "id": "R10",
+        "stream": "subvention",
+        "label": "Subvention départementale ou régionale",
+        "unit_amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothetical",
+        "cash_offset_days": 90
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "economique",
+      "label": "Configuration économique",
+      "description": "Matériel du lieu et prêté, animation bénévole, pas de prestation studio, communication organique. Le speaker et la coordination sont assurés par des bénévoles de l'équipe cœur (les effectifs restent identiques, seuls les coûts changent).",
+      "expense_overrides": {
+        "E09": 400,
+        "E10": 300,
+        "E11": 0,
+        "E12": 300,
+        "E13": 300,
+        "E15": 0,
+        "E16": 0,
+        "E21": 0,
+        "E14": 150,
+        "E14b": 0
+      },
+      "revenue_overrides": {},
+      "kind": "economique"
+    },
+    {
+      "id": "premium",
+      "label": "Configuration premium",
+      "description": "Mur LED, éclairage scénique, captation multicaméra diffusée en direct, espace invités, signalétique renforcée. Suppose un partenaire titre à 8 000 € (pack titre premium : contreparties du pack titre + nommage de la diffusion en direct et de l'espace invités) et des packs invités entreprises à 40 € par personne.",
+      "expense_overrides": {
+        "E10": 3500,
+        "E12": 2000,
+        "E15": 1500,
+        "E14": 500,
+        "E14b": 1000
+      },
+      "expense_additions": [
+        {
+          "id": "E30",
+          "category": "Technique",
+          "label": "Éclairage scénique (finales, Q3)",
+          "amount": 2500,
+          "basis": "fixed",
+          "certainty": "hypothese",
+          "priority": 3,
+          "optional": true,
+          "pay_offset_days": -7
+        },
+        {
+          "id": "E31",
+          "category": "Contenu",
+          "label": "Captation multicaméra et diffusion en direct",
+          "amount": 2500,
+          "basis": "fixed",
+          "certainty": "hypothese",
+          "priority": 3,
+          "optional": true,
+          "pay_offset_days": -7
+        },
+        {
+          "id": "E32",
+          "category": "Hospitalité",
+          "label": "Espace invités et partenaires",
+          "amount": 1500,
+          "basis": "fixed",
+          "certainty": "hypothese",
+          "priority": 3,
+          "optional": true,
+          "pay_offset_days": -7
+        }
+      ],
+      "revenue_overrides": {
+        "R06": 4000,
+        "R06b": 4000
+      },
+      "revenue_additions": [
+        {
+          "id": "R11",
+          "stream": "premium",
+          "label": "Packs invités entreprises (30 × 40 €)",
+          "unit_amount": 1200,
+          "basis": "fixed",
+          "certainty": "hypothetical",
+          "cash_offset_days": -7
+        },
+        {
+          "id": "R12",
+          "stream": "digital",
+          "label": "Partenaire de la diffusion en direct",
+          "unit_amount": 1500,
+          "basis": "fixed",
+          "certainty": "hypothetical",
+          "cash_offset_days": 0
+        }
+      ],
+      "kind": "premium"
+    },
+    {
+      "id": "secours",
+      "kind": "secours",
+      "label": "Configuration de secours",
+      "description": "Repli dans une salle de 32 × 22 m (archétype HS-01) avec un seul terrain : 16 équipes, qualifications et poules sur une station, tableau final à 4. Coûts identiques à la standard par prudence ; jauge réduite.",
+      "participants_overrides": {
+        "count": {
+          "prudent": 16,
+          "central": 16,
+          "ambitieux": 16
+        }
+      },
+      "audience_overrides": {
+        "attendance": {
+          "prudent": 150,
+          "central": 250,
+          "ambitieux": 350
+        }
+      },
+      "venue_overrides": {
+        "name": "Salle de repli HS-01 (archétype 32 × 22 m, à remplacer par le lieu réel)",
+        "dimensions": {
+          "width_m": 32,
+          "length_m": 22,
+          "height_m": 7
+        }
+      },
+      "competition_overrides": [
+        {
+          "id": "q1",
+          "label": "Q1 (16 équipes, 1 station)",
+          "type": "time_trial",
+          "entrants": 16,
+          "slot_duration_min": 1.5,
+          "changeover_min": 1,
+          "parallel_units": 1,
+          "advance": 10
+        },
+        {
+          "id": "q2",
+          "label": "Q2 (10 équipes)",
+          "type": "time_trial",
+          "entrants": 10,
+          "slot_duration_min": 1.5,
+          "changeover_min": 1,
+          "parallel_units": 1,
+          "advance": 4
+        },
+        {
+          "id": "q3",
+          "label": "Q3 (4 équipes)",
+          "type": "time_trial",
+          "entrants": 4,
+          "slot_duration_min": 1.5,
+          "changeover_min": 1,
+          "parallel_units": 1
+        },
+        {
+          "id": "poules",
+          "label": "Poules (4 × 4, 1 terrain)",
+          "type": "round_robin",
+          "entrants": 16,
+          "groups": 4,
+          "slot_duration_min": 8,
+          "changeover_min": 2,
+          "parallel_units": 1,
+          "advance": 4
+        },
+        {
+          "id": "ko",
+          "label": "Tableau final (4)",
+          "type": "single_elimination",
+          "entrants": 4,
+          "slot_duration_min": 13,
+          "changeover_min": 2,
+          "parallel_units": 1
+        }
+      ],
+      "expense_overrides": {},
+      "revenue_overrides": {}
+    }
+  ],
+  "scenarios": {
+    "prudent": {
+      "realization": {
+        "secured": 1,
+        "probable": 0.5,
+        "hypothetical": 0
+      },
+      "cost_overrun": 0.15
+    },
+    "central": {
+      "realization": {
+        "secured": 1,
+        "probable": 0.8,
+        "hypothetical": 0.3
+      },
+      "cost_overrun": 0.05
+    },
+    "ambitieux": {
+      "realization": {
+        "secured": 1,
+        "probable": 1,
+        "hypothetical": 0.7
+      },
+      "cost_overrun": 0
+    }
+  },
+  "risks": [
+    {
+      "id": "R-01",
+      "category": "securite",
+      "description": "Afflux en fin de journée (finales) au-delà de l'effectif autorisé",
+      "probability": 3,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [
+        "Préventes au-dessus de 80 % de la jauge",
+        "Compteur d'entrées-sorties > 85 % de l'effectif autorisé à 17:00"
+      ],
+      "prevention": [
+        "Effectif autorisé confirmé par écrit par l'exploitant",
+        "Comptage entrées/sorties en continu (2 compteurs manuels)",
+        "Quota de billets par créneau horaire",
+        "Zone debout délimitée, allée d'évacuation tenue libre"
+      ],
+      "continuity_plan": "Fermeture temporaire des entrées à 95 % de l'effectif ; retransmission des finales sur l'écran du hall ; annonce micro et réseaux « complet »",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-02",
+      "category": "sante",
+      "description": "Blessure d'un joueur (entorse, choc, chute)",
+      "probability": 4,
+      "impact": 3,
+      "warning_signs": [
+        "Fatigue en fin de poules",
+        "Sol glissant"
+      ],
+      "prevention": [
+        "Dispositif de secours sur place",
+        "Échauffement encadré avant Q1",
+        "Sol vérifié avant chaque créneau"
+      ],
+      "continuity_plan": "Prise en charge par les secouristes ; remplaçant de l'équipe ; si équipe incomplète, forfait du match et maintien au classement",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-03",
+      "category": "sante",
+      "description": "Malaise d'un spectateur ou d'un joueur (chaleur, déshydratation)",
+      "probability": 2,
+      "impact": 4,
+      "prevention": [
+        "Points d'eau gratuits",
+        "Aération de la salle",
+        "Secouristes identifiés et visibles"
+      ],
+      "continuity_plan": "Procédure secours, interruption du match si nécessaire, reprise sur décision du responsable compétition",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-04",
+      "category": "operationnel",
+      "description": "Retard cumulé du programme (matchs qui débordent, transitions lentes)",
+      "probability": 4,
+      "impact": 3,
+      "warning_signs": [
+        "Plus de 5 min de retard à la fin de Q1",
+        "Créneau de poule > 13 min"
+      ],
+      "prevention": [
+        "Chronométrage strict des matchs (temps courant)",
+        "Équipes appelées 1 créneau à l'avance au pit wall",
+        "Show de mi-parcours compressible (tampon de 24 min)"
+      ],
+      "continuity_plan": "Compression du show s1 puis de la pause l1 ; si retard > 30 min : poules en 7 min ou 13 points (annoncé au briefing)",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-05",
+      "category": "operationnel",
+      "description": "Forfaits d'équipes le jour J",
+      "probability": 3,
+      "impact": 3,
+      "warning_signs": [
+        "Absence de confirmation à J-3"
+      ],
+      "prevention": [
+        "Inscription non remboursable sauf cas de force majeure",
+        "Confirmation obligatoire à J-3",
+        "Liste d'attente de 4 équipes"
+      ],
+      "continuity_plan": "Repêchage par ordre de la liste d'attente ; au-delà, poules de 3 (le simulateur recalcule le programme)",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-06",
+      "category": "technique",
+      "description": "Panne du chronométrage des qualifications",
+      "probability": 2,
+      "impact": 4,
+      "critical": true,
+      "prevention": [
+        "2 chronométreurs manuels par station en doublon",
+        "Test complet à 08:30",
+        "Piles et batteries de rechange"
+      ],
+      "continuity_plan": "Chronométrage manuel validé par les deux juges (moyenne des deux temps) ; si impossible, Q1/Q2 remplacées par un concours de tirs au nombre de paniers en 60 s",
+      "owner_role": "Régisseur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-07",
+      "category": "technique",
+      "description": "Panne de la vidéoprojection au moment de la révélation de la grille",
+      "probability": 2,
+      "impact": 3,
+      "prevention": [
+        "Test à 08:30",
+        "Grille physique magnétique grand format préparée en parallèle"
+      ],
+      "continuity_plan": "Révélation sur la grille physique au micro ; page web de scores en relais",
+      "owner_role": "Régisseur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-08",
+      "category": "financier",
+      "description": "Sponsoring et subventions inférieurs aux prévisions",
+      "probability": 4,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "Aucun partenaire titre signé à J-60",
+        "Recettes sécurisées < 30 % des dépenses à J-45"
+      ],
+      "prevention": [
+        "Jalons go/no-go à J-60 et J-30",
+        "Prospection partenaires dès J-120",
+        "Dépenses optionnelles engagées seulement après J-30"
+      ],
+      "continuity_plan": "Bascule en configuration économique (suppression des postes optionnels, matériel prêté) ; report de l'édition si les recettes sécurisées n'atteignent pas le seuil de la configuration économique",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-09",
+      "category": "reglementaire",
+      "description": "Vente d'alcool dans l'enceinte sportive sans autorisation",
+      "probability": 2,
+      "impact": 4,
+      "prevention": [
+        "Buvette sans alcool par défaut",
+        "Toute exception soumise à autorisation écrite préalable"
+      ],
+      "continuity_plan": "Sans objet si la règle par défaut est respectée",
+      "owner_role": "Responsable buvette",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-10",
+      "category": "reputationnel",
+      "description": "Contestation des résultats de qualification (équité du parcours)",
+      "probability": 3,
+      "impact": 3,
+      "prevention": [
+        "Règlement et vidéo du parcours publiés à J-30",
+        "Kits identiques sur les deux stations, contrôlés au mètre",
+        "2 juges par station, procédure de réclamation de 5 min"
+      ],
+      "continuity_plan": "Décision finale du responsable compétition, vidéo du run consultée si disponible ; communication transparente du temps et des pénalités",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-11",
+      "category": "juridique",
+      "description": "Participation de mineurs sans autorisation parentale",
+      "probability": 2,
+      "impact": 4,
+      "prevention": [
+        "Âge minimum 16 ans dans le règlement",
+        "Autorisation parentale exigée à l'inscription pour les 16–17 ans"
+      ],
+      "continuity_plan": "Refus de participation sur place si document absent ; équipe complétée par un remplaçant majeur",
+      "owner_role": "Responsable accueil",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-12",
+      "category": "securite",
+      "description": "Glissade sur le marquage au sol ou sur un sol mouillé",
+      "probability": 2,
+      "impact": 3,
+      "prevention": [
+        "Adhésif sportif adapté",
+        "Buvette dans le hall, aucune boisson dans l'aire de jeu",
+        "Serpillière et bénévole « sol » pendant les poules"
+      ],
+      "continuity_plan": "Arrêt du match, nettoyage, reprise",
+      "owner_role": "Responsable logistique",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-13",
+      "category": "operationnel",
+      "description": "Bénévoles insuffisants le jour J",
+      "probability": 3,
+      "impact": 4,
+      "warning_signs": [
+        "Moins de 30 bénévoles confirmés à J-14"
+      ],
+      "prevention": [
+        "Objectif de recrutement +20 %",
+        "Planning par créneau envoyé à J-7",
+        "Fiches de poste d'une page"
+      ],
+      "continuity_plan": "Fermeture d'une caisse buvette, regroupement accueil équipes/public, polyvalence des bénévoles de montage",
+      "owner_role": "Responsable bénévoles",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-14",
+      "category": "environnement",
+      "description": "Volume de déchets et gobelets jetables",
+      "probability": 3,
+      "impact": 2,
+      "prevention": [
+        "Gobelets réutilisables consignés",
+        "Points de tri",
+        "Eau en fontaine ou bonbonne plutôt qu'en bouteilles"
+      ],
+      "continuity_plan": "Bénévole tri dédié en fin de journée",
+      "owner_role": "Responsable logistique",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-15",
+      "category": "technique",
+      "description": "Indisponibilité du gymnase (travaux, réquisition, conflit de planning)",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "prevention": [
+        "Convention signée à J-90",
+        "Lieu de repli identifié (salle polyvalente ou terrain extérieur couvert)"
+      ],
+      "continuity_plan": "Configuration de secours : 1 terrain, 16 équipes, format resserré (voir plan d'implantation de secours)",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-16",
+      "category": "reputationnel",
+      "description": "Têtes de série mal calibrées : une équipe forte mal qualifiée se retrouve dans une poule déséquilibrée, perçue comme injuste",
+      "probability": 3,
+      "impact": 3,
+      "warning_signs": [
+        "Écarts de score supérieurs à 10 points dans plusieurs matchs de poule"
+      ],
+      "prevention": [
+        "Parcours conçu pour mobiliser tir, passe et dribble (pas seulement la vitesse)",
+        "Annonce claire : la grille récompense la préparation du parcours, pas le niveau supposé",
+        "Mesure après le pilote : corrélation rang de qualification / classement final"
+      ],
+      "continuity_plan": "Si la corrélation est faible après le pilote : la grille ne fixe plus que l'ordre de passage et le choix du terrain, les têtes de série reviennent au classement de l'édition précédente",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-17",
+      "category": "meteo",
+      "description": "Édition d'été en extérieur : chaleur, orage ou pluie",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "Vigilance météo orange à J-2",
+        "Température prévue au-dessus du seuil fixé dans le plan"
+      ],
+      "prevention": [
+        "Seuils météo écrits (chaleur, vent, orage) et décideur nommé",
+        "Ombrage, eau gratuite, horaires décalés",
+        "Lieu couvert de repli réservé"
+      ],
+      "continuity_plan": "Bascule sur la variante de secours (lieu couvert) décidée à J-2 ; interruption immédiate en cas d'orage ; report si le repli est indisponible",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-18",
+      "category": "operationnel",
+      "description": "Erreur de saisie dans la grille (temps, pénalités, ordre)",
+      "probability": 3,
+      "impact": 3,
+      "prevention": [
+        "Double saisie par deux juges",
+        "Affichage provisoire 2 minutes avant validation",
+        "Feuille papier signée par station"
+      ],
+      "continuity_plan": "Correction publique avant le tirage des poules ; après le tirage, la grille publiée fait foi sauf erreur matérielle constatée par le responsable compétition",
+      "owner_role": "Responsable compétition",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-19",
+      "category": "reglementaire",
+      "description": "Zone debout refusée par l'exploitant ou homologation requise au-delà de 500 spectateurs",
+      "probability": 3,
+      "impact": 4,
+      "prevention": [
+        "Demande écrite à J-90 (C-15, C-16)",
+        "Jauge sur places assises en hypothèse de repli"
+      ],
+      "continuity_plan": "Public limité aux places assises ; retransmission dans le hall ; billetterie plafonnée",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-20",
+      "category": "securite",
+      "description": "Coupure électrique du bâtiment (éclairage sportif)",
+      "probability": 1,
+      "impact": 5,
+      "critical": true,
+      "prevention": [
+        "Vérification de l'éclairage de sécurité avec l'exploitant",
+        "Procédure d'arrêt du jeu et d'évacuation guidée connue des responsables"
+      ],
+      "continuity_plan": "Arrêt immédiat du jeu, maintien du public en place ou évacuation guidée selon consigne de l'exploitant ; reprise après rétablissement, sinon report des finales",
+      "owner_role": "Directeur de l'événement",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-21",
+      "category": "financier",
+      "description": "Besoin de trésorerie non financé avant le jour J",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "prevention": [
+        "Financement nommé avant J-30 : avance de l'association, préventes, acompte du partenaire titre",
+        "Paiements fournisseurs négociés après l'événement quand c'est possible"
+      ],
+      "continuity_plan": "Report des dépenses optionnelles, paiement fractionné, bascule en configuration économique",
+      "owner_role": "Trésorier",
+      "status": "ouvert"
+    },
+    {
+      "id": "R-22",
+      "category": "juridique",
+      "description": "Bénévole encadrant des mineurs sans contrôle d'honorabilité",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "prevention": [
+        "Contrôle d'honorabilité des encadrants de mineurs (C-19)",
+        "Missions auprès des mineurs en binôme"
+      ],
+      "continuity_plan": "Retrait immédiat du bénévole de toute mission auprès de mineurs ; signalement selon la procédure applicable",
+      "owner_role": "Responsable bénévoles",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C-01",
+      "item": "Convention de mise à disposition du gymnase (exploitant / commune)",
+      "authority": "Commune, service des sports",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -90
+    },
+    {
+      "id": "C-02",
+      "item": "Effectif maximal autorisé et classement ERP du lieu confirmés par écrit",
+      "authority": "Exploitant du lieu",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60
+    },
+    {
+      "id": "C-03",
+      "item": "Assurance responsabilité civile de l'organisateur couvrant la manifestation",
+      "authority": "Assureur",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C-04",
+      "item": "Déclaration ou information de la manifestation (mairie / préfecture) selon l'effectif et la nature — seuils à vérifier",
+      "authority": "Mairie, préfecture",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60
+    },
+    {
+      "id": "C-05",
+      "item": "Dispositif prévisionnel de secours dimensionné par une association agréée de sécurité civile",
+      "authority": "Association agréée",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C-06",
+      "item": "Droits musicaux pour la diffusion de musique enregistrée",
+      "authority": "Organisme de gestion collective",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -15
+    },
+    {
+      "id": "C-07",
+      "item": "Buvette : autorisation de débit de boissons temporaire ; règles spécifiques aux enceintes sportives",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C-08",
+      "item": "Exigences médicales des participants (licence, certificat ou questionnaire) selon le cadre de la compétition",
+      "authority": "Fédération / réglementation sportive",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60
+    },
+    {
+      "id": "C-09",
+      "item": "Autorisations parentales des participants de 16–17 ans",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -7
+    },
+    {
+      "id": "C-10",
+      "item": "Droit à l'image : information et consentement dans le règlement et à l'inscription",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -75
+    },
+    {
+      "id": "C-11",
+      "item": "Données personnelles des inscrits : mentions d'information, durée de conservation",
+      "authority": "Organisateur (RGPD)",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -75
+    },
+    {
+      "id": "C-12",
+      "item": "Accessibilité du lieu aux personnes handicapées et dispositions d'accueil",
+      "authority": "Exploitant du lieu",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C-13",
+      "item": "Règlement du jeu de prédiction gratuit avec dotation partenaire (conditions à vérifier)",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    },
+    {
+      "id": "C-14",
+      "item": "Occupation du domaine public pour les food trucks",
+      "authority": "Mairie",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -45
+    },
+    {
+      "id": "C-15",
+      "item": "Homologation de l'enceinte si plus de 500 spectateurs en salle (places physiques ≈ 508 : à vérifier)",
+      "authority": "Préfecture / exploitant",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -90,
+      "source_ref": "S-G2-14"
+    },
+    {
+      "id": "C-16",
+      "item": "Autorisation d'utilisation exceptionnelle du lieu (formulaire de type GN 6) si l'activité diffère de l'usage habituel",
+      "authority": "Mairie / commission de sécurité",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60,
+      "source_ref": "S-G2-12"
+    },
+    {
+      "id": "C-17",
+      "item": "Information des participants sur l'intérêt d'une assurance individuelle accident",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -75,
+      "source_ref": "S-G2-10"
+    },
+    {
+      "id": "C-18",
+      "item": "Valeur des prix et dotations sous le seuil déclenchant l'autorisation fédérale (à vérifier)",
+      "authority": "Fédération délégataire",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -60,
+      "source_ref": "S-G2-38"
+    },
+    {
+      "id": "C-19",
+      "item": "Contrôle d'honorabilité des bénévoles encadrant des mineurs",
+      "authority": "Organisateur / services de l'État",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30,
+      "source_ref": "S-G2-41"
+    },
+    {
+      "id": "C-20",
+      "item": "Mesures liées à la posture Vigipirate en vigueur",
+      "authority": "Préfecture",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -7,
+      "source_ref": "S-G2-19"
+    },
+    {
+      "id": "C-21",
+      "item": "Homologation fédérale du tournoi si le format Open est retenu",
+      "authority": "FFBB",
+      "mandatory": false,
+      "status": "a_verifier",
+      "deadline_offset_days": -120,
+      "source_ref": "S-G2-36"
+    },
+    {
+      "id": "C-22",
+      "item": "Hygiène alimentaire de la buvette (non vérifié)",
+      "authority": "Services vétérinaires / mairie",
+      "mandatory": true,
+      "status": "a_verifier",
+      "deadline_offset_days": -30
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K01",
+      "label": "Équipes inscrites et payées",
+      "phase": "avant",
+      "target": 20,
+      "unit": "équipes à J-14",
+      "measure": "Plateforme d'inscription"
+    },
+    {
+      "id": "K02",
+      "label": "Recettes sécurisées / dépenses engagées",
+      "phase": "avant",
+      "target": 0.5,
+      "unit": "ratio à J-30",
+      "measure": "Tableau budgétaire"
+    },
+    {
+      "id": "K03",
+      "label": "Spectateurs uniques",
+      "phase": "pendant",
+      "target": 450,
+      "unit": "personnes",
+      "measure": "Billetterie + comptage des gratuits"
+    },
+    {
+      "id": "K04",
+      "label": "Retard maximal du programme",
+      "phase": "pendant",
+      "target": 15,
+      "unit": "minutes",
+      "measure": "Conducteur horodaté"
+    },
+    {
+      "id": "K05",
+      "label": "Attente maximale à l'entrée",
+      "phase": "pendant",
+      "target": 10,
+      "unit": "minutes",
+      "measure": "Relevé toutes les 30 min"
+    },
+    {
+      "id": "K06",
+      "label": "Satisfaction des participants (score de recommandation)",
+      "phase": "apres",
+      "target": 30,
+      "unit": "points (hypothèse de cible)",
+      "measure": "Questionnaire J+1"
+    },
+    {
+      "id": "K07",
+      "label": "Vues des contenus verticaux à J+7",
+      "phase": "apres",
+      "target": "à fixer après la 1re édition",
+      "unit": "vues",
+      "measure": "Statistiques des plateformes"
+    },
+    {
+      "id": "K08",
+      "label": "Résultat financier",
+      "phase": "apres",
+      "target": 0,
+      "unit": "€",
+      "measure": "Bilan"
+    },
+    {
+      "id": "K09",
+      "label": "Intention de réinscription",
+      "phase": "apres",
+      "target": 0.6,
+      "unit": "part des équipes",
+      "measure": "Questionnaire J+1"
+    },
+    {
+      "id": "K10",
+      "label": "Gobelets réutilisables restitués",
+      "phase": "apres",
+      "target": 0.8,
+      "unit": "part",
+      "measure": "Comptage consigne"
+    },
+    {
+      "id": "K11",
+      "label": "Réinscription effective à l'édition suivante",
+      "phase": "apres",
+      "target": 0.5,
+      "unit": "part des équipes",
+      "measure": "Inscriptions édition N+1"
+    },
+    {
+      "id": "K12",
+      "label": "Retour des bénévoles",
+      "phase": "apres",
+      "target": 0.6,
+      "unit": "part des bénévoles",
+      "measure": "Liste bénévoles N+1"
+    },
+    {
+      "id": "K13",
+      "label": "Renouvellement des partenaires",
+      "phase": "apres",
+      "target": 0.5,
+      "unit": "part des partenaires",
+      "measure": "Conventions N+1"
+    },
+    {
+      "id": "K14",
+      "label": "Satisfaction des spectateurs",
+      "phase": "apres",
+      "target": "à fixer avant l'édition",
+      "unit": "score de recommandation",
+      "measure": "Questionnaire QR J+1"
+    },
+    {
+      "id": "K15",
+      "label": "Public présent pendant la Q3 (le matin doit compter)",
+      "phase": "pendant",
+      "target": "à fixer après la 1re édition",
+      "unit": "personnes à 11:20",
+      "measure": "Comptage"
+    },
+    {
+      "id": "K16",
+      "label": "Reprise du manuel par une équipe tierce",
+      "phase": "apres",
+      "target": "oui avant l'édition 2",
+      "unit": "test",
+      "measure": "Compte rendu de test"
+    },
+    {
+      "id": "K17",
+      "label": "Attente maximale d'une équipe entre deux matchs",
+      "phase": "pendant",
+      "target": 90,
+      "unit": "minutes (hypothèse de cible)",
+      "measure": "Feuilles de match horodatées"
+    },
+    {
+      "id": "K18",
+      "label": "Corrélation rang de qualification / classement final (H-09)",
+      "phase": "apres",
+      "target": 0.5,
+      "unit": "coefficient de rang (hypothèse de cible)",
+      "measure": "Calcul sur les résultats"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Q3 un par un : la dernière équipe qui arrache la pole",
+      "Révélation de la grille sur écran",
+      "Remise du trophée de la pole",
+      "Entrée des finalistes par numéro de grille",
+      "Tirs au buzzer des finales"
+    ],
+    "photo_spots": [
+      "Grille de départ au sol (photo d'équipe avec son numéro)",
+      "Mur des podiums",
+      "Pit wall entre les terrains"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "YouTube Shorts",
+      "Facebook (public familles et institutionnels)",
+      "LinkedIn (partenaires)",
+      "Presse locale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Prédiction gratuite de la pole",
+      "target_role": "spectateur",
+      "description": "Avant la Q3, chacun peut désigner l'équipe qui prendra la pole (QR code, ouvert à tous, avec ou sans billet, sans achat). Tirage parmi les bonnes réponses pour un lot partenaire.",
+      "fairness_note": "Gratuit, sans obligation d'achat, règlement publié ; aucune mise d'argent"
+    },
+    {
+      "mechanic": "Grille Series",
+      "target_role": "participant",
+      "description": "Points attribués selon la position de grille et le classement final ; classement cumulé d'une édition à l'autre ; badge « Pole » et « Meilleur Q1 »",
+      "fairness_note": "Barème publié avant l'édition, identique pour toutes les équipes"
+    },
+    {
+      "mechanic": "Passeport d'équipe",
+      "target_role": "participant",
+      "description": "Page d'équipe (temps de qualif, résultats, photos) conservée d'une édition à l'autre",
+      "fairness_note": "Données limitées au nom d'équipe et aux résultats ; consentement image"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3 : combinaison nouvelle de briques connues. Relecture croisée : des concours d'habileté 3x3 avec qualifications et le placement serpentin existent déjà ; la nouveauté tient à l'enchaînement qualifications éliminatoires → grille → têtes de série des poules, et à sa mise en scène.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Ajouter une mécanique propre testée (choix du terrain par l'équipe en pole)",
+          "Documenter précisément l'antériorité dans le benchmark"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3 : règles compréhensibles en moins de 2 minutes, matin doté d'un enjeu ; mais chaque équipe joue 3 matchs de poule répartis sur 3 h 36, d'où une attente participante de 10 à 30 % du temps de présence.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Afficher en direct l'heure du prochain match de chaque équipe",
+          "Proposer un défi d'habileté libre entre deux matchs"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 4,
+        "justification": "Matériel courant en location, compétences disponibles localement ; plan B pour le chronométrage et l'écran ; la position des paniers du lieu est la principale inconnue.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Relevé des paniers et prises sur place avant de figer l'implantation"
+        ]
+      },
+      "viabilite_economique": {
+        "rating": 1.5,
+        "justification": "Proche de l'ancre 1 : la configuration standard est déficitaire au scénario central (environ un quart de son budget) et fortement au prudent, toutes les recettes forfaitaires étant encore hypothétiques. La configuration économique est excédentaire au central mais sa perte prudente n'est pas « limitée » au sens de l'ancre 3. Note attribuée à la configuration de base.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Obtenir un accord oral de la commune et de 4 partenaires locaux avant J-60 (bascule des lignes en « probable »)",
+          "Lancer la 1re édition en configuration économique",
+          "Préventes d'inscriptions dès J-75 pour réduire le besoin de trésorerie"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3,
+        "justification": "Ancre 3 : moments filmables conçus (Q3 un par un, révélation de la grille, entrée par numéro) et décor identifiable ; audience locale, pas encore de partenariat de diffusion ni de contenu participant structuré.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Partenariat avec un créateur de contenu basket régional"
+        ]
+      },
+      "reproductibilite": {
+        "rating": 4,
+        "justification": "Kit matériel standard, règlement et conducteur écrits, simulateur pour adapter le programme ; manuel de reproduction fourni.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Tester le manuel avec une association tierce dès la 2e édition"
+        ]
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Fonctionne en gymnase, salle polyvalente ou terrain extérieur ; de 1 à 4 terrains avec recalcul du programme ; configuration de secours documentée.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Documenter une version plein air avec repli intempéries"
+        ]
+      },
+      "accessibilite_inclusion": {
+        "rating": 3,
+        "justification": "Catégorie féminine, tarif bas, gratuité -12 ans, emplacements PMR ; pas encore de catégorie ou démonstration handisport intégrée au format.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Démonstration ou catégorie basket fauteuil en partenariat avec un club handisport"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 3,
+        "justification": "Plusieurs flux de recettes et une propriété licenciable à d'autres associations ; valeur sponsor limitée par l'audience locale.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Construire l'offre de licence (kit + accompagnement) dès la 1re édition"
+        ]
+      },
+      "responsabilite_environnementale": {
+        "rating": 3,
+        "justification": "Gobelets consignés, tri, matériel loué ou prêté ; déplacements des participants non traités.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Incitation au covoiturage à l'inscription, stationnement vélo"
+        ]
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Risques sécurité dotés de mesures de prévention ; dimensionnement des secours confié à une association agréée."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "Points obligatoires à vérifier auprès des autorités et de l'exploitant (voir conformité)."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Chaque risque critique a un plan de continuité."
+      }
+    }
+  },
+  "hypotheses": [
+    "H-01 Lieu : gymnase municipal 44 × 24 m avec deux paniers latéraux exploitables côte à côte et gradins fixes ; effectif autorisé supposé 600 personnes — à remplacer par les données réelles de l'exploitant.",
+    "H-02 Organisateur : association loi 1901 locale (club de basket ou association de quartier), non assujettie à la TVA : montants raisonnés en TTC. À confirmer par l'expert-comptable de l'association. Attention : des recettes de parrainage à contrepartie publicitaire peuvent relever d'une activité lucrative imposable ; à valider par l'expert-comptable.",
+    "H-03 Le studio EVENT LAB fournit le format, les outils et la coordination contre une prestation forfaitaire (E21), supprimée en configuration économique.",
+    "H-04 Fréquentation : 250 / 450 / 700 spectateurs uniques sur la journée, 70 % payants, durée de présence moyenne 3 h.",
+    "H-05 Dépense buvette moyenne 6 € par spectateur, coût des marchandises 40 % du chiffre d'affaires.",
+    "H-06 Tous les montants de dépenses sont des estimations ou hypothèses à remplacer par des devis.",
+    "H-07 Aucune recette forfaitaire n'est sécurisée ni probable au stade du blueprint : aucun contact n'a encore eu lieu, donc partenaires, subventions et redevances sont hypothétiques. Chaque ligne passe en « probable » dès un accord oral, en « sécurisée » dès signature ou encaissement — le moteur recalcule alors les scénarios.",
+    "H-08 Dotations en nature des partenaires (ballons, eau, lots) non valorisées dans le budget.",
+    "H-09 Le classement des qualifications (parcours technique) est supposé corrélé au niveau de jeu des équipes. Non démontré : à tester lors du pilote en comparant le rang de qualification et le classement final."
+  ],
+  "sources": [
+    {
+      "id": "S-G1-01",
+      "title": "FIBA 3x3 — Règles officielles du jeu (version 2026, en vigueur au 1er janvier 2026)",
+      "publisher": "FIBA",
+      "url": "https://www.fiba3x3.basketball/rules",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-02",
+      "title": "FIBA 3x3 Basketball Rules — revisions (4 décembre 2025)",
+      "publisher": "Japan Basketball Association (relais du texte FIBA)",
+      "url": "https://www.japanbasketball.jp/files/referee/rule/fiba-3x3-basketballrules_revisions_20251204.pdf",
+      "published_at": "2025-12-04",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-03",
+      "title": "France win FIBA 3x3 Women's Series final in Shanghai (2026)",
+      "publisher": "FIBA",
+      "url": "https://about.fiba.basketball/en/news/france-win-fiba-3x3-womens-series-project-redwings-shanghai-final-2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-04",
+      "title": "FIBA 3x3 Women's Series builds on strong momentum with landmark 2026 season",
+      "publisher": "FIBA",
+      "url": "https://about.fiba.basketball/en/news/fiba-3x3-womens-series-builds-on-strong-momentum-with-landmark-2026-season",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-05",
+      "title": "Ub claim FIBA 3x3 World Tour Marseille 2026",
+      "publisher": "FIBA",
+      "url": "https://www.fiba.basketball/en/news/ub-claim-fiba-3x3-world-tour-marseille-2026-for-second-title-of-season",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-06",
+      "title": "10th edition of the FIBA 3x3 World Cup draws 100,000 visitors to Warsaw",
+      "publisher": "FIBA",
+      "url": "https://about.fiba.basketball/en/news/10th-edition-of-the-fiba-3x3-world-cup-draws-100-000-visitors-to-warsaw",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-07",
+      "title": "JO Paris 2024 : record de décibels aux finales de basketball 3x3 du parc urbain",
+      "publisher": "Olympics.com (CIO)",
+      "url": "https://olympics.com/en/news/jo-paris-2024-record-decibels-ambiance-exceptionnelle-finales-basketball-3x3-parc-urbain",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-08",
+      "title": "Sepulveda Basin to host 3x3 basketball action in LA28",
+      "publisher": "FIBA",
+      "url": "https://fiba.basketball/en/news/sepulveda-basin-to-host-thrilling-3x3-basketball-action-in-la28",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-09",
+      "title": "FFBB 3x3 — FAQ (homologation des Opens, Pass Tournoi 3x3, profil FIBA 3x3)",
+      "publisher": "Fédération française de basketball",
+      "url": "https://www.3x3ffbb.com/page/faq",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-10",
+      "title": "Guide Open Plus Access 2025-2026",
+      "publisher": "Fédération française de basketball",
+      "url": "https://www.3x3ffbb.com/uploads/2026-01-07-7-3X3-DEVT-Guide-Open-Plus-Access-25-26-VF-695f71ca6ed7f.pdf",
+      "published_at": "2026-01-07",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-11",
+      "title": "Cahier des charges Open Plus 2026 (3x3 FFBB), document hébergé par l'ANDES",
+      "publisher": "FFBB / ANDES",
+      "url": "https://andes.fr/wp-content/uploads/2025/07/2025-06-12-5-3x3-Cahier-des-charges-Open-Plus-2026-VFIN.pdf",
+      "published_at": "2025-06-12",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-12",
+      "title": "3x3 FFBB — actualité Superleague Open (18 Open Plus en 2025, 15 étapes prévues en 2026)",
+      "publisher": "Fédération française de basketball",
+      "url": "https://3x3ffbb.com/news/view/1662",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-13",
+      "title": "Basketball 3x3 : la FFBB lance ses appels à candidatures pour les compétitions nationales 2027",
+      "publisher": "Association des maires de France (AMF)",
+      "url": "https://www.amf.asso.fr/documents-basketball-3x3-la-ffbb-lance-ses-appels-candidatures-pour-les-competitions-nationales-2027/43229",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-14",
+      "title": "Les Opens Plus de Pau et Nancy annulés",
+      "publisher": "Fédération française de basketball",
+      "url": "https://www.ffbb.com/actualites/les-opens-plus-de-pau-et-nancy-annules",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-15",
+      "title": "Open Stan — Open Plus 3x3 au parc de la Pépinière",
+      "publisher": "Comité de Meurthe-et-Moselle de basket (CD54)",
+      "url": "https://basket54.fr/open-stan/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-16",
+      "title": "Super League 3x3 Basketball Nancy",
+      "publisher": "Destination Nancy (office de tourisme)",
+      "url": "https://www.nancy-tourisme.fr/ja/offers/super-league-3x3-basketball-nancy-ja-5739652",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-17",
+      "title": "All Star Game Basket Fauteuil 2025 — billetterie",
+      "publisher": "Fédération française handisport (page HelloAsso)",
+      "url": "https://www.helloasso.com/associations/federation-francaise-handisport/evenements/all-star-game-basket-fauteuil-2025",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-18",
+      "title": "All Star Game de basket fauteuil 2026",
+      "publisher": "Ville de Paris",
+      "url": "https://www.paris.fr/evenements/all-star-game-de-basket-fauteuil-2026-127162",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-19",
+      "title": "All Stars Game 2026 — billetterie (Forest Arena, Gries)",
+      "publisher": "Beyond The Bounce (page HelloAsso de l'organisateur)",
+      "url": "https://www.helloasso.com/associations/beyond-the-bounce/evenements/all-stars-game-2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "D"
+    },
+    {
+      "id": "S-G1-20",
+      "title": "NL Contest 2026 (Strasbourg)",
+      "publisher": "Nouvelle Ligne (page HelloAsso de l'organisateur)",
+      "url": "https://www.helloasso.com/associations/nouvelle-ligne/evenements/nl-contest-2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "D"
+    },
+    {
+      "id": "S-G1-21",
+      "title": "ASA 3x3 Contest 2026 (Weyersheim)",
+      "publisher": "ASA Weyersheim (page HelloAsso de l'organisateur)",
+      "url": "https://www.helloasso.com/associations/asa-weyersheim/evenements/asa-3x3-contest-2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "D"
+    },
+    {
+      "id": "S-G1-22",
+      "title": "Playin' Paris — tournoi 3x3 en accès libre",
+      "publisher": "Playin' Paris (organisateur)",
+      "url": "https://playin-paris.com/",
+      "accessed_at": "2026-11-24",
+      "reliability": "D"
+    },
+    {
+      "id": "S-G1-23",
+      "title": "Quai 54 — site officiel",
+      "publisher": "Quai 54 (organisateur)",
+      "url": "https://www.livequai54.com/fr",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-24",
+      "title": "Un Quai 54 délocalisé mais Nadir Hifi encore vainqueur et MVP",
+      "publisher": "BasketEurope",
+      "url": "https://www.basketeurope.com/un-quai-54-delocalise-mais-nadir-hifi-encore-vainqueur-et-mvp/",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-25",
+      "title": "The Basketball Tournament doubles winner-take-all prize and unveils new 2026 format",
+      "publisher": "LEX18",
+      "url": "https://www.lex18.com/sports/the-basketball-tournament-doubles-winner-take-all-prize-to-2-million-unveils-new-2026-format",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-26",
+      "title": "BIG3 debuts eight location-based teams (season 8)",
+      "publisher": "BIG3",
+      "url": "https://big3.com/news/big3-debuts-eight-all-new-location-based-teams-in-transition-to-home-market-model-for-season-8",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-27",
+      "title": "Red Bull Half Court World Final",
+      "publisher": "Red Bull",
+      "url": "https://www.redbull.com/int-en/events/red-bull-half-court-world-final",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-28",
+      "title": "Red Bull Half Court — FAQ",
+      "publisher": "Red Bull",
+      "url": "https://www.redbull.com/int-en/event-series/half-court/half-court-faq",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-29",
+      "title": "Unrivaled — the numbers from season 2",
+      "publisher": "Unrivaled",
+      "url": "https://www.unrivaled.basketball/news/unrivaled-numbers-in-season-2-2xxhf3n3q35f",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-30",
+      "title": "Kings League — How to play",
+      "publisher": "Kings League",
+      "url": "https://kingsleague.pro/en/how-to-play",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-31",
+      "title": "Gerard Piqué's Kings League wants to lay off half of its workers",
+      "publisher": "Ara (édition anglaise)",
+      "url": "https://en.ara.cat/economy/gerard-pique-s-kings-league-wants-to-lay-off-half-of-its-workers_1_5764708.html",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-32",
+      "title": "Baller League UK — Rulebook",
+      "publisher": "Baller League",
+      "url": "https://ballerleague.uk/c/rulebook",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-33",
+      "title": "2026 NBA All-Star Game format",
+      "publisher": "NBA Communications",
+      "url": "https://pr.nba.com/2026-nba-all-star-game-format",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-34",
+      "title": "Les équipes du All-Star Game Betclic ÉLITE 2025 sont enfin révélées",
+      "publisher": "LNB",
+      "url": "https://lnb.fr/fr/news/les-equipes-du-all-star-game-betclic-elite-2025-sont-enfin-revelees",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-35",
+      "title": "FIA — News (règlements sportifs du sport automobile)",
+      "publisher": "FIA",
+      "url": "https://www.fia.com/news",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-36",
+      "title": "Formula 1 — Latest",
+      "publisher": "Formula One Group",
+      "url": "https://www.formula1.com/en/latest",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-37",
+      "title": "BASK'EST — fiche de l'Annuaire des entreprises (SIREN 940 128 069)",
+      "publisher": "DINUM / data.gouv.fr",
+      "url": "https://annuaire-entreprises.data.gouv.fr/entreprise/bask-est-940128069",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-38",
+      "title": "Bask'Est — profil d'organisation",
+      "publisher": "JeVeuxAider.gouv.fr",
+      "url": "https://www.jeveuxaider.gouv.fr/organisations/34821-baskest",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-39",
+      "title": "All Star Game Grand Est — billetterie",
+      "publisher": "Billetweb (page de l'organisateur Bask'Est)",
+      "url": "https://www.billetweb.fr/all-star-game-grand-est4",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-40",
+      "title": "La Bask'Cup revient sur Nancy — collecte",
+      "publisher": "HelloAsso (page de l'organisateur Bask'Est)",
+      "url": "https://www.helloasso.com/associations/bask-est/collectes/le-all-star-game-debarque-a-nancy",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-41",
+      "title": "Palais des Sports Jean Weille — Centre de préparation aux Jeux",
+      "publisher": "Ministère des Sports",
+      "url": "https://www.sports.gouv.fr/palais-des-sports-jean-weille",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-42",
+      "title": "Palais des Sports Jean Weille — fiche équipement",
+      "publisher": "Sport en France (annuaire)",
+      "url": "https://www.sportenfrance.fr/lorraine/meurthe-et-moselle/nancy/543950049-palais-des-sports-jean-weille",
+      "accessed_at": "2026-11-24",
+      "reliability": "C"
+    },
+    {
+      "id": "S-G1-43",
+      "title": "Le calendrier de la Betclic ÉLITE 2026-2027 est connu",
+      "publisher": "LNB",
+      "url": "https://lnb.fr/en/news/le-calendrier-de-la-betclic-elite-20262027-est-connu",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-44",
+      "title": "Clubs de basket de Meurthe-et-Moselle",
+      "publisher": "Score'n'co (annuaire)",
+      "url": "https://scorenco.com/basket/clubs?department=54",
+      "accessed_at": "2026-11-24",
+      "reliability": "C"
+    },
+    {
+      "id": "S-G1-45",
+      "title": "Circuit 3x3 du Grand Est : Open Plus, Juniors, Superleague — calendrier des compétitions",
+      "publisher": "Ligue régionale Grand Est de basketball",
+      "url": "https://www.lrgeb.fr/circuit-3x3-du-grand-est-open-plus-juniors-superleague-calendrier-des-competitions/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-46",
+      "title": "Loteries, tombolas et lotos (fiche F21565)",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/associations/vosdroits/F21565",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-47",
+      "title": "Code du sport, article L231-2-1",
+      "publisher": "Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045293843",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-48",
+      "title": "Le certificat médical pour le sport",
+      "publisher": "Ministère des Sports",
+      "url": "https://www.sports.gouv.fr/le-certificat-medical-pour-le-sport-676",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-49",
+      "title": "Sport amateur hors contrat : questions-réponses",
+      "publisher": "CNIL",
+      "url": "https://www.cnil.fr/fr/sport-amateur-hors-contrat/questions-reponses",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-50",
+      "title": "Partage de photos et vidéos de votre enfant sur les réseaux sociaux : quels sont les risques ?",
+      "publisher": "CNIL",
+      "url": "https://www.cnil.fr/fr/partage-de-photos-et-videos-de-votre-enfant-sur-les-reseaux-sociaux-quels-sont-les-risques",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-51",
+      "title": "Code du sport, article L331-5 (manifestations ouvertes aux licenciés avec prix)",
+      "publisher": "Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025276085",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-52",
+      "title": "Mécénat : donnez à des œuvres d'intérêt général et obtenez une réduction d'impôt",
+      "publisher": "Ministère de l'Économie",
+      "url": "https://www.economie.gouv.fr/entreprises/mecenat-donnez-des-oeuvres-dinteret-general-et-obtenez-une-reduction-dimpot",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-53",
+      "title": "Web Content Accessibility Guidelines (WCAG) 2.1",
+      "publisher": "W3C",
+      "url": "https://www.w3.org/TR/WCAG21/",
+      "published_at": "2018-06-05",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-54",
+      "title": "Archivo Black — page de la police",
+      "publisher": "Google Fonts",
+      "url": "https://fonts.google.com/specimen/Archivo+Black",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-55",
+      "title": "Archivo — page de la police",
+      "publisher": "Google Fonts",
+      "url": "https://fonts.google.com/specimen/Archivo",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-56",
+      "title": "IBM Plex Mono — page de la police",
+      "publisher": "Google Fonts",
+      "url": "https://fonts.google.com/specimen/IBM+Plex+Mono",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-57",
+      "title": "Base de données des marques (recherche d'antériorité)",
+      "publisher": "INPI",
+      "url": "https://data.inpi.fr/",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-58",
+      "title": "TMview — recherche de marques (offices de l'UE et partenaires)",
+      "publisher": "EUIPO / TMDN",
+      "url": "https://www.tmdn.org/tmview/",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-59",
+      "title": "Navettes Stan pour les matchs du SLUC (tram T2, arrêt Palais des Sports – Gentilly)",
+      "publisher": "Réseau Stan (Grand Nancy)",
+      "url": "https://www.reseau-stan.com/se-deplacer/navettes-spectacles-et-matchs/navettes-sluc",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-60",
+      "title": "SuperLeague Pro 3x3 : finale en accès libre dans le 19e arrondissement",
+      "publisher": "Sortiraparis",
+      "url": "https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/342002-superleague-pro-3x3-attend-the-urban-basketball-final-for-free-in-the-19th-arrondissement",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-61",
+      "title": "Programme du parc urbain de la Concorde (Paris 2024)",
+      "publisher": "Olympics.com (CIO)",
+      "url": "https://olympics.com/en/paris-2024/the-games/celebrating/programme-for-concorde-urban-park",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-62",
+      "title": "Lancement de l'association Beyond The Bounce : premier All Star Game Alsace 2025",
+      "publisher": "Club de la presse de Strasbourg",
+      "url": "https://www.club-presse-strasbourg.com/events/lancement-de-lassociation-beyond-the-bounce-premier-event-all-star-game-alsace-2025/",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-63",
+      "title": "FIBA 3x3 World Cup 2026 introduces Dunk Mania",
+      "publisher": "FIBA",
+      "url": "https://www.fiba.basketball/en/news/fiba-3x3-world-cup-2026-introduces-dunk-mania-a-new-era-of-dunk-contests",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-64",
+      "title": "2025 NBA All-Star Game : poor presentation overshadows new format",
+      "publisher": "CBS Sports",
+      "url": "https://www.cbssports.com/nba/news/2025-nba-all-star-game-stephen-curry-leads-ogs-to-title-but-poor-presentation-overshadows-new-format/live/",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G1-65",
+      "title": "NBA G League playing rules (prolongation au score cible)",
+      "publisher": "NBA G League",
+      "url": "https://gleague.nba.com/gleague-playing-rules",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G1-66",
+      "title": "Ministère des Sports — Données du sport en France (publications statistiques, baromètre des pratiques)",
+      "publisher": "Ministère des Sports / INJEP",
+      "url": "https://www.sports.gouv.fr/organisation/publications/statistiques/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-01",
+      "title": "LA GRILLE 3x3 — configuration event.json v0.2.0 (draft) et tableaux générés (summary.json, sections, CSV)",
+      "publisher": "EVENT LAB",
+      "url": "blueprints/la-grille-3x3/event.json",
+      "published_at": "2026-11-24",
+      "accessed_at": "2026-11-24",
+      "reliability": "D"
+    },
+    {
+      "id": "S-G2-02",
+      "title": "07 — Algorithmes de génération, d'évaluation et de simulation (§4 à §8)",
+      "publisher": "EVENT LAB",
+      "url": "docs/07-algorithmes.md",
+      "published_at": "2026-11-24",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-03",
+      "title": "08 — Modèles documentaires (spécification des 40 sections, avertissement normatif, contrôles C1 à C16)",
+      "publisher": "EVENT LAB",
+      "url": "docs/08-modeles-documentaires.md",
+      "published_at": "2026-11-24",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-10",
+      "title": "Assurances et activités sportives (responsabilité civile, assurance individuelle accident) — fiche F2143",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/f2143",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-11",
+      "title": "Les manifestations sportives — fiche de la préfecture des Hauts-de-Seine",
+      "publisher": "Préfecture des Hauts-de-Seine",
+      "url": "https://www.hauts-de-seine.gouv.fr/contenu/telechargement/7806/59635/file/Les%20manifestations%20sportives.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-12",
+      "title": "Organiser une manifestation exceptionnelle dans un ERP (demande GN6)",
+      "publisher": "Nantes Métropole",
+      "url": "https://metropole.nantes.fr/mes-services-mon-quotidien/organiser-une-manifestation-exceptionnelle-dans-un-erp",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-13",
+      "title": "Fiche de synthèse des obligations des organisateurs de manifestations sportives (déclaration au maire au-delà de 1 500 personnes, CSI L211-11 et R211-22)",
+      "publisher": "Préfecture de l'Ain",
+      "url": "https://www.ain.gouv.fr/contenu/telechargement/24872/172534/file/-organiser-une-manifestation-t-l-charger-ici-la-fiche-de-synth-se-des-obligations-de-l-organisateurs-de-manifestations-sportives--3915(1).pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-14",
+      "title": "Homologation des enceintes destinées à recevoir des manifestations ouvertes au public",
+      "publisher": "Ministère des Sports",
+      "url": "https://www.sports.gouv.fr/homologation-des-enceintes-destinees-recevoir-des-manifestations-ouvertes-au-public-839",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-15",
+      "title": "Référentiel national relatif aux dispositifs prévisionnels de secours (RNMSC-DPS, arrêté du 7 novembre 2006)",
+      "publisher": "Ministère de l'Intérieur",
+      "url": "https://interieur.gouv.fr/fr/content/download/94241/736020/file/RNMSC%202006_10%20-%20DPS.pdf",
+      "published_at": "2006",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-16",
+      "title": "Secourisme et associations — les textes réglementaires",
+      "publisher": "Ministère de l'Intérieur",
+      "url": "https://www.interieur.gouv.fr/Le-ministere/Securite-civile/Documentation-technique/Secourisme-et-associations/Les-textes-reglementaires",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-17",
+      "title": "Sécurité dans les stades et manifestations (palpations par des agents habilités)",
+      "publisher": "Justice.fr (ministère de la Justice)",
+      "url": "https://www.justice.fr/fiche/securite-stades-match",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-18",
+      "title": "Mise en œuvre du plan Vigipirate 2026",
+      "publisher": "Ministère de l'Intérieur",
+      "url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/mise-en-oeuvre-du-plan-vigipirate-2026",
+      "published_at": "2026",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-19",
+      "title": "Vigipirate — posture en vigueur",
+      "publisher": "Secrétariat général de la défense et de la sécurité nationale (SGDSN)",
+      "url": "https://www.sgdsn.gouv.fr/vigipirate",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-20",
+      "title": "Buvette temporaire (débit de boissons temporaire) — fiche F24345",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F24345",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-21",
+      "title": "Les règles applicables à l'ouverture d'un débit de boissons",
+      "publisher": "associations.gouv.fr",
+      "url": "https://www.associations.gouv.fr/les-regles-applicables-a-l-ouverture-d-un-debit-de-boisson.html",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-22",
+      "title": "Code de la santé publique — section des débits de boissons temporaires (art. L3334-1 et suivants)",
+      "publisher": "Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006171203",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-23",
+      "title": "Code de la santé publique — zones protégées et enceintes sportives (art. L3335-1 et suivants, dont L3335-4)",
+      "publisher": "Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006171204",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-24",
+      "title": "SACEM — conditions « clubs sport amateurs et assimilés » (valables du 1er janvier au 31 décembre 2025), copie hébergée par la Fédération des foyers ruraux",
+      "publisher": "SACEM (copie tierce)",
+      "url": "https://foyersruraux.org/download/870/sacem/371670/rgat_clubs_sport_amateurs_assimiles2.pdf",
+      "published_at": "2025",
+      "accessed_at": "2026-11-24",
+      "reliability": "B"
+    },
+    {
+      "id": "S-G2-25",
+      "title": "Diffusion de musique dans un lieu ou un événement (SACEM, SPRE) — fiche F3094",
+      "publisher": "Entreprendre.service-public.fr (DILA)",
+      "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F3094",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-27",
+      "title": "Loterie : des pratiques commerciales réglementées",
+      "publisher": "DGCCRF (ministère de l'Économie)",
+      "url": "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques-et-les-faq/loterie-des-pratiques-commerciales-reglementees",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-29",
+      "title": "Tout savoir sur le certificat médical pour le sport",
+      "publisher": "Ministère des Sports",
+      "url": "https://www.sports.gouv.fr/tout-savoir-sur-le-certificat-medical-pour-le-sport-10299",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-30",
+      "title": "Simulateur : certificat médical pour la pratique sportive",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/simulateur/calcul/certificatMedical",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-32",
+      "title": "Droit à l'image de l'enfant : obligations des parents",
+      "publisher": "Justice.fr (ministère de la Justice)",
+      "url": "https://www.justice.fr/fiche/droit-image-enfant-obligations-parents",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-34",
+      "title": "Sport amateur : conservation et destruction des données",
+      "publisher": "CNIL",
+      "url": "https://www.cnil.fr/fr/sport-amateur-hors-contrat/tester-votre-conformite-au-rgpd/conservation-et-destruction",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-35",
+      "title": "Guide RGPD des associations",
+      "publisher": "CNIL",
+      "url": "https://www.cnil.fr/sites/default/files/atoms/files/cnil-guide_association.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-37",
+      "title": "Règlements généraux des Opens 3x3",
+      "publisher": "Fédération française de basket-ball",
+      "url": "https://api.ffbb.com/assets/2d1520c5-7307-4026-b2c2-3458f7077867?download=",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-39",
+      "title": "Frais des bénévoles d'une association — fiche F1132",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/associations/vosdroits/F1132",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-40",
+      "title": "Manifestations sur la voie publique et occupation du domaine public par une association — fiche F21899",
+      "publisher": "Service-public.fr (DILA)",
+      "url": "https://www.service-public.gouv.fr/associations/vosdroits/F21899",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-41",
+      "title": "Guide du contrôle d'honorabilité des bénévoles",
+      "publisher": "Ministère des Sports",
+      "url": "https://www.sports.gouv.fr/sites/default/files/2023-01/guide-honorabilit-des-b-n-voles-3844.pdf",
+      "published_at": "2023",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    },
+    {
+      "id": "S-G2-42",
+      "title": "Loi du 8 mars 2024 visant à renforcer la protection des mineurs et l'honorabilité dans le sport",
+      "publisher": "Vie-publique.fr (DILA)",
+      "url": "https://www.vie-publique.fr/loi/293058-loi-du-8-mars-2024-violences-sexuelles-dans-le-sport-protection-mineurs",
+      "accessed_at": "2026-11-24",
+      "reliability": "A"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB",
+      "summary": "Concept initial du portefeuille",
+      "decisions": [],
+      "approved_by": null
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB",
+      "summary": "Passage au stade blueprint : programme minute par minute, compétition paramétrée, ressources, budget détaillé, variantes économique et premium, risques, conformité, KPIs",
+      "decisions": [
+        "Organisateur = association locale ; studio = format + coordination (H-02, H-03)",
+        "Buvette sans alcool par défaut (R-09)",
+        "Jalons go/no-go financiers à J-60 et J-30 (R-08)",
+        "Âge minimum 16 ans avec autorisation parentale pour les mineurs (R-11)",
+        "Notation ramenée de 69 à 62/100 après relecture croisée indépendante (antériorité des concours d'habileté 3x3, attente des participants, déficit de la configuration standard avec des recettes forfaitaires encore hypothétiques)",
+        "Recettes forfaitaires (food trucks, partenaires locaux, subvention municipale) requalifiées d'« probables » en « hypothétiques » : aucun accord n'existe encore (définition de 03 §3.1)",
+        "Relecture croisée (rédaction stratégie) : 22 corrections intégrées — équipe cœur ajoutée aux effectifs, demi-finales réordonnées pour le repos, acompte du partenaire titre, publicité payante engagée après J-30, prédiction ouverte à tous, KPIs de fidélisation, risque météo d'une édition d'été, critère du go/no-go de J-60 précisé",
+        "Relecture croisée (rédaction production) : enveloppe du lieu 44 × 28 m, zone debout à portillons, 8 démarches ajoutées (C-15 à C-22), 5 jalons, risques R-18 à R-22, KPIs K15 à K18, matériel complémentaire, billetterie scindée prévente / sur place, variante de secours simulée"
+      ],
+      "approved_by": null
+    }
+  ],
+  "milestones": [
+    {
+      "offset_days": -120,
+      "label": "Lancement : validation du projet par le bureau de l'association, désignation des responsables, demande de créneau au gymnase",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Feuille de route et organigramme",
+      "id": "M01",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -120,
+      "label": "Dépôt des demandes de subvention (calendriers des collectivités à vérifier)",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Dossiers déposés",
+      "id": "M02",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -100,
+      "label": "Prospection partenaires ; contacts arbitrage et association de secourisme",
+      "owner_role": "Référent partenaires",
+      "deliverable": "Kit partenaires, 30 contacts qualifiés",
+      "id": "M03",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -90,
+      "label": "Convention de mise à disposition du lieu signée ; relevé des paniers, prises et accès",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Convention + relevé du lieu (C-01)",
+      "id": "M04",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -75,
+      "label": "Ouverture des inscriptions et de la billetterie en ligne ; communication phase 1",
+      "owner_role": "Responsable communication",
+      "deliverable": "Pages d'inscription et de billetterie, règlement v1",
+      "id": "M05",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -60,
+      "label": "GO / NO-GO n°1 : choix de la configuration (standard, économique ou report)",
+      "owner_role": "Bureau de l'association",
+      "deliverable": "Décision écrite",
+      "go_no_go": "STANDARD si recettes sécurisées + probables (montants nominaux) ≥ dépenses de la configuration standard au scénario central, partenaire titre signé avec acompte et besoin de trésorerie couvert par un financement nommé. Sinon ÉCONOMIQUE si, après reclassement des recettes signées ou notifiées et nouvelle simulation, le scénario prudent de la configuration économique est au moins à l'équilibre. Sinon REPORT. Dans tous les cas : effectif autorisé confirmé par écrit (C-02).",
+      "id": "M06",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -45,
+      "label": "Communication phase 2 ; mentions RGPD ; demande d'occupation du domaine public (food trucks)",
+      "owner_role": "Responsable communication",
+      "deliverable": "Plan éditorial, C-11, C-14",
+      "id": "M07",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -30,
+      "label": "GO / NO-GO n°2 : engagement des dépenses optionnelles",
+      "owner_role": "Bureau de l'association",
+      "deliverable": "Décision écrite",
+      "go_no_go": "Recettes sécurisées ≥ 50 % des dépenses engagées (K02) ; assurance, secours et buvette confirmés (C-03, C-05, C-07) ; règlement et vidéo du parcours publiés",
+      "id": "M08",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -21,
+      "label": "Commandes signalétique et textiles ; recrutement bénévoles complet (objectif 52 = besoin de 43 + 20 %)",
+      "owner_role": "Responsable bénévoles",
+      "deliverable": "Bons de commande, liste bénévoles",
+      "id": "M09",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -14,
+      "label": "Point inscriptions (objectif ≥ 20 équipes) ; ouverture de la liste d'attente ; planning bénévoles v1",
+      "owner_role": "Responsable compétition",
+      "deliverable": "K01 mesuré",
+      "id": "M10",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -7,
+      "label": "Planning bénévoles envoyé ; autorisations parentales ; test du chronométrage et de l'écran ; droits musicaux réglés",
+      "owner_role": "Régisseur",
+      "deliverable": "C-06, C-09, PV de test",
+      "id": "M11",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -3,
+      "label": "Confirmation des équipes ; poules provisoires ; impression des feuilles de match et des fiches de poste",
+      "owner_role": "Responsable compétition",
+      "deliverable": "Liste définitive",
+      "id": "M12",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": -1,
+      "label": "Montage J-1 (18:00–21:30)",
+      "owner_role": "Responsable logistique",
+      "deliverable": "Terrains marqués, écran installé",
+      "id": "M13",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": 0,
+      "label": "Jour J",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Conducteur exécuté, relevés KPIs",
+      "id": "M14",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": 1,
+      "label": "Questionnaires participants et spectateurs ; publication des résultats et des photos",
+      "owner_role": "Responsable communication",
+      "deliverable": "K06, K09",
+      "id": "M15",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": 7,
+      "label": "Montage vidéo, remerciements et bilan de visibilité aux partenaires",
+      "owner_role": "Référent partenaires",
+      "deliverable": "Bilan partenaires",
+      "id": "M16",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": 30,
+      "label": "Bilan post-événement prévu / réel ; proposition de version suivante ; décision sur l'édition suivante",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Bilan + version proposée",
+      "id": "M17",
+      "status": "a_faire"
+    },
+    {
+      "offset_days": 60,
+      "label": "Justificatifs et encaissement des subventions",
+      "owner_role": "Trésorier",
+      "deliverable": "Pièces transmises",
+      "id": "M18",
+      "status": "a_faire"
+    },
+    {
+      "id": "M19",
+      "offset_days": -120,
+      "label": "Décision sur une éventuelle homologation fédérale du tournoi (C-21)",
+      "owner_role": "Responsable compétition",
+      "deliverable": "Décision écrite",
+      "status": "a_faire"
+    },
+    {
+      "id": "M20",
+      "offset_days": -90,
+      "label": "Réservation du dispositif de secours auprès d'une association agréée ; questions homologation et utilisation exceptionnelle à l'exploitant ; lieu de repli identifié",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "Devis secours, réponses écrites (C-15, C-16)",
+      "status": "a_faire"
+    },
+    {
+      "id": "M21",
+      "offset_days": -15,
+      "label": "Déclaration des droits musicaux",
+      "owner_role": "Trésorier",
+      "deliverable": "Déclaration (C-06)",
+      "status": "a_faire"
+    },
+    {
+      "id": "M22",
+      "offset_days": -7,
+      "label": "Vérification de la posture Vigipirate et des mesures associées",
+      "owner_role": "Directeur de l'événement",
+      "deliverable": "C-20",
+      "status": "a_faire"
+    },
+    {
+      "id": "M23",
+      "offset_days": 10,
+      "label": "Bilan des droits musicaux (programme diffusé)",
+      "owner_role": "Trésorier",
+      "deliverable": "Relevé transmis",
+      "status": "a_faire"
+    }
+  ],
+  "sponsor_packages": [
+    {
+      "id": "SP-TITRE",
+      "name": "Partenaire titre",
+      "price": 4000,
+      "quantity": 1,
+      "revenue_ref": "R06+R06b",
+      "exclusivity": "Exclusivité sectorielle",
+      "counterparts": [
+        "Dénomination « LA GRILLE 3x3 présentée par [Partenaire] » sur tous les supports",
+        "Logo au centre de la grille de départ au sol (zone photo officielle)",
+        "Q3 « présentée par » et remise du trophée de la pole",
+        "Logo sur l'écran de la grille à chaque révélation",
+        "Stand de 3 × 3 m en zone partenaires",
+        "4 publications dédiées sur les réseaux de l'événement + mention dans tous les clips verticaux",
+        "10 invitations, accès au pit wall pendant les finales",
+        "Bilan de visibilité chiffré à J+7"
+      ]
+    },
+    {
+      "id": "SP-OFFICIEL",
+      "name": "Partenaire officiel",
+      "price": 1200,
+      "quantity": 3,
+      "revenue_ref": "R07",
+      "exclusivity": "Une catégorie par partenaire",
+      "counterparts": [
+        "Nommage d'un temps fort : terrain 2, concours public « Ta place sur la grille » ou show de mi-parcours",
+        "Logo sur les bâches de terrain et l'écran entre les créneaux",
+        "Stand de 2 × 2 m",
+        "2 publications dédiées",
+        "4 invitations",
+        "Bilan de visibilité à J+7"
+      ]
+    },
+    {
+      "id": "SP-LOCAL",
+      "name": "Partenaire local",
+      "price": 400,
+      "quantity": 4,
+      "revenue_ref": "R08",
+      "exclusivity": "Aucune",
+      "counterparts": [
+        "Logo sur l'affiche, la page web et le mur des partenaires",
+        "1 publication collective de remerciement",
+        "2 invitations"
+      ]
+    },
+    {
+      "id": "SP-FOURNISSEUR",
+      "name": "Fournisseur officiel (en nature)",
+      "price": 0,
+      "quantity": 3,
+      "revenue_ref": null,
+      "exclusivity": "Une catégorie par fournisseur",
+      "counterparts": [
+        "Ballons, eau, lots ou matériel en échange d'une visibilité équivalente à un partenaire local",
+        "Valeur de la dotation non comptée dans le budget (H-08)"
+      ]
+    }
+  ],
+  "event_date": null,
+  "organizer": {
+    "type": "association loi 1901 locale (hypothèse H-02)",
+    "name": null,
+    "city": null
+  },
+  "confidentiality": "prive"
+}
