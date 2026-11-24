@@ -300,7 +300,7 @@ export const DecisionsFrame = memo(function DecisionsFrame({ layout, decisions, 
 export const RecosFrame = memo(function RecosFrame({ layout, items, meta, deptName, nature }: { layout: FrameLayout; items: RecoItem[]; meta: FrameMeta; deptName: (id?: string) => string; nature: DataNature }) {
   return (
     <FrameShell id="recos" layout={layout} title="Recommandations & mises à jour" sub="Les plus récentes d’abord" nature={items[0]?.nature ?? nature} meta={meta} generated>
-      <ul className="wb-recos">
+      <ul className="wb-recos" tabIndex={0} aria-label="Recommandations et mises à jour, liste défilable">
         {items.map((r) => (
           <li key={r.id} className="wb-note wb-note--flat" data-color={r.feed === 'reco' ? 'violet' : 'blue'}>
             <span className="wb-note__kind">{r.feed === 'reco' ? 'Recommandation' : 'Mise à jour'}</span>
@@ -400,7 +400,7 @@ export const DocFrame = memo(function DocFrame({ layout, text, onChange, meta, e
             }}
           />
         ) : (
-          <div className="wb-doc__view" onDoubleClick={() => onEditing(true)}>
+          <div className="wb-doc__view" tabIndex={0} aria-label="Contenu du document" onDoubleClick={() => onEditing(true)}>
             {blocks.map((b, i) =>
               b.kind === 'h' ? (
                 <h4 key={i}>

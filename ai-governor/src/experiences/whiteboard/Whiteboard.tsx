@@ -450,6 +450,7 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
   /* ---------------- pointer interactions ---------------- */
   const op = useRef<Op | null>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const lastPointer = useRef(0);
 
   const startPinch = () => {
     const [a, b] = [...pointers.current.values()];
@@ -470,13 +471,16 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
     }
     if (pointers.current.size > 2) return;
     const objEl = t.closest('[data-oid]') as HTMLElement | null;
-    if (!objEl || !objEl.hasAttribute('tabindex')) vp.current?.focus({ preventScroll: true });
+    const tl = toolRef.current;
+    lastPointer.current = Date.now();
+    // Only a selection click may move the focus onto an object; every other gesture keeps it on the canvas.
+    if (tl !== 'select' || !objEl || !objEl.hasAttribute('tabindex')) {
+      e.preventDefault();
+      vp.current?.focus({ preventScroll: true });
+    }
     e.currentTarget.setPointerCapture(e.pointerId);
     const w = toWorld(p);
-    const tl = toolRef.current;
     if (e.button === 1 || tl === 'hand' || spaceRef.current) {
-      e.preventDefault(); // no focus change on the object under the hand
-      vp.current?.focus({ preventScroll: true });
       op.current = { kind: 'pan', sx: p.x, sy: p.y, v0: viewRef.current };
       setPanning(true);
       return;
@@ -660,7 +664,8 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
   };
 
   const onDoubleClick = (e: RME) => {
-    const t = e.target as Element;
+    // Pointer capture retargets the event to the canvas: find what is really under the pointer.
+    const t = (document.elementFromPoint(e.clientX, e.clientY) ?? e.target) as Element;
     if (t.closest('[data-nodrag], button, textarea')) return;
     const id = (t.closest('[data-oid]') as HTMLElement | null)?.dataset.oid;
     if (!id) return;
@@ -697,6 +702,7 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
       setTool(tl);
     } else if (!onCanvas) handled = false;
     else if (k === 'delete' || k === 'backspace') deleteSel();
+    else if (k.startsWith('arrow') && t.closest('.wb-recos, .wb-doc__view, .wb-stickies')) handled = false; // let lists scroll
     else if (k.startsWith('arrow')) {
       const s = e.shiftKey ? 10 : 1;
       if (!selRef.current.size) {
@@ -732,7 +738,8 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
   };
 
   const onFocusCapture = (e: RFE) => {
-    if (pointers.current.size) return;
+    // Keyboard focus only (Tab): a pointer gesture handles the selection itself.
+    if (pointers.current.size || Date.now() - lastPointer.current < 600) return;
     const id = (e.target as HTMLElement).dataset?.oid;
     if (id && !selRef.current.has(id)) setSel(new Set([id]));
   };
@@ -746,8 +753,10 @@ export default function Whiteboard({ host, config, device }: ExperienceProps) {
   };
   const placeSummary = () => {
     if (!summary) return;
-    const text = [`Résumé du tableau — ${fmtTime(g.now, true)}`, ...summary.lines].join('\n');
-    const h = 40 + summary.lines.length * 30;
+    const lines = [`Résumé du tableau — ${fmtTime(g.now, true)}`, ...summary.lines];
+    const text = lines.join('\n');
+    // 460 px wide at 18 px ≈ 44 characters per row.
+    const h = 24 + lines.reduce((n, l) => n + Math.max(1, Math.ceil(l.length / 44)), 0) * 26;
     const at = freeSpot();
     add([{ id: newId(), kind: 'text', x: at.x, y: at.y, w: 460, h, text }], 'Résumé placé sur le tableau', { center: true });
   };

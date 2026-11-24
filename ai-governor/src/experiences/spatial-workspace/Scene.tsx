@@ -75,6 +75,7 @@ export function SpatialScene3D({
   const [buildVersion, setBuildVersion] = useState(0);
   const [hover, setHover] = useState<string | null>(null);
   const [view, setView] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const windowMs = flowWindowMin * 60_000;
   const palette = useScenePalette();
   const rs = 1.15 * robotScale;
@@ -486,7 +487,7 @@ export function SpatialScene3D({
   };
 
   return (
-    <div className="sw-scene" data-device={device}>
+    <div ref={rootRef} className="sw-scene" data-device={device}>
       <ThreeStage
         quality={quality}
         label="Bureau 3D des agents"
@@ -500,7 +501,16 @@ export function SpatialScene3D({
       >
         {(st) => (
           <>
-            <SceneLabels stage={st} labels={labels} farDistance={simplified ? 22 : 34} onSelect={(sel) => host.select(sel)} />
+            <SceneLabels
+              stage={st}
+              labels={labels}
+              farDistance={simplified ? 22 : 34}
+              onSelect={(sel) => host.select(sel)}
+              avoid={() => {
+                const c = rootRef.current?.parentElement;
+                return c ? [...c.querySelectorAll('.sw-minimap, .sw-toolbar, .sw-legend, .dock__toggles')] : [];
+              }}
+            />
             {hoverFig && (
               <Anchored stage={st} position={() => hoverFig.object.position.clone().setY(hoverFig.kind === 'robot' ? 1.4 * hoverFig.scale : 1.3)}>
                 <div className="sw-card" role="tooltip">

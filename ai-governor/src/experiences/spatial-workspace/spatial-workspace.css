@@ -109,7 +109,7 @@ html[data-scheme='dark'] .sw-pr { background: var(--c-sunken); }
 /* narrow centre / phones (container = the scene area) */
 @container (max-width: 860px) {
   .sw-legend span:nth-child(-n + 3) { display: none; }
-  .sw-minimap .plan svg { height: 92px; }
+  .sw-minimap .plan > svg { height: 92px; }
 }
 @container (max-width: 560px) {
   .sw-legend { display: none; }

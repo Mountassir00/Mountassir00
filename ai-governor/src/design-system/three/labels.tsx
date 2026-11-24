@@ -41,7 +41,7 @@ const _v = new Vector3();
 const toVec = (p: Vec3Like) => (Array.isArray(p) ? _v.set(p[0], p[1], p[2]) : _v.copy(p));
 
 export function SceneLabels({
-  stage, labels, onSelect, onHover, farDistance = 30, hidden = false, className,
+  stage, labels, onSelect, onHover, farDistance = 30, hidden = false, className, avoid,
 }: {
   stage: Stage3D | null;
   labels: SceneLabel[];
@@ -51,8 +51,12 @@ export function SceneLabels({
   farDistance?: number;
   hidden?: boolean;
   className?: string;
+  /** Overlay elements labels must not sit under (minimap, toolbars). Measured each frame. */
+  avoid?: () => Array<Element | null | undefined>;
 }) {
   const layer = useRef<HTMLDivElement>(null);
+  const avoidRef = useRef(avoid);
+  avoidRef.current = avoid;
   const live = useRef(labels);
   live.current = labels;
   const sizes = useRef(new Map<string, { w: number; h: number }>());
@@ -83,6 +87,14 @@ export function SceneLabels({
         })
         .sort((a, b) => (b.l.selected ? 9 : b.l.priority ?? 1) - (a.l.selected ? 9 : a.l.priority ?? 1) || a.depth - b.depth);
       const placed: Array<{ x0: number; y0: number; x1: number; y1: number }> = [];
+      const blockers: typeof placed = [];
+      const base = el.getBoundingClientRect();
+      for (const b of avoidRef.current?.() ?? []) {
+        if (!b) continue;
+        const r = b.getBoundingClientRect();
+        if (r.width && r.height) blockers.push({ x0: r.left - base.left, y0: r.top - base.top, x1: r.right - base.left, y1: r.bottom - base.top });
+      }
+      const hits = (box: { x0: number; y0: number; x1: number; y1: number }, list: typeof placed, m = 4) => list.some((b) => box.x0 < b.x1 + m && box.x1 > b.x0 - m && box.y0 < b.y1 + 2 && box.y1 > b.y0 - 2);
       for (const it of items) {
         const n = nodes.get(it.l.id);
         if (!n) continue;
@@ -93,7 +105,8 @@ export function SceneLabels({
         const x0 = Math.min(stage.size.w - sz.w - 4, Math.max(4, it.x - sz.w / 2));
         const y0 = Math.max(4, it.y - sz.h - 6);
         const box = { x0, y0, x1: x0 + sz.w, y1: y0 + sz.h };
-        if (show && pr < 9 && placed.some((b) => box.x0 < b.x1 + 4 && box.x1 > b.x0 - 4 && box.y0 < b.y1 + 2 && box.y1 > b.y0 - 2)) show = false;
+        if (show && hits(box, blockers, 2)) show = false;
+        if (show && pr < 9 && hits(box, placed)) show = false;
         if (show) placed.push(box);
         n.style.transform = `translate3d(${Math.round(box.x0)}px, ${Math.round(box.y0)}px, 0)`;
         if (n.dataset.hidden !== String(!show)) {

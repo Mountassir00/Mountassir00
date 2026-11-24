@@ -127,13 +127,18 @@ function AssistTab(p: PanelProps) {
         <h4 className="wb-sec__title">Contexte</h4>
         <ul className="wb-ctx">
           <li>
-            <GDoc size={15} /> {p.boardName}
+            <GDoc size={15} />
+            <span>{p.boardName}</span>
           </li>
           <li>
-            <GSticky size={15} /> {p.selectionText}
+            <GSticky size={15} />
+            <span>{p.selectionText}</span>
           </li>
           <li>
-            <GSpark size={15} /> {p.periodLabel} · {p.live ? 'en direct' : 'replay'} <NatureBadge nature={p.nature} />
+            <GSpark size={15} />
+            <span>
+              {p.periodLabel} · {p.live ? 'en direct' : 'replay'} <NatureBadge nature={p.nature} />
+            </span>
           </li>
         </ul>
         <p className="wb-local">Calculs locaux et déterministes : aucun modèle d’IA n’est appelé depuis ce tableau.</p>
