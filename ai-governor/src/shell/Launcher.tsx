@@ -19,6 +19,7 @@ const FAMILY_LABEL: Record<string, string> = {
   tool: 'Outils',
   other: 'Autres',
 };
+const GROUP_LABEL = (g: string) => (g === 'favorites' ? 'Favoris' : g === 'results' ? 'Résultats' : FAMILY_LABEL[g] ?? g);
 const ORDER = ['dashboard', 'workspace', 'scene-3d', 'scene-2d', 'tool', 'other'];
 const thumb = (svg: string) => `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 const norm = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
@@ -47,14 +48,27 @@ export function Launcher({ entries, activeId }: { entries: RegistryEntry[]; acti
 
   const list = useMemo(() => {
     const nq = norm(q.trim());
-    return entries
-      .filter((e) => e.enabled && !e.hidden)
-      .filter((e) => !nq || norm(`${e.manifest.name} ${e.manifest.description} ${FAMILY_LABEL[e.manifest.family ?? 'other']}`).includes(nq));
+    const usable = entries.filter((e) => e.enabled && !e.hidden);
+    if (!nq) return usable;
+    // Rank: exact name, name prefix, name contains, description/family.
+    const score = (e: RegistryEntry) => {
+      const n = norm(e.manifest.name);
+      if (n === nq) return 0;
+      if (n.startsWith(nq)) return 1;
+      if (n.includes(nq)) return 2;
+      return norm(`${e.manifest.description} ${FAMILY_LABEL[e.manifest.family ?? 'other']}`).includes(nq) ? 3 : -1;
+    };
+    return usable
+      .map((e) => [e, score(e)] as const)
+      .filter(([, sc]) => sc >= 0)
+      .sort((a, b) => a[1] - b[1])
+      .map(([e]) => e);
   }, [entries, q]);
 
   const groups = useMemo(() => {
     const m = new Map<string, RegistryEntry[]>();
-    if (!q.trim()) {
+    if (q.trim()) return list.length ? [['results', list] as [string, RegistryEntry[]]] : [];
+    {
       const fav = favorites.map((id) => list.find((e) => e.id === id)).filter(Boolean) as RegistryEntry[];
       if (fav.length) m.set('favorites', fav);
     }
@@ -115,8 +129,8 @@ export function Launcher({ entries, activeId }: { entries: RegistryEntry[]; acti
         </div>
         <div ref={grid} className="launcher__body">
           {groups.map(([fam, es]) => (
-            <section key={fam} aria-label={fam === 'favorites' ? 'Favoris' : FAMILY_LABEL[fam]}>
-              <h2 className="launcher__group">{fam === 'favorites' ? 'Favoris' : FAMILY_LABEL[fam]}</h2>
+            <section key={fam} aria-label={GROUP_LABEL(fam)}>
+              <h2 className="launcher__group">{GROUP_LABEL(fam)}</h2>
               <div className="launcher__grid">
                 {es.map((e) => {
                   idx++;

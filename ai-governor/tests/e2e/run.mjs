@@ -19,14 +19,22 @@ mkdirSync(OUT, { recursive: true });
 const AXE = readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const PORT = 4199;
 const URL = `http://localhost:${PORT}/`;
-const EXPERIENCES = [
-  ['control-center', 'Control Center'],
-  ['ai-office', 'AI Office'],
-  ['system-map', 'AI System Map'],
-  ['modular-office', 'AI Modular Office'],
-  ['ledger', 'Journal opérationnel'],
-];
+// The view list is read from the running app, so adding or removing a view
+// needs no test change. WebGL views get their own (looser) budget: their
+// renderer is a separate lazy chunk and software GL is slow in CI.
+let EXPERIENCES = [];
 const BUDGET = { switchMs: 400, longTasks: 6, domNodes: 6000 };
+const BUDGET_3D = { switchMs: 1500, longTasks: 12, domNodes: 6000 };
+
+/** Opens a view through the launcher (G → search → Enter), like a user would. */
+async function openView(page, name) {
+  await page.keyboard.press('g');
+  const box = page.getByRole('textbox', { name: 'Rechercher une vue' });
+  await box.waitFor({ timeout: 3000 });
+  await box.fill(name);
+  await page.keyboard.press('Enter');
+  await page.waitForFunction((n) => !document.querySelector('.stage__loading') && document.querySelector('main')?.getAttribute('aria-label')?.includes(n), name, { timeout: 8000 });
+}
 
 const results = { checks: [], perf: [], a11y: [] };
 const check = (name, ok, detail = '') => {
@@ -57,8 +65,10 @@ try {
   });
   await page.goto(URL, { waitUntil: 'networkidle' });
   await page.waitForTimeout(800);
+  EXPERIENCES = (await page.evaluate(() => window.__mag.views())).map((v) => [v.id, v.name, v.renderer]);
+  check('Vues installées découvertes', EXPERIENCES.length >= 5, `${EXPERIENCES.length} vues`);
 
-  check('Seul le moteur de rendu actif est chargé au démarrage', !chunks.some((c) => /AiOffice|SystemMap|ModularOffice|Ledger/.test(c)), `chunks: ${[...new Set(chunks)].join(', ')}`);
+  check('Seul le moteur de rendu actif est chargé au démarrage', !chunks.some((c) => /AiOffice|SystemMap|ModularOffice|Ledger|Kanban|Whiteboard|SpatialWorkspace|three/i.test(c)), `chunks: ${[...new Set(chunks)].join(', ')}`);
 
   // Establish context: period 7 j, a filter, a selected agent.
   await page.locator('.timeline').getByRole('button', { name: '7 j', exact: true }).click();
@@ -74,10 +84,13 @@ try {
   page.on('framenavigated', (f) => f === page.mainFrame() && navs.push(f.url()));
 
   for (let i = 0; i < EXPERIENCES.length; i++) {
-    const [id, name] = EXPERIENCES[i];
+    const [id, name, renderer] = EXPERIENCES[i];
+    const B = renderer === 'webgl' ? BUDGET_3D : BUDGET;
+    await page.keyboard.press('g');
+    await page.getByRole('textbox', { name: 'Rechercher une vue' }).fill(name);
     const t0 = Date.now();
-    await page.keyboard.press(String(i + 1));
-    await page.waitForFunction((n) => !document.querySelector('.stage__loading') && document.querySelector('main')?.getAttribute('aria-label')?.includes(n), name, { timeout: 5000 });
+    await page.keyboard.press('Enter');
+    await page.waitForFunction((n) => !document.querySelector('.stage__loading') && document.querySelector('main')?.getAttribute('aria-label')?.includes(n), name, { timeout: 8000 });
     const wall = Date.now() - t0;
     await page.waitForTimeout(1500);
     const inspector = await page.getByRole('complementary', { name: /Inspecteur : Auditrice/ }).count();
@@ -105,9 +118,9 @@ try {
     const cpu = Math.round(((m1.TaskDuration - m0.TaskDuration) / (m1.Timestamp - m0.Timestamp)) * 100);
     await cdp.detach();
     results.perf.push({ id, wallSwitchMs: wall, ...sample, cpuBusyPct: cpu });
-    check(`${name} : bascule < ${BUDGET.switchMs} ms`, wall < BUDGET.switchMs, `${wall} ms (mesure interne ${sample.switchMs ?? '—'} ms)`);
-    check(`${name} : DOM < ${BUDGET.domNodes} nœuds`, sample.dom < BUDGET.domNodes, `${sample.dom}`);
-    check(`${name} : tâches longues ≤ ${BUDGET.longTasks} sur 3 s`, sample.long <= BUDGET.longTasks, `${sample.long}, CPU ${cpu} %`);
+    check(`${name} : bascule < ${B.switchMs} ms`, wall < B.switchMs, `${wall} ms (mesure interne ${sample.switchMs ?? '—'} ms)`);
+    check(`${name} : DOM < ${B.domNodes} nœuds`, sample.dom < B.domNodes, `${sample.dom}`);
+    check(`${name} : tâches longues ≤ ${B.longTasks} sur 3 s`, sample.long <= B.longTasks, `${sample.long}, CPU ${cpu} %`);
     await page.screenshot({ path: join(OUT, `desktop-${id}.png`) });
     await page.addScriptTag({ content: AXE });
     const ax = await page.evaluate(async () => {
@@ -149,7 +162,7 @@ try {
   await page.locator('.sidebar').getByRole('button', { name: 'Vues', exact: true }).click();
 
   // Replay is read-only.
-  await page.keyboard.press('1');
+  await openView(page, 'Control Center');
   await page.waitForTimeout(400);
   const box = await page.locator('.timeline__track').boundingBox();
   await page.mouse.click(box.x + box.width * 0.5, box.y + 8);
@@ -179,7 +192,7 @@ try {
   await pd.goto(URL, { waitUntil: 'networkidle' });
   for (let i = 0; i < EXPERIENCES.length; i++) {
     const [id, name] = EXPERIENCES[i];
-    await pd.keyboard.press(String(i + 1));
+    await openView(pd, name);
     await pd.waitForTimeout(1000);
     await pd.addScriptTag({ content: AXE });
     const ax = await pd.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] }, resultTypes: ['violations'] })).violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, help: v.help })));
@@ -203,7 +216,10 @@ try {
   pm.on('pageerror', (e) => errors.push(`[mobile] ${e.message}`));
   await pm.goto(URL, { waitUntil: 'networkidle' });
   for (const [id, name] of EXPERIENCES) {
-    await pm.getByRole('group', { name: 'Changer d’expérience' }).getByRole('button', { name, exact: true }).click();
+    await pm.getByRole('button', { name: 'Toutes les vues (G)' }).click();
+    await pm.getByRole('textbox', { name: 'Rechercher une vue' }).fill(name);
+    await pm.locator('.launcher__open').first().click();
+    await pm.waitForFunction((n) => !document.querySelector('.stage__loading') && document.querySelector('main')?.getAttribute('aria-label')?.includes(n), name, { timeout: 8000 });
     await pm.waitForTimeout(1200);
     const overflow = await pm.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
     check(`Mobile ${name} : pas de défilement horizontal`, !overflow);

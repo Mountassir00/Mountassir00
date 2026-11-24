@@ -5,7 +5,7 @@ Deux catégories, à identifier avant tout développement (le *Custom Experience
 | | Catégorie A — nouveau thème | Catégorie B — nouvelle expérience |
 |---|---|---|
 | Quoi | Couleurs, typographie, fond, formes, densité, paramètres graphiques d'un moteur existant | Nouveaux composants, nouvelle disposition ou nouveau moteur de rendu |
-| Comment | Experience Studio ou Builder → **variante** (données pures) | Un dossier de code + une entrée de registre, installés par revue de code |
+| Comment | Experience Studio ou Builder → **variante** (données pures) | Un dossier de code (découvert automatiquement), installé par revue de code |
 | Code | Aucun | Oui (TypeScript/React) |
 | Import/export | Fichier JSON validé (variantes, thèmes) | Jamais par fichier : uniquement via le dépôt |
 | Publication | Brouillon → « Valider » dans la galerie | Revue de code + validation GO / NO GO / TEST |
@@ -16,11 +16,12 @@ Deux catégories, à identifier avant tout développement (le *Custom Experience
 
 ```
 src/experiences/ma-vue/
+  manifest.ts      export const definitions: ExperienceDefinition[]   (étape 4)
   MaVue.tsx        export default function MaVue(props: ExperienceProps)
   ma-vue.css       styles préfixés (.mv-…)
 ```
 
-Imports autorisés : `react`, `@sdk`, `@ds`, et les fichiers du dossier. Le test `architecture boundaries` échoue sinon.
+Imports autorisés : `react`, `@sdk`, `@ds`, `@ds/<sous-module>` (ex. `@ds/three` pour les scènes 3D), et les fichiers du dossier ; `manifest.ts` peut en plus importer `../thumbs` (aides `wrap`, `box`, `placeholder` pour dessiner la vignette). Le test `architecture boundaries` échoue sinon.
 
 ### 2. Lire les données (lecture seule)
 
@@ -54,31 +55,39 @@ Ne jamais déclencher `host.request` depuis un glisser, un double-clic ou un ges
 
 ### 4. Déclarer le manifeste
 
-Ajouter une entrée dans `src/experiences/index.ts` :
+Dans `src/experiences/ma-vue/manifest.ts` (aucune autre inscription : `src/experiences/index.ts` découvre tout dossier qui contient un `manifest.ts`). Un même dossier peut déclarer plusieurs vues qui partagent le code (ex. `modular-office` déclare la grille et le hub via le paramètre `arrangement`).
 
 ```ts
-{
+import type { ExperienceDefinition } from '@sdk';
+import { wrap, box } from '../thumbs';
+
+export const definitions: ExperienceDefinition[] = [{
   manifest: {
     id: 'ma-vue', name: 'Ma vue', description: '…', version: '0.1.0',
-    thumbnail: THUMB_MA_VUE,               // SVG statique (affiché via <img>, aucun script possible)
+    family: 'workspace',                    // dashboard | workspace | scene-3d | scene-2d | tool : groupe du lanceur
+    thumbnail: wrap(box(…)),                // SVG statique (affiché via <img>, aucun script possible)
     renderer: 'svg',                        // dom | svg | canvas2d | webgl
     status: 'prototype',
     graphics: [                             // paramètres exposés au Studio, validés et bornés
       { type: 'number', key: 'gap', label: 'Espacement', default: 2, min: 1, max: 4, step: 0.5, group: 'Disposition' },
     ],
     components: ['IsoBox', 'ZoomPan'],
-    layout: { kind: 'scene', zoomPan: true, minimap: true, minWidth: 320 },
+    layout: { kind: 'scene', zoomPan: true, minimap: true, minWidth: 320 }, // kind: grid | scene | list | workspace ; immersive: true masque la chronologie
     accessibility: { keyboard: true, screenReaderSummary: true, reducedMotion: 'full', contrast: 'AA' },
     dependencies: { sdk: '^1.0.0', libraries: [] },
     performance: { cost: 'medium', maxNodes: 300, targetFps: 30, animated: true },
     devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'ledger' },
     createdAt: '2026-11-24',
   },
-  load: () => import('./ma-vue/MaVue'),     // chunk séparé, chargé seulement si la vue est active
-}
+  load: () => import('./MaVue'),            // chunk séparé, chargé seulement si la vue est active
+}];
 ```
 
-Rien d'autre à modifier : le sélecteur, la galerie, le studio, l'inspecteur, la chronologie et les raccourcis prennent la vue en compte automatiquement. C'est ainsi qu'a été ajoutée la 5e expérience (*Journal opérationnel*).
+Rien d'autre à modifier : le lanceur (touche G), la galerie, le studio, l'inspecteur, la chronologie, la recherche et les tests de bout en bout prennent la vue en compte automatiquement. L'ordre par défaut est la liste `ORDER` de `src/experiences/index.ts` (les dossiers absents de la liste suivent par ordre alphabétique).
+
+**Retirer une vue** : la désactiver dans la Galerie (réversible, par utilisateur) ou supprimer son dossier (définitif ; aucune autre ligne à toucher). Les favoris et préférences qui la mentionnaient sont ignorés au chargement suivant.
+
+**Commandes de vue** : `host.provideCommands([...])` ajoute des actions propres à la vue dans la recherche (Ctrl K) ; elles disparaissent quand on change de vue.
 
 ### 5. Respecter la sobriété
 

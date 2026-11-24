@@ -43,6 +43,7 @@ if (typeof window !== 'undefined') {
     uiModelCalls: () => runtime.uiInitiatedModelCalls,
     lastSwitchMs: () => perf.lastSwitchMs,
     clockRunning: () => clock.running,
+    views: () => registry.entries(ui.get().prefs).filter((e) => e.enabled && !e.hidden).map((e) => ({ id: e.id, name: e.manifest.name, renderer: e.manifest.renderer, family: e.manifest.family ?? 'other' })),
   };
 }
 
