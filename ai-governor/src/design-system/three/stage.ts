@@ -487,13 +487,17 @@ export class Stage3D {
     this.contact.clear();
     this.haloTargets = { hover: null, select: null };
     const owned = new Set<{ dispose: () => void }>();
+    const textureKeys: string[] = [];
     this.root.traverse((o) => {
+      if (typeof o.userData?.textureKey === 'string') textureKeys.push(o.userData.textureKey);
       const m = o as Mesh;
       if (m.geometry?.userData.owned) owned.add(m.geometry);
       const mats = m.material ? (Array.isArray(m.material) ? m.material : [m.material]) : [];
       for (const x of mats) if (x.userData.owned) owned.add(x);
     });
     for (const x of owned) x.dispose();
+    // Canvas textures of glass boards are tracked by the kit: release them too.
+    for (const k of textureKeys) this.kit.untrack(k);
     this.root.clear();
   }
 
@@ -583,7 +587,7 @@ export class ContactShadows {
   constructor(kit: MaterialKit, capacity = 160) {
     this.kit = kit;
     this.capacity = capacity;
-    const mat = new MeshBasicMaterial({ color: '#000000', alphaMap: kit.gradient(), transparent: true, depthWrite: false, opacity: 0.22, toneMapped: false });
+    const mat = new MeshBasicMaterial({ color: '#000000', alphaMap: kit.gradientMask(), transparent: true, depthWrite: false, opacity: 0.22, toneMapped: false });
     this.mesh = new InstancedMesh(kit.disc(0.5, 32), mat, capacity);
     this.mesh.count = 0;
     this.mesh.renderOrder = 1;

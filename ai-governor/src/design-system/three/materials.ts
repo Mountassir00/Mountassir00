@@ -271,6 +271,31 @@ export class MaterialKit {
     return t;
   }
 
+  /**
+   * Same falloff as `gradient()` but encoded in grey on opaque black, for use
+   * as an `alphaMap` (three.js reads the green channel, not alpha). 64×64.
+   */
+  gradientMask(): Texture {
+    let t = this.texs.get('gradient-mask');
+    if (!t) {
+      const c = document.createElement('canvas');
+      c.width = c.height = 64;
+      const g = c.getContext('2d')!;
+      g.fillStyle = '#000';
+      g.fillRect(0, 0, 64, 64);
+      const rg = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+      rg.addColorStop(0, 'rgb(255,255,255)');
+      rg.addColorStop(0.35, 'rgb(140,140,140)');
+      rg.addColorStop(0.7, 'rgb(36,36,36)');
+      rg.addColorStop(1, 'rgb(0,0,0)');
+      g.fillStyle = rg;
+      g.fillRect(0, 0, 64, 64);
+      t = new CanvasTexture(c);
+      this.texs.set('gradient-mask', t);
+    }
+    return t;
+  }
+
   /** Ring-shaped gradient (bright rim, soft inside) for glow rings under robots. 64×64. */
   ringGradient(): Texture {
     let t = this.texs.get('ring');

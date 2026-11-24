@@ -197,7 +197,7 @@ export class FlowNetwork {
   update(t: number, flow: number): boolean {
     this.matActive.uniforms.uTime.value = t;
     this.matActive.uniforms.uFlow.value = flow;
-    return flow > 0 && this.activeCount > 0;
+    return this.group.visible && flow > 0 && this.activeCount > 0;
   }
 
   setVisible(v: boolean) {

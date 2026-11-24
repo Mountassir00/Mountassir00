@@ -302,7 +302,8 @@ export function SpatialScene3D({
         if (pa && pb) specs.push({ id: `idle:${k}`, points: routeBetween(pa, pb, { bend: 0.1 }), color: '#8fa6c8', active: false, level: 0.3 });
       }
     }
-    if (L.flows.set(specs)) changed = true;
+    // New flows only need a redraw: a burst (figures moving at eco) is reserved for status changes.
+    L.flows.set(specs);
     L.flows.setVisible(showFlows);
     // boards
     for (const b of L.scene.prims.values()) b.board?.userData.redraw();
