@@ -38,7 +38,7 @@ function useWidth<T extends HTMLElement>() {
 export default function AgentsBoard({ host, config, quality, device }: ExperienceProps) {
   const g = useGovernor();
   const windowMin = Math.round(Number(config.throughputWindow ?? 15)) || 15;
-  const showHumans = config.showHumans !== false;
+  const showHumans = config.showHumans === true;
   const showSpark = config.showSparklines !== false && quality.level !== 'minimal';
   const [rootRef, width] = useWidth<HTMLDivElement>();
 

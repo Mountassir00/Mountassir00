@@ -31,7 +31,7 @@ export const definitions: ExperienceDefinition[] = [
         { type: 'select', key: 'density', label: 'Densité', default: 'comfortable', options: [{ value: 'comfortable', label: 'Confortable' }, { value: 'compact', label: 'Compacte' }], group: 'Disposition' },
         { type: 'number', key: 'throughputWindow', label: 'Fenêtre du débit de tokens', default: 15, min: 5, max: 60, step: 5, unit: 'min', group: 'Données' },
         { type: 'boolean', key: 'showSparklines', label: 'Courbes de débit par agent', default: true, group: 'Graphiques' },
-        { type: 'boolean', key: 'showHumans', label: 'Inclure les personnes', default: true, group: 'Données' },
+        { type: 'boolean', key: 'showHumans', label: 'Inclure les personnes', default: false, group: 'Données' },
       ],
       components: ['AgentAvatar', 'StatusPill', 'NatureBadge', 'Sparkline', 'Segmented', 'ProgressBar'],
       layout: { kind: 'grid', zoomPan: false, minimap: false, minWidth: 320 },
