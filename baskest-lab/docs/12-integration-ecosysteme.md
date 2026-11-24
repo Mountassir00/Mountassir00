@@ -26,7 +26,7 @@ Objectif (§20) : qu'un concept généré et validé devienne un **vrai projet**
 | `social` | Réseaux sociaux | oui | à brancher |
 | `results` | Base de résultats / classements | non | à brancher |
 
-Fonctionnement actuel (`dryRunConnector`) : un connecteur sensible appelé sans approbation lève `ApprovalRequiredError` ; avec une approbation valide, il renvoie l'aperçu de la charge utile. Simplification à corriger lors du branchement : tous les connecteurs sensibles vérifient aujourd'hui une approbation de type « publication » ; il faudra vérifier le type adapté (« dépense » pour la comptabilité, « réservation » pour un lieu, etc.).
+Fonctionnement actuel (`dryRunConnector`) : un connecteur sensible appelé sans approbation lève `ApprovalRequiredError` ; avec une approbation valide, il renvoie l'aperçu de la charge utile. Chaque connecteur exige le type d'approbation correspondant à son action : « publication » (site, écrans, billetterie, réseaux sociaux), « modification opérationnelle » (dashboard administratif), « dépense » (comptabilité) ; le CRM et la base de résultats ne sont pas sensibles. Une approbation d'un autre type est refusée.
 
 ## 3. Flux de données
 

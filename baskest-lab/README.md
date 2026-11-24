@@ -8,7 +8,7 @@ Le laboratoire de recherche et développement événementiel de **Bask'Est**, as
 cd baskest-lab
 npm install
 npm run dev          # dashboard sur http://localhost:5173
-npm test             # 27 tests des moteurs
+npm test             # 31 tests des moteurs
 npm run blueprint    # régénère le Blueprint phare (MD, HTML, PDF, JSON, SVG, PNG)
 npm run exports      # Word, Excel (budget modifiable), PowerPoint, kit opérationnel
 npm run build:demo   # dashboard en un seul fichier HTML (dist-demo/index.html)

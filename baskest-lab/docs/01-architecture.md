@@ -8,7 +8,7 @@
 |---|---|
 | **Modulaire, montée en puissance progressive** | Un cœur de moteurs *purs* (TypeScript sans dépendance navigateur) réutilisés par l'interface, les scripts d'export et, demain, un serveur. Chaque module peut être remplacé sans toucher aux autres. |
 | **Faits ≠ hypothèses** | Toute donnée externe porte une `Provenance` (`verifie`, `probable`, `estimation`, `hypothese`, `non_trouve`) avec sa source et sa date. |
-| **Déterministe et testable** | Générateur pseudo-aléatoire à graine (`src/core/rng.ts`) : une simulation se rejoue à l'identique. 27 tests automatisés (`npm test`). |
+| **Déterministe et testable** | Générateur pseudo-aléatoire à graine (`src/core/rng.ts`) : une simulation se rejoue à l'identique. 31 tests automatisés (`npm test`). |
 | **Privé par défaut, validation humaine** | Les concepts sont `private: true` ; publication, dépense, commande, réservation et modification opérationnelle passent par une `ApprovalRequest` (`src/core/integration/contracts.ts`). |
 | **Fonctionne hors ligne, sans serveur** | Le dashboard est une application statique (Vite + React). Les données de l'association restent dans le navigateur tant que la base partagée n'est pas branchée. |
 | **Coûts quasi nuls au départ** | Aucun service payant requis pour l'usage actuel. Les intégrations (base partagée, billetterie, CRM…) sont optionnelles et progressives. |

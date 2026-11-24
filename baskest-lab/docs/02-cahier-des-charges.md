@@ -46,7 +46,7 @@ Les moteurs sont du TypeScript pur, déterministes (graine aléatoire), sans dé
 
 **Critères d'acceptation transverses des moteurs**
 
-- `npm test` passe (27 tests au 24/11/2026) ; `npm run typecheck` sans erreur.
+- `npm test` passe (31 tests au 24/11/2026) ; `npm run typecheck` sans erreur.
 - À graine égale, une simulation donne le même résultat (test `est déterministe à graine égale`).
 - Un emprunt ne modifie jamais le résultat, seulement la trésorerie (test dédié).
 - Un format n'est jamais déclaré « validé » sans au moins 2 éditions réussies (test `maturité`).
