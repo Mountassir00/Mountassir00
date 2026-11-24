@@ -1,0 +1,790 @@
+{
+  "validation": "jsonschema 4.26.0 (draft 2020-12, format_checker actif)",
+  "stage_rule": "blueprint",
+  "concepts": [
+    {
+      "id": "la-joute",
+      "name": "LA JOUTE",
+      "directions": [
+        "premium",
+        "communautaire"
+      ],
+      "disciplines": [],
+      "score_exact": 76.9,
+      "score": 77,
+      "grade": "B",
+      "confidence": 0.37,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3,
+        "experience_utilisateur": 4,
+        "faisabilite_technique": 4.5,
+        "viabilite_economique": 3.5,
+        "potentiel_mediatique": 4,
+        "reproductibilite": 3.5,
+        "adaptabilite_lieux": 4.5,
+        "accessibilite_inclusion": 3.5,
+        "potentiel_commercial": 4,
+        "responsabilite_environnementale": 4
+      },
+      "top3_gains": [
+        [
+          "originalite",
+          4.8
+        ],
+        [
+          "viabilite_economique",
+          4.5
+        ],
+        [
+          "experience_utilisateur",
+          3.0
+        ]
+      ],
+      "score_si_plus_1_partout": 95.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 12000,
+          "depenses_avec_contingence": 11714,
+          "resultat": 286,
+          "resultat_pct_depenses": 2.4,
+          "recettes_securisees": 12000
+        },
+        "central": {
+          "recettes": 12000,
+          "depenses_avec_contingence": 10695,
+          "resultat": 1305,
+          "resultat_pct_depenses": 12.2,
+          "recettes_securisees": 12000
+        },
+        "ambitieux": {
+          "recettes": 12000,
+          "depenses_avec_contingence": 10186,
+          "resultat": 1814,
+          "resultat_pct_depenses": 17.8,
+          "recettes_securisees": 12000
+        },
+        "depenses_fixes_base": 9260
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "genese",
+      "name": "GENÈSE",
+      "directions": [
+        "experimental",
+        "communautaire"
+      ],
+      "disciplines": [
+        "sport à inventer (multisport)"
+      ],
+      "score_exact": 69.5,
+      "score": 70,
+      "grade": "B",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 4,
+        "experience_utilisateur": 3,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 3,
+        "potentiel_mediatique": 4.5,
+        "reproductibilite": 3.5,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 4,
+        "potentiel_commercial": 3,
+        "responsabilite_environnementale": 3.5
+      },
+      "top3_gains": [
+        [
+          "experience_utilisateur",
+          6.0
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ],
+        [
+          "viabilite_economique",
+          6.0
+        ]
+      ],
+      "score_si_plus_1_partout": 89.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 20000,
+          "depenses_avec_contingence": 20366,
+          "resultat": -366,
+          "resultat_pct_depenses": -1.8,
+          "recettes_securisees": 20000
+        },
+        "central": {
+          "recettes": 20000,
+          "depenses_avec_contingence": 18596,
+          "resultat": 1404,
+          "resultat_pct_depenses": 7.6,
+          "recettes_securisees": 20000
+        },
+        "ambitieux": {
+          "recettes": 20000,
+          "depenses_avec_contingence": 17710,
+          "resultat": 2290,
+          "resultat_pct_depenses": 12.9,
+          "recettes_securisees": 20000
+        },
+        "depenses_fixes_base": 16100
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "carre-fest",
+      "name": "CARRÉ FEST",
+      "directions": [
+        "premium",
+        "accessible"
+      ],
+      "disciplines": [],
+      "score_exact": 69.2,
+      "score": 69,
+      "grade": "B",
+      "confidence": 0.35,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 2.5,
+        "experience_utilisateur": 3.5,
+        "faisabilite_technique": 3.5,
+        "viabilite_economique": 2.5,
+        "potentiel_mediatique": 3.5,
+        "reproductibilite": 4.5,
+        "adaptabilite_lieux": 4.5,
+        "accessibilite_inclusion": 3,
+        "potentiel_commercial": 4,
+        "responsabilite_environnementale": 4.5
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          7.5
+        ],
+        [
+          "originalite",
+          6.0
+        ],
+        [
+          "experience_utilisateur",
+          4.5
+        ]
+      ],
+      "score_si_plus_1_partout": 87.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 6500,
+          "depenses_avec_contingence": 6742,
+          "resultat": -242,
+          "resultat_pct_depenses": -3.6,
+          "recettes_securisees": 6500
+        },
+        "central": {
+          "recettes": 6500,
+          "depenses_avec_contingence": 6156,
+          "resultat": 344,
+          "resultat_pct_depenses": 5.6,
+          "recettes_securisees": 6500
+        },
+        "ambitieux": {
+          "recettes": 6500,
+          "depenses_avec_contingence": 5863,
+          "resultat": 637,
+          "resultat_pct_depenses": 10.9,
+          "recettes_securisees": 6500
+        },
+        "depenses_fixes_base": 5330
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "repar-arene",
+      "name": "RÉPAR'ARÈNE",
+      "directions": [
+        "communautaire",
+        "hybride"
+      ],
+      "disciplines": [],
+      "score_exact": 66.6,
+      "score": 67,
+      "grade": "B",
+      "confidence": 0.3,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3,
+        "experience_utilisateur": 3,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 3,
+        "potentiel_mediatique": 3.5,
+        "reproductibilite": 3.5,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 3.5,
+        "potentiel_commercial": 3.5,
+        "responsabilite_environnementale": 5
+      },
+      "top3_gains": [
+        [
+          "experience_utilisateur",
+          6.0
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ],
+        [
+          "viabilite_economique",
+          6.0
+        ]
+      ],
+      "score_si_plus_1_partout": 86.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 7000,
+          "depenses_avec_contingence": 7464,
+          "resultat": -464,
+          "resultat_pct_depenses": -6.2,
+          "recettes_securisees": 7000
+        },
+        "central": {
+          "recettes": 7300,
+          "depenses_avec_contingence": 6815,
+          "resultat": 485,
+          "resultat_pct_depenses": 7.1,
+          "recettes_securisees": 7000
+        },
+        "ambitieux": {
+          "recettes": 7700,
+          "depenses_avec_contingence": 6490,
+          "resultat": 1210,
+          "resultat_pct_depenses": 18.6,
+          "recettes_securisees": 7000
+        },
+        "depenses_fixes_base": 5900
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "coop-12",
+      "name": "CO-OP 12",
+      "directions": [
+        "accessible",
+        "hybride"
+      ],
+      "disciplines": [
+        "esport (jeux de course ou de sport arcade, choix du jeu à valider)"
+      ],
+      "score_exact": 65.6,
+      "score": 66,
+      "grade": "B",
+      "confidence": 0.32,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3,
+        "experience_utilisateur": 3.5,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 2,
+        "potentiel_mediatique": 3.5,
+        "reproductibilite": 4,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 5,
+        "potentiel_commercial": 3.5,
+        "responsabilite_environnementale": 3
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          9.0
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ],
+        [
+          "originalite",
+          4.8
+        ]
+      ],
+      "score_si_plus_1_partout": 85.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 3260,
+          "depenses_avec_contingence": 8476,
+          "resultat": -5216,
+          "resultat_pct_depenses": -61.5,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 5720,
+          "depenses_avec_contingence": 7739,
+          "resultat": -2019,
+          "resultat_pct_depenses": -26.1,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 7700,
+          "depenses_avec_contingence": 7370,
+          "resultat": 330,
+          "resultat_pct_depenses": 4.5,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 6700
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "hors-bureau",
+      "name": "HORS-BUREAU",
+      "directions": [
+        "optimise",
+        "communautaire"
+      ],
+      "disciplines": [
+        "multi-épreuves (balle au but sans contact, relais, précision, énigmes)"
+      ],
+      "score_exact": 64.1,
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.35,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 2.5,
+        "experience_utilisateur": 3.5,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 2.5,
+        "potentiel_mediatique": 3,
+        "reproductibilite": 4,
+        "adaptabilite_lieux": 3.5,
+        "accessibilite_inclusion": 3.5,
+        "potentiel_commercial": 4,
+        "responsabilite_environnementale": 4
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          7.5
+        ],
+        [
+          "originalite",
+          6.0
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ]
+      ],
+      "score_si_plus_1_partout": 84.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 10900,
+          "depenses_avec_contingence": 16559,
+          "resultat": -5659,
+          "resultat_pct_depenses": -34.2,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 17080,
+          "depenses_avec_contingence": 15258,
+          "resultat": 1822,
+          "resultat_pct_depenses": 11.9,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 23200,
+          "depenses_avec_contingence": 14663,
+          "resultat": 8537,
+          "resultat_pct_depenses": 58.2,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 12850
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "level-up-run",
+      "name": "LEVEL UP RUN (nom provisoire, à changer)",
+      "directions": [
+        "hybride",
+        "communautaire"
+      ],
+      "disciplines": [
+        "course à pied",
+        "marche"
+      ],
+      "score_exact": 64.1,
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3,
+        "experience_utilisateur": 3.5,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 1.5,
+        "potentiel_mediatique": 3.5,
+        "reproductibilite": 4,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 3.5,
+        "potentiel_commercial": 4,
+        "responsabilite_environnementale": 4
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          10.5
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ],
+        [
+          "originalite",
+          4.8
+        ]
+      ],
+      "score_si_plus_1_partout": 84.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 1500,
+          "depenses_avec_contingence": 7970,
+          "resultat": -6470,
+          "resultat_pct_depenses": -81.2,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 4650,
+          "depenses_avec_contingence": 7623,
+          "resultat": -2973,
+          "resultat_pct_depenses": -39.0,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 9850,
+          "depenses_avec_contingence": 7920,
+          "resultat": 1930,
+          "resultat_pct_depenses": 24.4,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 6000
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "silent-arena",
+      "name": "SILENT ARENA",
+      "directions": [
+        "experimental",
+        "hybride"
+      ],
+      "disciplines": [
+        "football à 5 / futsal de rue",
+        "toute compétition nocturne (module)"
+      ],
+      "score_exact": 63.8,
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3.5,
+        "experience_utilisateur": 3,
+        "faisabilite_technique": 3,
+        "viabilite_economique": 2,
+        "potentiel_mediatique": 4,
+        "reproductibilite": 3.5,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 3.5,
+        "potentiel_commercial": 3,
+        "responsabilite_environnementale": 3.5
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          9.0
+        ],
+        [
+          "experience_utilisateur",
+          6.0
+        ],
+        [
+          "faisabilite_technique",
+          6.0
+        ]
+      ],
+      "score_si_plus_1_partout": 84.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 5085,
+          "depenses_avec_contingence": 10936,
+          "resultat": -5851,
+          "resultat_pct_depenses": -53.5,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 8625,
+          "depenses_avec_contingence": 10020,
+          "resultat": -1395,
+          "resultat_pct_depenses": -13.9,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 11415,
+          "depenses_avec_contingence": 9576,
+          "resultat": 1840,
+          "resultat_pct_depenses": 19.2,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 8600
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "padel-royale",
+      "name": "PADEL ROYALE",
+      "directions": [
+        "optimise"
+      ],
+      "disciplines": [
+        "padel"
+      ],
+      "score_exact": 62.2,
+      "score": 62,
+      "grade": "C",
+      "confidence": 0.37,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 2.5,
+        "experience_utilisateur": 3,
+        "faisabilite_technique": 4.5,
+        "viabilite_economique": 2.5,
+        "potentiel_mediatique": 3,
+        "reproductibilite": 4.5,
+        "adaptabilite_lieux": 2,
+        "accessibilite_inclusion": 2.5,
+        "potentiel_commercial": 2.5,
+        "responsabilite_environnementale": 3
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          7.5
+        ],
+        [
+          "originalite",
+          6.0
+        ],
+        [
+          "experience_utilisateur",
+          6.0
+        ]
+      ],
+      "score_si_plus_1_partout": 80.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 590,
+          "depenses_avec_contingence": 1047,
+          "resultat": -457,
+          "resultat_pct_depenses": -43.7,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 1005,
+          "depenses_avec_contingence": 984,
+          "resultat": 21,
+          "resultat_pct_depenses": 2.1,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 1450,
+          "depenses_avec_contingence": 964,
+          "resultat": 486,
+          "resultat_pct_depenses": 50.5,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 780
+      },
+      "finance_variants": {},
+      "errors": []
+    },
+    {
+      "id": "la-grille-3x3",
+      "name": "LA GRILLE 3x3",
+      "directions": [
+        "accessible",
+        "optimise"
+      ],
+      "disciplines": [
+        "basketball 3x3"
+      ],
+      "score_exact": 61.1,
+      "score": 61,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gates": {
+        "securite": "ok",
+        "conformite_reglementaire": "a_verifier",
+        "risques_critiques": "ok"
+      },
+      "ratings": {
+        "originalite": 3,
+        "experience_utilisateur": 3,
+        "faisabilite_technique": 4,
+        "viabilite_economique": 1.5,
+        "potentiel_mediatique": 3,
+        "reproductibilite": 3.5,
+        "adaptabilite_lieux": 4,
+        "accessibilite_inclusion": 3,
+        "potentiel_commercial": 3,
+        "responsabilite_environnementale": 3
+      },
+      "top3_gains": [
+        [
+          "viabilite_economique",
+          10.5
+        ],
+        [
+          "experience_utilisateur",
+          6.0
+        ],
+        [
+          "originalite",
+          4.8
+        ]
+      ],
+      "score_si_plus_1_partout": 81.0,
+      "finance_check": {
+        "prudent": {
+          "recettes": 2900,
+          "depenses_avec_contingence": 13789,
+          "resultat": -10889,
+          "resultat_pct_depenses": -79.0,
+          "recettes_securisees": 0
+        },
+        "central": {
+          "recettes": 6150,
+          "depenses_avec_contingence": 12590,
+          "resultat": -6440,
+          "resultat_pct_depenses": -51.1,
+          "recettes_securisees": 0
+        },
+        "ambitieux": {
+          "recettes": 10050,
+          "depenses_avec_contingence": 11990,
+          "resultat": -1940,
+          "resultat_pct_depenses": -16.2,
+          "recettes_securisees": 0
+        },
+        "depenses_fixes_base": 10900
+      },
+      "finance_variants": {
+        "economique": {
+          "prudent": {
+            "recettes": 2900,
+            "depenses_avec_contingence": 7464,
+            "resultat": -4564,
+            "resultat_pct_depenses": -61.1,
+            "recettes_securisees": 0
+          },
+          "central": {
+            "recettes": 6150,
+            "depenses_avec_contingence": 6815,
+            "resultat": -665,
+            "resultat_pct_depenses": -9.8,
+            "recettes_securisees": 0
+          },
+          "ambitieux": {
+            "recettes": 10050,
+            "depenses_avec_contingence": 6490,
+            "resultat": 3560,
+            "resultat_pct_depenses": 54.9,
+            "recettes_securisees": 0
+          },
+          "depenses_fixes_base": 5900
+        },
+        "premium": {
+          "prudent": {
+            "recettes": 2900,
+            "depenses_avec_contingence": 30360,
+            "resultat": -27460,
+            "resultat_pct_depenses": -90.4,
+            "recettes_securisees": 0
+          },
+          "central": {
+            "recettes": 7950,
+            "depenses_avec_contingence": 27720,
+            "resultat": -19770,
+            "resultat_pct_depenses": -71.3,
+            "recettes_securisees": 0
+          },
+          "ambitieux": {
+            "recettes": 14250,
+            "depenses_avec_contingence": 26400,
+            "resultat": -12150,
+            "resultat_pct_depenses": -46.0,
+            "recettes_securisees": 0
+          },
+          "depenses_fixes_base": 24000
+        }
+      },
+      "errors": []
+    }
+  ]
+}

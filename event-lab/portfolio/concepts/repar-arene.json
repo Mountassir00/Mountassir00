@@ -1,0 +1,647 @@
+{
+  "id": "repar-arene",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "RÉPAR'ARÈNE",
+    "tagline": "Votre objet est en panne. Six duos ont 30 minutes.",
+    "pitch": "Remplace la graine draft-night (recoupement avec l'existant interne du porteur et avec des ligues à draft existantes). Spectacle public de réparation en compétition : les habitants apportent des objets en panne déclarés à l'avance (petit électroménager, vélo, vêtement, lampe, jouet) ; six duos — un bénévole amateur et un artisan ou réparateur local — s'affrontent en trois manches chronométrées (diagnostic éclair, réparation, objet mystère) devant un jury et un public qui pronostique la panne. Le propriétaire repart avec son objet réparé, à prix coûtant des pièces plafonné. Chaque réparation est documentée en fiche publique (bibliothèque de tutoriels), filmée en gros plan et pesée : le kilo d'objets sauvés est l'indicateur central. Acheteurs visés : intercommunalités et syndicats chargés de la prévention des déchets, bailleurs sociaux, médiathèques et tiers-lieux. Originalité non vérifiée par recherche web (budget épuisé) : à contrôler en priorité.",
+    "disciplines": [],
+    "sectors": [
+      "économie circulaire et réparation",
+      "jeux télévisés de compétition (logique transposée)",
+      "artisanat",
+      "action publique de prévention des déchets"
+    ],
+    "directions": [
+      "communautaire",
+      "hybride"
+    ],
+    "objectives": [
+      "Rendre la réparation visible, désirable et apprise",
+      "Mesurer un impact environnemental concret (masse d'objets sauvés)",
+      "Mettre en avant les artisans réparateurs du territoire",
+      "Offrir aux collectivités une action de prévention des déchets à forte audience"
+    ],
+    "audiences": [
+      {
+        "segment": "Intercommunalités et syndicats de collecte et traitement des déchets",
+        "role": "organisateur",
+        "motivation": "Actions de prévention visibles et mesurables",
+        "willingness_to_pay": "Hypothèse : 7 000 € par épisode dans un contrat de série de 4 — non testée"
+      },
+      {
+        "segment": "Habitants porteurs d'objets en panne",
+        "role": "participant",
+        "motivation": "Récupérer un objet réparé, comprendre la panne",
+        "willingness_to_pay": "Pièces à prix coûtant, plafonnées à 15 € (hypothèse)"
+      },
+      {
+        "segment": "Artisans réparateurs, bénévoles d'ateliers de réparation",
+        "role": "participant",
+        "motivation": "Visibilité, nouveaux clients, reconnaissance",
+        "willingness_to_pay": "Indemnité versée (150 € par duo) — hypothèse"
+      },
+      {
+        "segment": "Familles et curieux",
+        "role": "spectateur",
+        "motivation": "Spectacle gratuit, suspense, apprentissage",
+        "willingness_to_pay": "0 € (gratuit)"
+      },
+      {
+        "segment": "Enseignes de bricolage, chambres consulaires des métiers",
+        "role": "sponsor",
+        "motivation": "Image, promotion des métiers de la réparation",
+        "willingness_to_pay": "Hypothèse : 1 000 € par épisode"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Ateliers de réparation bénévoles et participatifs",
+        "source_sector": "économie circulaire",
+        "borrowed_logic": "Réparer ensemble des objets apportés par les habitants",
+        "adaptation": "Passage d'un atelier sans enjeu à un spectacle compétitif en manches ; la marque d'un réseau existant d'ateliers n'est pas utilisée (vérifier les droits antérieurs)"
+      },
+      {
+        "source_event": "Concours culinaires télévisés à manches et jury",
+        "source_sector": "télévision",
+        "borrowed_logic": "Manches chronométrées, épreuve mystère, jury, élimination",
+        "adaptation": "Transposées à la réparation ; aucun titre ni identité d'émission repris"
+      },
+      {
+        "source_event": "LA JOUTE (portefeuille EVENT LAB)",
+        "source_sector": "éloquence",
+        "borrowed_logic": "Explication publique notée",
+        "adaptation": "Le duo est aussi noté sur la qualité de l'explication donnée au propriétaire"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Samedi après-midi, 2 h 30, dans une halle, une médiathèque ou un tiers-lieu. Inscriptions préalables des objets avec photo et description de la panne (tri par l'équipe). Manche 1 — diagnostic éclair : 5 min par objet, le public pronostique la panne par QR. Manche 2 — réparation : 30 min, chaque duo reçoit deux objets. Manche 3 — objet mystère pour les deux meilleurs duos. Écran géant avec caméra en gros plan, commentaire en direct. Remise au propriétaire, pesée, fiche de réparation publiée.",
+    "rules_summary": "Points : réparation réussie (50), coût des pièces (jusqu'à 20, moins c'est cher plus c'est haut), explication au propriétaire notée par lui (jusqu'à 20), temps (jusqu'à 10). Objets exclus : appareils à gaz, chauffage, systèmes de sécurité, batteries gonflées, objets sous garantie. Tout appareil électrique réparé passe un contrôle de sécurité avant restitution ; en cas de doute, il n'est pas rendu fonctionnel et le propriétaire est orienté vers un professionnel.",
+    "duration_hours": 2.5,
+    "edition_cadence": "série de 4 à 6 épisodes par an dans différents quartiers, finale annuelle",
+    "building_blocks": [
+      {
+        "type": "regles",
+        "label": "Trois manches chronométrées, barème réparation/coût/explication/temps",
+        "parameters": {
+          "duos": 6,
+          "objets_par_duo": 2
+        }
+      },
+      {
+        "type": "interaction_public",
+        "label": "Pronostic gratuit de la panne par QR",
+        "parameters": {}
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Caméra gros plan sur écran géant, commentaire, pesée publique",
+        "parameters": {}
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Bibliothèque publique des fiches de réparation",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Avant/après, accélérés, tutoriels courts",
+        "parameters": {}
+      },
+      {
+        "type": "fidelisation",
+        "label": "Classement annuel des duos, finale",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Enseigne de bricolage ou chambre des métiers partenaire de saison",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Contrat de série avec une collectivité, sponsor",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 6,
+      "central": 6,
+      "ambitieux": 6
+    },
+    "team_size": 2,
+    "categories": [
+      "duos amateur + professionnel"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 60,
+      "central": 120,
+      "ambitieux": 200
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 120
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 250,
+    "spaces": [
+      {
+        "id": "etablis",
+        "type": "aire_de_jeu",
+        "label": "Six établis éclairés, ventilés, avec alimentation protégée"
+      },
+      {
+        "id": "public",
+        "type": "tribune",
+        "label": "Public assis ou debout 60–200 personnes"
+      },
+      {
+        "id": "depot",
+        "type": "accueil",
+        "label": "Dépôt et restitution des objets, pesée"
+      },
+      {
+        "id": "regie",
+        "type": "regie",
+        "label": "Caméra gros plan, écran, son"
+      }
+    ],
+    "power_kw": 9,
+    "internet": "nécessaire pour le pronostic et la publication des fiches",
+    "notes": "Circuits électriques protégés par différentiel ; distance de sécurité entre établis et public."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-lieu",
+        "category": "lieu",
+        "label": "Salle (souvent municipale)",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-animation",
+        "category": "animation",
+        "label": "Animateur-commentateur",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-duos",
+        "category": "personnel",
+        "label": "Indemnités des six duos (6 × 150 €)",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-pieces",
+        "category": "consommables",
+        "label": "Pièces et consommables (au-delà de la participation plafonnée des propriétaires)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-outillage",
+        "category": "materiel",
+        "label": "Outillage, testeur de sécurité électrique, protections",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-av",
+        "category": "technique",
+        "label": "Écran, caméra gros plan, son",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-video",
+        "category": "media",
+        "label": "Montage des tutoriels et avant/après",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC incluant l'activité de réparation",
+        "amount": 250,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication et appel aux objets",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-jury",
+        "category": "competition",
+        "label": "Défraiement du jury",
+        "amount": 150,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 3
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Format et coordination EVENT LAB",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-contrat",
+        "stream": "autre",
+        "label": "Épisode d'un contrat de série signé avec une collectivité (engagement des dépenses après signature)",
+        "unit_amount": 7000,
+        "basis": "fixed",
+        "certainty": "secured"
+      },
+      {
+        "id": "r-sponsor",
+        "stream": "sponsoring",
+        "label": "Partenaire de saison (quote-part par épisode)",
+        "unit_amount": 1000,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Électrisation, brûlure ou coupure pendant une réparation, projection vers le public",
+      "probability": 2,
+      "impact": 4,
+      "critical": false,
+      "warning_signs": [
+        "appareil non débranché",
+        "batterie déformée"
+      ],
+      "prevention": [
+        "appareils électriques confiés au membre qualifié du duo",
+        "réparations hors tension, testeur de sécurité",
+        "équipements de protection",
+        "zone public à distance"
+      ],
+      "continuity_plan": "Arrêt de la manche, prise en charge par le secouriste, retrait de l'objet",
+      "owner_role": "référent sécurité",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "juridique",
+      "description": "Responsabilité en cas de dommage causé ultérieurement par un objet réparé (incendie, choc électrique)",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [
+        "objets à risque inscrits"
+      ],
+      "prevention": [
+        "liste d'objets exclus",
+        "contrôle de sécurité avant restitution",
+        "information écrite du propriétaire",
+        "avis d'assureur et de juriste avant le premier épisode"
+      ],
+      "continuity_plan": "En cas de doute, objet restitué non remis en service avec orientation vers un professionnel ; déclaration à l'assureur",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "operationnel",
+      "description": "Objets apportés trop simples, trop complexes ou en nombre insuffisant",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "moins de 20 objets inscrits à J-7"
+      ],
+      "prevention": [
+        "inscription avec photo, tri préalable",
+        "réserve d'objets issus d'une ressourcerie"
+      ],
+      "continuity_plan": "Objets de réserve fournis par une ressourcerie partenaire",
+      "owner_role": "coordinateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "reputationnel",
+      "description": "Réparations ratées en public, propriétaires déçus ; concurrence perçue par des réparateurs professionnels",
+      "probability": 3,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "taux de réussite < 50 %"
+      ],
+      "prevention": [
+        "un échec donne un diagnostic écrit et une orientation vers un artisan local",
+        "artisans associés à chaque duo"
+      ],
+      "continuity_plan": "Bon de diagnostic remis au propriétaire",
+      "owner_role": "animateur",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "financier",
+      "description": "Aucune collectivité ne signe de contrat de série",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "aucun rendez-vous obtenu en 2 mois"
+      ],
+      "prevention": [
+        "épisode pilote cofinancé"
+      ],
+      "continuity_plan": "Version associative allégée (sans vidéo ni indemnités), ou abandon",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Assurance responsabilité civile couvrant l'activité de réparation et les dommages ultérieurs ; régime de responsabilité applicable à une réparation bénévole ou rémunérée",
+      "authority": "Assureur, juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Sécurité électrique des installations temporaires et des appareils restitués",
+      "authority": "Électricien qualifié, exploitant du lieu",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Effectif autorisé et classement ERP du lieu",
+      "authority": "Exploitant, mairie",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Pronostic gratuit avec lot : règlement et gratuité",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Données des propriétaires et droit à l'image (diffusion des tutoriels)",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C6",
+      "item": "Noms et marques de réseaux d'ateliers de réparation existants : ne pas les utiliser sans accord",
+      "authority": "Conseil en propriété industrielle",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Objets inscrits à J-7",
+      "phase": "avant",
+      "target": 24,
+      "unit": "objets",
+      "measure": "formulaire d'inscription"
+    },
+    {
+      "id": "K2",
+      "label": "Taux de réparation réussie",
+      "phase": "pendant",
+      "target": 60,
+      "unit": "%",
+      "measure": "fiches de réparation"
+    },
+    {
+      "id": "K3",
+      "label": "Masse d'objets remis en service",
+      "phase": "pendant",
+      "target": 40,
+      "unit": "kg par épisode (hypothèse)",
+      "measure": "pesée publique"
+    },
+    {
+      "id": "K4",
+      "label": "Spectateurs",
+      "phase": "pendant",
+      "target": 120,
+      "unit": "personnes",
+      "measure": "comptage"
+    },
+    {
+      "id": "K5",
+      "label": "Renouvellement du contrat de série",
+      "phase": "apres",
+      "target": 1,
+      "unit": "contrat",
+      "measure": "délibération ou bon de commande"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Avant/après en accéléré",
+      "Diagnostic du public contre diagnostic de l'expert",
+      "Objet mystère de la finale",
+      "Pesée cumulée de la saison"
+    ],
+    "photo_spots": [
+      "Mur des objets sauvés",
+      "Balance géante"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "YouTube (tutoriels)",
+      "presse locale",
+      "sites des collectivités"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Pronostic de la panne",
+      "target_role": "spectateur",
+      "description": "Le public choisit parmi trois diagnostics",
+      "fairness_note": "Gratuit, lot symbolique"
+    },
+    {
+      "mechanic": "Compteur collectif de kilos sauvés",
+      "target_role": "spectateur",
+      "description": "Objectif annuel partagé par le territoire",
+      "fairness_note": "Mesure réelle, pas d'incitation à apporter des objets non nécessaires"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3 (combinaison nouvelle de briques connues). Les ateliers de réparation participatifs et les concours à manches télévisés existent ; leur combinaison en spectacle compétitif n'a pas pu être recherchée sur le web (budget de recherche épuisé). Note provisoire, confiance minimale.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Recherche d'antériorité prioritaire (compétitions de réparation, émissions de réparation)"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Enjeu réel pour les propriétaires, apprentissage pour le public ; une réparation est lente à regarder : les temps faibles dépendent de la caméra gros plan et du commentaire.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Rotation de l'écran entre établis, commentaire à deux voix"
+        ]
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Outillage courant ; points à sécuriser : sécurité électrique, tri des objets, responsabilité sur les objets restitués.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 3,
+        "justification": "Ancre 3. Le calcul §7.1 donne +7 % au central et −6 % au prudent si le contrat de série est signé avant engagement des dépenses (base 4,5) ; décote de 1,5 car prix et acheteur public ne sont pas testés. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Rendez-vous avec trois collectivités compétentes en prévention des déchets"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Avant/après et tutoriels conçus pour le format vertical, contenu réutilisable par les collectivités ; audience surtout locale.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Kit et barème standardisables ; dépend du recrutement d'artisans locaux à chaque épisode.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Convention type avec la chambre des métiers"
+        ]
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Halle, médiathèque, tiers-lieu, salle polyvalente, marché couvert ; extérieur sous tente possible.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Gratuit, intergénérationnel, sans prérequis pour le public ; duos ouverts aux amateurs ; aménagements handicap à prévoir au cas par cas.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "potentiel_commercial": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Contrats de série publics, partenaires, contenus, licence possible aux réseaux de réparation ; dépend fortement de la commande publique.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 5,
+        "justification": "Ancre 5. La raison d'être du format est la remise en service d'objets, avec mesure systématique (pesée) ; matériel réemployé, public local.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "6 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 6 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5, C6) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R2), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R2), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 67,
+      "grade": "B",
+      "confidence": 0.3,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 4.8,
+        "experience_utilisateur": 6.0,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 6.0,
+        "potentiel_mediatique": 3.0,
+        "reproductibilite": 3.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 1.5,
+        "potentiel_commercial": 1.5,
+        "responsabilite_environnementale": 0.0
+      },
+      "score_if_plus_one": 86.0
+    }
+  },
+  "hypotheses": [
+    "Prix de 7 000 € par épisode dans un contrat de 4 épisodes : hypothèse non testée.",
+    "Les collectivités compétentes en prévention des déchets disposent de budgets d'animation mobilisables : hypothèse.",
+    "Masse moyenne remise en service par épisode : 40 kg, hypothèse sans donnée.",
+    "Aucune vérification web d'originalité ni d'homonymie n'a pu être faite (budget de recherche épuisé)."
+  ],
+  "sources": [],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Création en remplacement de draft-night, retiré pour recoupement avec l'existant interne du porteur (QUADRA, VITRINE) et l'existant externe (ligues amateurs à draft).",
+      "decisions": [
+        "Concept hors sport choisi conformément à la vocation multisectorielle d'EVENT LAB",
+        "Originalité et nom non vérifiés sur le web : à faire avant toute suite"
+      ],
+      "approved_by": null
+    }
+  ]
+}

@@ -1,0 +1,651 @@
+{
+  "id": "genese",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "GENÈSE",
+    "tagline": "En huit semaines, une ville invente son sport. Puis elle le joue.",
+    "pitch": "Programme participatif de huit semaines au terme duquel une communauté (ville, réseau d'établissements, communauté d'une marque) a inventé un sport et en dispute le premier tournoi. Une « constitution » fixée au départ pose les contraintes non négociables (sécurité, matériel disponible en gymnase ou en extérieur, inclusion, durée de match). Chaque semaine, la communauté vote en ligne un module de règles (terrain, objet, façon de marquer, effectif, contrainte surprise) ; le jeudi suivant, une séance de test filmée en gymnase vérifie que la règle votée est jouable et sûre. Semaine 7 : vote du nom et de l'identité. Semaine 8 : tournoi fondateur. Existant le plus proche : un sport conçu par intelligence artificielle par une agence (2019), un sport dont le créateur annonçait des règles issues des suggestions des joueurs, une ligue de football où les fans votaient les actions (en sommeil après deux saisons). Aucun programme identique trouvé.",
+    "disciplines": [
+      "sport à inventer (multisport)"
+    ],
+    "sectors": [
+      "sport émergent",
+      "télévision (vote du public, logique transposée)",
+      "démocratie participative",
+      "jeu"
+    ],
+    "directions": [
+      "experimental",
+      "communautaire"
+    ],
+    "objectives": [
+      "Produire un récit participatif fort et mesurable (votes, testeurs, joueurs)",
+      "Créer un sport propre à un territoire ou une communauté",
+      "Mobiliser des jeunes peu engagés dans les sports établis",
+      "Constituer un catalogue de sports inventés, réutilisables par d'autres villes"
+    ],
+    "audiences": [
+      {
+        "segment": "Villes (jeunesse, sport, participation citoyenne)",
+        "role": "organisateur",
+        "motivation": "Projet participatif visible, jeunes mobilisés",
+        "willingness_to_pay": "Hypothèse : 20 000 € par programme — non testée"
+      },
+      {
+        "segment": "Marques grand public et agences",
+        "role": "sponsor",
+        "motivation": "Campagne participative à contenu hebdomadaire",
+        "willingness_to_pay": "Hypothèse : 20–40 k€"
+      },
+      {
+        "segment": "Jeunes 12–25 ans, établissements scolaires, centres sociaux",
+        "role": "participant",
+        "motivation": "Décider, tester, être filmé, jouer au sport qu'ils ont créé",
+        "willingness_to_pay": "0 €"
+      },
+      {
+        "segment": "Habitants votants",
+        "role": "spectateur",
+        "motivation": "Participer à une décision ludique, suivre le feuilleton",
+        "willingness_to_pay": "0 €"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Speedgate, sport conçu avec l'aide de l'intelligence artificielle (2019)",
+        "source_sector": "sport émergent",
+        "borrowed_logic": "Inventer un sport à partir de combinaisons de règles puis le tester",
+        "adaptation": "Les règles sont choisies par vote communautaire et testées chaque semaine ; aucune règle ni identité de Speedgate reprise",
+        "source_ref": "S-SPEEDGATE-CBC"
+      },
+      {
+        "source_event": "Ligue de football en salle où les fans votaient les actions par application (2021–2022, en sommeil)",
+        "source_sector": "football américain en salle",
+        "borrowed_logic": "Vote du public sur le jeu",
+        "adaptation": "Le vote porte sur les règles avant le jeu, pas sur les actions pendant le match ; enseignement retenu : la nouveauté seule ne suffit pas à faire durer un modèle",
+        "source_ref": "S-FCF-WIKI"
+      },
+      {
+        "source_event": "Émissions de télévision à vote du public",
+        "source_sector": "télévision",
+        "borrowed_logic": "Votes hebdomadaires qui orientent la suite",
+        "adaptation": "Votes gratuits, un par personne, sur des modules de règles"
+      },
+      {
+        "source_event": "Qontrol Ball (sport conçu par des chercheurs et étudiants)",
+        "source_sector": "université",
+        "borrowed_logic": "Conception collective d'un sport",
+        "adaptation": "Ouvert à toute une communauté avec tests publics",
+        "source_ref": "S-QONTROL"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Semaine 0 : publication de la constitution. Semaines 1 à 6 : un vote par semaine (trois propositions par module, issues d'un atelier jeunes) ; le jeudi, séance de test filmée de 2 h en gymnase avec 20 à 30 volontaires ; vidéo récapitulative publiée le lundi. Semaine 7 : vote du nom, des couleurs et du trophée. Semaine 8 : tournoi fondateur (12 équipes, une journée) et publication du règlement sous licence ouverte.",
+    "rules_summary": "La constitution interdit : contact au-dessus des épaules, objets durs lancés, équipements non disponibles en gymnase standard, matchs de plus de 20 min ; elle impose : mixité possible, variante assise ou adaptée. Une règle votée qui échoue au test de sécurité est remplacée par la proposition arrivée deuxième. Vote : gratuit, un par compte vérifié, résultats publics.",
+    "duration_hours": 7,
+    "edition_cadence": "programme annuel par ville ; inter-villes des sports inventés possible ensuite",
+    "building_blocks": [
+      {
+        "type": "interaction_public",
+        "label": "Votes hebdomadaires de modules de règles",
+        "parameters": {
+          "modules": 6,
+          "propositions_par_module": 3
+        }
+      },
+      {
+        "type": "regles",
+        "label": "Constitution de sécurité et d'inclusion non votable",
+        "parameters": {}
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Séances de test publiques et règle de repli",
+        "parameters": {
+          "seances": 6
+        }
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Feuilleton vidéo hebdomadaire",
+        "parameters": {
+          "episodes": 8
+        }
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Plateforme de vote et règlement évolutif en ligne",
+        "parameters": {}
+      },
+      {
+        "type": "mise_en_scene",
+        "label": "Tournoi fondateur et « premier match officiel »",
+        "parameters": {
+          "equipes": 12
+        }
+      },
+      {
+        "type": "fidelisation",
+        "label": "Catalogue des sports inventés, inter-villes",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Commande de la ville ou d'une marque",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 8,
+      "central": 12,
+      "ambitieux": 16
+    },
+    "team_size": 6,
+    "categories": [
+      "mixte",
+      "variante adaptée"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 150,
+      "central": 300,
+      "ambitieux": 600
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 120
+  },
+  "venue_requirements": {
+    "setting": "mixte",
+    "min_area_m2": 800,
+    "spaces": [
+      {
+        "id": "gymnase",
+        "type": "aire_de_jeu",
+        "label": "Gymnase pour les tests et le tournoi"
+      },
+      {
+        "id": "public",
+        "type": "tribune"
+      },
+      {
+        "id": "media",
+        "type": "media",
+        "label": "Coin captation et interviews"
+      }
+    ],
+    "power_kw": 5,
+    "internet": "plateforme de vote en ligne",
+    "notes": "La constitution limite le matériel à celui d'un gymnase standard pour que le sport soit reproductible."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-community",
+        "category": "personnel",
+        "label": "Animation de communauté (8 semaines × 2 jours × 300 €)",
+        "amount": 4800,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-vote",
+        "category": "digital",
+        "label": "Plateforme de vote sans code",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-tests",
+        "category": "materiel",
+        "label": "Matériel de test",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-video",
+        "category": "media",
+        "label": "Feuilleton vidéo (8 épisodes × 400 €)",
+        "amount": 3200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-tournoi",
+        "category": "evenement",
+        "label": "Tournoi fondateur (son, écran, arbitrage, trophée, accueil)",
+        "amount": 4000,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-securite",
+        "category": "securite",
+        "label": "Revue de sécurité des règles par un professionnel du sport",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC (tests et tournoi)",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Direction de programme EVENT LAB",
+        "amount": 2000,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-commande",
+        "stream": "autre",
+        "label": "Commande de la ville ou d'une marque (signée avant lancement)",
+        "unit_amount": 20000,
+        "basis": "fixed",
+        "certainty": "secured"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Une règle votée crée un jeu dangereux (collisions, projectiles)",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "blessures légères en séance de test"
+      ],
+      "prevention": [
+        "constitution de sécurité non votable",
+        "revue par un professionnel du sport avant chaque test",
+        "test obligatoire avant adoption"
+      ],
+      "continuity_plan": "Règle remplacée par la proposition arrivée deuxième ; séance de test supplémentaire",
+      "owner_role": "référent sécurité",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "operationnel",
+      "description": "Participation au vote qui s'effondre après deux semaines",
+      "probability": 4,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "baisse de plus de 40 % entre deux votes"
+      ],
+      "prevention": [
+        "relais par établissements scolaires et centres sociaux",
+        "feuilleton hebdomadaire",
+        "votes courts (30 s)"
+      ],
+      "continuity_plan": "Fusion de deux modules et raccourcissement à 6 semaines",
+      "owner_role": "animateur de communauté",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "reputationnel",
+      "description": "Le sport obtenu est peu jouable ou ennuyeux et le tournoi déçoit",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "tests jugés confus"
+      ],
+      "prevention": [
+        "propositions préparées en atelier",
+        "deux tests sur le jeu complet en semaines 6 et 7"
+      ],
+      "continuity_plan": "Tournoi présenté comme « version 1 » avec vote d'ajustement immédiat",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "financier",
+      "description": "Absence de commanditaire : le modèle n'a aucune recette autonome",
+      "probability": 4,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "aucune ville intéressée après 10 rendez-vous"
+      ],
+      "prevention": [
+        "pilote réduit à 4 semaines dans un établissement"
+      ],
+      "continuity_plan": "Abandon ou format réduit pour établissements scolaires",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "juridique",
+      "description": "Votes manipulés (comptes multiples) ou données de mineurs mal gérées",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "pics de votes anormaux"
+      ],
+      "prevention": [
+        "compte vérifié, un vote par personne",
+        "minimisation des données"
+      ],
+      "continuity_plan": "Annulation et nouveau vote",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Assurance responsabilité civile couvrant une pratique nouvelle non fédérale (tests et tournoi)",
+      "authority": "Assureur",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Mineurs : autorisations parentales pour les tests filmés, droit à l'image, consentement numérique pour le vote",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "RGPD de la plateforme de vote (comptes, conservation, mineurs)",
+      "authority": "Délégué à la protection des données",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Propriété du règlement et du nom du sport créé (licence ouverte du règlement, dépôt éventuel du nom par la ville)",
+      "authority": "Conseil en propriété intellectuelle",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Utilisation du gymnase : convention, effectif autorisé",
+      "authority": "Commune",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Votants uniques sur le programme",
+      "phase": "avant",
+      "target": 1000,
+      "unit": "personnes",
+      "measure": "plateforme de vote"
+    },
+    {
+      "id": "K2",
+      "label": "Testeurs volontaires par séance",
+      "phase": "avant",
+      "target": 20,
+      "unit": "personnes",
+      "measure": "feuilles de présence"
+    },
+    {
+      "id": "K3",
+      "label": "Équipes au tournoi fondateur",
+      "phase": "pendant",
+      "target": 12,
+      "unit": "équipes",
+      "measure": "inscriptions"
+    },
+    {
+      "id": "K4",
+      "label": "Pratique du sport dans les 6 mois (créneaux réguliers)",
+      "phase": "apres",
+      "target": 2,
+      "unit": "créneaux hebdomadaires",
+      "measure": "planning des structures"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Résultat d'un vote surprenant puis test filmé",
+      "Premier point marqué de l'histoire du sport",
+      "Révélation du nom choisi",
+      "Comparaison règle votée / réalité du terrain"
+    ],
+    "photo_spots": [
+      "Tableau des règles votées",
+      "Trophée dessiné par la communauté"
+    ],
+    "channels": [
+      "TikTok",
+      "Instagram",
+      "YouTube",
+      "presse régionale et nationale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Votes hebdomadaires",
+      "target_role": "spectateur",
+      "description": "Un vote gratuit par module",
+      "fairness_note": "Un vote par personne vérifiée, résultats publics, aucune option payante"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Aucun programme identique trouvé : les sports inventés existants (conception assistée par IA, conception universitaire, règles annoncées comme issues des joueurs) n'associent pas votes hebdomadaires, tests publics et tournoi fondateur. Transposition du vote télévisé au règlement sportif cohérente.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "experience_utilisateur": {
+        "rating": 3,
+        "justification": "Ancre 3. Feuilleton et pouvoir de décision engageants ; risques de lassitude du vote et d'un sport final maladroit.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Outils standard (vote, vidéo, gymnase) ; deux points critiques : sécurité de règles inconnues à l'avance et matériel non connu à l'avance (borné par la constitution).",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 3,
+        "justification": "Ancre 3. Le calcul §7.1 donne +7,6 % au central et −1,8 % au prudent si une ville ou une marque signe environ 20 k€ avant lancement (base proche de 4,5) ; décote de 1,5 car ce prix et l'existence d'un acheteur ne sont pas testés et le modèle n'a aucune recette autonome. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Valider un commanditaire avant toute production"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Récit natif en épisodes, suspense hebdomadaire, contenu généré par les testeurs, angle presse évident.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. La méthode se reproduit ; le résultat varie par construction ; dépend d'un animateur de communauté compétent.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Gymnase, terrain extérieur, plage : le lieu est une contrainte inscrite dans la constitution.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. La constitution impose mixité et variante adaptée ; participation gratuite.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "potentiel_commercial": {
+        "rating": 3,
+        "justification": "Ancre 3. Commande publique ou de marque, contenus, catalogue de sports ; revenu non récurrent par ville sauf inter-villes.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Matériel de gymnase réemployé, participants locaux ; production vidéo modérée.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 70,
+      "grade": "B",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 2.4,
+        "experience_utilisateur": 6.0,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 6.0,
+        "potentiel_mediatique": 1.0,
+        "reproductibilite": 3.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 1.0,
+        "potentiel_commercial": 2.0,
+        "responsabilite_environnementale": 1.5
+      },
+      "score_if_plus_one": 89.0
+    }
+  },
+  "hypotheses": [
+    "Commande de 20 000 € par programme : hypothèse non testée.",
+    "1 000 votants uniques atteignables dans une ville moyenne avec relais scolaires : hypothèse.",
+    "Nom « Genèse » non vérifié (budget de recherche épuisé) ; mot courant, homonymes probables."
+  ],
+  "sources": [
+    {
+      "id": "S-SPEEDGATE-CBC",
+      "title": "Introducing Speedgate: the world's first AI-designed sport",
+      "publisher": "CBC Radio (Spark)",
+      "url": "https://www.cbc.ca/radio/spark/spark-438-1.5122430/introducing-speedgate-the-world-s-first-ai-designed-sport-1.5122435",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-SPEEDGATE-ENG",
+      "title": "AI developed a whole new sport",
+      "publisher": "Engadget",
+      "url": "https://www.engadget.com/2019/04/15/ai-sport-speedgate/",
+      "published_at": "2019-04-15",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-ONEGOAL",
+      "title": "World's Newest Sport Launched: OneGoal.Football",
+      "publisher": "ResponseSource (communiqué de presse)",
+      "url": "https://pressreleases.responsesource.com/newsroom/OneGoalFootball/release/94561",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-FCF-WIKI",
+      "title": "Fan Controlled Football",
+      "publisher": "Wikipédia",
+      "url": "https://en.wikipedia.org/wiki/Fan_Controlled_Football",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche (deux saisons 2021–2022, saison 2023 reportée)"
+    },
+    {
+      "id": "S-FCF-SMITH",
+      "title": "Interactive football league lets fans pick the plays",
+      "publisher": "Smithsonian Magazine",
+      "url": "https://www.smithsonianmag.com/innovation/interactive-football-league-fans-pick-plays-180973154/",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-QONTROL",
+      "title": "Researchers and students design entirely new sport",
+      "publisher": "Universiteit Utrecht",
+      "url": "https://www.uu.nl/en/news/researchers-and-students-design-entirely-new-sport",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-TOPEND",
+      "title": "Submit your new sport",
+      "publisher": "Topend Sports",
+      "url": "https://www.topendsports.com/sport/new/submit.htm",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé : aucun programme identique trouvé ; ajout d'une constitution de sécurité non votable et de tests hebdomadaires.",
+      "decisions": [
+        "Règlement final publié sous licence ouverte",
+        "Aucune production sans commanditaire signé"
+      ],
+      "approved_by": null
+    }
+  ]
+}

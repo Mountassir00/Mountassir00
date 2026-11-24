@@ -1,0 +1,2397 @@
+[
+  {
+    "id": "E-001",
+    "title": "Pré-filtrage de sécurité et contrôle des billets cumulés au même point : goulot d'étranglement à l'entrée d'un stade",
+    "events": [
+      {
+        "name": "Finale de la Ligue des champions UEFA (Liverpool – Real Madrid)",
+        "date": "2022-05-28",
+        "city": "Saint-Denis",
+        "country": "FR"
+      }
+    ],
+    "domain": "securite",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors de la finale au Stade de France, l'accès des spectateurs a été désorganisé. Selon le rapport du Sénat (juillet 2022), le pré-filtrage antiterroriste mis en place par la préfecture de police, combiné au contrôle de validité des billets par les stadiers au même point, a créé un goulot d'étranglement ; le pré-filtrage situé à la sortie du RER D a été saturé et la réorientation des flux a été tardive. Des gaz lacrymogènes ont été utilisés près des tourniquets. La revue indépendante commandée par l'UEFA (février 2023) attribue la responsabilité première à l'UEFA en tant que propriétaire de l'événement, relève un plan calqué sur celui de la finale de la Coupe de France, un délai d'organisation de trois mois jugé insuffisant (finale relocalisée) et l'absence de preuve à l'appui de la thèse d'une fraude massive : environ 1 600 faux billets côté Liverpool, un niveau habituel pour un tel match. Les autorités avaient initialement mis en avant la fraude ; l'UEFA a ensuite présenté ses excuses aux supporters de Liverpool.",
+    "probable_causes": [
+      "Contrôle de validité des billets réalisé au même point que le pré-filtrage de sécurité, transformant un filtrage rapide en point de blocage (Sénat, recommandation n° 7 : séparer les deux contrôles).",
+      "Saturation du pré-filtrage à la sortie d'une gare et réorientation tardive des flux (Sénat).",
+      "Gestion de la billetterie jugée inadaptée et dispositif de traitement des litiges insuffisant : les spectateurs refoulés restaient devant les points de filtrage (Sénat).",
+      "Plan opérationnel repris d'un match national sans adaptation à un afflux massif de supporters étrangers ; trois mois de préparation (revue indépendante UEFA).",
+      "Unité sûreté-sécurité marginalisée par la direction des événements de l'organisateur (revue indépendante UEFA).",
+      "Nombreuses personnes sans billet aux abords, évaluées à environ 30 000 par le délégué interministériel lors de son audition au Sénat ; chiffre contesté."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Supporters, dont des familles, bloqués et exposés à des gaz lacrymogènes à proximité des tourniquets.",
+      "Mise en cause internationale de l'organisation et de l'image du pays hôte avant de grands événements sportifs.",
+      "Communication initiale imputant les troubles à une fraude massive, non étayée selon la revue indépendante, puis excuses publiques de l'organisateur.",
+      "Quinze recommandations du Sénat ; engagement de l'UEFA à mettre en œuvre les recommandations clés de la revue."
+    ],
+    "warning_signs": [
+      "Files qui s'allongent au premier point de contrôle alors que les tourniquets en aval sont sous-utilisés.",
+      "Spectateurs refoulés qui restent sur place faute de guichet de litiges identifiable.",
+      "Une seule sortie de transport en commun dessert une grande part du public.",
+      "Plan de flux recopié d'un événement au profil de public différent.",
+      "Délai de préparation raccourci sans renfort de la coordination."
+    ],
+    "preventive_measures": [
+      "Séparer physiquement le filtrage de sécurité (palpation, sacs) du contrôle de validité des billets.",
+      "Dimensionner chaque point de contrôle par le calcul (débit par file × profil d'arrivée) et identifier des cheminements de délestage et des voies d'évacuation.",
+      "Prévoir un guichet de résolution des litiges de billetterie à l'écart du flux et une aide pour les personnes ne pouvant utiliser le billet électronique.",
+      "Adapter le plan au profil réel du public (provenance, horaires d'arrivée, transports) au lieu de reprendre un plan existant.",
+      "Donner à la fonction sûreté-sécurité un rôle décisionnel dans la gouvernance de l'événement.",
+      "Ne communiquer de chiffres sur une fraude ou sur le comportement du public qu'après vérification."
+    ],
+    "corrective_plan": [
+      "Ouvrir des points de contrôle supplémentaires ou reporter le contrôle des billets du pré-filtrage vers les tourniquets.",
+      "Réorienter les flux vers les accès sous-utilisés (signalétique, annonces en plusieurs langues).",
+      "Retarder le début du spectacle plutôt que laisser la pression monter aux accès.",
+      "Proscrire l'usage indiscriminé de moyens de force sur une foule compacte et immobile ; prioriser la décompression.",
+      "Après l'incident : enquête interne, communication fondée sur des faits vérifiés, excuses si nécessaire."
+    ],
+    "checklist_items": [
+      "Le contrôle des billets est-il séparé physiquement de la fouille / du filtrage de sécurité ?",
+      "Le nombre de files d'entrée est-il calculé (débit par file × profil d'arrivée) avec une attente cible ?",
+      "Un point litiges billetterie est-il prévu à l'écart du flux d'entrée, avec du personnel formé ?",
+      "Chaque point d'arrivée (gare, arrêt, parking) a-t-il un cheminement et un plan de délestage ?",
+      "Le responsable sécurité valide-t-il le plan de flux et dispose-t-il d'un pouvoir de décision le jour J ?",
+      "Toute communication de crise est-elle validée sur des faits vérifiés avant diffusion ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.senat.fr/rap/r21-776/r21-7760.html",
+        "title": "Finale de la Ligue des Champions : un fiasco évitable (rapport d'information n° 776, 2021-2022)",
+        "publisher": "Sénat (commissions des lois et de la culture)",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.senat.fr/rap/r21-776/r21-7761.html",
+        "title": "Liste des recommandations du rapport n° 776",
+        "publisher": "Sénat",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.uefa.com/news-media/news/027e-174e2ba0479b-1d2e46569fa4-1000--uefa-champions-league-final-2022-independent-review-report",
+        "title": "UEFA Champions League Final 2022: independent review report",
+        "publisher": "UEFA",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.publicsenat.fr/actualites/politique/un-fiasco-evitable-le-rapport-au-vitriol-du-senat-sur-les-violences-au-stade",
+        "title": "« Un fiasco évitable » : le rapport au vitriol du Sénat sur les violences au Stade de France",
+        "publisher": "Public Sénat",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.skysports.com/football/news/11095/12810141/champions-league-final-liverpool-fans-cleared-as-review-finds-uefa-french-authorities-to-be-at-fault",
+        "title": "Champions League final: Liverpool fans cleared as review finds UEFA, French authorities to be at fault",
+        "publisher": "Sky Sports",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "foule",
+      "acces",
+      "controle-billets",
+      "communication-de-crise",
+      "stade",
+      "football"
+    ]
+  },
+  {
+    "id": "E-002",
+    "title": "Intrusions massives de personnes sans billet et absence de plan pour le pire scénario",
+    "events": [
+      {
+        "name": "Finale de l'Euro 2020 (Angleterre – Italie)",
+        "date": "2021-07-11",
+        "city": "Londres (Wembley)",
+        "country": "GB"
+      }
+    ],
+    "domain": "securite",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "La revue indépendante conduite par la baronne Casey, publiée en décembre 2021, établit que plus de 2 000 personnes sont entrées dans le stade sans billet et qualifie la journée de « near miss » : des décès et des blessures graves ont été évités de peu. Elle décrit une conjonction de facteurs (assouplissement des restrictions sanitaires, ferveur liée à une première finale majeure depuis 1966) et un échec collectif des organisations impliquées à planifier le pire scénario, sans imputer la faute à une seule entité ; le déploiement policier est jugé trop tardif. Des supporters handicapés ont été ciblés par des personnes cherchant à entrer. La fédération organisatrice a accepté les conclusions et présenté ses excuses ; un bilan de suivi a été publié en 2023.",
+    "probable_causes": [
+      "Absence de planification du scénario le plus défavorable (afflux de personnes sans billet) par l'ensemble des acteurs (revue Casey).",
+      "Déploiement des forces de l'ordre trop tardif au regard de la montée de tension aux abords (revue Casey, selon la presse).",
+      "Demande exceptionnelle et rassemblements prolongés avec consommation d'alcool aux abords (la revue recommande des mesures renforcées, dont sur l'alcool, pour les matchs d'importance nationale).",
+      "Coordination insuffisante entre l'exploitant du stade et la police (recommandation d'une approche commune de la sécurité les jours de match)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Plus de 2 000 entrées sans billet ; situations d'écrasement évitées de peu.",
+      "Personnes vulnérables, dont des supporters handicapés, mises en danger.",
+      "Excuses de l'organisateur, recommandations nationales et bilan de suivi."
+    ],
+    "warning_signs": [
+      "Rassemblements importants de personnes sans billet aux abords plusieurs heures avant l'ouverture.",
+      "Consommation d'alcool massive sur l'espace public proche du lieu.",
+      "Tentatives répétées de forcer portes et tourniquets.",
+      "Écart croissant entre la foule présente aux abords et la capacité du lieu."
+    ],
+    "preventive_measures": [
+      "Classer à part les événements à très forte demande et y appliquer un dispositif renforcé (périmètre élargi, contrôle anticipé, mesures sur l'alcool).",
+      "Écrire explicitement le scénario « afflux de personnes sans billet » avec seuils de déclenchement et moyens associés.",
+      "Installer un poste de commandement commun organisateur – exploitant – forces de l'ordre, avec des règles de décision partagées.",
+      "Protéger les accès vulnérables (portes de service, accès PMR) pendant toute l'ouverture."
+    ],
+    "corrective_plan": [
+      "Fermer et renforcer les accès forcés ; déclencher les renforts au seuil défini.",
+      "Créer un périmètre de contrôle extérieur en amont des tourniquets.",
+      "Mettre en sécurité les spectateurs vulnérables et les zones PMR.",
+      "Annoncer clairement (écrans, sonorisation, réseaux) qu'aucune entrée sans billet ne sera possible."
+    ],
+    "checklist_items": [
+      "Le scénario « foule sans billet aux abords » est-il écrit, avec seuils d'alerte et réponses ?",
+      "Les accès de service et les accès PMR sont-ils gardés pendant toute l'ouverture ?",
+      "Un poste de commandement commun avec les forces de l'ordre est-il prévu ?",
+      "Une politique alcool (vente, horaires, abords) est-elle définie pour les rencontres à forte affluence ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.thefa.com/news/2021/dec/03/baroness-casey-review-uefa-euro-2020-final-20210312",
+        "title": "An independent review of events surrounding the UEFA EURO 2020 Final at Wembley",
+        "publisher": "The Football Association",
+        "reliability": "A"
+      },
+      {
+        "url": "https://democracy.brent.gov.uk/documents/s155196/Appendix%20E13%20-%20Independent%20Review%20of%20events%20surrounding%20the%20UEFA%20Euro%202020%20Final%20at%20Wembley.pdf",
+        "title": "Independent Review of events surrounding the UEFA Euro 2020 Final at Wembley (texte intégral, annexe E13)",
+        "publisher": "Brent Council",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.thefa.com/news/2023/nov/24/new-baroness-casey-report-published-20232411",
+        "title": "New report from Baroness Casey published on the progress made since EURO 2020 Final",
+        "publisher": "The Football Association",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.skysports.com/football/news/19692/12485109/euro-2020-fa-review-on-wembley-final-disorder-finds-series-of-crowd-near-misses-which-could-have-led-to-fatalities",
+        "title": "Euro 2020: FA review on Wembley final disorder finds series of crowd near misses",
+        "publisher": "Sky Sports",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "foule",
+      "intrusions",
+      "perimetre",
+      "alcool",
+      "stade",
+      "football"
+    ]
+  },
+  {
+    "id": "E-003",
+    "title": "Absence d'autorité claire pour arrêter le spectacle face à une compression de foule",
+    "events": [
+      {
+        "name": "Festival Astroworld",
+        "date": "2021-11-05",
+        "city": "Houston",
+        "country": "US"
+      }
+    ],
+    "domain": "securite",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors du concert principal, dix personnes sont mortes par asphyxie compressive et plus de 300 ont été blessées selon l'État du Texas. Le rapport final de la police de Houston (juillet 2023) indique que les dix décès sont survenus dans un même quadrant de la fosse, sous l'effet d'une surpopulation et d'une compaction progressive, et non d'une bousculade. Selon des témoignages recueillis dans ce rapport, des alertes sur la compression ont été émises dès 21 h environ, un ordre d'arrêt n'a pas été suivi immédiatement, et certains membres de l'équipe de production estimaient ne pas avoir l'autorité d'arrêter le spectacle. Un grand jury a refusé d'inculper l'artiste et cinq autres personnes : aucune responsabilité pénale n'est établie. La task force mandatée par le gouverneur du Texas a publié des recommandations en avril 2022 (code de conduite intégré à la billetterie, cadre de permis unifié, formation).",
+    "probable_causes": [
+      "Surdensité dans une zone de fosse conduisant à une compaction progressive (rapport de police).",
+      "Chaîne de décision floue sur qui peut arrêter le spectacle et selon quels critères (témoignages du rapport de police).",
+      "Alertes du terrain remontées sans déclenchement d'action (témoignages du rapport de police).",
+      "Détresse du public difficile à percevoir depuis la scène (déclarations d'artistes rapportées par la presse).",
+      "Cadre de permis hétérogène pour les grands concerts ; des responsables ont indiqué qu'aucun permis n'avait été obtenu pour ce festival (task force texane, selon la presse)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Dix morts et plus de 300 blessés.",
+      "Nombreuses actions civiles contre l'artiste et les organisateurs.",
+      "Nouvel accord de gestion des grands événements sur le site et recommandations de l'État."
+    ],
+    "warning_signs": [
+      "Spectateurs qui ne peuvent plus bouger les bras, cris, personnes qui s'effondrent ou escaladent les barrières.",
+      "Messages répétés des agents de terrain signalant une compression.",
+      "Poussées de foule vers l'avant à chaque relance du spectacle.",
+      "Secours incapables d'atteindre une zone."
+    ],
+    "preventive_measures": [
+      "Écrire une procédure d'arrêt du spectacle : critères, personnes habilitées (dont le responsable sécurité), mot de code, message type à lire au micro.",
+      "Compartimenter la zone debout avec jauge par compartiment et couloirs d'accès des secours.",
+      "Placer des observateurs en hauteur reliés en direct au poste de commandement.",
+      "Former le personnel aux signes de compression de foule et au circuit d'alerte.",
+      "Intégrer un code de conduite au processus de billetterie (recommandation texane)."
+    ],
+    "corrective_plan": [
+      "Arrêter immédiatement la musique, allumer les lumières et lire le message d'arrêt préparé.",
+      "Faire reculer la foule, ouvrir les zones de délestage, faire intervenir les secours par les couloirs prévus.",
+      "Ne reprendre qu'après validation du responsable sécurité."
+    ],
+    "checklist_items": [
+      "Qui peut arrêter le spectacle ou le match ? (nom, rôle, moyen de communication direct avec la scène)",
+      "Le message d'arrêt est-il écrit et le speaker/DJ sait-il le lire ?",
+      "La zone debout devant la scène a-t-elle une jauge et des couloirs de secours ?",
+      "Des observateurs en hauteur surveillent-ils la densité pendant les moments forts ?"
+    ],
+    "sources": [
+      {
+        "url": "https://abc7.com/post/astroworld-travis-scott-tragedy-concert-houston/13563641/",
+        "title": "Final police report released on Travis Scott Astroworld concert surge; no criminal charges filed",
+        "publisher": "ABC7",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.keranews.org/news/2023-07-28/astroworld-concert-incident-report-released-by-houston-police",
+        "title": "Astroworld concert incident report released by Houston police",
+        "publisher": "KERA (NPR North Texas)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.rollingstone.com/music/music-news/astroworld-festival-houston-police-investigation-report-1234796948/",
+        "title": "Astroworld Fest: Houston Police Report Details 'Carnage' and Chaos",
+        "publisher": "Rolling Stone",
+        "reliability": "B"
+      },
+      {
+        "url": "https://gov.texas.gov/news/post/governor-abbotts-texas-task-force-on-concert-safety-releases-final-report",
+        "title": "Governor Abbott's Texas Task Force On Concert Safety Releases Final Report",
+        "publisher": "Office of the Texas Governor",
+        "reliability": "A"
+      },
+      {
+        "url": "https://cbsnews.com/newyork/news/travis-scott-astroworld-not-indicted-houston-harris-county-grand-jury",
+        "title": "Travis Scott not criminally liable for Astroworld Festival deaths, grand jury finds",
+        "publisher": "CBS News",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "foule",
+      "arret-du-spectacle",
+      "chaine-de-decision",
+      "concert",
+      "festival"
+    ]
+  },
+  {
+    "id": "E-004",
+    "title": "Entrée et sortie concentrées sur un même passage : saturation d'une rampe d'accès",
+    "events": [
+      {
+        "name": "Love Parade",
+        "date": "2010-07-24",
+        "city": "Duisbourg",
+        "country": "DE"
+      }
+    ],
+    "domain": "securite",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors de la Love Parade, 21 personnes sont mortes par asphyxie dans une bousculade sur la rampe menant au site ; des centaines ont été blessées. Les analyses scientifiques publiées depuis décrivent un dispositif où arrivées et départs passaient par un même tunnel routier et une rampe (à une petite rampe près), créant un goulot d'étranglement mal pris en compte, et concluent à l'interaction de plusieurs facteurs plutôt qu'à une erreur unique. Le procès pénal a été clos sans jugement le 4 mai 2020 ; le tribunal de Duisbourg a évoqué dans sa communication des mesures qui auraient pu améliorer la situation (allongement des cheminements d'accès, arrêt des entrées) et la presse a résumé ses constats comme un « échec collectif ».",
+    "probable_causes": [
+      "Entrée et sortie concentrées sur un passage unique (tunnel et rampe), avec flux contraires dans le même espace (analyses scientifiques).",
+      "Dimensionnement des cheminements insuffisant au regard des flux attendus (Université de Wuppertal).",
+      "Interaction de multiples facteurs, dont la régulation des flux sur place et la communication entre acteurs (Helbing et Mukerji, 2012).",
+      "Répartition des responsabilités insuffisamment claire entre acteurs (enseignements des chercheurs ; « échec collectif » rapporté à la clôture du procès)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "21 morts et des centaines de blessés.",
+      "Fin de l'événement ; procédure pénale de près de dix ans close sans condamnation."
+    ],
+    "warning_signs": [
+      "Plan de site où l'entrée et la sortie partagent le même passage.",
+      "Flux entrants et sortants qui se croisent dans un espace confiné.",
+      "Fermetures ou régulations de passages décidées sans vision globale de la foule en amont.",
+      "Personnes qui escaladent des structures latérales pour s'extraire."
+    ],
+    "preventive_measures": [
+      "Séparer les cheminements d'entrée et de sortie ; éviter tout passage unique pour l'ensemble du public.",
+      "Calculer la capacité de chaque cheminement (largeur utile × débit) pour le pic simultané d'arrivées et de départs.",
+      "Prévoir des zones tampons et la possibilité d'arrêter les entrées très en amont des points étroits.",
+      "Désigner un responsable unique de la gestion des foules, avec une coordination intégrée trafic – foule."
+    ],
+    "corrective_plan": [
+      "Arrêter les entrées en amont du point de saturation, jamais au point étroit lui-même.",
+      "Ouvrir des issues supplémentaires et faire sortir le public par un autre itinéraire.",
+      "Diffuser des consignes simples et répétées (sonorisation, écrans) à l'ensemble de la foule."
+    ],
+    "checklist_items": [
+      "L'entrée et la sortie du public utilisent-elles des cheminements distincts ?",
+      "Existe-t-il un passage unique (porte, couloir, rampe) que tout le public doit franchir ? Si oui, quelle alternative ?",
+      "Où et par qui les entrées peuvent-elles être stoppées en amont ?",
+      "La largeur des cheminements est-elle calculée pour le pic simultané arrivées + départs ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.lg-duisburg.nrw.de/behoerde/presse/zt_Lopa/loveparade/so_pe/2020_05_04-PE-63-Einstellung-des-Verfahrens.pdf",
+        "title": "Pressemitteilung Nr. 63 : Einstellung des Verfahrens (Loveparade)",
+        "publisher": "Landgericht Duisburg",
+        "reliability": "A"
+      },
+      {
+        "url": "https://link.springer.com/article/10.1140/epjds7",
+        "title": "Crowd disasters as systemic failures: analysis of the Love Parade disaster (Helbing, Mukerji)",
+        "publisher": "EPJ Data Science",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.svpt.uni-wuppertal.de/fileadmin/bauing/svpt/Publikationen/LoPa_EVC_Beitrag_english.pdf",
+        "title": "Contribution sur la catastrophe de la Love Parade (document LoPa_EVC_Beitrag_english)",
+        "publisher": "Bergische Universität Wuppertal",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.irishtimes.com/news/world/europe/ten-go-on-trial-in-dusseldorf-over-21-deaths-in-2010-love-parade-1.3320658",
+        "title": "Ten go on trial in Düsseldorf over 21 deaths in 2010 Love Parade",
+        "publisher": "The Irish Times",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.bpb.de/themen/recht-justiz/513687/ein-komplexes-sammelsurium-an-kausalitaeten/",
+        "title": "Ein komplexes Sammelsurium an Kausalitäten",
+        "publisher": "Bundeszentrale für politische Bildung",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "foule",
+      "cheminements",
+      "entree-sortie",
+      "festival",
+      "rassemblement-de-masse"
+    ]
+  },
+  {
+    "id": "E-005",
+    "title": "Structure scénique temporaire non conforme et absence de protocole météo de report ou d'annulation",
+    "events": [
+      {
+        "name": "Foire de l'État de l'Indiana – concert sur scène extérieure",
+        "date": "2011-08-13",
+        "city": "Indianapolis",
+        "country": "US"
+      }
+    ],
+    "domain": "securite",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Peu avant un concert, la structure de toit et de gréement d'une scène extérieure s'est effondrée sous une rafale de vent lors d'un orage : sept personnes sont mortes et plus de cinquante ont été blessées. Les rapports commandés par la commission de la foire et publiés en avril 2012 concluent, pour l'ingénierie (Thornton Tomasetti), que le gréement ne satisfaisait pas aux exigences de tenue au vent et que son contreventement latéral était insuffisant ; pour la préparation aux urgences (Witt Associates), que le niveau de préparation n'était pas adapté à un événement de cette taille, qu'il n'existait pas de protocole formel pour retarder, reporter ou annuler un concert, et que l'autorité en matière de sécurité publique était ambiguë. Un règlement amiable d'environ 50 millions de dollars a été conclu avec les victimes et leurs familles.",
+    "probable_causes": [
+      "Gréement temporaire ne respectant pas les exigences de tenue au vent ; contreventement latéral insuffisant (rapport d'ingénierie).",
+      "Absence de protocole formel de décision météo : retarder, évacuer, annuler (rapport Witt).",
+      "Ambiguïté sur l'autorité responsable de la sécurité publique et problèmes de communication (rapport Witt).",
+      "Équipe de l'organisateur sans information suffisante sur les limites de la structure (rapports, selon la presse)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Sept morts et plus de cinquante blessés.",
+      "Règlement amiable d'environ 50 millions de dollars, incluant les versements de l'État.",
+      "Refonte du plan d'urgence de la foire et nouvelles règles pour les scènes temporaires (selon la presse)."
+    ],
+    "warning_signs": [
+      "Alerte météo (orage, vent) émise pendant l'ouverture au public.",
+      "Structure temporaire dont la limite de vent n'est pas connue de l'équipe d'exploitation.",
+      "Personne n'est clairement habilitée à décider d'une évacuation."
+    ],
+    "preventive_measures": [
+      "Exiger du prestataire la note de calcul et la vitesse de vent maximale d'exploitation de chaque structure (scène, toit, écran, arche, tribune).",
+      "Écrire un protocole météo à seuils (vent, orage) et actions graduées : surveiller, suspendre, évacuer, annuler.",
+      "Désigner un décideur et un suppléant joignables en permanence.",
+      "Assigner le suivi météo en continu à une personne nommée.",
+      "Faire contrôler le montage par une personne compétente avant l'ouverture."
+    ],
+    "corrective_plan": [
+      "Au seuil : suspendre, éloigner le public des structures hautes et l'orienter vers des abris identifiés.",
+      "Couper les équipements électriques exposés et sécuriser les éléments mobiles.",
+      "Ne reprendre qu'après validation de la structure par le prestataire."
+    ],
+    "checklist_items": [
+      "La vitesse de vent maximale d'exploitation de chaque structure est-elle connue et affichée au poste de commandement ?",
+      "Protocole météo écrit (seuils, décideur, message d'évacuation, abris) ?",
+      "Contrôle du montage par une personne compétente signé avant ouverture ?",
+      "Suivi météo en continu assigné à une personne nommée ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.cbsnews.com/news/report-collapsed-ind-fair-stage-not-to-code/",
+        "title": "Report: Collapsed Ind. fair stage not to code",
+        "publisher": "CBS News (AP)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.ibj.com/articles/33798-faulty-stage-lack-of-emergency-plan-played-roles-in-disaster",
+        "title": "Faulty stage, lack of emergency plan played roles in disaster",
+        "publisher": "Indianapolis Business Journal",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.cbsnews.com/chicago/news/reports-slam-response-to-indiana-state-fair-stage-collapse",
+        "title": "Reports slam response to Indiana State Fair stage collapse",
+        "publisher": "CBS Chicago",
+        "reliability": "B"
+      },
+      {
+        "url": "https://news.yahoo.com/indiana-stage-collapse-survivors-settle-50-million-lawyers-210508814.html",
+        "title": "Indiana stage collapse survivors settle for $50 million: lawyers",
+        "publisher": "Reuters (via Yahoo News)",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "meteo",
+      "vent",
+      "structures-temporaires",
+      "scene",
+      "concert"
+    ]
+  },
+  {
+    "id": "E-006",
+    "title": "Site dont les accès dépendent de la météo : public bloqué plusieurs jours sans sortie possible",
+    "events": [
+      {
+        "name": "Burning Man",
+        "date": "2023-09",
+        "city": "Black Rock Desert (Nevada)",
+        "country": "US"
+      }
+    ],
+    "domain": "securite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Après de fortes pluies (deux à trois mois de précipitations en 24 heures selon Axios), le sol du site désertique est devenu impraticable. Les organisateurs ont stoppé toute circulation de véhicules ; les autorités fédérales et le shérif ont fermé les entrées pour le reste de l'événement ; les participants ont été invités à s'abriter sur place et à économiser nourriture, eau et carburant. Plus de 70 000 personnes sont restées bloquées jusqu'à la levée de l'interdiction de circuler le lundi 4 septembre, suivie de longues heures d'attente pour quitter le site. Un décès a été signalé, que les organisateurs ont dit sans lien avec la météo. Les organisateurs ont souligné que la communauté était préparée à ce type d'aléa ; des participants ont décrit une adaptation collective.",
+    "probable_causes": [
+      "Accès, sortie et circulation interne dépendant d'un sol non stabilisé, rendu impraticable par la pluie.",
+      "Aléa météorologique exceptionnel pour le site."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Plus de 70 000 personnes bloquées plusieurs jours ; entrées fermées pour le reste de l'événement.",
+      "Consignes de rationnement de l'eau, de la nourriture et du carburant.",
+      "Sortie étalée sur des heures une fois la circulation rétablie."
+    ],
+    "warning_signs": [
+      "Prévisions de pluie sur un site dont le sol ou les parkings ne sont pas stabilisés.",
+      "Antécédent récent d'aléa climatique sur le même site (fermeture préalable des accès lors d'un épisode quelques semaines plus tôt, selon la presse).",
+      "Premiers véhicules embourbés sur les voies internes."
+    ],
+    "preventive_measures": [
+      "Cartographier accès et parkings selon leur praticabilité par temps de pluie ; prévoir surfaces stabilisées ou plaques de roulage.",
+      "Écrire un scénario « public bloqué sur site » : eau, nourriture, sanitaires, soins, information, pour la durée maximale plausible.",
+      "Demander aux participants d'apporter des réserves minimales lorsque le site est isolé.",
+      "Prévoir des sorties piétonnes vers des points de collecte praticables si les parkings deviennent inaccessibles."
+    ],
+    "corrective_plan": [
+      "Geler la circulation des véhicules pour éviter les embourbements en chaîne.",
+      "Diffuser des consignes régulières sur tous les canaux (radio, réseaux, affichage).",
+      "Organiser des distributions d'eau et un accès prioritaire aux soins.",
+      "Planifier une sortie échelonnée par zones dès que le sol le permet."
+    ],
+    "checklist_items": [
+      "Parkings et accès restent-ils praticables après une forte pluie ? Sinon, quelle solution ?",
+      "Stock d'eau et plan de ravitaillement si le public doit rester plus longtemps que prévu ?",
+      "Canal d'information du public qui fonctionne sans réseau mobile (sonorisation, affichage) ?",
+      "Plan de sortie échelonnée par zones ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.npr.org/2023/09/02/1197441202/burning-man-festival-rains-floods-stranded-nevada",
+        "title": "Burning Man festival: rains, floods, attendees stranded in Nevada",
+        "publisher": "NPR",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.nbcnews.com/news/us-news/burning-man-attendees-struggle-escape-70000-remain-stuck-black-rock-ci-rcna103175",
+        "title": "Burning Man attendees struggle to escape as 70,000 remain stuck in Black Rock City",
+        "publisher": "NBC News",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.axios.com/2023/09/03/burning-man-festival-flooding-weather",
+        "title": "What we know about the flooding at Burning Man",
+        "publisher": "Axios",
+        "reliability": "B"
+      },
+      {
+        "url": "https://laist.com/news/arts-and-entertainment/burning-man-attendees-told-to-conserve-food-water-amid-shelter-in-place-order",
+        "title": "Burning Man attendees told to conserve food, water amid shelter-in-place order",
+        "publisher": "LAist",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.npr.org/2023/09/05/1197587557/burning-man-exodus-2023-mud",
+        "title": "Burning Man attendees say learning to live with the unexpected is part of the program",
+        "publisher": "NPR",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "meteo",
+      "pluie",
+      "acces",
+      "site-isole",
+      "festival"
+    ]
+  },
+  {
+    "id": "E-007",
+    "title": "Course en milieu naturel maintenue malgré l'alerte météo, sans secours ni ravitaillement au point le plus exposé",
+    "events": [
+      {
+        "name": "Course de trail de 100 km du comté de Jingtai",
+        "date": "2021-05-22",
+        "city": "Jingtai (Baiyin, Gansu)",
+        "country": "CN"
+      }
+    ],
+    "domain": "experience_athletes",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors d'une course de trail de 100 km organisée par des autorités locales, 21 des 172 participants sont morts d'hypothermie après un brusque épisode de vent violent, de pluie forte et de chute des températures. L'enquête officielle, dont les conclusions ont été rapportées par la presse, a qualifié l'accident d'incident de sécurité publique résultant de conditions météorologiques extrêmes et d'une organisation et d'une exploitation non professionnelles : absence de moyens de secours médicaux et de fournitures au point le plus dangereux du parcours, mesures insuffisantes malgré les avertissements météorologiques. Vingt-sept responsables ont été sanctionnés ; des condamnations pénales ont ensuite été prononcées contre des employés de prestataires et des responsables publics.",
+    "probable_causes": [
+      "Avertissements météorologiques non suivis de mesures (report, modification du parcours, équipement obligatoire) (enquête officielle).",
+      "Absence de secours médicaux et de ravitaillement au point le plus exposé du parcours (enquête officielle).",
+      "Organisateurs « sur le papier » : délégation à des prestataires sans contrôle effectif (enquête officielle, selon la presse)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "21 morts parmi les participants.",
+      "27 responsables sanctionnés ; condamnations pénales ultérieures."
+    ],
+    "warning_signs": [
+      "Bulletin annonçant vent fort, pluie froide ou chute de température le jour de la course.",
+      "Sections isolées sans accès véhicule ni poste de secours.",
+      "Matériel obligatoire non contrôlé au départ.",
+      "Abandons et appels à l'aide qui se multiplient sur une même section."
+    ],
+    "preventive_measures": [
+      "Fixer à l'avance des seuils météo de report, de raccourcissement ou d'annulation, validés par le médecin de course.",
+      "Placer poste de secours et ravitaillement (couvertures de survie, vêtements chauds) aux points les plus exposés.",
+      "Rendre obligatoire et contrôler un matériel adapté aux conditions les plus défavorables.",
+      "Suivre les participants en temps réel (pointages, balises) avec barrières horaires.",
+      "Garder la responsabilité opérationnelle de la sécurité chez l'organisateur, même en cas de sous-traitance."
+    ],
+    "corrective_plan": [
+      "Neutraliser la course dès le seuil atteint et diriger les participants vers les abris les plus proches.",
+      "Déclencher les secours à partir des derniers pointages.",
+      "Comptabiliser nominativement tous les participants jusqu'au dernier."
+    ],
+    "checklist_items": [
+      "Seuils météo d'annulation ou de modification écrits et validés par le médecin ?",
+      "Poste de secours et ravitaillement aux points les plus exposés ?",
+      "Contrôle du matériel obligatoire au retrait des dossards ?",
+      "Système de pointage permettant de savoir qui est où ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.sixthtone.com/news/1007850/gansu-ultramarathon-tragedy-blamed-on-unprofessional-operations-",
+        "title": "Gansu ultramarathon tragedy blamed on unprofessional operations",
+        "publisher": "Sixth Tone",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.caixinglobal.com/2021-06-11/more-than-two-dozen-officials-deemed-responsible-for-deadly-trail-run-101726355.html",
+        "title": "More than two dozen officials deemed responsible for deadly trail run",
+        "publisher": "Caixin Global",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.pressreader.com/hong-kong/china-daily/20210612/281539408899920",
+        "title": "27 Gansu officials held accountable for marathon deaths",
+        "publisher": "China Daily (via PressReader)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.aljazeera.com/news/2021/6/12/deadly-china-ultramarathon-leads-to-suicide-arrests",
+        "title": "Probe into deadly China ultramarathon leads to arrests, suicide",
+        "publisher": "Al Jazeera",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.scmp.com/news/china/politics/article/3245296/race-organisers-deadly-2021-ultramarathon-northwestern-china-sentenced-jail",
+        "title": "Race organisers of deadly 2021 ultramarathon in northwestern China sentenced to jail",
+        "publisher": "South China Morning Post",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "meteo",
+      "froid",
+      "course-nature",
+      "secours",
+      "amateur",
+      "endurance"
+    ]
+  },
+  {
+    "id": "E-008",
+    "title": "Tournoi de basket en extérieur exposé à la canicule : déménagement en urgence ou annulation",
+    "events": [
+      {
+        "name": "Quai 54 (tournoi de streetball)",
+        "date": "2026-07",
+        "city": "Paris (stade Émile-Anthoine)",
+        "country": "FR"
+      },
+      {
+        "name": "Open Plus 3x3 de Nancy (Parc de la Pépinière)",
+        "date": "2026",
+        "city": "Nancy",
+        "country": "FR"
+      }
+    ],
+    "domain": "securite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national"
+    ],
+    "description": "Deux tournois de basket urbain en extérieur ont été rattrapés par la chaleur en 2026. Au Quai 54, après une première journée au stade Émile-Anthoine, la vigilance rouge canicule a imposé un déménagement au Clichy Hall (BasketEurope). L'Open Plus 3x3 de Nancy, organisé par le comité départemental au Parc de la Pépinière, a été annulé : la fédération a annoncé l'annulation des Opens Plus de Pau et de Nancy, les motifs rapportés étant la chaleur et la réglementation locale. Les causes et conséquences détaillées ci-dessous proviennent de l'analyse de l'observatoire d'origine. Origine : baskest-lab/07 (statut d'origine : vérifié ; faits non revérifiés par EVENT LAB).",
+    "probable_causes": [
+      "Événement estival en extérieur sans repli couvert réservé à l'avance (analyse de l'observatoire d'origine).",
+      "Arrêtés ou restrictions locales pris en période de canicule (motif rapporté pour Nancy).",
+      "Seuils météo de décision non écrits en amont (analyse de l'observatoire d'origine)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Programme bouleversé, coûts imprévus et jauge contrainte en cas de déménagement (observatoire d'origine).",
+      "Annulation sans report, pertes pour les équipes et les partenaires (observatoire d'origine)."
+    ],
+    "warning_signs": [
+      "Prévisions de vigilance canicule sur la période de l'événement.",
+      "Terrain sans ombre ni point d'eau à proximité.",
+      "Pas de convention de repli avec une salle à proximité."
+    ],
+    "preventive_measures": [
+      "Réserver sous condition une salle de repli dès la conception, avec date limite de décision.",
+      "Écrire les seuils de décision (niveau de vigilance, température, horaires) et le décideur.",
+      "Décaler les horaires (matin, fin de journée) et prévoir ombre, eau gratuite et pauses fraîcheur.",
+      "Vérifier auprès de la mairie les mesures applicables en cas de canicule."
+    ],
+    "corrective_plan": [
+      "Activer le repli couvert ou réduire le programme aux créneaux frais.",
+      "Allonger les pauses, distribuer de l'eau, renforcer le poste de secours.",
+      "Informer équipes et public du nouveau lieu ou des nouveaux horaires par tous les canaux."
+    ],
+    "checklist_items": [
+      "Salle de repli réservée sous condition, avec date limite de décision ?",
+      "Seuils canicule écrits (vigilance, horaires) et décideur nommé ?",
+      "Ombre, points d'eau gratuits et pauses fraîcheur prévus sur le terrain ?",
+      "Mesures municipales applicables en période de canicule vérifiées ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.basketeurope.com/un-quai-54-delocalise-mais-nadir-hifi-encore-vainqueur-et-mvp/",
+        "title": "Un Quai 54 délocalisé, mais Nadir Hifi encore vainqueur et MVP",
+        "publisher": "BasketEurope",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.ffbb.com/actualites/les-opens-plus-de-pau-et-nancy-annules",
+        "title": "Les Opens Plus de Pau et Nancy annulés",
+        "publisher": "Fédération française de basket-ball",
+        "reliability": "A"
+      }
+    ],
+    "tags": [
+      "meteo",
+      "chaleur",
+      "repli",
+      "basket-3x3",
+      "streetball",
+      "amateur",
+      "source:baskest-lab",
+      "origin:baskest-lab/07"
+    ]
+  },
+  {
+    "id": "E-009",
+    "title": "Site retenu sans étude préalable et gouvernance diluée : accueil de masse en pleine canicule",
+    "events": [
+      {
+        "name": "Jamboree scout mondial 2023",
+        "date": "2023-08",
+        "city": "Saemangeum (Jeolla du Nord)",
+        "country": "KR"
+      }
+    ],
+    "domain": "gouvernance",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Le Jamboree scout mondial s'est tenu sur un terrain gagné sur la mer pendant une vague de chaleur ; plus de 400 personnes ont souffert de troubles liés à la chaleur dès le premier jour selon la presse. Le Bureau coréen d'audit et d'inspection (rapport d'avril 2025) attribue l'échec à un manque de compétence du comité d'organisation, du ministère de tutelle et de la province, et parle d'une défaillance générale de la gestion ; le site avait été retenu en 2015 après une simple inspection visuelle, sans évaluer les travaux nécessaires. Des responsables ont été renvoyés vers des poursuites pénales et disciplinaires. L'organisation mondiale du scoutisme a, pour sa part, mis en cause une intervention gouvernementale excessive, ce que le gouvernement conteste.",
+    "probable_causes": [
+      "Choix du site sans étude technique préalable (Bureau d'audit).",
+      "Manque de compétence et de coordination entre comité d'organisation, ministère et province (Bureau d'audit).",
+      "Préparation insuffisante face au risque de canicule (presse).",
+      "Gouvernance contestée entre l'organisation internationale et les autorités hôtes (rapports divergents)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Centaines de cas de troubles liés à la chaleur.",
+      "Crise de réputation internationale ; poursuites et sanctions contre des responsables."
+    ],
+    "warning_signs": [
+      "Site sans ombre, sans drainage ou sans infrastructures à quelques mois de l'événement.",
+      "Retards de travaux et budgets consommés sans livrables visibles.",
+      "Responsabilités partagées entre plusieurs autorités sans chef de file.",
+      "Prévisions saisonnières de fortes chaleurs."
+    ],
+    "preventive_measures": [
+      "Valider le site par une étude technique (sol, drainage, ombre, eau, sanitaires) avant tout engagement.",
+      "Désigner une autorité de pilotage unique avec des jalons de livraison contrôlés.",
+      "Écrire un plan canicule : ombre, points d'eau, horaires adaptés, espaces rafraîchis, renfort médical.",
+      "Identifier un site de repli et un plan de relocalisation."
+    ],
+    "corrective_plan": [
+      "Réduire les activités en plein soleil, ouvrir des espaces rafraîchis, distribuer de l'eau.",
+      "Renforcer l'équipe médicale et mettre à l'abri les personnes fragiles.",
+      "Activer le site de repli si les seuils sanitaires sont dépassés."
+    ],
+    "checklist_items": [
+      "Le site a-t-il été validé techniquement (ombre, eau, drainage, sanitaires) et pas seulement visité ?",
+      "Qui décide en dernier ressort ? Une seule personne ou entité est-elle désignée ?",
+      "Plan canicule écrit avec seuils et moyens ?",
+      "Site ou salle de repli identifié et réservable ?"
+    ],
+    "sources": [
+      {
+        "url": "https://theprint.in/world/south-korea-probe-blames-sweeping-lapses-for-world-scout-jamboree-debacle/2585114",
+        "title": "South Korea probe blames sweeping lapses for World Scout Jamboree debacle",
+        "publisher": "ThePrint (dépêche)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.asiae.co.kr/en/article/2025041014423436342",
+        "title": "Rapport du Bureau d'audit et d'inspection sur le Jamboree (couverture en anglais)",
+        "publisher": "Asia Economy",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/20240425/how-koreas-world-scout-jamboree-became-a-global-fiasco?amp=1",
+        "title": "How Korea's World Scout Jamboree became a global fiasco",
+        "publisher": "The Korea Times",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.rnz.co.nz/news/world/515309/south-korea-world-scout-jamboree-disaster-blamed-on-government",
+        "title": "South Korea World Scout Jamboree disaster blamed on government",
+        "publisher": "RNZ",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "chaleur",
+      "choix-du-site",
+      "pilotage",
+      "jeunesse",
+      "rassemblement-de-masse"
+    ]
+  },
+  {
+    "id": "E-010",
+    "title": "Promesse marketing sans capacité de production et financement frauduleux",
+    "events": [
+      {
+        "name": "Fyre Festival",
+        "date": "2017-04",
+        "country": "BS"
+      }
+    ],
+    "domain": "gouvernance",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Présenté comme une expérience haut de gamme aux Bahamas et promu massivement en ligne, le festival a échoué. Son fondateur a plaidé coupable de fraude électronique pour avoir trompé des investisseurs (au moins 80 victimes, plus de 24 millions de dollars de pertes) et un vendeur de billets (bloc de billets vendu d'avance pour 2 millions de dollars). Il a été condamné le 11 octobre 2018 à six ans de prison, avec une confiscation de plus de 26 millions de dollars, selon le procureur fédéral du district sud de New York.",
+    "probable_causes": [
+      "Engagements commerciaux et promesses publiques sans capacité de production vérifiée.",
+      "Financement obtenu sur la base d'informations fausses fournies aux investisseurs et au vendeur de billets (établi par la procédure pénale)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Échec de l'événement ; pertes pour les investisseurs, le vendeur de billets et les clients.",
+      "Condamnation pénale du fondateur et confiscation.",
+      "Référence durable d'échec événementiel, reprise par la presse pour d'autres fiascos (voir E-012)."
+    ],
+    "warning_signs": [
+      "Communication très avancée alors que site, hébergement et prestataires ne sont pas contractualisés.",
+      "Prestataires non payés ou demandes d'avances répétées.",
+      "Refus de partager budget et rétroplanning vérifiables."
+    ],
+    "preventive_measures": [
+      "Ne promettre que ce qui est contractualisé : chaque promesse publique est adossée à un contrat signé.",
+      "Fixer des jalons go/no-go datés (site, sécurité, hébergement, trésorerie) avec droit d'annulation et remboursement garantis.",
+      "Isoler les recettes de billetterie (compte dédié ou séquestre) jusqu'à la tenue de l'événement.",
+      "Faire contrôler comptes et rétroplanning par un tiers pour les partenaires et financeurs."
+    ],
+    "corrective_plan": [
+      "Annoncer annulation ou report dès qu'un jalon critique est manqué, avant le départ des participants.",
+      "Rembourser selon une procédure publique et datée.",
+      "Assister les personnes déjà sur place (hébergement, retour)."
+    ],
+    "checklist_items": [
+      "Chaque élément promis dans la communication est-il couvert par un contrat signé ?",
+      "Jalons go/no-go datés avec critère d'annulation ?",
+      "Recettes de billetterie isolées jusqu'à l'événement ?",
+      "Procédure de remboursement écrite avant l'ouverture des ventes ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.justice.gov/usao-sdny/pr/william-mcfarland-sentenced-6-years-prison-manhattan-federal-court-engaging-multiple",
+        "title": "William McFarland Sentenced To 6 Years In Prison In Manhattan Federal Court For Engaging In Multiple Fraudulent Schemes",
+        "publisher": "U.S. Attorney's Office, Southern District of New York",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.justice.gov/usao-sdny/pr/william-mcfarland-pleads-guilty-manhattan-federal-court-defrauding-investors-and-ticket",
+        "title": "William McFarland Pleads Guilty In Manhattan Federal Court To Defrauding Investors And Ticket Vendor",
+        "publisher": "U.S. Attorney's Office, Southern District of New York",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.npr.org/2018/10/11/656480640/fyre-festival-co-founder-billy-mcfarland-sentenced-in-manhattan",
+        "title": "Fyre Festival Co-Founder Billy McFarland Sentenced To 6 Years In Prison",
+        "publisher": "NPR",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "fraude",
+      "promesse-marketing",
+      "go-no-go",
+      "festival",
+      "influence"
+    ]
+  },
+  {
+    "id": "E-011",
+    "title": "Eau et besoins de base traités comme des centres de profit en pleine chaleur",
+    "events": [
+      {
+        "name": "Woodstock 1999",
+        "date": "1999-07-22/1999-07-25",
+        "city": "Rome (New York)",
+        "country": "US"
+      }
+    ],
+    "domain": "restauration",
+    "severity": "critique",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Organisé sur une ancienne base aérienne, le festival s'est tenu par une chaleur dépassant 100 °F (environ 38 °C), sur un site bitumé offrant peu d'ombre. Les participants ont dénoncé la cherté de la nourriture et de l'eau et la difficulté d'accès à l'eau gratuite ; un coorganisateur a défendu publiquement les prix. L'événement s'est terminé par des incendies et des violences ; des agressions sexuelles, dont des viols, ont été signalées. Les bilans chiffrés (agressions, décès) varient selon les sources et ne sont pas repris ici.",
+    "probable_causes": [
+      "Accès insuffisant à l'eau potable gratuite et prix élevés des produits de première nécessité (presse).",
+      "Site exposé (bitume, peu d'ombre) en période de forte chaleur (presse).",
+      "Sécurité et encadrement insuffisants face aux violences (presse).",
+      "Logique commerciale prioritaire sur le bien-être des participants (analyses de presse)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Malaises liés à la chaleur et à la déshydratation.",
+      "Incendies, pillages et violences en fin d'événement ; agressions sexuelles signalées.",
+      "Atteinte durable à la marque de l'événement."
+    ],
+    "warning_signs": [
+      "Prévision de forte chaleur sur un site sans ombre.",
+      "Files aux points d'eau et plaintes sur les prix dès le premier jour.",
+      "Montée de la tension et dégradation des installations.",
+      "Signalements de comportements sexistes ou d'agressions."
+    ],
+    "preventive_measures": [
+      "Eau potable gratuite en quantité suffisante, points d'eau répartis et signalés.",
+      "Ombre, zones de repos et brumisation sur les sites exposés.",
+      "Prix plafonnés sur les produits essentiels (eau, en-cas).",
+      "Dispositif de prévention et de prise en charge des violences sexistes et sexuelles (point d'écoute, équipes formées, circuit de signalement).",
+      "Sécurité dimensionnée et formée à la désescalade."
+    ],
+    "corrective_plan": [
+      "Ouvrir des points d'eau supplémentaires et distribuer de l'eau gratuitement.",
+      "Baisser les prix des produits essentiels.",
+      "Renforcer la présence de sécurité et des équipes de prévention.",
+      "Accompagner les victimes et faciliter le dépôt de plainte."
+    ],
+    "checklist_items": [
+      "Nombre et emplacement des points d'eau gratuits rapportés au nombre de participants ?",
+      "Zones d'ombre et de repos prévues ?",
+      "Prix des produits essentiels plafonnés ?",
+      "Dispositif de prévention des violences sexistes et sexuelles avec point d'écoute identifié ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.rollingstone.com/music/news/19-worst-things-about-woodstock-99-20140731",
+        "title": "19 Worst Things About Woodstock '99",
+        "publisher": "Rolling Stone",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.history.com/this-day-in-history/july-23/woodstock-99-opens",
+        "title": "Woodstock '99 opens",
+        "publisher": "History.com",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.saturdayeveningpost.com/2019/07/why-woodstock-99-lost-its-way/",
+        "title": "Why Woodstock '99 Lost Its Way",
+        "publisher": "The Saturday Evening Post",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.mtv.com/news/itnl36/woodstock-co-promoter-john-scher-blames-mayhem-on-deranged-fans",
+        "title": "Woodstock Co-Promoter John Scher Blames Mayhem On 'Deranged' Fans",
+        "publisher": "MTV News",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "eau",
+      "prix",
+      "chaleur",
+      "violences-sexistes-et-sexuelles",
+      "festival"
+    ]
+  },
+  {
+    "id": "E-012",
+    "title": "Visuels promotionnels sans rapport avec l'expérience livrée",
+    "events": [
+      {
+        "name": "Willy's Chocolate Experience",
+        "date": "2024-02",
+        "city": "Glasgow",
+        "country": "GB"
+      }
+    ],
+    "domain": "communication",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional"
+    ],
+    "description": "Une expérience immersive familiale non licenciée, inspirée d'une œuvre littéraire célèbre, a été vendue 35 £ par personne sur la base de visuels « oniriques » générés par intelligence artificielle. Les visiteurs ont trouvé un entrepôt presque vide, avec quelques décors et accessoires épars. L'événement a été annulé au milieu du premier jour ; la police est intervenue pour « donner des conseils » ; l'organisateur a promis des remboursements intégraux et présenté ses excuses. La BBC rapporte que l'organisateur a reconnu l'usage de l'IA pour une grande partie du marketing (NBC News jugeait ce point moins clair).",
+    "probable_causes": [
+      "Écart entre la promesse visuelle (images générées) et les moyens de production réels.",
+      "Budget et moyens manifestement insuffisants pour l'expérience annoncée (presse)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Annulation le jour de l'ouverture, remboursements promis, intervention de la police.",
+      "Retentissement médiatique international et moqueries en ligne ; comparaisons avec E-010."
+    ],
+    "warning_signs": [
+      "Visuels de promotion générés ou retouchés, sans photo réelle du lieu.",
+      "Aucune photo du montage à quelques jours de l'ouverture.",
+      "Textes promotionnels incohérents.",
+      "Univers protégé exploité sans licence."
+    ],
+    "preventive_measures": [
+      "N'utiliser que des visuels représentatifs (photos du lieu ; maquettes signalées comme illustrations).",
+      "Organiser une répétition générale avec un public test avant l'ouverture.",
+      "Décrire concrètement le contenu (durée, nombre d'espaces, ce qui est inclus).",
+      "Vérifier les droits de propriété intellectuelle de tout univers, personnage ou musique exploité."
+    ],
+    "corrective_plan": [
+      "Suspendre l'accueil dès que l'écart est constaté et informer les acheteurs.",
+      "Rembourser rapidement et publiquement.",
+      "Proposer un geste concret sur place (remise, report)."
+    ],
+    "checklist_items": [
+      "Les visuels de promotion montrent-ils ce que le public verra réellement ?",
+      "Répétition générale avec un public test faite avant J ?",
+      "Droits d'utilisation des univers, personnages ou musiques vérifiés ?",
+      "Description factuelle de l'offre (durée, contenu inclus) sur la page de vente ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.rnz.co.nz/news/world/510686/how-did-the-viral-willy-wonka-experience-go-so-wrong",
+        "title": "How did the viral Willy Wonka experience go so wrong? (BBC Scotland)",
+        "publisher": "RNZ / BBC Scotland",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.nbcnews.com/tech/willy-wonka-inspired-chocolate-experience-outrage-rcna140726",
+        "title": "Willy Wonka-inspired chocolate experience outrage",
+        "publisher": "NBC News",
+        "reliability": "B"
+      },
+      {
+        "url": "https://abc7.com/post/willy-wonka-immersive-experience-glasgow-event-movie/14482975/",
+        "title": "'Wonka' experience in Glasgow ends in chaos, police called over AI-generated advertisements",
+        "publisher": "ABC7",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.theregister.com/2024/02/28/wonka_ai_hellhole/",
+        "title": "Wonka-inspired event and AI-generated promotion",
+        "publisher": "The Register",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "experience-immersive",
+      "publicite-trompeuse",
+      "ia-generative",
+      "propriete-intellectuelle",
+      "local"
+    ]
+  },
+  {
+    "id": "E-013",
+    "title": "Engagements financiers avec le lieu non sécurisés : levée de fonds d'urgence pendant l'événement",
+    "events": [
+      {
+        "name": "DashCon",
+        "date": "2014-07-11/2014-07-13",
+        "city": "Schaumburg (Illinois)",
+        "country": "US"
+      }
+    ],
+    "domain": "rentabilite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional"
+    ],
+    "description": "Convention de fans issue d'une communauté en ligne, tenue dans un hôtel-centre de congrès. Pendant l'événement, les organisateurs ont annoncé qu'il fallait réunir immédiatement 17 000 dollars pour payer l'hôtel, faute de quoi la convention serait annulée, et ont sollicité les participants. Ils ont invoqué un malentendu au sein du personnel de l'hôtel ; cette explication n'a pas été confirmée de façon indépendante. Une tête d'affiche ayant annulé sa représentation, les organisateurs ont offert en compensation une heure supplémentaire dans une petite piscine à balles, devenue un symbole moqué en ligne.",
+    "probable_causes": [
+      "Conditions financières du contrat avec le lieu non sécurisées ou mal comprises avant l'ouverture (version des organisateurs : malentendu).",
+      "Trésorerie insuffisante pour absorber un imprévu (déduit de l'appel aux dons).",
+      "Programme dépendant de têtes d'affiche sans solution de remplacement crédible."
+    ],
+    "cause_status": "probable",
+    "consequences": [
+      "Appel aux dons des participants en cours d'événement, perte de confiance.",
+      "Annulation de contenus phares ; compensation jugée dérisoire et largement moquée.",
+      "Réputation de l'événement durablement associée à l'échec."
+    ],
+    "warning_signs": [
+      "Acomptes ou garanties exigés par le lieu non réglés à l'approche de J.",
+      "Minimums contractuels (chambres, restauration) non suivis.",
+      "Têtes d'affiche non confirmées par contrat."
+    ],
+    "preventive_measures": [
+      "Suivre dans un échéancier les clauses financières du lieu (acomptes, minimums garantis, pénalités).",
+      "Constituer une réserve de trésorerie avant d'ouvrir les portes.",
+      "Contractualiser les intervenants avec clause de remplacement ; prévoir un contenu de repli.",
+      "Annoncer à l'avance la compensation prévue si un contenu est annulé."
+    ],
+    "corrective_plan": [
+      "Négocier immédiatement avec le lieu, documents contractuels en main.",
+      "Communiquer de façon transparente sur la situation et les options.",
+      "Proposer un remboursement partiel ou un contenu de remplacement de valeur comparable."
+    ],
+    "checklist_items": [
+      "Échéancier des paiements au lieu (acomptes, solde, minimums) suivi et à jour ?",
+      "Réserve de trésorerie disponible le jour J ?",
+      "Tous les intervenants annoncés ont-ils un contrat signé ?",
+      "Compensation prévue si un contenu annoncé est annulé ?"
+    ],
+    "sources": [
+      {
+        "url": "https://dailydot.com/dash-con-controversy-tumblr",
+        "title": "DashCon controversy",
+        "publisher": "The Daily Dot",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.dailyherald.com/?p=1156926",
+        "title": "Tumblr convention in Schaumburg implodes",
+        "publisher": "Daily Herald",
+        "reliability": "B"
+      },
+      {
+        "url": "https://news.pollstar.com/2014/07/16/the-story-of-the-ball-pit/",
+        "title": "The Story Of The Ball Pit",
+        "publisher": "Pollstar",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.comicsbeat.com/ultimate-when-a-con-is-crap-dashcon-2014-solicited-people-for-money-to-pay-the-hotel-bill-while-the-con-was-running",
+        "title": "DashCon 2014 solicited people for money to pay the hotel bill while the con was running",
+        "publisher": "The Beat",
+        "reliability": "C"
+      }
+    ],
+    "tags": [
+      "tresorerie",
+      "contrat-lieu",
+      "convention-de-fans",
+      "independant"
+    ]
+  },
+  {
+    "id": "E-014",
+    "title": "Billets gratuits sans maîtrise de la jauge : foule non billettée et attente de plusieurs heures en plein soleil",
+    "events": [
+      {
+        "name": "TanaCon",
+        "date": "2018-06-22/2018-06-23",
+        "city": "Anaheim (Californie)",
+        "country": "US"
+      }
+    ],
+    "domain": "files_attente",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national"
+    ],
+    "description": "Convention de fans lancée par une créatrice de contenu avec une société d'événementiel, le même week-end qu'une grande convention de vidéastes voisine. Une partie des billets était gratuite, l'autre vendue 65 dollars (accès VIP) ; les organisateurs ont annoncé environ 5 000 billets. Des milliers de personnes sans billet se sont présentées, le lieu (un hôtel) a dépassé sa capacité et des participants ont attendu jusqu'à six heures au soleil selon les témoignages. L'événement a été annulé dès le deuxième jour, l'organisateur estimant ne plus pouvoir continuer sans risquer la sécurité du public. Le remboursement des billets payants a ensuite fait l'objet de plaintes.",
+    "probable_causes": [
+      "Billets gratuits attirant une demande non qualifiée, sans mécanisme limitant les présents à la jauge.",
+      "Lieu sous-dimensionné au regard de l'audience en ligne de l'initiatrice.",
+      "Absence de file organisée et de filtrage en amont du lieu (presse)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Annulation, foule frustrée, exposition prolongée à la chaleur.",
+      "Plaintes sur les remboursements ; atteinte à la réputation de l'initiatrice."
+    ],
+    "warning_signs": [
+      "Audience en ligne sans commune mesure avec la capacité du lieu.",
+      "Billets gratuits épuisés en quelques minutes.",
+      "Arrivées massives avant l'ouverture, files qui débordent sur la voie publique."
+    ],
+    "preventive_measures": [
+      "Billets gratuits nominatifs, en nombre strictement inférieur à la jauge, contrôlés à l'entrée.",
+      "Annoncer clairement qu'aucun accès sans billet n'est possible et proposer un contenu en ligne aux non-billettés.",
+      "Dimensionner le lieu sur la demande probable ou attribuer des créneaux horaires.",
+      "Gérer les files : zone d'attente ombragée, eau, affichage du temps d'attente."
+    ],
+    "corrective_plan": [
+      "Fermer la file aux non-billettés dès que la jauge est atteinte, avec annonce claire.",
+      "Distribuer de l'eau et créer de l'ombre dans la file.",
+      "Basculer une partie du programme en extérieur ou en ligne si possible."
+    ],
+    "checklist_items": [
+      "Billets gratuits nominatifs et limités sous la jauge ?",
+      "Message « pas d'accès sans billet » diffusé avant J ?",
+      "Zone d'attente ombragée avec eau ?",
+      "Seuil de fermeture de la file défini et annoncé ?"
+    ],
+    "sources": [
+      {
+        "url": "https://tubefilter.com/2018/06/22/tana-mongeau-tanacon-venue/",
+        "title": "TanaCon venue and capacity",
+        "publisher": "Tubefilter",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.tubefilter.com/?p=114091",
+        "title": "After Thousands Of Unticketed Guests Show Up, Tana Mongeau's TanaCon Is Cancelled",
+        "publisher": "Tubefilter",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.newsweek.com/entertainment/video-games/tanacon-what-happened-when-tana-mongeau-vidcon-good-times-tumblr-convention-994948",
+        "title": "TanaCon: what happened",
+        "publisher": "Newsweek",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "jauge",
+      "billets-gratuits",
+      "convention-de-fans",
+      "createurs-de-contenu",
+      "chaleur"
+    ]
+  },
+  {
+    "id": "E-015",
+    "title": "Prévente saturée par la demande et les robots : vente au grand public annulée",
+    "events": [
+      {
+        "name": "Prévente de la tournée de stades « The Eras Tour »",
+        "date": "2022-11",
+        "country": "US"
+      }
+    ],
+    "domain": "billetterie",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors de la prévente sur invitation d'une tournée de stades aux États-Unis, la plateforme de billetterie a enregistré, selon ses propres chiffres, 3,5 milliards de requêtes, quatre fois son précédent record, attribuées à une demande exceptionnelle et à des robots. 3,5 millions de personnes s'étaient préinscrites ; des codes avaient été envoyés à 1,5 million, tandis que 14 millions de personnes ou robots ont tenté d'acheter. La vente au grand public a été annulée faute de billets restants. Une audition s'est tenue devant la commission judiciaire du Sénat américain en janvier 2023 ; la société a présenté des excuses et attribué l'essentiel du problème aux robots, qui auraient aussi ciblé les serveurs de codes d'accès.",
+    "probable_causes": [
+      "Demande très supérieure à l'offre, connue à l'avance par la préinscription (chiffres de la plateforme).",
+      "Trafic de robots, y compris sur les serveurs de codes d'accès (témoignage devant le Sénat).",
+      "Capacité de la plateforme insuffisante pour le pic (version de la plateforme, non établie de façon indépendante)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Files virtuelles bloquées, frustration massive, vente grand public annulée.",
+      "Audition parlementaire et relance du débat sur la concentration du marché de la billetterie."
+    ],
+    "warning_signs": [
+      "Préinscriptions représentant un multiple du nombre de places.",
+      "Activité anormale de robots lors de tests ou de ventes précédentes.",
+      "Ouverture simultanée de toutes les dates."
+    ],
+    "preventive_measures": [
+      "Échelonner les ventes (par date, par zone) et attribuer des créneaux d'achat.",
+      "Recourir au tirage au sort parmi les inscrits lorsque la demande dépasse nettement l'offre.",
+      "Tester la plateforme en charge et activer des protections anti-robots et une limite de billets par acheteur.",
+      "Annoncer à l'avance le nombre de places et la probabilité d'obtenir un billet."
+    ],
+    "corrective_plan": [
+      "Suspendre la vente plutôt que laisser des files bloquées ; annoncer un nouveau créneau.",
+      "Informer en temps réel de l'état de la file et des stocks.",
+      "Annuler les commandes manifestement automatisées."
+    ],
+    "checklist_items": [
+      "Rapport demande attendue / places disponibles estimé ? Tirage au sort prévu si la demande dépasse nettement l'offre ?",
+      "Plateforme testée en charge au niveau du pic attendu ?",
+      "Protection anti-robots et limite de billets par acheteur activées ?",
+      "Message d'information prêt en cas de saturation ?"
+    ],
+    "sources": [
+      {
+        "url": "https://techcrunch.com/2023/01/24/senate-questions-live-nation-president-amid-taylor-swift-ticketing-debacle",
+        "title": "Senate questions Live Nation president amid Taylor Swift ticketing debacle",
+        "publisher": "TechCrunch",
+        "reliability": "B"
+      },
+      {
+        "url": "https://kqed.org/arts/13921777/the-taylor-swift-ticket-fiasco-is-refocusing-a-spotlight-on-ticketmasters-dominance",
+        "title": "The Taylor Swift ticket fiasco is refocusing a spotlight on Ticketmaster's dominance",
+        "publisher": "KQED / NPR",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.inquirer.com/entertainment/ticketmaster-taylor-swift-eras-tour-senate-hearing-20230124.html",
+        "title": "Ticketmaster, Taylor Swift Eras Tour: Senate hearing",
+        "publisher": "The Philadelphia Inquirer",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.yahoo.com/entertainment/ticketmaster-apologizes-taylor-swift-during-190025329.html",
+        "title": "Ticketmaster apologizes to Taylor Swift during Senate hearing after ticket fiasco: 'We need to do better'",
+        "publisher": "Yahoo Entertainment",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "billetterie-en-ligne",
+      "robots",
+      "file-virtuelle",
+      "tournee"
+    ]
+  },
+  {
+    "id": "E-016",
+    "title": "Tarification par paliers non annoncée et libellés de billets trompeurs",
+    "events": [
+      {
+        "name": "Vente des billets de la tournée de reformation d'Oasis (Royaume-Uni et Irlande)",
+        "date": "2024",
+        "country": "GB"
+      }
+    ],
+    "domain": "billetterie",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "La vente des billets d'une tournée de reformation très attendue a suscité des plaintes sur les prix pratiqués. L'autorité britannique de la concurrence et des marchés (CMA) a ouvert une enquête en septembre 2024 et l'a close en septembre 2025 par des engagements de la plateforme. Contrairement à ce qui a été largement présenté comme de la « tarification dynamique », la CMA n'a pas trouvé de preuve d'un ajustement algorithmique des prix en temps réel, mais un système par paliers : un palier plus cher s'ouvrait une fois le moins cher épuisé, sans information préalable suffisante des acheteurs. Des billets « platinum » ont été vendus près de deux fois et demie le prix des billets standard sans explication suffisante qu'ils n'offraient aucun avantage supplémentaire. La plateforme s'est engagée, sans reconnaissance de faute, à prévenir 24 heures à l'avance de l'usage de paliers, à éviter les libellés trompeurs et à rendre compte à la CMA pendant deux ans ; elle a cessé d'utiliser le libellé « platinum » au Royaume-Uni.",
+    "probable_causes": [
+      "Absence d'information préalable sur l'existence de paliers de prix (CMA).",
+      "Libellé « premium » sans contrepartie réelle (CMA)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Enquête d'une autorité de régulation et engagements contraignants pour la plateforme.",
+      "Perte de confiance des acheteurs et fort retentissement médiatique."
+    ],
+    "warning_signs": [
+      "Prix qui évoluent pendant la vente sans annonce préalable.",
+      "Catégories de billets aux noms valorisants mais aux contreparties identiques.",
+      "Plaintes sur les réseaux sociaux dès les premières minutes de vente."
+    ],
+    "preventive_measures": [
+      "Publier avant l'ouverture des ventes la grille complète des prix et les règles d'évolution (paliers, quotas, dates).",
+      "N'utiliser un libellé premium que s'il correspond à des avantages concrets et listés.",
+      "Afficher le prix total, frais compris, dès la première étape.",
+      "Préférer des paliers annoncés (prévente, normal, sur place) à des hausses déclenchées par la demande."
+    ],
+    "corrective_plan": [
+      "Suspendre le palier contesté et clarifier publiquement la grille.",
+      "Proposer le remboursement de la différence ou un échange si l'information était trompeuse."
+    ],
+    "checklist_items": [
+      "Grille de prix et paliers publiés avant l'ouverture des ventes ?",
+      "Chaque catégorie de billet indique-t-elle précisément ce qu'elle inclut ?",
+      "Prix total frais compris affiché dès le départ ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.gov.uk/government/news/cma-secures-changes-from-ticketmaster-following-oasis-tickets-investigation",
+        "title": "CMA secures changes from Ticketmaster following Oasis tickets investigation",
+        "publisher": "Competition and Markets Authority",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.gov.uk/cma-cases/ticketmaster-consumer-protection-case",
+        "title": "Ticketmaster: consumer protection case",
+        "publisher": "Competition and Markets Authority",
+        "reliability": "A"
+      },
+      {
+        "url": "https://assets.publishing.service.gov.uk/media/68d40e748c739d679fb1dd5f/Undertakings.pdf",
+        "title": "Ticketmaster undertakings",
+        "publisher": "Competition and Markets Authority",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.which.co.uk/news/article/oasis-tickets-ticketmaster-to-make-pricing-clearer-following-cma-probe-a99yW5M0BI4E",
+        "title": "Oasis tickets: Ticketmaster to make pricing clearer following CMA probe",
+        "publisher": "Which?",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "prix",
+      "transparence",
+      "regulateur",
+      "tournee"
+    ]
+  },
+  {
+    "id": "E-017",
+    "title": "Festivals indépendants annulés sous l'effet de la hausse des coûts et du resserrement du crédit",
+    "events": [
+      {
+        "name": "Festivals indépendants britanniques (saison 2024)",
+        "date": "2024",
+        "country": "GB"
+      }
+    ],
+    "domain": "rentabilite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national"
+    ],
+    "description": "L'Association of Independent Festivals (AIF) a recensé 72 festivals britanniques reportés, annulés ou fermés en 2024, contre 36 en 2023, et 204 disparitions depuis 2019 dont 96 liées à la pandémie. L'association met en avant des coûts imprévisibles et un resserrement du crédit dans le secteur ; plusieurs petits festivals (par exemple dans les Cotswolds et à Bingley) ont invoqué une hausse rapide des coûts de production.",
+    "probable_causes": [
+      "Hausse rapide des coûts de production (déclarations d'organisateurs relayées par l'AIF).",
+      "Accès plus difficile au crédit et aux avances de trésorerie (AIF).",
+      "Coûts imprévisibles d'une édition à l'autre (AIF)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Annulations parfois tardives ; pertes pour organisateurs, prestataires et acheteurs.",
+      "Disparition d'événements locaux et de leur écosystème."
+    ],
+    "warning_signs": [
+      "Devis de prestataires en hausse à périmètre constant.",
+      "Rythme de ventes inférieur aux éditions précédentes à la même date.",
+      "Besoin de trésorerie avant J supérieur aux ressources disponibles.",
+      "Faible part de recettes sécurisées (partenaires, subventions signés) à l'approche des jalons."
+    ],
+    "preventive_measures": [
+      "Calculer seuil de rentabilité et besoin de trésorerie en trois scénarios avant tout engagement (docs/07 §7).",
+      "Fixer des points de décision go/no-go datés, fondés sur les ventes et les recettes sécurisées.",
+      "Négocier des clauses d'annulation et des acomptes progressifs avec les prestataires.",
+      "Réduire les coûts fixes : location partagée, mutualisation entre événements, format modulable.",
+      "Constituer une réserve et vérifier l'assurance annulation."
+    ],
+    "corrective_plan": [
+      "Décider tôt d'un format réduit plutôt que d'annuler tardivement.",
+      "Communiquer avec transparence et rembourser selon une procédure publiée.",
+      "Reporter l'édition en conservant partenaires et communauté."
+    ],
+    "checklist_items": [
+      "Seuil de rentabilité calculé (prudent / central / ambitieux) ?",
+      "Dates de décision go/no-go fixées avec critères chiffrés ?",
+      "Part des recettes sécurisées suivie à chaque jalon ?",
+      "Clauses d'annulation des prestataires connues ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.nme.com/news/music/number-of-cancelled-uk-festivals-doubles-to-72-in-2024-3816054",
+        "title": "Number of cancelled UK festivals doubles to 72 in 2024",
+        "publisher": "NME",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.musicweek.com/public_html/index.php/live/read/aif-72-uk-festivals-postponed-or-cancelled-in-2024/090943",
+        "title": "AIF: 72 UK festivals postponed or cancelled in 2024",
+        "publisher": "Music Week",
+        "reliability": "B"
+      },
+      {
+        "url": "https://news.pollstar.com/2024/08/20/aif-60-uk-festivals-canceled-in-2024/",
+        "title": "AIF: 60 UK Festivals Canceled in 2024",
+        "publisher": "Pollstar",
+        "reliability": "B"
+      },
+      {
+        "url": "https://mixmag.net/read/over-200-uk-festivals-disappeared-since-2019-report-aif-news",
+        "title": "Over 200 UK festivals have disappeared since 2019, report reveals",
+        "publisher": "Mixmag",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "couts",
+      "credit",
+      "annulation",
+      "festival",
+      "independant"
+    ]
+  },
+  {
+    "id": "E-018",
+    "title": "Format nouveau dupliqué à l'international avant preuve de rentabilité, sur des mécaniques dont la nouveauté s'use",
+    "events": [
+      {
+        "name": "Kings League (ligues internationales)",
+        "date": "2026",
+        "country": "ES"
+      }
+    ],
+    "domain": "rentabilite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Ligue de football à 7 construite sur des règles gamifiées (cartes secrètes, dé, penalty décidé par un président d'équipe) et sur l'audience de créateurs de contenu. Selon la presse espagnole et catalane citée par l'observatoire d'origine, la société a, en 2026, après plus de 60 M€ investis à l'international, enregistré une perte de 7,6 M€, engagé un plan de licenciement (41 salariés) et suspendu ses ligues de France et d'Allemagne, sur fond de forte baisse d'audience ; son dirigeant a reconnu que « de l'argent a été brûlé ». Origine : baskest-lab/07 (statut d'origine : vérifié ; faits non revérifiés par EVENT LAB).",
+    "probable_causes": [
+      "Croissance et duplication géographique engagées avant la preuve de rentabilité du modèle (analyse de l'observatoire d'origine).",
+      "Dépendance à l'audience de créateurs de contenu, volatile (analyse de l'observatoire d'origine).",
+      "Effet de nouveauté des règles gamifiées pris pour une valeur durable ; règles ajoutées sans mesure de leur effet (analyse de l'observatoire d'origine)."
+    ],
+    "cause_status": "probable",
+    "consequences": [
+      "Suspension de ligues nationales, licenciements, pertes financières.",
+      "Lassitude du public et perte de lisibilité sportive (analyse de l'observatoire d'origine)."
+    ],
+    "warning_signs": [
+      "Ouverture de nouveaux territoires alors que le territoire d'origine n'est pas rentable.",
+      "Audiences en baisse d'une saison à l'autre malgré l'ajout de mécaniques.",
+      "Coûts fixes (structures locales, salariés) engagés avant les recettes."
+    ],
+    "preventive_measures": [
+      "Conditionner chaque duplication (nouvelle ville, nouvelle licence) à des résultats mesurés sur les éditions précédentes.",
+      "Limiter les coûts fixes et garder une provision pour imprévus.",
+      "Limiter le nombre de mécaniques « spectaculaires » par format, les tester et mesurer leur effet (rétention, satisfaction) avant de les reconduire.",
+      "Garder un cœur sportif lisible qui tienne sans les mécaniques ajoutées."
+    ],
+    "corrective_plan": [
+      "Geler l'expansion et concentrer les moyens sur les marchés rentables.",
+      "Retirer les mécaniques dont l'effet mesuré est nul ou négatif.",
+      "Communiquer clairement auprès des partenaires et des participants des territoires suspendus."
+    ],
+    "checklist_items": [
+      "La duplication du format est-elle conditionnée à des indicateurs atteints (affluence, marge, rétention) ?",
+      "Combien de mécaniques spéciales le format contient-il ? Chacune a-t-elle été testée et mesurée ?",
+      "Le format reste-t-il compréhensible et intéressant sans ses mécaniques spéciales ?"
+    ],
+    "sources": [
+      {
+        "url": "https://en.ara.cat/economy/gerard-pique-s-kings-league-wants-to-lay-off-half-of-its-workers_1_5764708.html",
+        "title": "Gerard Piqué's Kings League wants to lay off half of its workers",
+        "publisher": "Ara (édition anglaise)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.merca2.es/2026/06/12/ere-kings-league-despidos-pique-cierre-2396126/",
+        "title": "ERE en la Kings League : despidos y cierre",
+        "publisher": "Merca2",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "duplication",
+      "licence",
+      "mecaniques-gamifiees",
+      "nouveau-format",
+      "source:baskest-lab",
+      "origin:baskest-lab/07"
+    ]
+  },
+  {
+    "id": "E-019",
+    "title": "Épreuve en milieu naturel dépendante d'une qualité d'eau non maîtrisée",
+    "events": [
+      {
+        "name": "Jeux olympiques de Paris 2024 – triathlon",
+        "date": "2024-07-30",
+        "city": "Paris",
+        "country": "FR"
+      }
+    ],
+    "domain": "environnement",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Le triathlon masculin olympique a été reporté d'un jour quelques heures avant le départ, des analyses ayant montré une qualité de l'eau de la Seine insuffisante pour la natation ; des entraînements de natation avaient aussi été annulés. Le communiqué conjoint des organisateurs et de la fédération internationale a attribué la pollution aux fortes pluies des jours précédents, en rappelant la priorité donnée à la santé des athlètes. Environ 1,4 milliard d'euros avaient été engagés pour l'assainissement du fleuve. Le para-triathlon a également été reporté pendant les Jeux paralympiques.",
+    "probable_causes": [
+      "Épreuve dépendante d'un paramètre environnemental sensible aux fortes pluies (communiqué des organisateurs).",
+      "Faible marge de calendrier pour absorber un report."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Reports d'épreuves et annulations d'entraînements ; préparation des athlètes perturbée.",
+      "Incertitude pour le public, les diffuseurs et la logistique."
+    ],
+    "warning_signs": [
+      "Prévisions de fortes pluies dans les jours précédant l'épreuve.",
+      "Analyses d'eau irrégulières ou proches des seuils.",
+      "Calendrier sans jour de réserve."
+    ],
+    "preventive_measures": [
+      "Prévoir au règlement un format de repli (épreuve sans la partie concernée) et un jour de réserve.",
+      "Suivre quotidiennement les paramètres critiques (qualité de l'eau, température, débit) avec seuils publiés.",
+      "Informer à l'avance athlètes, public et diffuseurs des règles de décision."
+    ],
+    "corrective_plan": [
+      "Appliquer la grille de décision à heure fixe et communiquer immédiatement.",
+      "Basculer vers le jour de réserve ou le format de repli."
+    ],
+    "checklist_items": [
+      "Paramètre environnemental critique identifié (eau, vent, chaleur, qualité de l'air) avec seuils ?",
+      "Format de repli prévu au règlement ?",
+      "Jour ou créneau de réserve dans le calendrier ?",
+      "Heure de décision et canal d'annonce fixés ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.npr.org/2024/07/30/g-s1-14315/triathlon-seine-water-pollution-delay-paris-olympics",
+        "title": "The men's Olympic triathlon is postponed due to Seine water pollution levels",
+        "publisher": "NPR",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.pbs.org/newshour/world/concerns-over-water-quality-in-the-seine-delays-mens-olympic-triathlon",
+        "title": "Concerns over water quality in the Seine delays men's Olympic triathlon",
+        "publisher": "PBS NewsHour (AP)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.paralympic.org/paris-2024/news/para-triathlon-postponed-2-september",
+        "title": "Para triathlon postponed to 2 September",
+        "publisher": "Comité international paralympique",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.aljazeera.com/sports/2024/7/30/olympic-mens-triathlon-postponed-due-to-high-pollution-levels-in-seine",
+        "title": "Olympic men's triathlon postponed due to high pollution levels in Seine",
+        "publisher": "Al Jazeera",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "eau",
+      "milieu-naturel",
+      "report",
+      "jeux-olympiques"
+    ]
+  },
+  {
+    "id": "E-020",
+    "title": "Règle de vente modifiée à deux jours de l'ouverture : activation du partenaire principal annulée",
+    "events": [
+      {
+        "name": "Coupe du monde de football 2022",
+        "date": "2022-11-18",
+        "city": "Doha",
+        "country": "QA"
+      }
+    ],
+    "domain": "sponsors",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Deux jours avant le match d'ouverture, la vente de bière alcoolisée a été interdite dans les stades, alors que le brasseur partenaire devait la vendre en exclusivité dans le périmètre billetté avant et après chaque match. La FIFA a indiqué que l'alcool resterait disponible dans la fan zone officielle et d'autres lieux autorisés, et la bière sans alcool dans les stades. Le partenaire a déclaré que certaines activations prévues ne pourraient pas avoir lieu « en raison de circonstances indépendantes de [sa] volonté » ; un message publié par la marque a été supprimé. Une organisation européenne de supporters a jugé la décision « extrêmement inquiétante ».",
+    "probable_causes": [
+      "Activation commerciale dépendant d'une autorisation que l'autorité hôte pouvait réviser.",
+      "Décision très tardive, sans activation de repli annoncée (presse)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Activation partenaire et recettes de restauration remises en cause à 48 heures de l'événement.",
+      "Questions publiques sur la capacité de l'hôte à tenir ses engagements (Reuters).",
+      "Communication improvisée du partenaire."
+    ],
+    "warning_signs": [
+      "Autorisations (alcool, bruit, horaires, occupation) non confirmées par écrit à l'approche de J.",
+      "Signaux politiques ou réglementaires contraires à une activation prévue."
+    ],
+    "preventive_measures": [
+      "Faire confirmer par écrit chaque autorisation dont dépend une activation, avec date limite.",
+      "Prévoir au contrat partenaire une clause de changement réglementaire et une activation de repli.",
+      "Préparer une communication conjointe en cas de modification."
+    ],
+    "corrective_plan": [
+      "Basculer immédiatement sur l'activation de repli (autre produit, autre zone).",
+      "Publier une communication conjointe organisateur – partenaire.",
+      "Renégocier la contrepartie (visibilité supplémentaire, avoir)."
+    ],
+    "checklist_items": [
+      "Chaque activation partenaire dépend-elle d'une autorisation ? Est-elle obtenue par écrit ?",
+      "Clause de force majeure / changement réglementaire dans le contrat partenaire ?",
+      "Activation de repli définie avec le partenaire ?"
+    ],
+    "sources": [
+      {
+        "url": "https://inside.fifa.com/en/news/fifa-statement-sale-of-alcoholic-beverages",
+        "title": "FIFA statement: sale of alcoholic beverages",
+        "publisher": "FIFA",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.pbs.org/newshour/world/qatar-bans-beer-sales-at-world-cup-stadiums-two-days-before-opening-game",
+        "title": "Qatar bans beer sales at World Cup stadiums two days before opening game",
+        "publisher": "PBS NewsHour (AP)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://fortune.com/2022/11/18/world-cup-qatar-budweiser-inbev-alcohol-ban-sponsorship/",
+        "title": "World Cup Qatar alcohol ban and sponsorship",
+        "publisher": "Fortune",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.euronews.com/2022/11/19/soccer-worldcup-beer",
+        "title": "Soccer – World Cup beer ban (Reuters)",
+        "publisher": "Euronews / Reuters",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "partenaire",
+      "autorisation",
+      "alcool",
+      "football"
+    ]
+  },
+  {
+    "id": "E-021",
+    "title": "Diffusion en direct sous-dimensionnée pour un pic d'audience mondial",
+    "events": [
+      {
+        "name": "Combat de boxe Jake Paul – Mike Tyson (diffusion en streaming)",
+        "date": "2024-11-15",
+        "country": "US"
+      }
+    ],
+    "domain": "medias",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Diffusé sans surcoût à l'ensemble des abonnés d'une plateforme de streaming (environ 280 millions), l'événement a connu coupures et mises en mémoire tampon répétées. Downdetector a compté plus de 88 000 signalements vers 21 h 30 (heure locale) selon NBC News, près de 85 000 selon l'AP. La plateforme n'a pas commenté auprès de l'AP ; l'un des boxeurs a plaisanté sur le fait d'avoir « fait planter le site ».",
+    "probable_causes": [
+      "Capacité de diffusion en direct insuffisante pour un pic d'audience concentré ; la cause technique précise n'a pas été publiée dans les sources consultées.",
+      "Direct d'une ampleur inédite pour la plateforme, qui préparait d'autres retransmissions en direct (presse)."
+    ],
+    "cause_status": "probable",
+    "consequences": [
+      "Expérience dégradée pour le public, frustration massive sur les réseaux sociaux.",
+      "Inquiétudes publiques sur les directs suivants prévus sur la plateforme (presse)."
+    ],
+    "warning_signs": [
+      "Audience potentielle sans précédent pour la plateforme ou le prestataire.",
+      "Pas de test de charge au niveau du pic attendu.",
+      "Premiers signalements de lenteur pendant les combats préliminaires."
+    ],
+    "preventive_measures": [
+      "Tester la chaîne de diffusion en charge au niveau du pic attendu, avec marge.",
+      "Prévoir une diffusion de secours (second prestataire, qualité dégradée automatique).",
+      "Petit organisateur : mesurer le débit montant sur place, prévoir une connexion de secours (4G/5G) et un enregistrement local."
+    ],
+    "corrective_plan": [
+      "Réduire la qualité de diffusion pour préserver la continuité.",
+      "Informer en direct sur les réseaux de l'état de la diffusion.",
+      "Mettre un replay à disposition rapidement."
+    ],
+    "checklist_items": [
+      "Débit montant mesuré sur place lors du repérage et le jour J ?",
+      "Connexion de secours et enregistrement local prévus ?",
+      "Replay disponible si le direct échoue ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.nbcnews.com/sports/boxing/netflix-streaming-problems-tyson-paul-event-frustration-jokes-rcna180443",
+        "title": "Netflix streaming problems during Tyson-Paul event cause frustration and prompt jokes",
+        "publisher": "NBC News",
+        "reliability": "B"
+      },
+      {
+        "url": "https://abcnews.go.com/Sports/wireStory/netflix-experiences-streaming-delays-leading-tyson-paul-fight-115925586",
+        "title": "Netflix experiences streaming delays leading up to Tyson-Paul fight",
+        "publisher": "ABC News (AP)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.si.com/boxing/jake-paul-mike-tyson-fight-fans-furious-netflix-crashing",
+        "title": "Jake Paul-Mike Tyson Fight Fans Furious at Netflix Over Constant Buffering Issue",
+        "publisher": "Sports Illustrated",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "streaming",
+      "direct",
+      "capacite",
+      "boxe"
+    ]
+  },
+  {
+    "id": "E-022",
+    "title": "Application incohérente d'une règle au moment décisif : crédibilité du résultat atteinte",
+    "events": [
+      {
+        "name": "Grand Prix de Formule 1 d'Abu Dhabi",
+        "date": "2021-12",
+        "city": "Abu Dhabi",
+        "country": "AE"
+      }
+    ],
+    "domain": "regles",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Lors de la course décisive du championnat, la procédure de fin de neutralisation sous voiture de sécurité n'a pas été appliquée de façon homogène : tous les pilotes attardés n'ont pas été autorisés à se dédoubler. Le rapport présenté par la fédération internationale à son conseil mondial le 19 mars 2022 conclut à une « erreur humaine » du directeur de course, qui a agi « de bonne foi », liée à un processus manuel ; un logiciel d'automatisation des messages de dédoublement a été développé. Les résultats ont été déclarés valides et définitifs.",
+    "probable_causes": [
+      "Procédure critique appliquée manuellement sous forte pression temporelle (rapport FIA).",
+      "Règles laissant une marge d'interprétation dans la gestion de fin de neutralisation (lectures de presse du rapport)."
+    ],
+    "cause_status": "etablie_rapport_officiel",
+    "consequences": [
+      "Contestation publique du résultat d'un championnat.",
+      "Réforme des procédures et des outils de direction de course."
+    ],
+    "warning_signs": [
+      "Règles dont l'application dépend d'une décision individuelle en temps réel.",
+      "Pression des équipes sur l'arbitrage en direct.",
+      "Pas de procédure écrite pour les situations de fin de match."
+    ],
+    "preventive_measures": [
+      "Écrire et publier les règles de fin de match et de départage, sans marge d'interprétation au moment décisif.",
+      "Automatiser ou mettre sous checklist les procédures critiques (chronométrage, ordre de départ, classement).",
+      "Entraîner l'arbitrage sur des simulations de cas limites.",
+      "Isoler les officiels des pressions des équipes pendant la compétition."
+    ],
+    "corrective_plan": [
+      "Appliquer la règle écrite, même défavorable au spectacle.",
+      "Expliquer publiquement la décision en citant l'article de règlement.",
+      "Ouvrir une revue après l'événement et corriger le règlement pour l'édition suivante."
+    ],
+    "checklist_items": [
+      "Règles de départage et de fin de match écrites et communiquées aux équipes avant J ?",
+      "Procédure de réclamation définie (délai, instance, décision) ?",
+      "Arbitres et table de marque entraînés sur les cas limites ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fia.com/news/statement-fia-world-motor-sport-council",
+        "title": "Statement of the FIA World Motor Sport Council",
+        "publisher": "FIA",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.formula1.com/en/latest/article/fia-release-findings-and-recommendations-after-2021-abu-dhabi-grand-prix.6s9WjlpZowvwyktbmVpQ3I",
+        "title": "FIA release findings and recommendations after 2021 Abu Dhabi Grand Prix",
+        "publisher": "Formula1.com",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.motorsport.com/f1/news/in-full-the-fia-report-on-the-2021-f1-abu-dhabi-grand-prix/9135546/",
+        "title": "In full: the FIA report on the 2021 F1 Abu Dhabi Grand Prix",
+        "publisher": "Motorsport.com",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.si.com/racing/2022/03/19/formula-1-fia-abu-dhabi-gp-report-max-verstappen-michael-masi",
+        "title": "FIA: 'Human Error' to Blame With Abu Dhabi GP, Results 'Valid and Final'",
+        "publisher": "Sports Illustrated",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "arbitrage",
+      "procedure",
+      "sport-mecanique"
+    ]
+  },
+  {
+    "id": "E-023",
+    "title": "Outil d'arbitrage automatisé désactivé par erreur, sans procédure de secours",
+    "events": [
+      {
+        "name": "Tournoi de Wimbledon",
+        "date": "2025",
+        "city": "Londres",
+        "country": "GB"
+      }
+    ],
+    "domain": "regles",
+    "severity": "mineure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Au tournoi de Wimbledon 2025, le système électronique d'appel des lignes a été désactivé par erreur sur un côté du court ; le club s'est excusé auprès des joueurs en évoquant une « erreur humaine ». Une panne a ensuite imposé de rejouer un point. Les causes et mesures ci-dessous proviennent de l'analyse de l'observatoire d'origine. Origine : baskest-lab/07 (statut d'origine : vérifié ; faits non revérifiés par EVENT LAB).",
+    "probable_causes": [
+      "Pas de procédure dégradée prévue en cas d'arrêt de l'outil (analyse de l'observatoire d'origine).",
+      "Opérateurs insuffisamment formés au fonctionnement et aux contrôles de l'outil (analyse de l'observatoire d'origine)."
+    ],
+    "cause_status": "probable",
+    "consequences": [
+      "Décisions contestées et point rejoué.",
+      "Image d'amateurisme pour un événement de référence (analyse de l'observatoire d'origine)."
+    ],
+    "warning_signs": [
+      "Outil d'arbitrage ou de score dont personne ne sait vérifier l'état en direct.",
+      "Aucun test technique la veille ou avant chaque session.",
+      "Arbitres humains retirés sans procédure de reprise manuelle."
+    ],
+    "preventive_measures": [
+      "Écrire pour chaque outil (score, chronométrage, écran, billetterie) une procédure manuelle de secours.",
+      "Faire un test technique la veille et un contrôle d'état au début de chaque session.",
+      "Former les opérateurs et afficher l'état de l'outil (actif / inactif) au poste de contrôle."
+    ],
+    "corrective_plan": [
+      "Basculer immédiatement en procédure manuelle et l'annoncer aux participants.",
+      "Appliquer une règle écrite de rejeu ou de maintien de la décision.",
+      "Consigner l'incident pour la revue d'après-événement."
+    ],
+    "checklist_items": [
+      "Procédure manuelle de secours écrite pour chaque outil numérique (score, chrono, écran) ?",
+      "Test technique réalisé la veille et au début de chaque session ?",
+      "Règle de rejeu en cas de défaillance technique écrite ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.skysports.com/tennis/news/32498/13393402/wimbledon-officials-apologise-to-players-after-line-calling-technology-turned-off-in-malfunction-on-centre-court",
+        "title": "Wimbledon officials apologise to players after line-calling technology turned off in malfunction on Centre Court",
+        "publisher": "Sky Sports",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "arbitrage",
+      "technologie",
+      "plan-b",
+      "tennis",
+      "source:baskest-lab",
+      "origin:baskest-lab/07"
+    ]
+  },
+  {
+    "id": "E-024",
+    "title": "Incident technique sur le site : séance retardée de plusieurs heures puis public renvoyé",
+    "events": [
+      {
+        "name": "Grand Prix de Formule 1 de Las Vegas – essais libres",
+        "date": "2023-11-16",
+        "city": "Las Vegas",
+        "country": "US"
+      }
+    ],
+    "domain": "temps_morts",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "La première séance d'essais a été interrompue après environ neuf minutes, une voiture ayant heurté une plaque de regard mal fixée. Après un long délai de vérification du circuit, les zones spectateurs ont été fermées à 1 h 30 du matin et le public n'a pas été autorisé à assister à la seconde séance, organisée plus tard dans la nuit, pour des raisons de personnel et de droit du travail selon les organisateurs. Seuls les détenteurs de billets d'un jour ont reçu un bon d'achat de 200 dollars pour la boutique officielle. Une action collective a été engagée au nom d'environ 35 000 acheteurs ; un accord d'environ 3 millions de dollars a été conclu en 2026.",
+    "probable_causes": [
+      "Contrôle insuffisant d'éléments d'infrastructure du parcours avant la séance (presse).",
+      "Pas de plan prévu pour accueillir le public en cas de retard majeur (personnel, horaires) (déduit des décisions rapportées).",
+      "Politique de compensation non préparée et inégale selon les types de billets."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Public présent pendant des heures sans spectacle, puis renvoyé.",
+      "Action collective et accord financier.",
+      "Atteinte à l'image d'une première édition très médiatisée."
+    ],
+    "warning_signs": [
+      "Inspection du site incomplète avant l'ouverture au public.",
+      "Programme sans marge entre séquences ni plan de retard.",
+      "Contrats du personnel sans souplesse horaire."
+    ],
+    "preventive_measures": [
+      "Inspecter le terrain ou le parcours juste avant chaque séquence, checklist signée.",
+      "Écrire un plan de retard à seuils (30 min, 1 h, 2 h) : programme de substitution, prolongation du personnel, transports.",
+      "Définir à l'avance une compensation proportionnée et identique pour tous les types de billets.",
+      "Préparer des animations pour combler un temps mort imprévu (écrans, interviews, concours)."
+    ],
+    "corrective_plan": [
+      "Annoncer rapidement une estimation du délai et la mettre à jour.",
+      "Activer le programme de substitution et maintenir les services (eau, restauration).",
+      "Annoncer la compensation avant la sortie du public."
+    ],
+    "checklist_items": [
+      "Checklist d'inspection du terrain avant chaque séquence ?",
+      "Plan de retard écrit avec seuils et programme de substitution ?",
+      "Compensation définie pour tous les types de billets ?",
+      "Contenu d'animation prêt pour un temps mort imprévu ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.cnbc.com/2023/11/18/motor-racings-las-vegas-grand-prix-hit-with-lawsuit-after-practice-cancelled.html",
+        "title": "Motor racing's Las Vegas Grand Prix hit with lawsuit after practice cancelled",
+        "publisher": "CNBC (Reuters)",
+        "reliability": "B"
+      },
+      {
+        "url": "https://racer.com/2023/11/18/las-vegas-gp-hit-with-lawsuit-over-practice-issues/",
+        "title": "Las Vegas GP hit with lawsuit over practice issues",
+        "publisher": "RACER",
+        "reliability": "B"
+      },
+      {
+        "url": "https://lasvegassun.com/news/2023/nov/18/class-action-lawsuit-filed-after-lvgp-practice-fai/",
+        "title": "Class action lawsuit filed after LVGP practice failure",
+        "publisher": "Las Vegas Sun",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.fox5vegas.com/2023/11/18/nevada-residents-shortened-f1-practice-receive-200-fan-appreciation-voucher/",
+        "title": "Nevada residents at shortened F1 practice receive $200 'fan appreciation' voucher",
+        "publisher": "FOX5 Las Vegas",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.ajc.com/news/2026/07/formula-1-parent-company-reaches-3m-settlement-in-las-vegas-grand-prix-2023-tickets-lawsuit/",
+        "title": "Formula 1 parent company reaches $3M settlement in Las Vegas Grand Prix 2023 tickets lawsuit",
+        "publisher": "The Atlanta Journal-Constitution (AP)",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "retard",
+      "compensation",
+      "infrastructure",
+      "sport-mecanique"
+    ]
+  },
+  {
+    "id": "E-025",
+    "title": "Programme de gala recalibré sans test : transitions hachées, format trop court, concours qui s'essoufflent",
+    "events": [
+      {
+        "name": "NBA All-Star Game 2025",
+        "date": "2025-02",
+        "country": "US"
+      },
+      {
+        "name": "Coupe du monde FIBA 3x3 2026 (nouveau format de concours de dunk)",
+        "date": "2026"
+      }
+    ],
+    "domain": "sequencage",
+    "severity": "mineure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Le nouveau format du match des étoiles de la NBA en 2025 (mini-tournoi à score cible) a été critiqué pour sa « mauvaise présentation » : temps morts et segments télévisés entre les matchs ont éclipsé le jeu (CBS Sports) ; la cible de 40 points a été jugée trop courte, avec des avis partagés (ESPN). Par ailleurs, le concours de dunk individuel est jugé en perte de vitesse (ratés en série, attente entre les essais) et la FIBA a introduit en 2026, pour sa Coupe du monde 3x3, un concours par équipes. Les causes et mesures ci-dessous proviennent de l'analyse de l'observatoire d'origine. Origine : baskest-lab/07 (statut d'origine : vérifié ; faits non revérifiés par EVENT LAB).",
+    "probable_causes": [
+      "Transitions non scénarisées et segments trop longs entre les matchs (analyse de l'observatoire d'origine).",
+      "Calibrage du format (score cible, durée) sans test préalable, priorité donnée à la durée de diffusion (analyse de l'observatoire d'origine).",
+      "Concours à essais illimités, sans limite de temps, avec des participants de niveau hétérogène (analyse de l'observatoire d'origine)."
+    ],
+    "cause_status": "probable",
+    "consequences": [
+      "Baisse d'attention et d'ambiance ; image négative du nouveau format.",
+      "Frustration d'un public venu voir du jeu ; débordement du programme lors des concours."
+    ],
+    "warning_signs": [
+      "Conducteur sans durée fixée pour les transitions.",
+      "Format nouveau jamais joué en conditions réelles avant l'événement.",
+      "Concours sans limite de temps ni nombre d'essais."
+    ],
+    "preventive_measures": [
+      "Écrire un conducteur minute par minute ; aucune transition de plus de 5 minutes sans animation.",
+      "Simuler et tester la durée et le suspense des matchs (score cible, durée) avant de valider le format (docs/07 §4).",
+      "Limiter le temps et le nombre d'essais dans les concours ; préférer des formats par équipes ou une présélection."
+    ],
+    "corrective_plan": [
+      "Raccourcir ou supprimer en direct les segments non essentiels.",
+      "Combler les transitions avec les animations préparées (concours public, DJ, interviews).",
+      "Imposer une limite de temps aux essais restants."
+    ],
+    "checklist_items": [
+      "Conducteur minute par minute avec durée maximale de chaque transition ?",
+      "Format de match testé en conditions réelles avant l'événement ?",
+      "Concours avec limite de temps et nombre d'essais fixés ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.cbssports.com/nba/news/2025-nba-all-star-game-stephen-curry-leads-ogs-to-title-but-poor-presentation-overshadows-new-format/live/",
+        "title": "2025 NBA All-Star Game: poor presentation overshadows new format",
+        "publisher": "CBS Sports",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.espn.com/nba/story/_/id/43885669/nba-all-star-2025-new-format-draws-mixed-reviews-next",
+        "title": "NBA All-Star 2025: new format draws mixed reviews",
+        "publisher": "ESPN",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.fiba.basketball/en/news/fiba-3x3-world-cup-2026-introduces-dunk-mania-a-new-era-of-dunk-contests",
+        "title": "FIBA 3x3 World Cup 2026 introduces Dunk Mania, a new era of dunk contests",
+        "publisher": "FIBA",
+        "reliability": "A"
+      }
+    ],
+    "tags": [
+      "conducteur",
+      "format",
+      "concours",
+      "basket",
+      "source:baskest-lab",
+      "origin:baskest-lab/07"
+    ]
+  },
+  {
+    "id": "E-026",
+    "title": "Navettes sous-dimensionnées et site détrempé : des milliers de festivaliers bloqués la nuit",
+    "events": [
+      {
+        "name": "Splendour in the Grass",
+        "date": "2022-07-22/2022-07-24",
+        "country": "AU"
+      }
+    ],
+    "domain": "accueil",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Après de fortes pluies, le site et les parkings du festival sont devenus boueux, des véhicules se sont enlisés et la programmation du vendredi a été annulée, avec remboursement proportionnel. Des festivaliers ont rapporté des attentes de plusieurs heures pour les navettes de sortie (de deux à six heures selon les témoignages) ; des milliers de personnes sont restées bloquées sur le site jusqu'au petit matin. Les organisateurs ont présenté des excuses pour le manque de communication et annoncé des travaux d'imperméabilisation, un drainage renforcé et une communication améliorée.",
+    "probable_causes": [
+      "Nombre de navettes insuffisant pour le pic de sortie (témoignages relayés par la presse).",
+      "Site et voies d'accès non adaptés à de fortes pluies (travaux de drainage annoncés ensuite).",
+      "Communication en temps réel insuffisante (reconnue par les organisateurs)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Annulation d'une journée, remboursements partiels.",
+      "Festivaliers bloqués de nuit dans le froid, colère sur place.",
+      "Atteinte à la réputation ; excuses jugées insuffisantes par certains commentateurs."
+    ],
+    "warning_signs": [
+      "Prévision de pluie forte sur un site en herbe aux parkings non stabilisés.",
+      "Files aux navettes déjà longues à l'arrivée.",
+      "Fin simultanée des concerts pour l'ensemble du public."
+    ],
+    "preventive_measures": [
+      "Dimensionner les navettes sur le pic de départ (public à faire partir / capacité par véhicule × rotations par heure) avec une réserve.",
+      "Étaler les fins de programme entre scènes pour lisser les départs.",
+      "Stabiliser voies et parkings ou prévoir un plan pluie (parkings de repli, plaques de roulage).",
+      "Informer en temps réel (SMS, application, écrans) des temps d'attente."
+    ],
+    "corrective_plan": [
+      "Mobiliser les véhicules supplémentaires prévus par convention avec des transporteurs locaux.",
+      "Ouvrir des zones d'attente abritées avec eau et sanitaires.",
+      "Annoncer un temps d'attente estimé et le mettre à jour."
+    ],
+    "checklist_items": [
+      "Capacité de transport par heure supérieure ou égale au public à faire partir dans le créneau visé ?",
+      "Convention de renfort avec un transporteur local ?",
+      "Plan pluie pour les parkings et les voies d'accès ?",
+      "Zone d'attente abritée aux points de navette ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.nme.com/news/music/splendour-in-the-grass-2022-friday-cancellation-proportionate-refund-tickets-3275909",
+        "title": "Splendour In The Grass 2022: organisers say ticketholders will get 'proportionate refunds' for Friday cancellation",
+        "publisher": "NME",
+        "reliability": "B"
+      },
+      {
+        "url": "https://au.news.yahoo.com/anger-boils-over-during-wild-late-night-scenes-at-splendour-in-the-grass-013730206.html",
+        "title": "Anger boils over during late night scenes at Splendour in the Grass",
+        "publisher": "Yahoo News Australia",
+        "reliability": "B"
+      },
+      {
+        "url": "https://musicfeeds.com.au/news/splendour-organisers-apologise-for-2022/",
+        "title": "Splendour organisers apologise for 2022",
+        "publisher": "Music Feeds",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.pedestrian.tv/music/splendour-apologises-as-buses-hit-gridlock-leaving-chilly-punters-stranded/",
+        "title": "Splendour apologises as buses hit gridlock, leaving chilly punters stranded",
+        "publisher": "Pedestrian.tv",
+        "reliability": "C"
+      }
+    ],
+    "tags": [
+      "navettes",
+      "pluie",
+      "mobilite",
+      "festival"
+    ]
+  },
+  {
+    "id": "E-027",
+    "title": "Défection massive de bénévoles faute de conditions d'accueil et de plannings fiables",
+    "events": [
+      {
+        "name": "Jeux olympiques de Rio 2016",
+        "date": "2016-08",
+        "city": "Rio de Janeiro",
+        "country": "BR"
+      }
+    ],
+    "domain": "benevoles",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Pendant les Jeux, une part importante des bénévoles ne s'est pas présentée ou a abandonné : le CIO évoquait environ 30 % d'absences selon CBC, et un porte-parole de l'organisation a indiqué au Wall Street Journal que sur certains sites seul un bénévole sur cinq se présentait. Les témoignages pointent des journées longues, des plannings imprévisibles et une alimentation insuffisante. Les organisateurs ont dit ajuster le dispositif ; ils ont ensuite fait état de 35 000 bénévoles pour les Jeux olympiques et 15 000 pour les Jeux paralympiques. Les chiffres d'absence varient selon les sources et les dates.",
+    "probable_causes": [
+      "Amplitude horaire excessive et plannings changeants (témoignages).",
+      "Repas et pauses insuffisants (témoignages).",
+      "Surcharge des bénévoles présents, alimentant de nouvelles défections (CBC)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Postes non tenus, files plus longues, surcharge des bénévoles restants.",
+      "Image dégradée de l'organisation et du programme bénévole."
+    ],
+    "warning_signs": [
+      "Taux de confirmation des créneaux en baisse dans les jours précédant l'événement.",
+      "Retours négatifs après les premières vacations (repas, durée, transport).",
+      "Absences en hausse d'un jour sur l'autre."
+    ],
+    "preventive_measures": [
+      "Limiter la durée des vacations et publier les plannings définitifs à l'avance.",
+      "Garantir repas, eau, pauses et transport, et l'annoncer explicitement.",
+      "Surréserver les créneaux critiques selon un taux d'absence anticipé et constituer une réserve.",
+      "Désigner des référents bénévoles et recueillir les retours chaque jour."
+    ],
+    "corrective_plan": [
+      "Activer la réserve et redéployer les bénévoles vers les postes critiques.",
+      "Corriger immédiatement repas et pauses ; communiquer les changements.",
+      "Réduire les services non essentiels plutôt que surcharger les présents."
+    ],
+    "checklist_items": [
+      "Durée maximale d'une vacation fixée et respectée ?",
+      "Repas, eau et pauses garantis et annoncés aux bénévoles ?",
+      "Taux d'absence anticipé dans le planning (réserve) ?",
+      "Référent bénévole joignable et point de retour quotidien ?"
+    ],
+    "sources": [
+      {
+        "url": "https://amp.cbc.ca/lite/story/1.3721404",
+        "title": "Olympic volunteers quitting because of long hours, lack of food",
+        "publisher": "CBC",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.ajc.com/news/national/thousands-olympic-volunteers-are-quitting/OLgs0hyah1VfczRrJ7MfUM/",
+        "title": "Thousands of Olympic volunteers are quitting",
+        "publisher": "The Atlanta Journal-Constitution",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.playthegame.org/news/olympic-volunteers-in-rio-complain-about-their-working-conditions/",
+        "title": "Olympic volunteers in Rio complain about their working conditions",
+        "publisher": "Play the Game",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.si.com/olympics/2016/09/16/ap-oly-paralymics-volunteers",
+        "title": "Paralympics volunteers (AP)",
+        "publisher": "Sports Illustrated (AP)",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "benevoles",
+      "planning",
+      "jeux-olympiques"
+    ]
+  },
+  {
+    "id": "E-028",
+    "title": "Aménagements d'accessibilité annoncés mais inopérants : plateformes mal placées, vue obstruée, services insuffisants",
+    "events": [
+      {
+        "name": "Wireless Festival",
+        "date": "2022-07",
+        "city": "Londres (Crystal Palace)",
+        "country": "GB"
+      },
+      {
+        "name": "Download Festival",
+        "date": "2023",
+        "country": "GB"
+      }
+    ],
+    "domain": "accessibilite",
+    "severity": "majeure",
+    "applies_to_scale": [
+      "local",
+      "regional",
+      "national",
+      "international"
+    ],
+    "description": "Au festival Wireless 2022, des spectateurs en fauteuil roulant ont été dirigés vers une plateforme éloignée de la scène, et la plateforme accessible de la deuxième scène était partiellement masquée par un arbre ; une spectatrice a demandé le remboursement de billets de plus de 200 £ et l'organisateur s'est excusé d'être resté en deçà de ses standards. Après des signalements à Wireless 2022 et à Download 2023 (impossibilité de voir la scène, manque de toilettes accessibles), l'autorité britannique pour l'égalité et les droits humains (EHRC) a conclu en novembre 2023 un accord juridiquement contraignant avec l'organisateur : guides d'accessibilité, formation obligatoire du personnel, espaces calmes sensoriels, enquêtes auprès des spectateurs handicapés. En 2026, l'EHRC a indiqué que les engagements avaient été respectés.",
+    "probable_causes": [
+      "Plateformes PMR implantées sans vérification des lignes de vue (presse).",
+      "Capacité des services accessibles (toilettes) insuffisante (signalements relayés par l'EHRC et la presse).",
+      "Formation insuffisante du personnel à l'accueil des personnes handicapées (mesure imposée par l'accord)."
+    ],
+    "cause_status": "recoupee_presse",
+    "consequences": [
+      "Exclusion de fait de spectateurs handicapés, demandes de remboursement.",
+      "Intervention du régulateur et accord contraignant de mise en conformité."
+    ],
+    "warning_signs": [
+      "Plateformes PMR placées en fin d'implantation, là où il reste de la place.",
+      "Aucune vérification de la vue depuis la plateforme en position assise.",
+      "Demandes d'accès supérieures aux capacités des services accessibles."
+    ],
+    "preventive_measures": [
+      "Vérifier sur place, en position assise, la ligne de vue de chaque plateforme PMR (arbres, régie, écrans, foule debout).",
+      "Dimensionner toilettes, places et espaces accessibles sur les demandes enregistrées, avec une réserve.",
+      "Publier un guide d'accessibilité précis avant l'événement.",
+      "Former le personnel et nommer un référent accessibilité joignable.",
+      "Envoyer une enquête dédiée aux spectateurs handicapés après l'événement."
+    ],
+    "corrective_plan": [
+      "Déplacer ou rehausser une plateforme mal placée, ou ouvrir une zone de remplacement.",
+      "Ajouter des sanitaires accessibles mobiles.",
+      "Proposer un geste ou un remboursement aux personnes lésées."
+    ],
+    "checklist_items": [
+      "Ligne de vue vérifiée depuis chaque plateforme PMR, en position assise ?",
+      "Nombre de toilettes accessibles proportionné aux demandes ?",
+      "Guide d'accessibilité publié avant l'ouverture des ventes ?",
+      "Référent accessibilité nommé et joignable le jour J ?"
+    ],
+    "sources": [
+      {
+        "url": "https://www.equalityhumanrights.com/news/festivals-made-more-accessible-disabled-people-after-agreement-equality-watchdog",
+        "title": "Festivals made more accessible for disabled people after agreement with equality watchdog",
+        "publisher": "Equality and Human Rights Commission",
+        "reliability": "A"
+      },
+      {
+        "url": "https://www.itv.com/news/london/2022-07-04/an-absolute-disaster-disabled-festivalgoers-on-abysmal-wireless-experience",
+        "title": "'An absolute disaster': disabled festivalgoers on 'abysmal' Wireless experience",
+        "publisher": "ITV News",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.which.co.uk/news/article/wireless-festival-faces-complaints-from-disabled-ticket-holders-a1mQZ0N4MoAt",
+        "title": "Wireless Festival faces complaints from disabled ticket holders",
+        "publisher": "Which?",
+        "reliability": "B"
+      },
+      {
+        "url": "https://www.nme.com/news/music/live-nation-festivals-to-be-more-accessible-for-disabled-fans-after-legal-action-over-wireless-and-download-3936610",
+        "title": "Live Nation festivals to be more accessible for disabled fans after legal action over Wireless and Download",
+        "publisher": "NME",
+        "reliability": "B"
+      }
+    ],
+    "tags": [
+      "accessibilite",
+      "lignes-de-vue",
+      "regulateur",
+      "festival"
+    ]
+  }
+]

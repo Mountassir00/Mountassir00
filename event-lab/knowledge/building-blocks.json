@@ -1,0 +1,3813 @@
+[
+  {
+    "id": "B-regles-score-cible-ou-temps",
+    "type": "regles",
+    "name": "Match court à score cible ou temps limite",
+    "mechanic": "Le match s'arrête au premier des deux événements : une équipe atteint le score cible, ou le temps limite expire. La durée de chaque créneau est bornée, la planification devient fiable et la fin de match reste tendue.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "FIBA 3x3 : match de 10 minutes, arrêté dès qu'une équipe atteint 21 points"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "chronometrage"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 1,
+      "cost": 1,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 2,
+      "experimental": 1,
+      "hybride": 2,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-regles-horloge-tir-courte",
+      "B-qualification-placement-serpentin",
+      "B-qualification-systeme-suisse",
+      "B-mecanique_jeu-gagnant-reste",
+      "B-experience_digitale-resultats-live",
+      "B-son_lumiere-dj-speaker",
+      "B-regles-fin-a-score-cible"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Écarts de niveau : matchs joués d'avance, à compenser par le placement des têtes de série",
+      "Chronométrage manuel source de litiges sans affichage visible"
+    ],
+    "ip_note": "Logique de double condition d'arrêt, commune à de nombreux sports ; les valeurs (21 points, 10 minutes) sont des paramètres réglementaires publics. Ne pas utiliser logos ni dénominations d'une fédération sans accord."
+  },
+  {
+    "id": "B-regles-horloge-tir-courte",
+    "type": "regles",
+    "name": "Horloge d'attaque courte",
+    "mechanic": "Une équipe dispose d'un temps court pour tenter un tir ; au-delà, elle perd le ballon. Le rythme augmente et les possessions stériles disparaissent.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "FIBA 3x3 : horloge de tir de 12 secondes",
+        "Basket à cinq : horloge de 24 secondes (FIBA, NBA)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "chronometrage"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 1,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 5,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 2,
+      "communautaire": 2
+    },
+    "compatible_with": [
+      "B-regles-score-cible-ou-temps",
+      "B-creation_contenu-direct-commente"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Pénalise les débutants si la durée est trop courte : l'adapter par catégorie",
+      "Exige un opérateur concentré et un affichage visible des joueurs"
+    ],
+    "ip_note": "Règle sportive générique ; aucune reprise d'identité visuelle."
+  },
+  {
+    "id": "B-regles-fin-a-score-cible",
+    "type": "regles",
+    "name": "Fin de match à score cible",
+    "mechanic": "À un moment défini (fin du temps réglementaire ou dernière minute), le chronomètre est arrêté et un score cible est fixé (score du leader + N points) ; la première équipe qui l'atteint gagne. Chaque match se termine sur une action et les fautes tactiques de fin de match perdent leur intérêt.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "The Basketball Tournament (TBT), tournoi américain à élimination directe",
+        "NBA All-Star Game (format adopté à partir de 2020)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "chronometrage",
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 4,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-regles-score-cible-ou-temps",
+      "B-creation_contenu-direct-commente",
+      "B-creation_contenu-clips-verticaux",
+      "B-son_lumiere-signature-sonore"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Règle peu intuitive pour un public non initié tant que la cible n'est pas affichée en grand (constat d'une ligue qui l'emploie, rapporté par l'observatoire BASK'EST)",
+      "Durée de match moins prévisible : prévoir une marge de planning (docs/07 §4)",
+      "Cible mal calibrée : format jugé trop court (voir E-025)"
+    ],
+    "ip_note": "Principe connu sous le nom de son inventeur ; reprendre la logique, nommer la règle autrement et ne pas reprendre l'habillage d'une ligue."
+  },
+  {
+    "id": "B-regles-plafond-classification",
+    "type": "regles",
+    "name": "Plafond de points de classification par équipe",
+    "mechanic": "Chaque participant reçoit une valeur selon son niveau (fonctionnel, âge, expérience) ; la somme des valeurs des joueurs présents sur le terrain ne doit pas dépasser un plafond. Des profils hétérogènes jouent ensemble dans des matchs équilibrés.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Basket en fauteuil (IWBF) : plafond de 14 points de classification pour les cinq joueurs sur le terrain"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 1,
+      "media": 3,
+      "revenue": 0,
+      "inclusion": 5,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 1,
+      "experimental": 4,
+      "hybride": 1,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-regles-equipes-mixtes",
+      "B-mecanique_jeu-draft",
+      "B-mecanique_jeu-handicap"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Classification contestée si les critères ne sont pas publics et simples",
+      "Valeur attribuée vécue comme un jugement : la présenter comme une règle de jeu"
+    ],
+    "ip_note": "Logique issue du sport paralympique ; la classification médicale officielle n'est pas transposable : définir une grille propre, simple et publique."
+  },
+  {
+    "id": "B-regles-equipes-mixtes",
+    "type": "regles",
+    "name": "Équipes mixtes à composition imposée",
+    "mechanic": "La composition des équipes est contrainte (mixité de genre, d'âge ou de niveau, participants avec et sans handicap), avec des règles qui garantissent le temps de jeu de chacun.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Athlétisme : relais mixte 4 × 400 m aux Jeux olympiques de Tokyo 2020",
+        "Special Olympics : programme Unified Sports associant sportifs avec et sans déficience intellectuelle"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 0,
+      "media": 3,
+      "revenue": 1,
+      "inclusion": 5,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 1,
+      "experimental": 2,
+      "hybride": 1,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-regles-plafond-classification",
+      "B-mecanique_jeu-draft",
+      "B-fidelisation-rendez-vous-recurrent",
+      "B-activation_partenaire-stage-jeunes",
+      "B-mecanique_jeu-handicap"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Quota de façade si le règlement ne garantit pas le temps de jeu",
+      "Catégories difficiles à remplir : prévoir une constitution d'équipes sur place"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre la dénomination d'un programme existant."
+  },
+  {
+    "id": "B-qualification-parcours-chronometre",
+    "type": "qualification",
+    "name": "Parcours d'habileté chronométré",
+    "mechanic": "Chaque participant ou équipe réalise seul un parcours standardisé (dribble, passe, tir) chronométré ; chaque faute (tir manqué, plot touché) ajoute une pénalité de temps. La qualification devient équitable, compréhensible en une phrase et filmable.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "NBA All-Star : épreuve d'habileté chronométrée",
+        "Concours annexes des événements FIBA 3x3 (tirs, dunk)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 3,
+      "tech": [
+        "chronometrage"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 200
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-elimination-par-manches",
+      "B-mise_en_scene-grille-depart",
+      "B-qualification-placement-serpentin",
+      "B-experience_digitale-resultats-live",
+      "B-creation_contenu-clips-verticaux",
+      "B-fidelisation-passeport-progression",
+      "B-mecanique_jeu-joker-activable",
+      "B-qualification-qualifs-a-distance",
+      "B-experience_digitale-file-virtuelle",
+      "B-mecanique_jeu-enigme-compte-a-rebours"
+    ],
+    "incompatible_with": [
+      "B-interaction_public-bonus-fans"
+    ],
+    "risks": [
+      "Débit limité par un seul parcours : en installer deux en parallèle et simuler la file (docs/07 §4)",
+      "Litiges sur les pénalités sans juge dédié",
+      "Biais en faveur des profils spécialistes : combiner habileté et jeu collectif dans le classement"
+    ],
+    "ip_note": "Épreuve d'habileté générique ; ne pas reprendre le nom commercial d'une épreuve ni l'habillage d'une ligue."
+  },
+  {
+    "id": "B-qualification-elimination-par-manches",
+    "type": "qualification",
+    "name": "Qualifications chronométrées à élimination par manches",
+    "mechanic": "Plusieurs manches chronométrées se succèdent ; à l'issue de chacune, les moins rapides sont éliminés et classés, les autres repartent de zéro. La dernière manche réunit les meilleurs et fixe l'ordre de tête. Plusieurs pics de suspense remplacent un classement unique.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Formule 1 : qualifications en trois manches à élimination"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 3,
+      "tech": [
+        "chronometrage",
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 200
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 2,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 5,
+      "premium": 4,
+      "experimental": 4,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-mise_en_scene-grille-depart",
+      "B-mise_en_scene-revelation-tableau",
+      "B-experience_digitale-resultats-live",
+      "B-creation_contenu-direct-commente",
+      "B-son_lumiere-signature-sonore",
+      "B-qualification-placement-serpentin",
+      "B-qualification-derniere-chance"
+    ],
+    "incompatible_with": [
+      "B-interaction_public-bonus-fans",
+      "B-interaction_public-vote-public-jury",
+      "B-interaction_public-coup-de-coeur"
+    ],
+    "risks": [
+      "Durée cumulée des manches : simuler avant de fixer le nombre de manches (docs/07 §4)",
+      "Éliminés dès la première manche : prévoir une activité de consolation (concours, tournoi de la dernière chance)"
+    ],
+    "ip_note": "Emprunt de la logique d'élimination par manches ; ne pas utiliser dénominations, visuels ni marque de la discipline d'origine."
+  },
+  {
+    "id": "B-qualification-placement-serpentin",
+    "type": "qualification",
+    "name": "Placement en serpentin des têtes de série",
+    "mechanic": "Les équipes classées sont réparties dans les poules en serpentin (1-2-3-4 puis 4-3-2-1, etc.) pour équilibrer le niveau moyen des poules ; le classement de qualification devient l'enjeu du placement.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Pratique courante de répartition des têtes de série en poules (sports collectifs, e-sport)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 0,
+      "media": 1,
+      "revenue": 0,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 2,
+      "experimental": 1,
+      "hybride": 2,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-qualification-elimination-par-manches",
+      "B-qualification-parcours-chronometre",
+      "B-mise_en_scene-revelation-tableau",
+      "B-regles-score-cible-ou-temps",
+      "B-qualification-derniere-chance"
+    ],
+    "incompatible_with": [
+      "B-mecanique_jeu-gagnant-reste",
+      "B-mecanique_jeu-zone-qui-se-reduit"
+    ],
+    "risks": [
+      "Peu lisible pour le public s'il n'est pas expliqué (afficher le schéma)",
+      "Égalités de temps : critère de départage écrit à l'avance"
+    ],
+    "ip_note": "Méthode d'appariement générique, libre de droits."
+  },
+  {
+    "id": "B-qualification-systeme-suisse",
+    "type": "qualification",
+    "name": "Phase en système suisse",
+    "mechanic": "À chaque ronde, chacun affronte un adversaire au bilan identique, sans élimination immédiate ; après un nombre fixe de rondes, un seuil de victoires qualifie et un seuil de défaites élimine. Tout le monde joue plusieurs matchs et les matchs restent équilibrés.",
+    "origin": {
+      "sector_family": "jeu",
+      "examples": [
+        "Échecs : tournois et Olympiade en système suisse",
+        "Counter-Strike : phases en système suisse des tournois majeurs"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 0,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 5,
+      "premium": 2,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-experience_digitale-resultats-live",
+      "B-interaction_public-predictions-gratuites",
+      "B-regles-score-cible-ou-temps",
+      "B-qualification-derniere-chance"
+    ],
+    "incompatible_with": [
+      "B-mecanique_jeu-gagnant-reste",
+      "B-mecanique_jeu-zone-qui-se-reduit"
+    ],
+    "risks": [
+      "Appariements à recalculer à chaque ronde : outil ou personne formée indispensable",
+      "Moins lisible qu'un tableau pour le grand public"
+    ],
+    "ip_note": "Système d'appariement public ; aucune reprise d'identité de tournoi."
+  },
+  {
+    "id": "B-qualification-derniere-chance",
+    "type": "qualification",
+    "name": "Tournoi de la dernière chance",
+    "mechanic": "Les équipes éliminées en phase principale rejouent un mini-tournoi dont le vainqueur récupère une dernière place qualificative. La frustration baisse et un récit de remontée apparaît.",
+    "origin": {
+      "sector_family": "esport",
+      "examples": [
+        "Valorant Champions Tour : tournoi de la dernière chance (Last Chance Qualifier)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 3,
+      "revenue": 1,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 2,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-qualification-elimination-par-manches",
+      "B-qualification-systeme-suisse",
+      "B-qualification-placement-serpentin",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Allonge le programme : simuler la durée",
+      "Fatigue des équipes repêchées si l'enchaînement est immédiat (repos minimal à respecter)"
+    ],
+    "ip_note": "Ne pas reprendre la dénomination anglaise d'un circuit ; nommer la phase librement."
+  },
+  {
+    "id": "B-qualification-qualifs-a-distance",
+    "type": "qualification",
+    "name": "Qualifications ouvertes à distance",
+    "mechanic": "Des qualifications ouvertes se déroulent à distance (en ligne pour l'e-sport ; vidéo ou application de chronométrage pour un défi physique standardisé) avant une phase finale en présentiel. Le vivier s'élargit sans coût logistique.",
+    "origin": {
+      "sector_family": "esport",
+      "examples": [
+        "Fortnite World Cup 2019 : qualifications en ligne ouvertes"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 2,
+      "media": 3,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 3,
+      "premium": 2,
+      "experimental": 4,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-fidelisation-classement-saison",
+      "B-creation_contenu-defi-ugc",
+      "B-fidelisation-passeport-progression"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Triche et vérification des performances filmées : règlement de preuve et contrôle en finale",
+      "Fracture numérique : garder une voie de qualification sur place"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre noms ni visuels d'un éditeur de jeu."
+  },
+  {
+    "id": "B-recompenses-maillot-leader",
+    "type": "recompenses",
+    "name": "Signe distinctif du leader",
+    "mechanic": "Le leader d'un classement porte un signe distinctif (maillot, dossard, brassard) qui change de propriétaire dès qu'il est dépassé. La hiérarchie devient lisible et chaque étape crée une passation.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Tour de France : maillot du leader du classement général"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 1,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 3,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 2,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-fidelisation-classement-saison",
+      "B-mise_en_scene-podium",
+      "B-activation_partenaire-moment-presente",
+      "B-mise_en_scene-ceremonie-entree"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Copier la couleur ou le design d'un maillot célèbre : choisir un signe propre",
+      "Tailles et nettoyage entre étapes à prévoir"
+    ],
+    "ip_note": "Ne reprendre ni la couleur associée à une épreuve précise ni son logo ; créer un signe propre à l'événement."
+  },
+  {
+    "id": "B-recompenses-finale-tout-ou-rien",
+    "type": "recompenses",
+    "name": "Finale unique décisive",
+    "mechanic": "Une saison ou une phase à points sert à se qualifier pour une finale unique où le titre se joue sur une seule performance, indépendamment des points accumulés.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Ligue de diamant d'athlétisme : finales décisives en fin de saison"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 1,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-fidelisation-classement-saison",
+      "B-mise_en_scene-revelation-tableau",
+      "B-mise_en_scene-podium",
+      "B-creation_contenu-serie-coulisses"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Sentiment d'injustice pour un leader régulier battu en finale",
+      "Dépend de la présence des meilleurs le jour J"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre la marque d'un circuit."
+  },
+  {
+    "id": "B-recompenses-trophee-defi",
+    "type": "recompenses",
+    "name": "Trophée en jeu à défendre",
+    "mechanic": "Le détenteur remet le trophée en jeu à chaque défi ; quiconque le bat en devient détenteur. Un récit continu relie les rencontres et les éditions.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Rugby (Nouvelle-Zélande) : Ranfurly Shield, trophée remis en jeu par son détenteur",
+        "Boxe : ceintures de champion défendues"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 1,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 3,
+      "hybride": 2,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-mise_en_scene-face-a-face",
+      "B-mise_en_scene-ceremonie-entree",
+      "B-fidelisation-temple-renommee",
+      "B-fidelisation-classement-saison",
+      "B-creation_contenu-serie-coulisses"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Règles de défi à écrire (fréquence, qui peut défier, ordre)",
+      "Détenteur absent : règle de forfait"
+    ],
+    "ip_note": "Logique générique ; aucune reprise de nom ni de design de trophée existant."
+  },
+  {
+    "id": "B-recompenses-medaille-finisher",
+    "type": "recompenses",
+    "name": "Récompense de participation pour tous",
+    "mechanic": "Tout participant qui termine reçoit une récompense identique : la valeur tient à la complétion, pas au rang. La participation s'élargit et le souvenir est garanti.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Marathons et courses sur route : médaille remise à chaque arrivant"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 0,
+      "ux_gain": 3,
+      "complexity": 0,
+      "cost": 2,
+      "media": 2,
+      "revenue": 1,
+      "inclusion": 5,
+      "eco_impact": 2,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 2,
+      "premium": 2,
+      "experimental": 0,
+      "hybride": 1,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-fidelisation-passeport-progression",
+      "B-fidelisation-souvenir-numerique",
+      "B-fidelisation-rendez-vous-recurrent"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Impact environnemental des objets : privilégier réemploi, matériaux sobres ou version numérique",
+      "Coût unitaire multiplié par le nombre de participants"
+    ],
+    "ip_note": "Logique générique ; design propre à l'événement."
+  },
+  {
+    "id": "B-recompenses-mvp-vote-mixte",
+    "type": "recompenses",
+    "name": "Distinction individuelle à vote mixte",
+    "mechanic": "Une distinction individuelle (meilleur joueur, plus beau geste) est attribuée par un vote qui combine public, participants et jury, chaque collège ayant un poids publié.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "NBA All-Star : sélection des titulaires par un vote combinant fans, joueurs et médias"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 0,
+      "media": 3,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 4,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-interaction_public-predictions-gratuites",
+      "B-interaction_public-vote-public-jury",
+      "B-creation_contenu-clips-verticaux",
+      "B-mise_en_scene-podium"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Mobilisation partisane (une équipe fait voter ses proches) : pondération et collège jury",
+      "Votes multiples sans identification"
+    ],
+    "ip_note": "Logique générique de vote pondéré ; aucune reprise de trophée ou de marque."
+  },
+  {
+    "id": "B-mise_en_scene-ceremonie-entree",
+    "type": "mise_en_scene",
+    "name": "Cérémonie d'entrée individuelle",
+    "mechanic": "Chaque participant ou équipe entre seul, annoncé par un speaker, sur une musique choisie, par un parcours défini jusqu'à l'aire de jeu. Des amateurs deviennent protagonistes et chaque équipe obtient un moment filmable. Durée bornée (20 à 30 secondes par équipe [param]).",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Sports de combat (UFC, boxe) : entrée des combattants en musique",
+        "Basket professionnel : présentation individuelle des titulaires"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 5,
+      "experimental": 3,
+      "hybride": 4,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-scenographie-tunnel-entree",
+      "B-son_lumiere-noir-projecteur",
+      "B-son_lumiere-dj-speaker",
+      "B-mise_en_scene-grille-depart",
+      "B-creation_contenu-clips-verticaux",
+      "B-mise_en_scene-face-a-face",
+      "B-recompenses-maillot-leader",
+      "B-recompenses-trophee-defi",
+      "B-scenographie-arene-modulaire"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Allonge le programme si la durée n'est pas bornée",
+      "Musiques soumises à droits : déclaration à l'organisme de gestion collective",
+      "Participants mal à l'aise : rendre l'entrée individuelle facultative ou collective"
+    ],
+    "ip_note": "Logique de mise en scène ; ne reprendre ni jingles, ni habillages, ni formules d'annonce caractéristiques d'une organisation."
+  },
+  {
+    "id": "B-mise_en_scene-revelation-tableau",
+    "type": "mise_en_scene",
+    "name": "Révélation publique du tableau",
+    "mechanic": "Le tableau (poules, appariements) est dévoilé lors d'un moment public scénarisé, tirage en direct ou dévoilement progressif, avec les réactions des équipes filmées.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Basket universitaire américain (NCAA) : émission de dévoilement du tableau final",
+        "UEFA : cérémonies publiques de tirage au sort des compétitions de clubs"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "ecran",
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 50
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 1,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-placement-serpentin",
+      "B-qualification-elimination-par-manches",
+      "B-creation_contenu-direct-commente",
+      "B-creation_contenu-clips-verticaux",
+      "B-interaction_public-predictions-gratuites",
+      "B-mecanique_jeu-draft",
+      "B-recompenses-finale-tout-ou-rien",
+      "B-mise_en_scene-grille-depart",
+      "B-interaction_public-vote-public-jury"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Temps mort si la révélation s'étire : la limiter à quelques minutes",
+      "Erreur de tirage en direct : procédure de vérification préparée"
+    ],
+    "ip_note": "Logique générique de dévoilement ; ne pas reprendre les habillages ni les noms d'émissions existantes."
+  },
+  {
+    "id": "B-mise_en_scene-grille-depart",
+    "type": "mise_en_scene",
+    "name": "Grille de départ présentée",
+    "mechanic": "Avant la phase finale, les participants sont alignés physiquement dans l'ordre de leur classement de qualification ; le speaker présente chaque position. Le classement devient visible et la qualification prend de la valeur.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Formule 1 et sports mécaniques : grille de départ dans l'ordre des qualifications"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 0,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 4,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-elimination-par-manches",
+      "B-qualification-parcours-chronometre",
+      "B-mise_en_scene-ceremonie-entree",
+      "B-mise_en_scene-revelation-tableau",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Moment statique : limiter la durée",
+      "Lisibilité réduite au-delà de 16 équipes : présenter par blocs"
+    ],
+    "ip_note": "Emprunt de la logique d'alignement par rang ; ni damier, ni visuels, ni terminologie protégée de la discipline d'origine."
+  },
+  {
+    "id": "B-mise_en_scene-face-a-face",
+    "type": "mise_en_scene",
+    "name": "Face-à-face d'avant-match",
+    "mechanic": "Avant un match clé, capitaines ou équipes se font face devant le public et les caméras (déclaration courte, échange encadré par un animateur). La rivalité et l'enjeu s'installent.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Sports de combat : pesées publiques et face-à-face avant les combats"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 30
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 2,
+      "complexity": 1,
+      "cost": 0,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 2,
+      "premium": 4,
+      "experimental": 4,
+      "hybride": 4,
+      "communautaire": 2
+    },
+    "compatible_with": [
+      "B-mise_en_scene-ceremonie-entree",
+      "B-recompenses-trophee-defi",
+      "B-creation_contenu-clips-verticaux",
+      "B-creation_contenu-serie-coulisses"
+    ],
+    "incompatible_with": [
+      "B-fidelisation-rendez-vous-recurrent"
+    ],
+    "risks": [
+      "Dérapage verbal ou physique : charte de comportement, animateur, distance",
+      "Peu adapté aux jeunes publics et aux formats inclusifs"
+    ],
+    "ip_note": "Logique de dramaturgie ; aucun élément d'identité d'une organisation de combat."
+  },
+  {
+    "id": "B-mise_en_scene-podium",
+    "type": "mise_en_scene",
+    "name": "Cérémonie de podium",
+    "mechanic": "Les trois premiers sont récompensés sur un podium à hauteurs différenciées, avec musique, remise de récompense et photo officielle.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Jeux olympiques : cérémonies de remise des médailles"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 20
+    },
+    "attributes": {
+      "novelty": 0,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 1,
+      "media": 3,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 1,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-recompenses-maillot-leader",
+      "B-creation_contenu-spots-photo",
+      "B-recompenses-finale-tout-ou-rien",
+      "B-activation_partenaire-moment-presente",
+      "B-recompenses-mvp-vote-mixte"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Cérémonie trop tardive quand le public part : la programmer juste après la finale",
+      "Oubli d'une catégorie (féminine, jeunes, inclusive)"
+    ],
+    "ip_note": "Ne reprendre ni hymne, ni anneaux, ni symboles olympiques (protégés)."
+  },
+  {
+    "id": "B-interaction_public-vote-public-jury",
+    "type": "interaction_public",
+    "name": "Vote public pondéré par un jury",
+    "mechanic": "Le résultat d'une épreuve d'appréciation (créativité, style) combine un vote du public et une note de jury selon une pondération publiée ; les résultats sont révélés progressivement.",
+    "origin": {
+      "sector_family": "tv_media",
+      "examples": [
+        "Concours Eurovision de la chanson : combinaison du vote du public et des jurys nationaux"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "app_web",
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 2,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-interaction_public-concours-public",
+      "B-recompenses-mvp-vote-mixte",
+      "B-mise_en_scene-revelation-tableau",
+      "B-interaction_public-coup-de-coeur"
+    ],
+    "incompatible_with": [
+      "B-qualification-elimination-par-manches"
+    ],
+    "risks": [
+      "Ne jamais l'appliquer à un résultat sportif mesurable",
+      "Fraude au vote : un vote par personne identifiée",
+      "Vote payant : réglementation des jeux et loteries à vérifier"
+    ],
+    "ip_note": "Ne reprendre ni la formule d'annonce des points ni l'identité visuelle d'un concours télévisé."
+  },
+  {
+    "id": "B-interaction_public-bonus-fans",
+    "type": "interaction_public",
+    "name": "Bonus attribué par le vote des fans",
+    "mechanic": "Les fans votent avant ou pendant l'événement ; les participants les plus votés reçoivent un avantage limité et encadré (temps mort supplémentaire, choix du côté), sans effet majeur sur l'équité sportive.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Formula E : avantage de puissance temporaire attribué par vote des fans pendant plusieurs saisons"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 1,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 2,
+      "premium": 3,
+      "experimental": 5,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-interaction_public-predictions-gratuites",
+      "B-creation_contenu-direct-commente",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-qualification-elimination-par-manches"
+    ],
+    "risks": [
+      "Avantage aux équipes les plus suivies en ligne : iniquité perçue",
+      "Rejet des participants si l'avantage pèse sur le résultat"
+    ],
+    "ip_note": "Ne pas reprendre la dénomination commerciale du dispositif d'origine."
+  },
+  {
+    "id": "B-interaction_public-concours-public",
+    "type": "interaction_public",
+    "name": "Concours ouvert au public pendant les pauses",
+    "mechanic": "Pendant les pauses, des spectateurs inscrits ou tirés au sort relèvent un défi court (tir de loin, lancers chronométrés) avec un lot. Les temps morts se remplissent et le public devient acteur.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Salles de basket professionnel : concours de tir du milieu de terrain pendant les temps morts"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 1,
+      "cost": 1,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 2,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-activation_partenaire-moment-presente",
+      "B-son_lumiere-dj-speaker",
+      "B-creation_contenu-clips-verticaux",
+      "B-fidelisation-passeport-progression",
+      "B-activation_partenaire-zone-defi",
+      "B-mecanique_jeu-gagnant-reste",
+      "B-interaction_public-vote-public-jury",
+      "B-interaction_public-coup-de-coeur",
+      "B-experience_digitale-file-virtuelle"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Lot de valeur : règlement de jeu-concours, assurance, cadre légal",
+      "Pauses qui s'allongent au-delà du conducteur"
+    ],
+    "ip_note": "Logique générique d'animation ; aucun habillage de ligue."
+  },
+  {
+    "id": "B-interaction_public-predictions-gratuites",
+    "type": "interaction_public",
+    "name": "Jeu de prédictions gratuit",
+    "mechanic": "Avant et pendant l'événement, le public pronostique gratuitement (qualifiés, vainqueurs, scores) ; points, classement des pronostiqueurs et lots non monétaires. L'engagement se prolonge en ligne et le public revient consulter les résultats.",
+    "origin": {
+      "sector_family": "esport",
+      "examples": [
+        "Tournois majeurs de Counter-Strike : défi de pronostics",
+        "Ligues de fantasy sport"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 1,
+      "media": 3,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 2,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-experience_digitale-resultats-live",
+      "B-mise_en_scene-revelation-tableau",
+      "B-qualification-systeme-suisse",
+      "B-fidelisation-passeport-progression",
+      "B-recompenses-mvp-vote-mixte",
+      "B-interaction_public-bonus-fans",
+      "B-mecanique_jeu-carte-secrete"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Glissement vers le pari : rester gratuit, sans mise ni gain en argent (réglementation des jeux d'argent)",
+      "Données personnelles : consentement explicite (RGPD)"
+    ],
+    "ip_note": "Ne reprendre ni le nom ni l'interface d'un jeu de pronostics existant."
+  },
+  {
+    "id": "B-interaction_public-coup-de-coeur",
+    "type": "interaction_public",
+    "name": "Coup de cœur qualifiant du jury",
+    "mechanic": "Un membre du jury dispose d'un unique droit de qualifier directement un candidat, utilisable une seule fois et de façon visible. Un moment d'émotion et de surprise est créé.",
+    "origin": {
+      "sector_family": "tv_media",
+      "examples": [
+        "Émissions de télécrochet de la franchise « Got Talent » : bouton de qualification directe"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 2,
+      "complexity": 1,
+      "cost": 0,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 2,
+      "premium": 4,
+      "experimental": 4,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-interaction_public-vote-public-jury",
+      "B-interaction_public-concours-public",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [
+      "B-qualification-elimination-par-manches"
+    ],
+    "risks": [
+      "Perçu comme arbitraire s'il s'applique à une compétition sportive : le réserver aux épreuves d'appréciation (dunk, style)"
+    ],
+    "ip_note": "Ne reprendre ni le nom du bouton, ni sa couleur, ni les effets caractéristiques du format télévisé."
+  },
+  {
+    "id": "B-mecanique_jeu-carte-secrete",
+    "type": "mecanique_jeu",
+    "name": "Carte stratégique secrète",
+    "mechanic": "Chaque équipe dispose d'une carte à usage unique, choisie ou tirée avant le match et révélée à son activation (par exemple : paniers comptant double pendant une minute). Une décision stratégique et un rebondissement visible s'ajoutent.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Kings League (football à 7) : cartes secrètes à effet temporaire"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 0,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 2,
+      "premium": 3,
+      "experimental": 5,
+      "hybride": 4,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-creation_contenu-direct-commente",
+      "B-creation_contenu-clips-verticaux",
+      "B-interaction_public-predictions-gratuites",
+      "B-activation_partenaire-moment-presente"
+    ],
+    "incompatible_with": [
+      "B-mecanique_jeu-joker-activable",
+      "B-mecanique_jeu-handicap"
+    ],
+    "risks": [
+      "Nouveauté qui s'use vite et lisibilité sportive réduite (voir E-018) : une seule mécanique de ce type par format, mesurée",
+      "Effets trop puissants : tester et plafonner",
+      "Effet à afficher pour le public"
+    ],
+    "ip_note": "Mécanique générique de carte à usage unique ; ne reprendre ni noms de cartes, ni charte, ni marque de la ligue."
+  },
+  {
+    "id": "B-mecanique_jeu-zone-qui-se-reduit",
+    "type": "mecanique_jeu",
+    "name": "Espace de jeu qui se réduit par paliers",
+    "mechanic": "L'espace ou les ressources diminuent par paliers à heure fixe (terrains fermés, zones réduites) ; les participants restants doivent se regrouper. La fin tombe à heure fixe et l'intensité croît.",
+    "origin": {
+      "sector_family": "jeu",
+      "examples": [
+        "Jeux vidéo de type battle royale : zone de jeu qui se resserre"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 4,
+      "tech": [
+        "chronometrage",
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 600
+    },
+    "attributes": {
+      "novelty": 5,
+      "ux_gain": 3,
+      "complexity": 4,
+      "cost": 2,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 1,
+      "optimise": 2,
+      "premium": 3,
+      "experimental": 5,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-creation_contenu-direct-commente",
+      "B-son_lumiere-signature-sonore",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [
+      "B-qualification-systeme-suisse",
+      "B-qualification-placement-serpentin"
+    ],
+    "risks": [
+      "Plausibilité faible dans un sport sans élimination naturelle : vérifier la cohérence avant adoption (docs/07 §3)",
+      "Sécurité des déplacements de participants entre zones"
+    ],
+    "ip_note": "Logique de réduction progressive ; aucun élément graphique ou sonore d'un jeu vidéo."
+  },
+  {
+    "id": "B-mecanique_jeu-joker-activable",
+    "type": "mecanique_jeu",
+    "name": "Joker activable à coût",
+    "mechanic": "Chaque participant doit ou peut activer une fois un dispositif (zone joker, tracé alternatif, temps fort) qui procure un avantage temporaire au prix d'un détour ou d'un risque. Le choix du moment devient stratégique.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Formula E : mode d'attaque activé en passant par une zone hors trajectoire",
+        "Rallycross : tour joker obligatoire sur un tracé alternatif"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 4,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 0,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 5,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-activation_partenaire-moment-presente",
+      "B-creation_contenu-direct-commente"
+    ],
+    "incompatible_with": [
+      "B-mecanique_jeu-carte-secrete"
+    ],
+    "risks": [
+      "Complexité supplémentaire pour le public",
+      "Effet trop décisif : calibrer par test"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre les dénominations commerciales des disciplines d'origine."
+  },
+  {
+    "id": "B-mecanique_jeu-gagnant-reste",
+    "type": "mecanique_jeu",
+    "name": "Le gagnant reste sur le terrain",
+    "mechanic": "Le vainqueur d'un match court reste sur le terrain et affronte le challenger suivant ; chaque victoire en tant que tenant rapporte des points. La rotation est rapide et personne n'attend longtemps.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Terrains de basket de rue : règle du « gagnant reste »",
+        "Beach-volley : tournois au format « roi du terrain »"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "chronometrage"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 0,
+      "media": 3,
+      "revenue": 0,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 2,
+      "experimental": 4,
+      "hybride": 2,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-regles-score-cible-ou-temps",
+      "B-son_lumiere-dj-speaker",
+      "B-interaction_public-concours-public"
+    ],
+    "incompatible_with": [
+      "B-qualification-placement-serpentin",
+      "B-qualification-systeme-suisse"
+    ],
+    "risks": [
+      "Fatigue du tenant : plafonner le nombre de matchs consécutifs",
+      "Équipes faibles qui jouent peu : garantir un nombre minimal de matchs"
+    ],
+    "ip_note": "Règle de jeu populaire, libre de droits ; ne pas reprendre la marque d'un circuit."
+  },
+  {
+    "id": "B-mecanique_jeu-handicap",
+    "type": "mecanique_jeu",
+    "name": "Système de handicap équilibrant",
+    "mechanic": "Chaque participant reçoit un handicap (points ou temps d'avance) calculé sur ses performances passées, pour que des niveaux différents aient une chance réelle de gagner.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Golf : système de handicap mondial"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 0,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 5,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 2,
+      "premium": 1,
+      "experimental": 3,
+      "hybride": 2,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-regles-plafond-classification",
+      "B-regles-equipes-mixtes",
+      "B-fidelisation-classement-saison",
+      "B-fidelisation-rendez-vous-recurrent"
+    ],
+    "incompatible_with": [
+      "B-mecanique_jeu-carte-secrete"
+    ],
+    "risks": [
+      "Calcul contesté si l'historique manque : handicap provisoire et règle publique",
+      "Lisibilité réduite pour le spectateur"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre la marque d'un système officiel."
+  },
+  {
+    "id": "B-mecanique_jeu-draft",
+    "type": "mecanique_jeu",
+    "name": "Draft de constitution des équipes",
+    "mechanic": "Des participants inscrits individuellement sont répartis en équipes par choix alternés de capitaines (ou dans l'ordre inverse d'un classement), lors d'un moment public.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "NBA : draft annuelle des joueurs",
+        "Kings League : draft des joueurs par les présidents d'équipe"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 30
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 0,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 3,
+      "hybride": 4,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-regles-equipes-mixtes",
+      "B-regles-plafond-classification",
+      "B-mise_en_scene-revelation-tableau",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Derniers choisis mis en difficulté : tirage par blocs de niveau ou capitaines tournants",
+      "Durée si les participants sont nombreux"
+    ],
+    "ip_note": "Logique générique ; aucune reprise de cérémonial ou de marque d'une ligue."
+  },
+  {
+    "id": "B-mecanique_jeu-enigme-compte-a-rebours",
+    "type": "mecanique_jeu",
+    "name": "Épreuve à énigmes en temps limité avec indices à coût",
+    "mechanic": "Une équipe dispose d'un temps limité pour résoudre une suite d'énigmes ; elle peut demander des indices qui coûtent du temps ou des points. La difficulté s'ajuste d'elle-même et chacun peut finir.",
+    "origin": {
+      "sector_family": "jeu",
+      "examples": [
+        "Escape games : salles à énigmes en temps limité avec indices"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "chronometrage"
+      ],
+      "setting": "interieur",
+      "min_area_m2": 20
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 2,
+      "media": 3,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 4,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 4,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-fidelisation-passeport-progression",
+      "B-scenographie-parcours-narratif"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Énigmes trop difficiles : tester avec un public non initié",
+      "Débit limité : créneaux et file virtuelle"
+    ],
+    "ip_note": "Logique de jeu générique ; aucune reprise de scénario, de décor ou de marque d'un exploitant."
+  },
+  {
+    "id": "B-experience_digitale-file-virtuelle",
+    "type": "experience_digitale",
+    "name": "File virtuelle par créneaux",
+    "mechanic": "Au lieu d'attendre physiquement, le visiteur réserve un créneau (page web, QR code ou ticket papier) et revient à l'heure indiquée ; la file physique est remplacée par une file temporelle.",
+    "origin": {
+      "sector_family": "parc_loisirs",
+      "examples": [
+        "Parcs à thème : files virtuelles par créneaux sur les attractions les plus demandées"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 5,
+      "complexity": 3,
+      "cost": 2,
+      "media": 1,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 4,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 5,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-interaction_public-concours-public",
+      "B-activation_partenaire-zone-defi",
+      "B-experience_digitale-sans-especes",
+      "B-scenographie-parcours-narratif"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Exclusion des personnes sans smartphone : borne ou ticket papier",
+      "Absences au créneau : surréservation légère et rappel"
+    ],
+    "ip_note": "Ne pas reprendre la marque des systèmes coupe-file des parcs."
+  },
+  {
+    "id": "B-experience_digitale-resultats-live",
+    "type": "experience_digitale",
+    "name": "Résultats, tableaux et suivi en direct",
+    "mechanic": "Une page web publique affiche en temps réel programme, tableaux, scores et classements ; chaque participant voit son prochain horaire et son terrain. Les questions à l'accueil et les temps morts diminuent.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Grands marathons : suivi des coureurs par puce et application",
+        "Tournois d'e-sport : tableaux en ligne mis à jour en direct"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 5,
+      "complexity": 2,
+      "cost": 1,
+      "media": 2,
+      "revenue": 1,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 5,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-qualification-elimination-par-manches",
+      "B-qualification-systeme-suisse",
+      "B-interaction_public-predictions-gratuites",
+      "B-fidelisation-passeport-progression",
+      "B-fidelisation-souvenir-numerique",
+      "B-regles-score-cible-ou-temps",
+      "B-experience_digitale-programme-personnalise",
+      "B-fidelisation-rendez-vous-recurrent"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Panne réseau : doubler par un tableau papier affiché",
+      "Saisie manuelle des scores : double vérification"
+    ],
+    "ip_note": "Logique générique ; outil développé en propre ou sous licence libre."
+  },
+  {
+    "id": "B-experience_digitale-sans-especes",
+    "type": "experience_digitale",
+    "name": "Paiement sans espèces",
+    "mechanic": "Paiement par bracelet, carte ou mobile pour la restauration et la boutique, avec remboursement automatique du solde non utilisé. Le service s'accélère et les ventes sont mesurées.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Grands festivals de musique : bracelets RFID d'accès et de paiement (par exemple Tomorrowland)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 2,
+      "staff_min": 2,
+      "tech": [
+        "app_web",
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 3,
+      "media": 1,
+      "revenue": 3,
+      "inclusion": 2,
+      "eco_impact": 3,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 1,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 1,
+      "hybride": 4,
+      "communautaire": 1
+    },
+    "compatible_with": [
+      "B-experience_digitale-file-virtuelle",
+      "B-monetisation-gratuit-plus-premium",
+      "B-scenographie-village-fans"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Solde non remboursé automatiquement : source de plaintes",
+      "Panne de terminaux : mode dégradé avec paiement par carte ou espèces",
+      "Exclusion des personnes sans moyen de paiement électronique"
+    ],
+    "ip_note": "Technologie de prestataires ; ne pas reprendre la monnaie virtuelle ou la marque d'un festival."
+  },
+  {
+    "id": "B-experience_digitale-programme-personnalise",
+    "type": "experience_digitale",
+    "name": "Programme personnel et alertes",
+    "mechanic": "Chaque visiteur compose son programme (matchs de son équipe, concerts, ateliers) et reçoit des rappels ; l'organisateur obtient une estimation de l'affluence par séquence.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Applications officielles des grands festivals de musique (programme personnel et alertes)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 2,
+      "media": 1,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 1,
+      "hybride": 5,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-experience_digitale-resultats-live",
+      "B-fidelisation-passeport-progression"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Faible adoption si l'installation d'une application est obligatoire : préférer une page web",
+      "Données personnelles : consentement"
+    ],
+    "ip_note": "Logique générique ; aucune reprise d'interface existante."
+  },
+  {
+    "id": "B-scenographie-terrain-place-publique",
+    "type": "scenographie",
+    "name": "Terrain posé sur une place publique",
+    "mechanic": "Le terrain est installé au cœur de l'espace public (place, parvis, parc), visible des passants, plutôt que dans une salle fermée. Une audience spontanée se forme et l'événement s'ancre dans la ville.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Jeux olympiques de Paris 2024 : parc urbain de la Concorde (basket 3x3, BMX freestyle, breaking, skateboard)",
+        "Étapes du circuit mondial FIBA 3x3 sur des places urbaines"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 4,
+      "tech": [
+        "sono"
+      ],
+      "setting": "exterieur",
+      "min_area_m2": 400
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 3,
+      "media": 5,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-scenographie-arene-modulaire",
+      "B-scenographie-village-fans",
+      "B-son_lumiere-dj-speaker",
+      "B-creation_contenu-spots-photo",
+      "B-monetisation-gratuit-plus-premium",
+      "B-activation_partenaire-stage-jeunes"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Autorisations d'occupation du domaine public et de sécurité : délais de plusieurs mois",
+      "Météo : repli couvert à réserver (voir E-008)",
+      "Bruit pour les riverains"
+    ],
+    "ip_note": "Logique d'implantation ; aucune reprise d'habillage olympique ou fédéral."
+  },
+  {
+    "id": "B-scenographie-zones-thematiques",
+    "type": "scenographie",
+    "name": "Zones thématiques à identité propre",
+    "mechanic": "Le site est découpé en zones à identité propre (décor, musique, activité), reliées par un parcours ; chaque zone a une fonction (compétition, détente, initiation, restauration).",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Tomorrowland : scènes à décor thématique",
+        "Glastonbury : quartiers à identité propre"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 3,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 1000
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 3,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-scenographie-village-fans",
+      "B-creation_contenu-spots-photo",
+      "B-fidelisation-passeport-progression",
+      "B-activation_partenaire-zone-defi",
+      "B-son_lumiere-casques-silencieux",
+      "B-scenographie-parcours-narratif"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Coût de décor : privilégier le réemploi et la location",
+      "Flux entre zones et signalétique à calculer (voir E-004)"
+    ],
+    "ip_note": "Ne reprendre ni thèmes, ni décors, ni noms de scènes de festivals existants."
+  },
+  {
+    "id": "B-scenographie-tunnel-entree",
+    "type": "scenographie",
+    "name": "Tunnel d'entrée des participants",
+    "mechanic": "Un passage scénarisé (couloir, arche, rideau) relie la zone d'attente des participants à l'aire de jeu ; il structure l'entrée et sert de décor vidéo.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Stades de football : tunnel d'entrée des joueurs",
+        "Sports de combat : couloir d'entrée des combattants"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "eclairage_scenique"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 20
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 2,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 3,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-mise_en_scene-ceremonie-entree",
+      "B-son_lumiere-noir-projecteur",
+      "B-creation_contenu-clips-verticaux"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Ne jamais créer un point étroit sur un cheminement du public (voir E-004)",
+      "Structure à lester et à fixer (vent)"
+    ],
+    "ip_note": "Logique scénographique ; design propre."
+  },
+  {
+    "id": "B-scenographie-village-fans",
+    "type": "scenographie",
+    "name": "Village ouvert autour de la compétition",
+    "mechanic": "Un espace ouvert autour de la compétition réunit restauration, partenaires, animations et écran, accessible aussi aux non-billettés ; le temps de présence s'allonge et l'espace sert de point de rassemblement.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Coupe du monde de football : espaces officiels pour les supporters (Fan Festival)",
+        "Courses cyclistes et marathons : villages d'arrivée"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 4,
+      "tech": [
+        "sono",
+        "ecran"
+      ],
+      "setting": "exterieur",
+      "min_area_m2": 800
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 3,
+      "media": 3,
+      "revenue": 4,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 1,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-scenographie-terrain-place-publique",
+      "B-activation_partenaire-zone-defi",
+      "B-monetisation-gratuit-plus-premium",
+      "B-experience_digitale-sans-especes",
+      "B-scenographie-zones-thematiques",
+      "B-activation_partenaire-caravane",
+      "B-creation_contenu-spots-photo",
+      "B-activation_partenaire-rendez-vous-programmes"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Jauge et gestion de foule propres à l'espace, même gratuit (voir E-002)",
+      "Coût de sécurité et de nettoyage"
+    ],
+    "ip_note": "Ne pas reprendre les dénominations officielles des espaces supporters des grandes compétitions."
+  },
+  {
+    "id": "B-scenographie-arene-modulaire",
+    "type": "scenographie",
+    "name": "Arène modulaire à tribunes temporaires",
+    "mechanic": "Tribunes temporaires, barrières et habillage en kit autour d'un terrain standard, montables en quelques heures et réutilisables d'une étape à l'autre.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Événements FIBA 3x3 : terrain et tribunes temporaires en site urbain"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 2,
+      "staff_min": 6,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 600
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 4,
+      "media": 4,
+      "revenue": 3,
+      "inclusion": 3,
+      "eco_impact": 3,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 1,
+      "optimise": 4,
+      "premium": 5,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-scenographie-terrain-place-publique",
+      "B-son_lumiere-dj-speaker",
+      "B-mise_en_scene-ceremonie-entree",
+      "B-creation_contenu-direct-commente",
+      "B-monetisation-gratuit-plus-premium"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Tribunes temporaires : contrôle technique et conformité réglementaire des structures provisoires à vérifier",
+      "Coût de location et de transport",
+      "Vent : limites d'exploitation des structures (voir E-005)"
+    ],
+    "ip_note": "Logique de kit modulaire ; habillage graphique propre."
+  },
+  {
+    "id": "B-scenographie-parcours-narratif",
+    "type": "scenographie",
+    "name": "Parcours narratif en salles successives",
+    "mechanic": "Le public traverse une suite d'espaces, chacun portant un chapitre d'un récit (décor, son, consigne) ; la circulation est à sens unique et cadencée par créneaux. Un lieu banal devient une expérience racontée.",
+    "origin": {
+      "sector_family": "exposition_immersive",
+      "examples": [
+        "Expositions immersives à parcours scénarisé en salles successives"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 3,
+      "tech": [
+        "sono",
+        "eclairage_scenique"
+      ],
+      "setting": "interieur",
+      "min_area_m2": 200
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 3,
+      "media": 4,
+      "revenue": 3,
+      "inclusion": 3,
+      "eco_impact": 3,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 4,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-scenographie-zones-thematiques",
+      "B-experience_digitale-file-virtuelle",
+      "B-mecanique_jeu-enigme-compte-a-rebours",
+      "B-creation_contenu-spots-photo"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Écart entre promesse et réalité du décor (voir E-012) : photos réelles et répétition avec public test",
+      "Sens unique et cadence à calculer pour éviter l'engorgement entre salles"
+    ],
+    "ip_note": "Récit et décor originaux ; aucune reprise d'univers protégé sans licence."
+  },
+  {
+    "id": "B-son_lumiere-noir-projecteur",
+    "type": "son_lumiere",
+    "name": "Séquence noir salle et poursuite",
+    "mechanic": "Coupure de la lumière ambiante, poursuite sur la personne annoncée, musique et voix du speaker : un pic d'attention de quelques secondes.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Salles de basket professionnel : présentation des équipes dans le noir"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "eclairage_scenique",
+        "sono"
+      ],
+      "setting": "interieur",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 2,
+      "media": 4,
+      "revenue": 0,
+      "inclusion": 2,
+      "eco_impact": 4,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 2
+    },
+    "compatible_with": [
+      "B-mise_en_scene-ceremonie-entree",
+      "B-scenographie-tunnel-entree",
+      "B-son_lumiere-signature-sonore",
+      "B-son_lumiere-bracelets-lumineux"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Éclairage minimal des circulations et issues de secours maintenu",
+      "Effets stroboscopiques : avertir le public (photosensibilité)"
+    ],
+    "ip_note": "Effet technique générique."
+  },
+  {
+    "id": "B-son_lumiere-casques-silencieux",
+    "type": "son_lumiere",
+    "name": "Diffusion au casque sans fil",
+    "mechanic": "Le son est diffusé dans des casques sans fil sur plusieurs canaux ; chacun choisit son canal (musique, commentaire, audiodescription) et règle son volume. Des animations deviennent possibles en zone sensible au bruit.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Festivals de musique : soirées « silent disco »"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "casques_audio"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 50
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 3,
+      "media": 3,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 4,
+      "hybride": 2,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-scenographie-zones-thematiques",
+      "B-creation_contenu-direct-commente"
+    ],
+    "incompatible_with": [
+      "B-son_lumiere-signature-sonore"
+    ],
+    "risks": [
+      "Casques perdus : caution ou dépôt de pièce",
+      "Hygiène : désinfection entre utilisateurs"
+    ],
+    "ip_note": "Logique technique ; ne pas reprendre la marque d'un prestataire."
+  },
+  {
+    "id": "B-son_lumiere-bracelets-lumineux",
+    "type": "son_lumiere",
+    "name": "Bracelets lumineux pilotés",
+    "mechanic": "Des bracelets à LED distribués au public s'allument selon un pilotage central ; la foule devient une surface lumineuse synchronisée avec le spectacle.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Tournées de stade de groupes pop-rock : bracelets LED pilotés (par exemple Coldplay)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 3,
+      "staff_min": 3,
+      "tech": [
+        "eclairage_scenique"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 4,
+      "media": 5,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 1,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 0,
+      "optimise": 2,
+      "premium": 5,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 2
+    },
+    "compatible_with": [
+      "B-son_lumiere-noir-projecteur",
+      "B-son_lumiere-signature-sonore"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Déchets électroniques : collecte et réemploi obligatoires",
+      "Coût par spectateur élevé"
+    ],
+    "ip_note": "Technologie commercialisée par des prestataires ; ne pas reprendre la mise en scène d'un artiste."
+  },
+  {
+    "id": "B-son_lumiere-dj-speaker",
+    "type": "son_lumiere",
+    "name": "DJ et speaker en continu",
+    "mechanic": "Un DJ et un animateur micro assurent bande-son et commentaire continus pendant les matchs et les transitions, sans silence entre les séquences.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Événements FIBA 3x3 : DJ et speaker présents en continu"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 10
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 1,
+      "cost": 2,
+      "media": 3,
+      "revenue": 0,
+      "inclusion": 3,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-regles-score-cible-ou-temps",
+      "B-mise_en_scene-ceremonie-entree",
+      "B-interaction_public-concours-public",
+      "B-mecanique_jeu-gagnant-reste",
+      "B-scenographie-terrain-place-publique",
+      "B-scenographie-arene-modulaire"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Droits musicaux : déclaration à l'organisme de gestion collective",
+      "Volume : niveaux sonores réglementaires et protections auditives"
+    ],
+    "ip_note": "Logique d'animation ; aucun jingle ni habillage sonore d'une ligue."
+  },
+  {
+    "id": "B-son_lumiere-signature-sonore",
+    "type": "son_lumiere",
+    "name": "Signature sonore des moments clés",
+    "mechanic": "Un son court et reconnaissable accompagne chaque moment clé (panier décisif, record, qualification), créant un réflexe d'attention et une identité sonore.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Hockey sur glace nord-américain : sirène de but dans les patinoires"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 0,
+      "media": 3,
+      "revenue": 0,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-regles-fin-a-score-cible",
+      "B-qualification-elimination-par-manches",
+      "B-son_lumiere-noir-projecteur",
+      "B-mecanique_jeu-zone-qui-se-reduit",
+      "B-son_lumiere-bracelets-lumineux"
+    ],
+    "incompatible_with": [
+      "B-son_lumiere-casques-silencieux"
+    ],
+    "risks": [
+      "Gêne sensorielle : volume maîtrisé et espace calme disponible",
+      "Créer un son original, sans extrait protégé"
+    ],
+    "ip_note": "Créer une signature originale ; aucun extrait sonore protégé."
+  },
+  {
+    "id": "B-monetisation-paliers-annonces",
+    "type": "monetisation",
+    "name": "Paliers de prix annoncés à l'avance",
+    "mechanic": "Les prix évoluent selon un calendrier ou des quotas publiés dès l'ouverture des ventes (prévente, normal, dernier moment) ; l'acheteur sait à l'avance quand et comment le prix change.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Festivals de musique : tarifs de prévente à quota annoncé",
+        "Contre-exemple documenté : E-016 (paliers non annoncés, engagements devant l'autorité de concurrence)"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 0,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 0,
+      "media": 1,
+      "revenue": 4,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 0,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-monetisation-precommande-a-seuil",
+      "B-monetisation-pack-inscription-equipe",
+      "B-monetisation-gratuit-plus-premium",
+      "B-monetisation-experience-sur-rendez-vous"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Hausse perçue comme abusive si elle n'est pas annoncée et expliquée",
+      "Quotas à respecter strictement"
+    ],
+    "ip_note": "Pratique tarifaire générique."
+  },
+  {
+    "id": "B-monetisation-gratuit-plus-premium",
+    "type": "monetisation",
+    "name": "Accès gratuit et espaces premium payants",
+    "mechanic": "L'accès de base est gratuit (bord du terrain, place publique) ; des expériences premium à capacité limitée sont vendues : tribune assise, accès coulisses, restauration, rencontre avec les participants.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Courses cyclistes sur route : spectacle gratuit au bord de la route, hospitalités payantes"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 3,
+      "tech": [
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 50
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 2,
+      "media": 3,
+      "revenue": 4,
+      "inclusion": 5,
+      "eco_impact": 4,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 4,
+      "premium": 5,
+      "experimental": 1,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-scenographie-terrain-place-publique",
+      "B-scenographie-village-fans",
+      "B-scenographie-arene-modulaire",
+      "B-monetisation-paliers-annonces",
+      "B-experience_digitale-sans-especes",
+      "B-activation_partenaire-caravane",
+      "B-activation_partenaire-rendez-vous-programmes",
+      "B-monetisation-experience-sur-rendez-vous"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Sentiment d'exclusion si le premium masque la vue du public gratuit",
+      "Jauge de l'espace gratuit à gérer sans billet (comptage aux accès)"
+    ],
+    "ip_note": "Modèle économique générique."
+  },
+  {
+    "id": "B-monetisation-pack-inscription-equipe",
+    "type": "monetisation",
+    "name": "Inscription d'équipe avec pack inclus",
+    "mechanic": "Les équipes paient une inscription incluant un pack (maillots, repas, photos, accès au direct) ; la valeur perçue augmente et une recette est sécurisée avant J.",
+    "origin": {
+      "sector_family": "communautaire",
+      "examples": [
+        "Tournois amateurs de basket 3x3 et de football à 5 : frais d'inscription par équipe avec dotation"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 2,
+      "media": 1,
+      "revenue": 4,
+      "inclusion": 2,
+      "eco_impact": 3,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 1,
+      "hybride": 2,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-monetisation-paliers-annonces",
+      "B-monetisation-precommande-a-seuil",
+      "B-fidelisation-souvenir-numerique",
+      "B-creation_contenu-spots-photo"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Barrière financière : tarif solidaire ou places offertes",
+      "Stock de tailles et délais de fabrication"
+    ],
+    "ip_note": "Modèle générique."
+  },
+  {
+    "id": "B-monetisation-precommande-a-seuil",
+    "type": "monetisation",
+    "name": "Prévente à seuil de déclenchement",
+    "mechanic": "L'événement n'est confirmé que si un seuil de préventes ou d'inscriptions est atteint à une date fixée ; sinon, remboursement intégral automatique. Le risque financier de l'organisateur est borné.",
+    "origin": {
+      "sector_family": "communautaire",
+      "examples": [
+        "Plateformes de financement participatif : projets culturels et événementiels à seuil de déclenchement"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 2,
+      "complexity": 2,
+      "cost": 0,
+      "media": 2,
+      "revenue": 3,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 2,
+      "experimental": 3,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-monetisation-paliers-annonces",
+      "B-monetisation-pack-inscription-equipe"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Seuil non atteint : communication et remboursement prêts à l'avance (voir E-010, E-017)",
+      "Dépenses engagées avant la date de décision"
+    ],
+    "ip_note": "Modèle générique ; ne pas reprendre la marque d'une plateforme."
+  },
+  {
+    "id": "B-monetisation-serie-limitee",
+    "type": "monetisation",
+    "name": "Objet souvenir en série limitée",
+    "mechanic": "Un objet propre à l'édition (maillot, affiche, pin's) est produit en quantité annoncée et numérotée, disponible uniquement sur place ou pendant une courte période.",
+    "origin": {
+      "sector_family": "mode_luxe",
+      "examples": [
+        "Mode urbaine : sorties d'articles en quantités limitées"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 10
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 2,
+      "complexity": 1,
+      "cost": 2,
+      "media": 3,
+      "revenue": 3,
+      "inclusion": 2,
+      "eco_impact": 2,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 2,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-fidelisation-passeport-progression",
+      "B-creation_contenu-spots-photo",
+      "B-fidelisation-temple-renommee"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Invendus et impact environnemental : petites séries, matériaux responsables",
+      "Revente spéculative"
+    ],
+    "ip_note": "Design propre ; aucune collaboration de marque simulée."
+  },
+  {
+    "id": "B-monetisation-experience-sur-rendez-vous",
+    "type": "monetisation",
+    "name": "Expérience premium en petit groupe sur réservation",
+    "mechanic": "Une offre premium est vendue en très petits groupes et sur réservation horaire (visite des coulisses, échauffement au bord du terrain, place au premier rang avec hôte) ; la rareté et l'attention personnelle font la valeur, plus que le décor.",
+    "origin": {
+      "sector_family": "mode_luxe",
+      "examples": [
+        "Maisons de luxe : présentations privées sur rendez-vous",
+        "Défilés de mode : places de premier rang réservées aux invités"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "billetterie_en_ligne"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 3,
+      "revenue": 4,
+      "inclusion": 2,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 1,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 2
+    },
+    "compatible_with": [
+      "B-monetisation-gratuit-plus-premium",
+      "B-monetisation-paliers-annonces",
+      "B-creation_contenu-spots-photo"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Sentiment d'exclusion : garder une offre gratuite de qualité",
+      "Promesse à tenir précisément (contenu, durée) sous peine de déception (voir E-016)"
+    ],
+    "ip_note": "Logique d'exclusivité ; aucune reprise de codes visuels d'une maison de luxe."
+  },
+  {
+    "id": "B-fidelisation-passeport-progression",
+    "type": "fidelisation",
+    "name": "Passeport de progression multi-éditions",
+    "mechanic": "Chaque participant ou spectateur possède un passeport (papier ou web) qui collecte tampons ou niveaux : épreuves réalisées, éditions suivies, défis réussis. Des paliers débloquent des avantages concrets (inscription prioritaire, maillot, place offerte).",
+    "origin": {
+      "sector_family": "jeu",
+      "examples": [
+        "Jeux vidéo : niveaux et récompenses saisonnières",
+        "Jeux olympiques : collection et échange de pin's",
+        "Routes touristiques : passeports à tampons"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 3,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 1,
+      "media": 3,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 2,
+      "experimental": 3,
+      "hybride": 4,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-qualification-parcours-chronometre",
+      "B-interaction_public-concours-public",
+      "B-fidelisation-classement-saison",
+      "B-fidelisation-souvenir-numerique",
+      "B-interaction_public-predictions-gratuites",
+      "B-activation_partenaire-zone-defi",
+      "B-qualification-qualifs-a-distance",
+      "B-recompenses-medaille-finisher",
+      "B-experience_digitale-resultats-live",
+      "B-experience_digitale-programme-personnalise",
+      "B-scenographie-zones-thematiques",
+      "B-monetisation-serie-limitee",
+      "B-fidelisation-rendez-vous-recurrent",
+      "B-creation_contenu-defi-ugc",
+      "B-mecanique_jeu-enigme-compte-a-rebours"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Récompenses sans valeur réelle : avantages concrets et atteignables",
+      "Mécanique manipulatrice : aucune pression d'achat (brief §12)"
+    ],
+    "ip_note": "Logique générique de collection ; ne reprendre ni interface ni marque d'un jeu ou d'un parc."
+  },
+  {
+    "id": "B-fidelisation-classement-saison",
+    "type": "fidelisation",
+    "name": "Classement de saison sur plusieurs étapes",
+    "mechanic": "Plusieurs étapes (villes, dates) attribuent des points selon le résultat ; un classement cumulé désigne les qualifiés d'une finale de saison. Des événements isolés deviennent une série.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Tennis masculin : classement annuel menant au tournoi de fin de saison",
+        "Circuit mondial FIBA 3x3 : étapes et finale"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 1,
+      "media": 3,
+      "revenue": 3,
+      "inclusion": 3,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 4,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-recompenses-finale-tout-ou-rien",
+      "B-recompenses-maillot-leader",
+      "B-recompenses-trophee-defi",
+      "B-fidelisation-passeport-progression",
+      "B-qualification-qualifs-a-distance",
+      "B-mecanique_jeu-handicap",
+      "B-fidelisation-temple-renommee",
+      "B-creation_contenu-serie-coulisses"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Barème publié dès la première étape",
+      "Participation inégale aux étapes (coût des déplacements) : meilleures performances retenues"
+    ],
+    "ip_note": "Logique générique ; aucune reprise de nom de circuit."
+  },
+  {
+    "id": "B-fidelisation-rendez-vous-recurrent",
+    "type": "fidelisation",
+    "name": "Rendez-vous récurrent gratuit animé par des bénévoles",
+    "mechanic": "Un rendez-vous court, gratuit, au même lieu et à la même heure chaque semaine ou chaque mois, chronométré et animé par des bénévoles ; chacun suit sa progression personnelle.",
+    "origin": {
+      "sector_family": "communautaire",
+      "examples": [
+        "parkrun : 5 km chronométrés gratuits chaque samedi, organisés par des bénévoles"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 3,
+      "tech": [
+        "chronometrage",
+        "app_web"
+      ],
+      "setting": "exterieur",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 2,
+      "cost": 0,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 5,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 3,
+      "premium": 0,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-fidelisation-passeport-progression",
+      "B-fidelisation-souvenir-numerique",
+      "B-mecanique_jeu-handicap",
+      "B-regles-equipes-mixtes",
+      "B-experience_digitale-resultats-live",
+      "B-recompenses-medaille-finisher"
+    ],
+    "incompatible_with": [
+      "B-mise_en_scene-face-a-face"
+    ],
+    "risks": [
+      "Usure des bénévoles : rotation et reconnaissance (voir E-027)",
+      "Modèle économique à construire (partenaires, subventions)"
+    ],
+    "ip_note": "Logique de rendez-vous gratuit ; ne pas reprendre le nom ni la marque de l'organisation d'origine."
+  },
+  {
+    "id": "B-fidelisation-souvenir-numerique",
+    "type": "fidelisation",
+    "name": "Souvenir numérique personnalisé",
+    "mechanic": "Après l'événement, chaque participant reçoit par lien unique un contenu personnel : résultat, photos où il apparaît, extrait vidéo, attestation.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Courses sur route : attestations de finisher et photos téléchargeables"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 4,
+      "complexity": 3,
+      "cost": 2,
+      "media": 4,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-experience_digitale-resultats-live",
+      "B-creation_contenu-clips-verticaux",
+      "B-fidelisation-passeport-progression",
+      "B-monetisation-pack-inscription-equipe",
+      "B-recompenses-medaille-finisher",
+      "B-fidelisation-rendez-vous-recurrent"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Droit à l'image et consentement, en particulier pour les mineurs",
+      "Délai de livraison : viser 48 h [param]"
+    ],
+    "ip_note": "Logique générique ; outil propre ou prestataire."
+  },
+  {
+    "id": "B-fidelisation-temple-renommee",
+    "type": "fidelisation",
+    "name": "Temple de la renommée de l'événement",
+    "mechanic": "Un lieu ou une page conserve vainqueurs, records et figures marquantes de chaque édition ; les anciens vainqueurs sont invités à l'édition suivante.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Basket : Naismith Memorial Basketball Hall of Fame"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 2,
+      "complexity": 1,
+      "cost": 0,
+      "media": 2,
+      "revenue": 0,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 2,
+      "premium": 3,
+      "experimental": 1,
+      "hybride": 3,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-recompenses-trophee-defi",
+      "B-fidelisation-classement-saison",
+      "B-creation_contenu-serie-coulisses",
+      "B-monetisation-serie-limitee"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Contenu figé s'il n'est pas mis à jour après chaque édition"
+    ],
+    "ip_note": "Logique générique ; aucune reprise de nom d'institution."
+  },
+  {
+    "id": "B-activation_partenaire-zone-defi",
+    "type": "activation_partenaire",
+    "name": "Zone défi animée par un partenaire",
+    "mechanic": "Un partenaire anime un défi accessible (précision, vitesse, habileté) lié à son univers, avec classement du jour et lots ; il gagne du temps de contact qualifié, l'événement gagne une animation.",
+    "origin": {
+      "sector_family": "activation_marque",
+      "examples": [
+        "Villages partenaires des grandes courses et des festivals : stands d'animation de marques"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 30
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 2,
+      "media": 3,
+      "revenue": 4,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 3,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-interaction_public-concours-public",
+      "B-fidelisation-passeport-progression",
+      "B-scenographie-village-fans",
+      "B-experience_digitale-file-virtuelle",
+      "B-scenographie-zones-thematiques",
+      "B-activation_partenaire-rendez-vous-programmes"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Défi sans lien avec l'événement : stand ignoré",
+      "Collecte de données : consentement explicite (RGPD)"
+    ],
+    "ip_note": "Logique d'activation générique ; contenu créé avec le partenaire."
+  },
+  {
+    "id": "B-activation_partenaire-caravane",
+    "type": "activation_partenaire",
+    "name": "Caravane partenaire avant la compétition",
+    "mechanic": "Avant le passage ou le début de la compétition, un cortège ou une parade de partenaires anime le parcours et occupe l'attente du public.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Tour de France : caravane publicitaire précédant les coureurs"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 2,
+      "staff_min": 6,
+      "tech": [
+        "sono"
+      ],
+      "setting": "exterieur",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 3,
+      "media": 3,
+      "revenue": 4,
+      "inclusion": 3,
+      "eco_impact": 1,
+      "portability": 3
+    },
+    "direction_fit": {
+      "accessible": 1,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 2,
+      "hybride": 1,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-monetisation-gratuit-plus-premium",
+      "B-scenographie-village-fans"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Déchets : bannir les objets publicitaires à usage unique",
+      "Sécurité des distributions : public qui se précipite sur la chaussée"
+    ],
+    "ip_note": "Logique de parade ; aucune reprise de l'identité d'une course."
+  },
+  {
+    "id": "B-activation_partenaire-moment-presente",
+    "type": "activation_partenaire",
+    "name": "Moment de jeu présenté par un partenaire",
+    "mechanic": "Un moment bref et récurrent du programme (temps mort, concours, action du jour) est associé à un partenaire, annoncé au micro et affiché, sans interrompre le jeu.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Sports professionnels nord-américains : séquences de match associées à un sponsor"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "sono",
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 0,
+      "ux_gain": 2,
+      "complexity": 1,
+      "cost": 0,
+      "media": 2,
+      "revenue": 4,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 1,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-interaction_public-concours-public",
+      "B-mecanique_jeu-carte-secrete",
+      "B-recompenses-maillot-leader",
+      "B-creation_contenu-clips-verticaux",
+      "B-mecanique_jeu-joker-activable",
+      "B-mise_en_scene-podium"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Saturation publicitaire : limiter le nombre de moments",
+      "Partenaires incompatibles avec un public jeune (alcool, paris : réglementation, par exemple loi Évin en France)"
+    ],
+    "ip_note": "Logique de sponsoring générique."
+  },
+  {
+    "id": "B-activation_partenaire-stage-jeunes",
+    "type": "activation_partenaire",
+    "name": "Stage d'initiation financé par un partenaire",
+    "mechanic": "En marge de l'événement, un partenaire finance un stage d'initiation gratuit (jeunes, publics éloignés de la pratique) encadré par des participants ou des éducateurs ; l'impact local devient mesurable.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "NBA et FIBA : camps Basketball Without Borders"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 3,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 165
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 2,
+      "media": 3,
+      "revenue": 3,
+      "inclusion": 5,
+      "eco_impact": 4,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 3,
+      "experimental": 1,
+      "hybride": 2,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-scenographie-terrain-place-publique",
+      "B-regles-equipes-mixtes",
+      "B-creation_contenu-serie-coulisses"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Encadrement de mineurs : qualifications, contrôle d'honorabilité, autorisations parentales, assurance",
+      "Impact seulement déclaratif s'il n'est pas mesuré"
+    ],
+    "ip_note": "Ne pas reprendre le nom du programme d'origine."
+  },
+  {
+    "id": "B-activation_partenaire-rendez-vous-programmes",
+    "type": "activation_partenaire",
+    "name": "Rendez-vous d'affaires programmés entre partenaires",
+    "mechanic": "Avant l'événement, partenaires, collectivités et exposants réservent des rendez-vous courts à horaires fixes sur une page dédiée ; l'événement devient aussi un lieu de mise en relation, ce qui augmente la valeur de l'offre partenaire.",
+    "origin": {
+      "sector_family": "salon_pro",
+      "examples": [
+        "Salons professionnels : rendez-vous d'affaires préprogrammés entre exposants et visiteurs"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "app_web"
+      ],
+      "setting": "interieur",
+      "min_area_m2": 30
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 3,
+      "complexity": 2,
+      "cost": 1,
+      "media": 1,
+      "revenue": 4,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 1,
+      "hybride": 4,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-monetisation-gratuit-plus-premium",
+      "B-scenographie-village-fans",
+      "B-activation_partenaire-zone-defi"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Rendez-vous non honorés : rappel la veille",
+      "Espace calme nécessaire, à l'écart de la sonorisation"
+    ],
+    "ip_note": "Logique générique ; ne pas reprendre la marque d'une plateforme de mise en relation."
+  },
+  {
+    "id": "B-creation_contenu-clips-verticaux",
+    "type": "creation_contenu",
+    "name": "Extraits verticaux produits en direct",
+    "mechanic": "Une cellule légère (1 à 2 personnes, smartphone stabilisé) filme, monte et publie au format vertical les actions marquantes dans les minutes qui suivent, selon une liste de moments prévue (entrées, paniers décisifs, réactions).",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Ligues sportives et e-sportives : extraits verticaux publiés pendant les matchs",
+        "Kings League : diffusion sur plateformes de streaming et extraits sur les réseaux sociaux"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 2,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 2,
+      "complexity": 2,
+      "cost": 1,
+      "media": 5,
+      "revenue": 2,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 5,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-mise_en_scene-ceremonie-entree",
+      "B-mise_en_scene-grille-depart",
+      "B-mise_en_scene-revelation-tableau",
+      "B-regles-fin-a-score-cible",
+      "B-interaction_public-concours-public",
+      "B-creation_contenu-spots-photo",
+      "B-fidelisation-souvenir-numerique",
+      "B-qualification-parcours-chronometre",
+      "B-qualification-derniere-chance",
+      "B-recompenses-mvp-vote-mixte",
+      "B-mise_en_scene-face-a-face",
+      "B-interaction_public-bonus-fans",
+      "B-interaction_public-coup-de-coeur",
+      "B-mecanique_jeu-carte-secrete",
+      "B-mecanique_jeu-zone-qui-se-reduit",
+      "B-mecanique_jeu-draft",
+      "B-scenographie-tunnel-entree",
+      "B-activation_partenaire-moment-presente",
+      "B-creation_contenu-micro-pov",
+      "B-creation_contenu-defi-ugc"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Droit à l'image : autorisations des participants, vigilance sur les mineurs",
+      "Musique protégée sur les plateformes"
+    ],
+    "ip_note": "Logique de production ; habillage graphique propre."
+  },
+  {
+    "id": "B-creation_contenu-micro-pov",
+    "type": "creation_contenu",
+    "name": "Joueur micro et caméra embarquée",
+    "mechanic": "Un participant porte un micro ou une petite caméra pendant un match ; le contenu restitue le point de vue et les échanges du terrain.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Football américain : séquences de joueurs équipés de micros",
+        "Sports mécaniques et cyclisme : caméras embarquées"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 1,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 2,
+      "complexity": 2,
+      "cost": 2,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 3,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-creation_contenu-clips-verticaux",
+      "B-creation_contenu-serie-coulisses",
+      "B-creation_contenu-direct-commente"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Propos à filtrer avant diffusion",
+      "Sécurité de l'équipement porté (chocs)"
+    ],
+    "ip_note": "Logique de captation générique."
+  },
+  {
+    "id": "B-creation_contenu-serie-coulisses",
+    "type": "creation_contenu",
+    "name": "Série documentaire en coulisses",
+    "mechanic": "Une série courte (épisodes avant, pendant, après) suit quelques participants et l'organisation ; elle crée de l'attachement et fait exister l'événement toute l'année.",
+    "origin": {
+      "sector_family": "sport",
+      "examples": [
+        "Formule 1 : série documentaire en coulisses diffusée sur une plateforme de streaming"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 2,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 2,
+      "ux_gain": 2,
+      "complexity": 3,
+      "cost": 3,
+      "media": 5,
+      "revenue": 2,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 3,
+      "premium": 5,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-mise_en_scene-face-a-face",
+      "B-creation_contenu-micro-pov",
+      "B-recompenses-trophee-defi",
+      "B-fidelisation-classement-saison",
+      "B-fidelisation-temple-renommee",
+      "B-recompenses-finale-tout-ou-rien",
+      "B-activation_partenaire-stage-jeunes"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Narration scénarisée au détriment de la véracité",
+      "Consentement et droit à l'image des personnes suivies"
+    ],
+    "ip_note": "Ne reprendre ni titre, ni générique, ni style de montage identifiable d'une série existante."
+  },
+  {
+    "id": "B-creation_contenu-spots-photo",
+    "type": "creation_contenu",
+    "name": "Spots photo signatures",
+    "mechanic": "Des points photo conçus (décor, cadrage, éclairage, fond partenaire discret) sont placés sur le parcours pour concentrer les prises de vue sans encombrer les circulations.",
+    "origin": {
+      "sector_family": "musique_festival",
+      "examples": [
+        "Coachella : installations artistiques monumentales",
+        "Musées immersifs à décors photographiables"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 0,
+      "tech": [
+        "aucune"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 10
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 1,
+      "cost": 2,
+      "media": 5,
+      "revenue": 2,
+      "inclusion": 4,
+      "eco_impact": 3,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 3,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 4,
+      "communautaire": 4
+    },
+    "compatible_with": [
+      "B-scenographie-zones-thematiques",
+      "B-mise_en_scene-podium",
+      "B-creation_contenu-clips-verticaux",
+      "B-creation_contenu-defi-ugc",
+      "B-scenographie-village-fans",
+      "B-scenographie-terrain-place-publique",
+      "B-monetisation-pack-inscription-equipe",
+      "B-monetisation-serie-limitee",
+      "B-monetisation-experience-sur-rendez-vous",
+      "B-scenographie-parcours-narratif"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "File d'attente au spot : en prévoir plusieurs",
+      "Expérience réelle sacrifiée à la photo (brief §11)",
+      "Jamais de spot sur un cheminement d'évacuation"
+    ],
+    "ip_note": "Décor original ; aucune reprise d'œuvre ou d'installation existante."
+  },
+  {
+    "id": "B-creation_contenu-defi-ugc",
+    "type": "creation_contenu",
+    "name": "Défi de contenu généré par le public",
+    "mechanic": "Le public est invité à publier un contenu selon une consigne simple (geste, réplique, mot-clé) ; les meilleurs sont diffusés sur l'écran ou récompensés.",
+    "origin": {
+      "sector_family": "activation_marque",
+      "examples": [
+        "Défis à mot-clé lancés par des événements et des marques sur les réseaux sociaux"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 0,
+      "staff_min": 1,
+      "tech": [
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 0
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 2,
+      "complexity": 2,
+      "cost": 1,
+      "media": 4,
+      "revenue": 1,
+      "inclusion": 3,
+      "eco_impact": 5,
+      "portability": 5
+    },
+    "direction_fit": {
+      "accessible": 4,
+      "optimise": 2,
+      "premium": 2,
+      "experimental": 3,
+      "hybride": 5,
+      "communautaire": 5
+    },
+    "compatible_with": [
+      "B-creation_contenu-spots-photo",
+      "B-creation_contenu-clips-verticaux",
+      "B-qualification-qualifs-a-distance",
+      "B-fidelisation-passeport-progression"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Modération des contenus avant diffusion",
+      "Règlement de jeu-concours si un lot est attribué"
+    ],
+    "ip_note": "Consigne originale ; aucune reprise d'un défi viral de marque."
+  },
+  {
+    "id": "B-creation_contenu-direct-commente",
+    "type": "creation_contenu",
+    "name": "Direct commenté avec habillage statistique",
+    "mechanic": "Diffusion en direct avec commentateurs, incrustation du score, du chronomètre et de statistiques simples ; une régie légère suffit.",
+    "origin": {
+      "sector_family": "esport",
+      "examples": [
+        "E-sport : diffusions commentées avec habillage statistique",
+        "Compétitions FIBA 3x3 diffusées en direct en ligne"
+      ]
+    },
+    "requirements": {
+      "budget_tier_min": 1,
+      "staff_min": 3,
+      "tech": [
+        "streaming",
+        "ecran"
+      ],
+      "setting": "indifferent",
+      "min_area_m2": 10
+    },
+    "attributes": {
+      "novelty": 1,
+      "ux_gain": 3,
+      "complexity": 3,
+      "cost": 3,
+      "media": 4,
+      "revenue": 3,
+      "inclusion": 4,
+      "eco_impact": 4,
+      "portability": 4
+    },
+    "direction_fit": {
+      "accessible": 2,
+      "optimise": 4,
+      "premium": 4,
+      "experimental": 2,
+      "hybride": 5,
+      "communautaire": 3
+    },
+    "compatible_with": [
+      "B-regles-fin-a-score-cible",
+      "B-mecanique_jeu-carte-secrete",
+      "B-mise_en_scene-revelation-tableau",
+      "B-creation_contenu-micro-pov",
+      "B-son_lumiere-casques-silencieux",
+      "B-qualification-elimination-par-manches",
+      "B-regles-horloge-tir-courte",
+      "B-interaction_public-bonus-fans",
+      "B-mecanique_jeu-zone-qui-se-reduit",
+      "B-mecanique_jeu-joker-activable",
+      "B-scenographie-arene-modulaire"
+    ],
+    "incompatible_with": [],
+    "risks": [
+      "Débit montant insuffisant sur site : test préalable et connexion de secours (voir E-021)",
+      "Droits musicaux en diffusion"
+    ],
+    "ip_note": "Logique de diffusion ; habillage graphique propre."
+  }
+]

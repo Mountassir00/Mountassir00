@@ -1,0 +1,676 @@
+{
+  "id": "level-up-run",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "LEVEL UP RUN (nom provisoire, à changer)",
+    "tagline": "Chaque édition vous fait monter d'un niveau.",
+    "pitch": "Parcours urbain à pied (course ou marche, sans classement au temps) organisé quatre fois par an. Chaque participant possède un profil persistant dans une application web sans installation : il gagne de l'expérience en validant des points de contrôle par QR code, débloque des niveaux, des badges et des quêtes (passer par trois lieux patrimoniaux, accompagner un nouveau venu), et affronte des points de contrôle « boss » tenus par des clubs ou associations locales (épreuve courte : escalier chronométré, énigme, tir à la corde collectif). La progression se conserve d'une édition à l'autre : c'est elle qui fidélise. Briques existantes : jeux de course à points de contrôle et XP en application, événements urbains à points de contrôle virtuels, plateformes de jeux par QR code, jalons de participation d'une course hebdomadaire gratuite. La différenciation tient à la persistance entre éditions physiques et aux points « boss » animés localement.",
+    "disciplines": [
+      "course à pied",
+      "marche"
+    ],
+    "sectors": [
+      "sport loisir",
+      "jeu vidéo (progression transposée)",
+      "tourisme urbain",
+      "commerce de proximité"
+    ],
+    "directions": [
+      "hybride",
+      "communautaire"
+    ],
+    "objectives": [
+      "Faire revenir les participants d'une édition à l'autre",
+      "Ouvrir la course urbaine aux non-coureurs (marche, familles)",
+      "Faire découvrir quartiers, patrimoine et commerces",
+      "Impliquer les clubs locaux comme animateurs de points « boss »"
+    ],
+    "audiences": [
+      {
+        "segment": "Adultes 20–50 ans actifs mais non compétiteurs, familles",
+        "role": "participant",
+        "motivation": "Jeu, progression, sortie en groupe, pas de pression chronométrique",
+        "willingness_to_pay": "Hypothèse : 10 € par édition, gratuit -12 ans"
+      },
+      {
+        "segment": "Villes, offices de tourisme, associations de commerçants",
+        "role": "organisateur",
+        "motivation": "Animation récurrente, fréquentation des quartiers et commerces",
+        "willingness_to_pay": "Hypothèse : 4 000 € par édition — non testée"
+      },
+      {
+        "segment": "Clubs sportifs et associations locales",
+        "role": "benevole",
+        "motivation": "Recruter des adhérents en tenant un point « boss »",
+        "willingness_to_pay": "contrepartie en visibilité"
+      },
+      {
+        "segment": "Commerces de proximité",
+        "role": "sponsor",
+        "motivation": "Point de contrôle devant la boutique, quête sponsorisée",
+        "willingness_to_pay": "Hypothèse : 100–300 € par édition"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Application de course à points de contrôle avec XP et niveaux",
+        "source_sector": "application de jeu",
+        "borrowed_logic": "Ville découpée en zones, points de contrôle à collecter, progression",
+        "adaptation": "Progression rattachée à des éditions physiques animées, non à la pratique solitaire",
+        "source_ref": "S-DISTRICT-APP"
+      },
+      {
+        "source_event": "Course urbaine à points de contrôle virtuels",
+        "source_sector": "événement sportif urbain",
+        "borrowed_logic": "Itinéraire libre entre points de contrôle",
+        "adaptation": "Points « boss » physiques et profil persistant",
+        "source_ref": "S-DISTRICT-RACE"
+      },
+      {
+        "source_event": "Course hebdomadaire gratuite à jalons de participation (25, 50, 100…)",
+        "source_sector": "course à pied communautaire",
+        "borrowed_logic": "Reconnaissance de l'assiduité plutôt que de la performance",
+        "adaptation": "Jalons transformés en niveaux de jeu",
+        "source_ref": "S-PARKRUN-WIKI"
+      },
+      {
+        "source_event": "Plateforme de jeux par QR code sans téléchargement",
+        "source_sector": "logiciel événementiel",
+        "borrowed_logic": "Validation par QR sur téléphone",
+        "adaptation": "Utilisée comme socle du MVP avant tout développement",
+        "source_ref": "S-SEEKER"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Édition de 3 h un samedi matin : départ libre par vagues de 15 min, 20 points de contrôle QR sur 4 à 10 km au choix, 4 points « boss » animés, arrivée dans un lieu convivial (marché, place) avec affichage des montées de niveau. Entre deux éditions : 3 quêtes en autonomie par QR fixes chez des commerçants partenaires.",
+    "rules_summary": "Points d'expérience par point de contrôle (10), par point « boss » réussi (50), par quête (30) ; niveaux tous les 200 points. Aucun classement au temps ; seule l'assiduité et l'exploration comptent. Validation uniquement à l'arrêt (règle de sécurité : on ne scanne pas en courant ni en traversant). Itinéraires sur trottoirs, parcs et voies piétonnes ; aucune traversée hors passage protégé.",
+    "duration_hours": 3,
+    "edition_cadence": "trimestrielle (4 éditions par an), saison annuelle",
+    "building_blocks": [
+      {
+        "type": "mecanique_jeu",
+        "label": "XP, niveaux, badges, quêtes persistants entre éditions",
+        "parameters": {
+          "xp_checkpoint": 10,
+          "xp_boss": 50,
+          "xp_quete": 30,
+          "palier_niveau": 200
+        }
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Application web progressive sans installation, validation QR hors connexion",
+        "parameters": {}
+      },
+      {
+        "type": "interaction_public",
+        "label": "Points « boss » animés par des clubs locaux",
+        "parameters": {
+          "nombre": 4
+        }
+      },
+      {
+        "type": "fidelisation",
+        "label": "Profil persistant, saison annuelle, cérémonie de fin de saison",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Quêtes sponsorisées par des commerces",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Carte de niveau partageable générée automatiquement",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Inscriptions, contrat ville, commerces partenaires, licence logicielle",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "individu",
+    "count": {
+      "prudent": 150,
+      "central": 300,
+      "ambitieux": 600
+    },
+    "categories": [
+      "coureurs",
+      "marcheurs",
+      "familles"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 30,
+      "central": 60,
+      "ambitieux": 120
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 60
+  },
+  "venue_requirements": {
+    "setting": "exterieur",
+    "min_area_m2": 0,
+    "spaces": [
+      {
+        "id": "village",
+        "type": "accueil",
+        "label": "Village départ/arrivée (place, parc, marché)"
+      },
+      {
+        "id": "boss",
+        "type": "aire_de_jeu",
+        "label": "4 emplacements « boss » de 50 à 100 m²"
+      },
+      {
+        "id": "secours",
+        "type": "secours"
+      }
+    ],
+    "power_kw": 3,
+    "internet": "4G ; l'application doit fonctionner hors connexion et synchroniser ensuite",
+    "notes": "Parcours en espace public : trottoirs, parcs, voies piétonnes. Adaptable à un campus, un parc de loisirs ou un centre commercial hors horaires."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-app",
+        "category": "digital",
+        "label": "Plateforme sans code puis application (6 000 €/an répartis sur 4 éditions)",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-balisage",
+        "category": "materiel",
+        "label": "Signalétique et QR des points de contrôle",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-boss",
+        "category": "materiel",
+        "label": "Matériel des 4 points « boss »",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-benevoles",
+        "category": "logistique",
+        "label": "Accueil et ravitaillement des bénévoles",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC organisateur",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-secours",
+        "category": "securite",
+        "label": "Secouristes (dimensionnement par association agréée)",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Coordination EVENT LAB",
+        "amount": 1200,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-badges",
+        "category": "recompenses",
+        "label": "Badges physiques de niveau",
+        "amount": 2,
+        "basis": "per_participant",
+        "certainty": "estimation",
+        "priority": 3,
+        "optional": true
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-inscriptions",
+        "stream": "inscriptions",
+        "label": "Inscription 10 € par édition",
+        "unit_amount": 10,
+        "basis": "per_participant",
+        "certainty": "probable"
+      },
+      {
+        "id": "r-ville",
+        "stream": "autre",
+        "label": "Contrat ville ou office de tourisme",
+        "unit_amount": 4000,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      },
+      {
+        "id": "r-commerces",
+        "stream": "sponsoring",
+        "label": "Commerces partenaires (quêtes sponsorisées)",
+        "unit_amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "securite",
+      "description": "Collision avec un véhicule ou un cycliste d'un participant concentré sur son téléphone",
+      "probability": 2,
+      "impact": 5,
+      "critical": true,
+      "warning_signs": [
+        "points de contrôle proches de voies circulées",
+        "participants scannant en marchant"
+      ],
+      "prevention": [
+        "points de contrôle en retrait des voies",
+        "validation uniquement à l'arrêt, rappelée par l'application",
+        "aucune récompense au temps",
+        "repérage de sécurité de chaque itinéraire"
+      ],
+      "continuity_plan": "Neutralisation immédiate du point concerné par l'application ; alerte des secours ; revue de l'itinéraire",
+      "owner_role": "directeur de parcours",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "technique",
+      "description": "Application indisponible ou réseau saturé au départ",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "temps de chargement > 5 s en test"
+      ],
+      "prevention": [
+        "validation hors connexion",
+        "test de charge avant chaque édition"
+      ],
+      "continuity_plan": "Carnet papier à poinçonner, saisie différée des points",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "operationnel",
+      "description": "Triche (photos de QR partagées)",
+      "probability": 4,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "validations impossibles en temps"
+      ],
+      "prevention": [
+        "QR à rotation par édition",
+        "contrôle de cohérence temps/distance"
+      ],
+      "continuity_plan": "Annulation des points incohérents",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "financier",
+      "description": "Les inscriptions ne couvrent pas les coûts fixes sans contrat ville",
+      "probability": 4,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "moins de 200 inscrits à J-7"
+      ],
+      "prevention": [
+        "MVP sur plateforme sans code",
+        "contrat ville avant la 2e édition"
+      ],
+      "continuity_plan": "Réduction à 2 éditions par an ou arrêt après la saison pilote",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "juridique",
+      "description": "Données de géolocalisation et profils persistants, y compris de mineurs",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [],
+      "prevention": [
+        "pas de suivi GPS continu, seules les validations QR",
+        "consentement parental sous l'âge légal",
+        "durée de conservation définie"
+      ],
+      "continuity_plan": "Suppression du profil sur demande",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Manifestation sur la voie publique : déclaration ou autorisation selon la nature (non compétitive, sans classement au temps), arrêtés municipaux",
+      "authority": "Mairie, préfecture",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "QR fixes chez des commerçants et sur mobilier urbain : autorisation d'affichage et d'occupation",
+      "authority": "Mairie, propriétaires",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Assurance RC organisateur et dispositif de secours dimensionné par une association agréée",
+      "authority": "Assureur, association agréée",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "RGPD : profils persistants, consentement des mineurs (âge du consentement numérique en France à vérifier), durée de conservation",
+      "authority": "Délégué à la protection des données",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Nom : « Level Up » est déjà employé par plusieurs défis de course ; vérifier les droits antérieurs avant tout usage",
+      "authority": "INPI, EUIPO",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Participants par édition",
+      "phase": "pendant",
+      "target": 300,
+      "unit": "personnes",
+      "measure": "inscriptions validées"
+    },
+    {
+      "id": "K2",
+      "label": "Taux de retour à l'édition suivante",
+      "phase": "apres",
+      "target": 40,
+      "unit": "%",
+      "measure": "profils actifs n+1 / n"
+    },
+    {
+      "id": "K3",
+      "label": "Points de contrôle validés par participant (médiane)",
+      "phase": "pendant",
+      "target": 12,
+      "unit": "sur 20",
+      "measure": "application"
+    },
+    {
+      "id": "K4",
+      "label": "Incidents de sécurité",
+      "phase": "pendant",
+      "target": 0,
+      "unit": "incidents",
+      "measure": "registre"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Montée de niveau affichée à l'arrivée",
+      "Duel contre un point « boss »",
+      "Carte de niveau partagée"
+    ],
+    "photo_spots": [
+      "Arche de niveau au village",
+      "Points « boss » mis en scène"
+    ],
+    "channels": [
+      "Instagram",
+      "TikTok",
+      "Strava et applications de course (partage par les participants)",
+      "presse locale"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "XP, niveaux, badges, quêtes",
+      "target_role": "participant",
+      "description": "Progression persistante entre éditions",
+      "fairness_note": "Aucune récompense au temps ni à la dépense ; pas d'achat de points ; mécaniques sans pression (pas de perte de niveau en cas d'absence)"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3. Applications de course à XP et points de contrôle, événements urbains à points virtuels, plateformes QR et jalons d'assiduité existent. La persistance entre éditions physiques avec points « boss » animés n'a pas été trouvée sous forme identique. Recoupement partiel avec l'existant interne du porteur (« L'Échelle de l'Est — saison des défis », « CITY TOUR 54 ») sur la logique de progression saisonnière, en basket.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "experience_utilisateur": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Liberté d'itinéraire, pas de pression chronométrique, accessible aux marcheurs ; usage du téléphone et file au départ à maîtriser.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Socle sans code disponible pour le MVP ; points à sécuriser : fonctionnement hors connexion, anti-triche, itinéraires en espace public.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "MVP exclusivement sur plateforme existante"
+        ]
+      },
+      "viabilite_economique": {
+        "rating": 1.5,
+        "justification": "Entre ancres 1 et 3, proche de 1. Le calcul §7.1 donne −39 % au central : 10 € par participant ne couvrent pas les coûts fixes d'une édition sans contrat ville, encore hypothétique ; l'équilibre n'apparaît qu'à l'ambitieux (600 participants). Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Contrat ville avant la deuxième édition",
+          "Pass saison prépayé"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Cartes de niveau partageables et contenu généré par les participants conçus ; moments forts moins spectaculaires qu'une compétition.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Logiciel et kit de balisage transférables à toute ville ; dépend de clubs locaux pour les points « boss ».",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Centre-ville, parc, campus, base de loisirs ; variante intérieure possible (centre commercial).",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Marche et course, familles, sans chronomètre ; itinéraires accessibles PMR à concevoir, dépendance au smartphone (carnet papier prévu).",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Itinéraire PMR balisé"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Récurrence trimestrielle, licence logicielle aux villes, commerces partenaires ; nom actuel non protégeable en l'état.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Mobilité douce par nature, pas d'infrastructure lourde, balisage réemployé ; mesure d'empreinte non prévue.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R1. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1, R2), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1, R2), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 64,
+      "grade": "C",
+      "confidence": 0.34,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 4.8,
+        "experience_utilisateur": 4.5,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 10.5,
+        "potentiel_mediatique": 3.0,
+        "reproductibilite": 2.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 1.5,
+        "potentiel_commercial": 1.0,
+        "responsabilite_environnementale": 1.0
+      },
+      "score_if_plus_one": 84.0
+    }
+  },
+  "hypotheses": [
+    "Inscription 10 € par édition : hypothèse.",
+    "Contrat ville 4 000 € par édition : hypothèse, aucun acheteur contacté.",
+    "Coût logiciel 6 000 € par an sur plateforme sans code : hypothèse."
+  ],
+  "sources": [
+    {
+      "id": "S-DISTRICT-APP",
+      "title": "District: The Running Game (fiche App Store)",
+      "publisher": "Apple App Store",
+      "url": "https://apps.apple.com/us/app/id1488277931",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-DISTRICT-RACE",
+      "title": "Urban Exploration Races (District Race)",
+      "publisher": "Trend Hunter",
+      "url": "https://www.trendhunter.com/trends/district-race",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-SEEKER",
+      "title": "Seeker XP — gamification platform",
+      "publisher": "Seeker",
+      "url": "https://seeker.io/xp",
+      "accessed_at": "2026-11-24",
+      "reliability": "D",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-PARKRUN-WIKI",
+      "title": "Parkrun",
+      "publisher": "Wikipédia",
+      "url": "https://en.wikipedia.com/wiki/Parkrun",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche (jalons de participation)"
+    },
+    {
+      "id": "S-LEVELUP-WCR",
+      "title": "Level Up WCR 10th Anniversary Challenge",
+      "publisher": "Findarace",
+      "url": "https://findarace.com/us/events/level-up-wcr-10th-anniversary-virtual-challenge",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche — homonymie"
+    },
+    {
+      "id": "S-LEVELUP-MAJORS",
+      "title": "Level Up with the Majors Challenge",
+      "publisher": "Abbott World Marathon Majors — Global Run Club",
+      "url": "https://grc.worldmarathonmajors.com/events/level-up-with-the-majors-challenge",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche — homonymie"
+    },
+    {
+      "id": "S-PACMAN-LU",
+      "title": "PAC-MAN Virtual Challenge: Level Up 2022",
+      "publisher": "BibRave",
+      "url": "https://www.bibrave.com/races/pac-man-virtual-challenge-level-up-2022-reviews/15978",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche — homonymie"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé et différencié ; nom signalé comme non disponible en pratique (homonymes « Level Up » dans la course à pied).",
+      "decisions": [
+        "Aucun classement au temps (sécurité et inclusion)",
+        "MVP sur plateforme existante avant tout développement"
+      ],
+      "approved_by": null
+    }
+  ]
+}

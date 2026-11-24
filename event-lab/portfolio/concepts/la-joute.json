@@ -1,0 +1,637 @@
+{
+  "id": "la-joute",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "LA JOUTE",
+    "tagline": "Trois rounds. Trois juges. Un seul argument qui tient debout.",
+    "pitch": "Soirée d'éloquence et de débat construite avec la grammaire des soirées de combat : affiche de cinq ou six « combats », pesée la veille (face-à-face filmé et révélation du sujet), entrée musicale et présentation des orateurs, trois rounds chronométrés (ouverture, échange en corps-à-corps de 30 secondes par prise de parole, conclusion), trois juges notant chaque round sur 10 avec cartons publics, décisions unanimes ou partagées, ceinture. Trois offres : programme entreprise (coaching + gala interne), ligue campus (licence aux associations étudiantes et établissements), soirées publiques billetées. Les concours d'éloquence sont nombreux en France ; la différenciation tient à la dramaturgie complète et au format court et rythmé, pas au principe de la joute.",
+    "disciplines": [],
+    "sectors": [
+      "éloquence et débat",
+      "sports de combat (dramaturgie transposée)",
+      "formation professionnelle",
+      "enseignement supérieur"
+    ],
+    "directions": [
+      "premium",
+      "communautaire"
+    ],
+    "objectives": [
+      "Faire de la prise de parole un spectacle court, lisible et partageable",
+      "Vendre aux entreprises un programme de compétences orales avec un temps fort interne",
+      "Offrir aux campus une ligue reproductible clé en main",
+      "Produire des contenus courts à forte circulation"
+    ],
+    "audiences": [
+      {
+        "segment": "Entreprises (RH, formation, communication interne) de 200 à 5 000 salariés",
+        "role": "organisateur",
+        "motivation": "Compétences orales, cohésion, marque employeur",
+        "willingness_to_pay": "Hypothèse : 10–15 k€ par programme (4 ateliers + gala) — aucune donnée de prix sourcée"
+      },
+      {
+        "segment": "Associations étudiantes d'éloquence, écoles et universités",
+        "role": "organisateur",
+        "motivation": "Format attractif pour remplir un amphithéâtre",
+        "willingness_to_pay": "Hypothèse : licence 300–800 € par saison"
+      },
+      {
+        "segment": "Orateurs volontaires (salariés, étudiants, lycéens)",
+        "role": "participant",
+        "motivation": "Progresser, être vu, gagner",
+        "willingness_to_pay": "0 € (pris en charge par l'organisateur)"
+      },
+      {
+        "segment": "Public des soirées (collègues, étudiants, curieux)",
+        "role": "spectateur",
+        "motivation": "Spectacle rythmé, humour, suspense des décisions",
+        "willingness_to_pay": "Soirée publique : hypothèse 10–15 € ; signal de demande : une demi-finale universitaire a réuni environ 450 spectateurs et plus de 2 500 personnes en direct (source C)"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Soirées de combat (boxe, MMA)",
+        "source_sector": "sports de combat",
+        "borrowed_logic": "Affiche, pesée et face-à-face, entrée musicale, rounds, trois juges, cartons sur 10, décisions partagées",
+        "adaptation": "Transposées au débat ; ni nom, ni ceinture, ni identité d'une organisation de combat ne sont repris"
+      },
+      {
+        "source_event": "Eloquentia (concours de prise de parole)",
+        "source_sector": "éloquence",
+        "borrowed_logic": "Concours public avec finale en grande salle",
+        "adaptation": "Format plus court et rythmé, logique de ligue et de classement",
+        "source_ref": "S-ELOQ-SEINE"
+      },
+      {
+        "source_event": "Joute des Associations (Conférence Olivaint)",
+        "source_sector": "éloquence",
+        "borrowed_logic": "Joute entre associations",
+        "adaptation": "Ligue inter-campus avec saison",
+        "source_ref": "S-JOUTE-OLIVAINT"
+      },
+      {
+        "source_event": "Projet « Boxe avec les Maux » (Sarcelles) : rounds de boxe et d'éloquence alternés",
+        "source_sector": "éducation / boxe",
+        "borrowed_logic": "Rapprochement boxe–éloquence",
+        "adaptation": "Ici aucune pratique de boxe : seule la dramaturgie est empruntée. Existant le plus proche identifié, à étudier avant tout lancement",
+        "source_ref": "S-BOXE-MAUX"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Veille : pesée (face-à-face de 60 s filmé, révélation des sujets). Soirée de 2 h 15 : 5 combats de 12 min. Chaque combat : présentation (30 s), entrée musicale, round 1 ouverture (2 min chacun), round 2 corps-à-corps (4 min d'échanges alternés de 30 s), round 3 conclusion (1 min 30 chacun), cartons des juges affichés, annonce. Pause de 15 min. Combat principal en dernier. Le public vote un prix du public distinct de la décision des juges.",
+    "rules_summary": "Sujets tirés de thèmes validés à l'avance (aucun sujet clivant imposé en milieu scolaire). Trois juges notent chaque round sur 10 (le vainqueur du round obtient 10, l'autre 9 ou moins) selon trois critères publiés : argumentation, réfutation, présence. Décision unanime, partagée ou nulle. Pénalités : dépassement de temps, attaque personnelle (avertissement puis point retiré).",
+    "duration_hours": 2.25,
+    "edition_cadence": "programme entreprise annuel ; ligue campus en saison de 4 soirées ; soirées publiques mensuelles possibles",
+    "building_blocks": [
+      {
+        "type": "mise_en_scene",
+        "label": "Affiche, pesée, entrée musicale, présentation des orateurs",
+        "parameters": {
+          "combats": 5
+        }
+      },
+      {
+        "type": "regles",
+        "label": "Trois rounds chronométrés, trois juges, cartons sur 10",
+        "parameters": {
+          "rounds": 3,
+          "juges": 3
+        }
+      },
+      {
+        "type": "scenographie",
+        "label": "Scène carrée centrale, public sur trois ou quatre côtés",
+        "parameters": {}
+      },
+      {
+        "type": "son_lumiere",
+        "label": "Entrées musicales, chronomètre géant, lumière de fin de round",
+        "parameters": {}
+      },
+      {
+        "type": "interaction_public",
+        "label": "Prix du public par vote QR",
+        "parameters": {}
+      },
+      {
+        "type": "recompenses",
+        "label": "Ceinture et classement de ligue",
+        "parameters": {}
+      },
+      {
+        "type": "fidelisation",
+        "label": "Ligue et classement d'orateurs d'une saison à l'autre",
+        "parameters": {}
+      },
+      {
+        "type": "creation_contenu",
+        "label": "Clips verticaux des meilleures répliques, face-à-face de la pesée",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Programme entreprise, licence campus, billetterie des soirées publiques",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "individu",
+    "count": {
+      "prudent": 10,
+      "central": 10,
+      "ambitieux": 12
+    },
+    "categories": [
+      "entreprise",
+      "campus",
+      "lycée (version adaptée)"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 120,
+      "central": 200,
+      "ambitieux": 300
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 150
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 200,
+    "spaces": [
+      {
+        "id": "scene",
+        "type": "aire_de_jeu",
+        "label": "Scène carrée de 6 × 6 m",
+        "area_m2": 36
+      },
+      {
+        "id": "public",
+        "type": "tribune",
+        "label": "Public assis 120–300 places",
+        "accessible_pmr": true
+      },
+      {
+        "id": "regie",
+        "type": "regie",
+        "label": "Régie son, lumière, chrono, affichage des cartons"
+      },
+      {
+        "id": "photo",
+        "type": "zone_photo",
+        "label": "Mur de pesée"
+      }
+    ],
+    "power_kw": 6,
+    "internet": "nécessaire pour le vote du public",
+    "notes": "Auditorium d'entreprise, amphithéâtre, théâtre, salle polyvalente ou bar de grande taille."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-coachs",
+        "category": "personnel",
+        "label": "Coaching : 4 ateliers × 2 coachs × 3 h",
+        "amount": 2160,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-mc",
+        "category": "animation",
+        "label": "Maître de cérémonie",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-juges",
+        "category": "competition",
+        "label": "Trois juges",
+        "amount": 600,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-technique",
+        "category": "technique",
+        "label": "Son, lumière, chronomètre géant, affichage des cartons",
+        "amount": 1800,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-video",
+        "category": "media",
+        "label": "Captation et montage de 10 clips",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-scenographie",
+        "category": "scenographie",
+        "label": "Scène carrée, ceinture, mur de pesée",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-projet",
+        "category": "prestation",
+        "label": "Direction de projet EVENT LAB",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-programme",
+        "stream": "autre",
+        "label": "Programme entreprise (4 ateliers + gala), signé avant engagement des dépenses",
+        "unit_amount": 12000,
+        "basis": "fixed",
+        "certainty": "secured",
+        "cash_offset_days": -30
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "reputationnel",
+      "description": "Dérapage : propos discriminants, attaques personnelles, sujet polarisant ; captation diffusée hors contexte",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "sujets proposés trop clivants",
+        "orateur ignorant les avertissements"
+      ],
+      "prevention": [
+        "charte des orateurs signée",
+        "sujets validés par l'organisateur client",
+        "pénalités publiées",
+        "validation des clips avant diffusion"
+      ],
+      "continuity_plan": "Interruption du combat par l'arbitre de séance ; clip non publié ; communication de crise préparée avec le client",
+      "owner_role": "directeur de projet",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "operationnel",
+      "description": "Qualité inégale des orateurs : combats déséquilibrés et soirée qui retombe",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "ateliers peu suivis"
+      ],
+      "prevention": [
+        "appariement par niveau après l'atelier 2",
+        "combat principal confié aux deux meilleurs"
+      ],
+      "continuity_plan": "Combat de démonstration par deux coachs",
+      "owner_role": "coach principal",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "securite",
+      "description": "Sécurité de la salle (effectif, évacuation) lors des soirées publiques",
+      "probability": 2,
+      "impact": 4,
+      "critical": false,
+      "warning_signs": [
+        "salle pleine avant l'heure"
+      ],
+      "prevention": [
+        "jauge respectée",
+        "billetterie nominative"
+      ],
+      "continuity_plan": "Fermeture des entrées et diffusion sur écran dans une salle annexe",
+      "owner_role": "exploitant de la salle",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "reputationnel",
+      "description": "Perdant humilié publiquement ou harcelé en ligne après diffusion",
+      "probability": 2,
+      "impact": 4,
+      "critical": false,
+      "warning_signs": [
+        "commentaires agressifs"
+      ],
+      "prevention": [
+        "consentement écrit à la diffusion, droit de retrait des clips",
+        "modération des commentaires"
+      ],
+      "continuity_plan": "Retrait des contenus concernés sur demande",
+      "owner_role": "responsable contenus",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Droit à l'image et consentement à la diffusion des orateurs et du public (autorisation parentale pour les mineurs)",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Établissements scolaires : accord du chef d'établissement, principes de neutralité applicables au choix des sujets",
+      "authority": "Chef d'établissement, rectorat",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Diffusion de musique (entrées musicales) en public et dans les clips : Sacem pour la salle, droits de synchronisation pour les vidéos",
+      "authority": "Sacem, ayants droit",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Si le programme est vendu comme formation : règles applicables aux actions de formation (financement, attestation)",
+      "authority": "Juriste / expert-comptable",
+      "mandatory": false,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Vote du public : données collectées minimales, information RGPD",
+      "authority": "Organisateur",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Programmes entreprise signés",
+      "phase": "avant",
+      "target": 3,
+      "unit": "programmes la première année",
+      "measure": "bons de commande"
+    },
+    {
+      "id": "K2",
+      "label": "Taux d'occupation de la salle",
+      "phase": "pendant",
+      "target": 85,
+      "unit": "%",
+      "measure": "comptage"
+    },
+    {
+      "id": "K3",
+      "label": "Satisfaction du public",
+      "phase": "apres",
+      "target": 4.3,
+      "unit": "/5",
+      "measure": "questionnaire QR"
+    },
+    {
+      "id": "K4",
+      "label": "Renouvellement client l'année suivante",
+      "phase": "apres",
+      "target": 60,
+      "unit": "%",
+      "measure": "contrats"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Face-à-face de la pesée",
+      "Réplique décisive du corps-à-corps",
+      "Annonce d'une décision partagée",
+      "Entrée musicale d'un orateur inattendu"
+    ],
+    "photo_spots": [
+      "Mur de pesée",
+      "Scène carrée avec chronomètre géant",
+      "Remise de la ceinture"
+    ],
+    "channels": [
+      "LinkedIn (version entreprise)",
+      "TikTok",
+      "Instagram",
+      "YouTube"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Classement de ligue et ceinture remise en jeu",
+      "target_role": "participant",
+      "description": "Le détenteur de la ceinture la défend à la soirée suivante",
+      "fairness_note": "Critères de notation publiés, trois juges, décisions motivées en une phrase"
+    },
+    {
+      "mechanic": "Prix du public",
+      "target_role": "spectateur",
+      "description": "Vote QR distinct de la décision des juges",
+      "fairness_note": "Un vote par personne présente, sans incidence sur la décision officielle"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3. Les joutes oratoires et les mises en scène d'« arène » existent (Eloquentia, Joute des Associations, demi-finale en amphithéâtre transformé en arène) et un projet a déjà alterné rounds de boxe et d'éloquence. La transposition complète de la grammaire des soirées de combat (pesée, cartons sur 10, décisions partagées) n'a pas été trouvée sous forme identique, mais une page dont l'adresse évoque un « eloquence ring » n'a pas pu être lue : risque d'antériorité à lever.",
+        "evidence": "benchmark_source",
+        "improvements": [
+          "Lire la page « eloquence ring » et étudier le projet de Sarcelles avant de figer le format"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Séquences courtes (12 min), règles comprises en moins de 2 minutes, temps morts faibles par construction. Parcours bénévole et juge à concevoir.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "faisabilite_technique": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Matériel courant (son, lumière, écran), compétences disponibles localement (coachs, associations d'éloquence), repli simple en cas de panne (chronomètre manuel, cartons papier).",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Le calcul §7.1 donne +12 % au central et +2 % au prudent avec une recette signée avant engagement (base 5) ; décote de 1,5 car le prix de 12 k€ n'est testé auprès d'aucun acheteur. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Tester le prix auprès de 10 responsables RH"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Moments conçus pour le format vertical (face-à-face, répliques, décisions) ; signal de demande : une demi-finale universitaire mise en scène en « arène » a attiré environ 450 spectateurs et plus de 2 500 personnes en direct.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Règlement et conducteur standardisables ; la qualité dépend du maître de cérémonie et des coachs (dépendance à des talents).",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Programme de formation des juges et des maîtres de cérémonie"
+        ]
+      },
+      "adaptabilite_lieux": {
+        "rating": 4.5,
+        "justification": "Proche de l'ancre 5. Auditorium, amphithéâtre, théâtre, salle polyvalente ou bar : la scène carrée de 36 m² suffit.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Ouvert à des publics éloignés du sport, catégories par âge, scène accessible ; le public sourd ou malentendant exige interprétation LSF ou sous-titrage, non prévu.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Sous-titrage en direct sur écran"
+        ]
+      },
+      "potentiel_commercial": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Trois offres différenciées (entreprise, campus, public), contenus, renouvellement annuel possible ; la propriété reste peu protégeable juridiquement.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Intérieur, matériel léger loué, public local ; mesure d'empreinte non prévue.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R3. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R3. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "4 point(s) obligatoire(s) à vérifier (C1, C2, C3, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 4 point(s) obligatoire(s) à vérifier (C1, C2, C3, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 77,
+      "grade": "B",
+      "confidence": 0.37,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 4.8,
+        "experience_utilisateur": 3.0,
+        "faisabilite_technique": 1.5,
+        "viabilite_economique": 4.5,
+        "potentiel_mediatique": 2.0,
+        "reproductibilite": 3.0,
+        "adaptabilite_lieux": 0.8,
+        "accessibilite_inclusion": 1.5,
+        "potentiel_commercial": 1.0,
+        "responsabilite_environnementale": 1.0
+      },
+      "score_if_plus_one": 95.0
+    }
+  },
+  "hypotheses": [
+    "Prix du programme entreprise 12 000 € HT : hypothèse non testée.",
+    "Les dépenses ne sont engagées qu'après signature du client : la recette est donc classée sécurisée dans le modèle d'une édition.",
+    "Coachs rémunérés 90 €/h : estimation."
+  ],
+  "sources": [
+    {
+      "id": "S-ELOQ-SEINE",
+      "title": "Finale Eloquentia, le plus grand concours de prise de parole",
+      "publisher": "Ville de Paris",
+      "url": "https://www.paris.fr/evenements/finale-eloquentia-le-plus-grand-concours-de-prise-de-parole-108059",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-JOUTE-OLIVAINT",
+      "title": "La joute des Associations par les titans de l'éloquence",
+      "publisher": "Le Petit Juriste",
+      "url": "https://www.lepetitjuriste.fr/la-joute-des-associations-par-les-titans-de-leloquence/",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-SORBONNE-ARENE",
+      "title": "Demi-finale du concours d'éloquence de Paris 1 Panthéon-Sorbonne",
+      "publisher": "Thotis Media",
+      "url": "https://thotismedia.com/demi-finale-concours-paris1-sorbonne/",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche (environ 450 spectateurs, plus de 2 500 en direct)"
+    },
+    {
+      "id": "S-BOXE-MAUX",
+      "title": "Article sur un « eloquence ring » et le projet « Boxe avec les Maux » (Sarcelles)",
+      "publisher": "LexisNexis (blog juridique)",
+      "url": "https://www.lexisnexis.com/blogs/fr-juridique/b/actualite/posts/ibrahim-konate-eloquence-ring",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "URL obtenue par recherche ; page non lisible dans la session (domaine bloqué). Contenu connu uniquement par le résumé de l'outil : tournoi à Sarcelles alternant rounds de boxe et d'éloquence."
+    },
+    {
+      "id": "S-COUPE-DEBAT",
+      "title": "La Coupe de Débat du Grand Paris",
+      "publisher": "Université Paris 8",
+      "url": "https://www.univ-paris8.fr/La-Coupe-de-Debat-du-Grand-Paris",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-EJO",
+      "title": "Associations d'éloquence : elles ont les moyens de vous faire parler",
+      "publisher": "Le Monde des Grandes Écoles",
+      "url": "https://www.mondedesgrandesecoles.fr/associations-deloquence-elles-ont-les-moyens-de-vous-faire-parler/",
+      "accessed_at": "2026-11-24",
+      "reliability": "C",
+      "verification": "via résultats de recherche"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Concept conservé et différencié : nombreux concours d'éloquence existants ; différenciation par la dramaturgie complète des soirées de combat et le format court. Antériorité possible (« eloquence ring ») signalée et non levée.",
+      "decisions": [
+        "Trois offres : entreprise, campus, public",
+        "Aucune pratique de combat, seule la dramaturgie est empruntée"
+      ],
+      "approved_by": null
+    }
+  ]
+}

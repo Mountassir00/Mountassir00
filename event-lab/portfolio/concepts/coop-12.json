@@ -1,0 +1,664 @@
+{
+  "id": "coop-12",
+  "version": "0.1.0",
+  "status": "draft",
+  "maturity": "concept",
+  "parent": null,
+  "identity": {
+    "name": "CO-OP 12",
+    "tagline": "Douze points à l'écran. À vous de composer l'équipe.",
+    "pitch": "Remplace la graine cap-12 (plafond de points appliqué au 3x3 ou au foot à 5), qui recoupait l'existant interne du porteur en basket (3x3 fauteuil pour tous, 3x3 intergénérationnel). La logique de classification des sports paralympiques collectifs — chaque joueur vaut des points, l'équipe en jeu ne dépasse pas un plafond — est transposée à l'esport local. Tournoi en médiathèque ou salle polyvalente : équipes de 4, trois joueurs à l'écran, total plafonné à 12 points. La valeur d'un joueur (1 à 5) se calcule sur son expérience de jeu, sa tranche d'âge et son mode de jeu (manette adaptée, aides activées), jamais sur un diagnostic médical : l'équipe gagnante est celle qui compose le mieux, ce qui pousse à mélanger générations, niveaux et joueurs en situation de handicap. Commentaire en direct, diffusion en ligne, version entreprise pour la semaine européenne pour l'emploi des personnes handicapées. Originalité non vérifiée par recherche web (budget épuisé).",
+    "disciplines": [
+      "esport (jeux de course ou de sport arcade, choix du jeu à valider)"
+    ],
+    "sectors": [
+      "esport / jeu vidéo",
+      "sport paralympique (logique transposée)",
+      "médiathèques et politiques numériques",
+      "entreprise (inclusion)"
+    ],
+    "directions": [
+      "accessible",
+      "hybride"
+    ],
+    "objectives": [
+      "Faire de l'inclusion une règle de jeu, pas un accompagnement à côté",
+      "Réunir enfants, adultes, seniors et joueurs en situation de handicap dans une même équipe",
+      "Éviter toute collecte de données de santé grâce à un barème fondé sur le mode de jeu",
+      "Offrir aux médiathèques et aux entreprises un format clé en main"
+    ],
+    "audiences": [
+      {
+        "segment": "Médiathèques, services numériques et jeunesse des communes",
+        "role": "organisateur",
+        "motivation": "Animation inclusive et intergénérationnelle autour du jeu vidéo",
+        "willingness_to_pay": "Hypothèse : 6 000 € par édition — non testée"
+      },
+      {
+        "segment": "Entreprises (missions handicap, RH)",
+        "role": "organisateur",
+        "motivation": "Sensibilisation par l'expérience, cohésion",
+        "willingness_to_pay": "Hypothèse : 5–10 k€ pour une édition interne"
+      },
+      {
+        "segment": "Joueurs de 8 à 80 ans, valides ou en situation de handicap",
+        "role": "participant",
+        "motivation": "Jouer en équipe mixte, être utile à l'équipe quel que soit son niveau",
+        "willingness_to_pay": "Hypothèse : 20 € par équipe"
+      },
+      {
+        "segment": "Familles et public de la médiathèque",
+        "role": "spectateur",
+        "motivation": "Spectacle commenté, gratuit",
+        "willingness_to_pay": "0 €"
+      },
+      {
+        "segment": "Constructeurs de matériel, opérateurs télécoms",
+        "role": "sponsor",
+        "motivation": "Image inclusive, démonstration de manettes adaptées",
+        "willingness_to_pay": "Hypothèse : 1 500 € par édition"
+      }
+    ],
+    "inspirations": [
+      {
+        "source_event": "Basket fauteuil : classification des joueurs de 1 à 5 points et plafond d'équipe (Royaume-Uni ; concession de 1,5 point pour les joueuses en équipe mixte)",
+        "source_sector": "sport paralympique",
+        "borrowed_logic": "Valeur par joueur et plafond d'équipe sur le terrain",
+        "adaptation": "Barème fondé sur le mode de jeu et l'expérience, transposé à l'esport",
+        "source_ref": "S-BWB"
+      },
+      {
+        "source_event": "Plafond relevé à 15 points pour favoriser l'accès (ligue de l'État de Victoria, Australie)",
+        "source_sector": "sport paralympique",
+        "borrowed_logic": "Le niveau du plafond règle l'ouverture de la compétition",
+        "adaptation": "Plafond de 12 sur 15 possibles, ajustable par édition",
+        "source_ref": "S-BVIC"
+      },
+      {
+        "source_event": "Modèle « Mixed Ability » (pratique commune de personnes avec et sans handicap)",
+        "source_sector": "sport communautaire",
+        "borrowed_logic": "Jouer ensemble comme membres égaux",
+        "adaptation": "Mixité imposée par la règle de composition",
+        "source_ref": "S-MIXEDABILITY"
+      }
+    ]
+  },
+  "format": {
+    "summary": "Après-midi de 4 h. Accueil et calcul de la valeur de chaque joueur (questionnaire de 3 questions et match test). Les équipes de 4 composent leur trio à l'écran avant chaque manche sous plafond de 12 points ; rotation obligatoire : chaque joueur joue au moins une manche. Poules puis finale commentée sur grand écran et diffusée en ligne. Version entreprise : équipes inter-services, même barème.",
+    "rules_summary": "Valeur du joueur = expérience déclarée et vérifiée par un match test (1 à 3) + tranche d'âge (moins de 12 ans ou plus de 65 ans : −1) + mode de jeu (manette adaptée ou aides de jeu activées : −1), bornée entre 1 et 5. Total des trois joueurs à l'écran ≤ 12. Contestation possible auprès de l'équipe d'arbitrage ; réévaluation après chaque manche si l'écart de performance est manifeste.",
+    "duration_hours": 4,
+    "edition_cadence": "trimestrielle par médiathèque ; annuelle en entreprise",
+    "building_blocks": [
+      {
+        "type": "regles",
+        "label": "Plafond de 12 points à l'écran, rotation obligatoire",
+        "parameters": {
+          "joueurs_par_equipe": 4,
+          "joueurs_a_l_ecran": 3,
+          "plafond": 12
+        }
+      },
+      {
+        "type": "qualification",
+        "label": "Barème de valeur par mode de jeu, âge et expérience (sans donnée de santé)",
+        "parameters": {}
+      },
+      {
+        "type": "mecanique_jeu",
+        "label": "Composition stratégique du trio avant chaque manche",
+        "parameters": {}
+      },
+      {
+        "type": "experience_digitale",
+        "label": "Diffusion en ligne commentée, affichage des points de chaque trio",
+        "parameters": {}
+      },
+      {
+        "type": "interaction_public",
+        "label": "Vote du public pour la meilleure composition",
+        "parameters": {}
+      },
+      {
+        "type": "fidelisation",
+        "label": "Classement saisonnier des équipes de médiathèque",
+        "parameters": {}
+      },
+      {
+        "type": "activation_partenaire",
+        "label": "Espace de démonstration de manettes adaptées",
+        "parameters": {}
+      },
+      {
+        "type": "monetisation",
+        "label": "Prestation médiathèque ou entreprise, inscriptions symboliques, sponsor",
+        "parameters": {}
+      }
+    ]
+  },
+  "participants": {
+    "unit": "equipe",
+    "count": {
+      "prudent": 10,
+      "central": 16,
+      "ambitieux": 20
+    },
+    "team_size": 4,
+    "categories": [
+      "mixte, intergénérationnel"
+    ]
+  },
+  "audience": {
+    "attendance": {
+      "prudent": 60,
+      "central": 150,
+      "ambitieux": 250
+    },
+    "paying_share": 0,
+    "avg_dwell_min": 120
+  },
+  "venue_requirements": {
+    "setting": "interieur",
+    "min_area_m2": 200,
+    "spaces": [
+      {
+        "id": "stations",
+        "type": "aire_de_jeu",
+        "label": "8 postes de jeu avec écrans"
+      },
+      {
+        "id": "scene",
+        "type": "aire_de_jeu",
+        "label": "Poste de finale sur scène avec grand écran"
+      },
+      {
+        "id": "public",
+        "type": "tribune",
+        "label": "Public assis",
+        "accessible_pmr": true
+      },
+      {
+        "id": "regie",
+        "type": "regie",
+        "label": "Régie diffusion et commentaire"
+      },
+      {
+        "id": "demo",
+        "type": "activation_sponsor",
+        "label": "Démonstration de manettes adaptées"
+      }
+    ],
+    "power_kw": 8,
+    "internet": "liaison filaire pour la diffusion ; jeu en réseau local",
+    "notes": "Accès de plain-pied, postes à hauteur réglable, espace de circulation pour fauteuils entre les postes."
+  },
+  "budget": {
+    "currency": "EUR",
+    "contingency_rate": 0.1,
+    "expenses": [
+      {
+        "id": "e-postes",
+        "category": "technique",
+        "label": "Location de 8 postes de jeu et écrans",
+        "amount": 1600,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-manettes",
+        "category": "materiel",
+        "label": "Manettes adaptées (location ou amortissement)",
+        "amount": 800,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      },
+      {
+        "id": "e-ecran",
+        "category": "technique",
+        "label": "Grand écran, son, captation",
+        "amount": 900,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-commentateurs",
+        "category": "animation",
+        "label": "Deux commentateurs",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-reseau",
+        "category": "technique",
+        "label": "Technicien réseau",
+        "amount": 400,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-accessibilite",
+        "category": "accessibilite",
+        "label": "Interprète LSF (finale), signalétique adaptée",
+        "amount": 300,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-assurance",
+        "category": "assurance",
+        "label": "Assurance RC et casse matériel",
+        "amount": 200,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 1
+      },
+      {
+        "id": "e-com",
+        "category": "communication",
+        "label": "Communication",
+        "amount": 500,
+        "basis": "fixed",
+        "certainty": "estimation",
+        "priority": 2
+      },
+      {
+        "id": "e-coordination",
+        "category": "prestation",
+        "label": "Format, arbitrage et coordination EVENT LAB",
+        "amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothese",
+        "priority": 1
+      }
+    ],
+    "revenues": [
+      {
+        "id": "r-prestation",
+        "stream": "autre",
+        "label": "Prestation vendue à la médiathèque ou à la commune",
+        "unit_amount": 6000,
+        "basis": "fixed",
+        "certainty": "probable"
+      },
+      {
+        "id": "r-inscriptions",
+        "stream": "inscriptions",
+        "label": "Inscription 20 € par équipe",
+        "unit_amount": 20,
+        "basis": "per_participant",
+        "certainty": "probable"
+      },
+      {
+        "id": "r-sponsor",
+        "stream": "sponsoring",
+        "label": "Partenaire matériel",
+        "unit_amount": 1500,
+        "basis": "fixed",
+        "certainty": "hypothetical"
+      },
+      {
+        "id": "r-buvette",
+        "stream": "restauration",
+        "label": "Buvette associative : 2 € par spectateur, marge 50 %",
+        "unit_amount": 2,
+        "basis": "per_attendee",
+        "margin_rate": 0.5,
+        "certainty": "probable"
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "category": "reputationnel",
+      "description": "Le barème est vécu comme une étiquette (« je vaux 1 point ») et stigmatise des joueurs",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "refus de déclarer son mode de jeu",
+        "remarques entre équipes"
+      ],
+      "prevention": [
+        "barème fondé sur le mode de jeu et non sur la personne",
+        "co-conception avec des associations de personnes handicapées et de seniors",
+        "valeurs non affichées individuellement, seul le total du trio est public"
+      ],
+      "continuity_plan": "Suspension du barème public : composition contrôlée par l'arbitrage, seule la conformité au plafond est annoncée",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R2",
+      "category": "juridique",
+      "description": "Droits d'usage public du jeu vidéo choisi (tournoi, diffusion) non accordés par l'éditeur",
+      "probability": 3,
+      "impact": 4,
+      "critical": true,
+      "warning_signs": [
+        "conditions de l'éditeur interdisant les tournois avec droits d'entrée ou sponsors"
+      ],
+      "prevention": [
+        "choix d'un jeu dont la politique de tournois communautaires est publique et compatible",
+        "liste de jeux de repli"
+      ],
+      "continuity_plan": "Bascule vers un jeu de repli validé ou vers un jeu sous licence libre",
+      "owner_role": "EVENT LAB",
+      "status": "ouvert"
+    },
+    {
+      "id": "R3",
+      "category": "sante",
+      "description": "Crise d'épilepsie photosensible, fatigue visuelle, mauvaises postures",
+      "probability": 2,
+      "impact": 4,
+      "critical": false,
+      "warning_signs": [],
+      "prevention": [
+        "avertissement photosensibilité à l'inscription",
+        "pauses obligatoires entre manches",
+        "secouriste ou personne formée présente"
+      ],
+      "continuity_plan": "Arrêt du poste, prise en charge, appel des secours si nécessaire",
+      "owner_role": "référent sécurité",
+      "status": "ouvert"
+    },
+    {
+      "id": "R4",
+      "category": "technique",
+      "description": "Panne réseau ou matériel pendant une manche",
+      "probability": 3,
+      "impact": 3,
+      "critical": false,
+      "warning_signs": [
+        "latence lors des tests"
+      ],
+      "prevention": [
+        "réseau local filaire, poste de réserve"
+      ],
+      "continuity_plan": "Manche rejouée sur poste de réserve ; diffusion en différé si la liaison tombe",
+      "owner_role": "technicien réseau",
+      "status": "ouvert"
+    },
+    {
+      "id": "R5",
+      "category": "operationnel",
+      "description": "Triche sur l'expérience déclarée pour gagner des points",
+      "probability": 3,
+      "impact": 2,
+      "critical": false,
+      "warning_signs": [
+        "écart manifeste entre valeur déclarée et performance"
+      ],
+      "prevention": [
+        "match test",
+        "réévaluation entre manches"
+      ],
+      "continuity_plan": "Réévaluation par l'arbitrage avec effet immédiat",
+      "owner_role": "arbitrage",
+      "status": "ouvert"
+    }
+  ],
+  "compliance": [
+    {
+      "id": "C1",
+      "item": "Droits d'usage public et de diffusion du jeu choisi (conditions de l'éditeur pour les tournois)",
+      "authority": "Éditeur du jeu",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C2",
+      "item": "Données personnelles : vérifier que l'information « manette adaptée / aides activées » n'est pas traitée comme une donnée de santé ; minimisation et suppression après l'édition",
+      "authority": "Délégué à la protection des données, juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C3",
+      "item": "Mineurs : autorisation parentale, respect de la classification d'âge du jeu, consentement à la diffusion",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C4",
+      "item": "Compétition avec inscription payante et lots : vérifier qu'il s'agit d'un concours d'adresse et non d'une loterie",
+      "authority": "Juriste",
+      "mandatory": true,
+      "status": "a_verifier"
+    },
+    {
+      "id": "C5",
+      "item": "Effectif autorisé et accessibilité du lieu (ERP)",
+      "authority": "Exploitant",
+      "mandatory": true,
+      "status": "a_verifier"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "K1",
+      "label": "Équipes comptant au moins un joueur de moins de 12 ans ou de plus de 65 ans",
+      "phase": "pendant",
+      "target": 75,
+      "unit": "%",
+      "measure": "feuilles d'équipe"
+    },
+    {
+      "id": "K2",
+      "label": "Joueurs utilisant une manette adaptée ou des aides",
+      "phase": "pendant",
+      "target": 15,
+      "unit": "%",
+      "measure": "inscription"
+    },
+    {
+      "id": "K3",
+      "label": "Joueurs jugeant la composition équitable",
+      "phase": "apres",
+      "target": 80,
+      "unit": "%",
+      "measure": "questionnaire"
+    },
+    {
+      "id": "K4",
+      "label": "Médiathèques ou entreprises recommandant le format",
+      "phase": "apres",
+      "target": 3,
+      "unit": "structures",
+      "measure": "contrats ou lettres d'intention"
+    }
+  ],
+  "media": {
+    "viral_moments": [
+      "Composition gagnante dévoilée avant la finale",
+      "Action décisive d'un joueur de 9 ans ou de 70 ans",
+      "Démonstration de manette adaptée en direct"
+    ],
+    "photo_spots": [
+      "Tableau des compositions à 12 points"
+    ],
+    "channels": [
+      "plateformes de diffusion en direct",
+      "Instagram",
+      "LinkedIn (version entreprise)",
+      "réseaux des médiathèques"
+    ]
+  },
+  "gamification": [
+    {
+      "mechanic": "Composition sous plafond",
+      "target_role": "participant",
+      "description": "Le choix du trio est une décision stratégique avant chaque manche",
+      "fairness_note": "Barème publié, sans donnée médicale, contestable ; seule la somme du trio est affichée"
+    }
+  ],
+  "evaluation": {
+    "type": "previsionnelle",
+    "date": "2026-11-24",
+    "ratings": {
+      "originalite": {
+        "rating": 3,
+        "justification": "Ancre 3. Le plafond de points existe en sport paralympique et des tournois esport communautaires plafonnent déjà les niveaux (connaissance générale, non vérifiée) ; un plafond combinant âge, expérience et mode de jeu adapté n'a pas pu être recherché sur le web (budget épuisé). Note provisoire.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Recherche d'antériorité sur les tournois esport inclusifs"
+        ]
+      },
+      "experience_utilisateur": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Chaque joueur compte pour l'équipe, la composition est un jeu en soi, manches courtes commentées ; risque de vécu stigmatisant traité par l'affichage du seul total.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "faisabilite_technique": {
+        "rating": 3,
+        "justification": "Ancre 3. Matériel courant en location ; points à sécuriser : réseau, droits d'usage du jeu, disponibilité de manettes adaptées.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "viabilite_economique": {
+        "rating": 2,
+        "justification": "Entre ancres 1 et 3. Le calcul §7.1 donne un déficit au central tant que la prestation médiathèque n'est que probable et le sponsor hypothétique ; l'équilibre suppose une prestation signée d'environ 7,5 k€, élevée pour une médiathèque. Règle de cohérence du portefeuille : note de base lue sur le résultat §7.1 (ancres), puis décote de 1,5 lorsque la recette principale dépend d'un prix ou d'un acheteur non testé, et de 0,5 supplémentaire en cas de risque d'investissement ou d'utilisation.",
+        "evidence": "jugement_expert",
+        "improvements": [
+          "Prioriser la version entreprise, mieux dotée"
+        ]
+      },
+      "potentiel_mediatique": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Diffusion en ligne native, histoires d'équipes mixtes ; audience locale ou de niche.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "reproductibilite": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Kit matériel et barème standardisables ; dépend de la validation du barème par des associations.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "adaptabilite_lieux": {
+        "rating": 4,
+        "justification": "Entre ancres 3 et 5. Médiathèque, salle polyvalente, auditorium d'entreprise, gymnase ; seules exigences : électricité et réseau.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "accessibilite_inclusion": {
+        "rating": 5,
+        "justification": "Ancre 5. L'inclusion est la règle du format (composition sous plafond, manettes adaptées, intergénérationnel) et non un simple accès ; logique de plafond éprouvée en basket fauteuil.",
+        "evidence": "benchmark_source",
+        "improvements": []
+      },
+      "potentiel_commercial": {
+        "rating": 3.5,
+        "justification": "Entre ancres 3 et 5. Deux marchés (médiathèques, entreprises), partenaires matériel, licence possible aux réseaux de médiathèques.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      },
+      "responsabilite_environnementale": {
+        "rating": 3,
+        "justification": "Ancre 3. Matériel loué et réemployé, public local ; consommation électrique des postes.",
+        "evidence": "jugement_expert",
+        "improvements": []
+      }
+    },
+    "gates": {
+      "securite": {
+        "status": "ok",
+        "notes": "Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R3. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés. || calcul : Aucun risque sécurité/santé d'impact 5 et de probabilité ≥ 3 sans prévention. Risques sécurité/santé d'impact ≥ 4 suivis : R3. Le dimensionnement des secours et de la jauge relève d'acteurs externes agréés."
+      },
+      "conformite_reglementaire": {
+        "status": "a_verifier",
+        "notes": "5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint. || calcul : 5 point(s) obligatoire(s) à vérifier (C1, C2, C3, C4, C5) ; règle §1.5 appliquée au stade blueprint, le portefeuille servant de porte d'entrée au blueprint."
+      },
+      "risques_critiques": {
+        "status": "ok",
+        "notes": "Risques critiques identifiés (R1, R2), tous dotés d'un plan de continuité. || calcul : Risques critiques identifiés (R1, R2), tous dotés d'un plan de continuité."
+      }
+    },
+    "computed": {
+      "score": 66,
+      "grade": "B",
+      "confidence": 0.32,
+      "verdict": "sous_reserve",
+      "gains": {
+        "originalite": 4.8,
+        "experience_utilisateur": 4.5,
+        "faisabilite_technique": 6.0,
+        "viabilite_economique": 9.0,
+        "potentiel_mediatique": 3.0,
+        "reproductibilite": 2.0,
+        "adaptabilite_lieux": 1.6,
+        "accessibilite_inclusion": 0.0,
+        "potentiel_commercial": 1.5,
+        "responsabilite_environnementale": 2.0
+      },
+      "score_if_plus_one": 85.0
+    }
+  },
+  "hypotheses": [
+    "Prestation médiathèque 6 000 € : hypothèse non testée.",
+    "Le barème par mode de jeu évite la qualification de donnée de santé : hypothèse juridique à confirmer.",
+    "Un jeu adapté à tous les âges et compatible avec des manettes adaptées est disponible sous conditions de tournoi acceptables : hypothèse.",
+    "Aucune vérification web d'originalité ni d'homonymie n'a pu être faite (budget de recherche épuisé)."
+  ],
+  "sources": [
+    {
+      "id": "S-BWB",
+      "title": "Motability Scheme Inspire Leagues",
+      "publisher": "British Wheelchair Basketball",
+      "url": "https://britishwheelchairbasketball.co.uk/be-involved/motability-scheme-inspire-leagues/",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (classification 1 à 5 points, plafond par division, concession de 1,5 point en équipe mixte)"
+    },
+    {
+      "id": "S-BVIC",
+      "title": "Document de compétition — plafond de 15 points sur le terrain",
+      "publisher": "Basketball Victoria",
+      "url": "https://api.basketballvictoria.com.au/api/assets/3l4q54zl8n6swok0",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-MIXEDABILITY",
+      "title": "« Just another outing in a boat » — évaluation du programme Mixed Ability Sport",
+      "publisher": "White Rose eprints (universités de Leeds, Sheffield, York)",
+      "url": "https://eprints.whiterose.ac.uk/id/eprint/201400/7/%E2%80%98Just%20Another%20Outing%20in%20a%20Boat%E2%80%99%20Findings%20from%20the%20Evaluation%20of%20the%20Mixed%20Ability%20Sport%20Development%20Programme.pdf",
+      "accessed_at": "2026-11-24",
+      "reliability": "B",
+      "verification": "via résultats de recherche"
+    },
+    {
+      "id": "S-MONPARCOURS",
+      "title": "Compétition et classification : de quoi parle-t-on ?",
+      "publisher": "Mon Parcours Handicap (service public)",
+      "url": "https://www.monparcourshandicap.gouv.fr/sport/competition-et-classification-de-quoi-parle-t",
+      "accessed_at": "2026-11-24",
+      "reliability": "A",
+      "verification": "via résultats de recherche (classification par binôme médical et technique)"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "author": "EVENT LAB — portefeuille v0.2",
+      "summary": "Création en remplacement de cap-12, retiré pour recoupement avec l'existant interne du porteur en basket inclusif et intergénérationnel.",
+      "decisions": [
+        "Transposition de la logique de plafond hors basket, vers l'esport",
+        "Barème fondé sur le mode de jeu pour éviter les données de santé",
+        "Originalité et nom non vérifiés sur le web"
+      ],
+      "approved_by": null
+    }
+  ]
+}
