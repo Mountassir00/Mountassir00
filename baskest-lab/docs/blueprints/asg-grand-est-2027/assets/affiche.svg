@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 842" width="595" height="842">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1A33"/><stop offset="1" stop-color="#05101F"/></linearGradient>
+  <radialGradient id="spot" cx="0.5" cy="0.45" r="0.5"><stop offset="0" stop-color="#C9A227" stop-opacity="0.55"/><stop offset="1" stop-color="#C9A227" stop-opacity="0"/></radialGradient></defs>
+  <rect width="595" height="842" fill="url(#g)"/>
+  <rect width="595" height="842" fill="url(#spot)"/>
+  <g transform="translate(147.5,120) scale(3)" opacity="0.12" fill="none" stroke="#F7F5F0" stroke-width="3">
+      <line x1="0" y1="0" x2="0" y2="120"/><line x1="20" y1="0" x2="20" y2="120"/><line x1="40" y1="0" x2="40" y2="120"/><line x1="60" y1="0" x2="60" y2="120"/><line x1="80" y1="0" x2="80" y2="120"/><line x1="100" y1="0" x2="100" y2="120"/>
+      <path d="M0 30 C25 0 75 0 100 30"/><circle cx="50" cy="60" r="14"/></g>
+  <circle cx="297.5" cy="380" r="120" fill="#C9A227"/>
+  <path d="M177.5 380 H417.5 M297.5 260 V500 M212.5 295 C257.5 350 257.5 410 212.5 465 M382.5 295 C337.5 350 337.5 410 382.5 465" stroke="#0B1A33" stroke-width="8" fill="none"/>
+  <text x="40" y="80" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="16" fill="#F7F5F0" letter-spacing="4">BASK’EST PRÉSENTE</text>
+  <rect x="485" y="44" width="70" height="70" fill="#F7F5F0"/><text x="520" y="84" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#0B1A33">QR</text>
+  <text x="40" y="560" font-family="'Archivo Black', 'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="60" fill="#F7F5F0">ALL STAR GAME</text><text x="40" y="620" font-family="'Archivo Black', 'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="60" fill="#C9A227">GRAND EST</text>
+  <text x="40" y="660" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#F26B1D" font-style="italic">Les étoiles de l’Est.</text>
+  <rect x="40" y="685" width="515" height="2" fill="#C9A227"/>
+  <text x="40" y="722" font-family="'Archivo Black', 'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="17" fill="#F7F5F0">Samedi 12 juin 2027, 18h-minuit (proposition)</text>
+  <text x="40" y="754" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#F7F5F0" opacity="0.85">Palais des Sports Jean-Weille, Nancy-Gentilly</text>
+  <text x="40" y="800" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#F7F5F0" opacity="0.7">Billetterie en ligne · dès 10 € · Accès PMR · Gratuit -12 ans</text>
+</svg>

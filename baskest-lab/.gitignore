@@ -1,0 +1,7 @@
+node_modules
+dist
+dist-demo
+out/*.tmp
+*.log
+.DS_Store
+__pycache__
