@@ -24,10 +24,10 @@ Tournoi de basket 3x3 amateur d'une journée : le matin, des qualifications chro
 
 ## Régénérer
 
-Depuis `event-lab/` :
+Depuis `event-lab/` (le moteur est en TypeScript dans `baskest-lab/src/core/eventlab/` ; `npm ci` une fois dans `baskest-lab/`) :
 
 ```bash
-node scripts/build-blueprint.mjs blueprints/la-grille-3x3      # tableaux + BLUEPRINT.md
+(cd ../baskest-lab && npm run eventlab:blueprint -- ../event-lab/blueprints/la-grille-3x3)   # tableaux + BLUEPRINT.md
 node blueprints/la-grille-3x3/assets/plans/generer-plans.mjs   # plans SVG
 python3 scripts/export_xlsx.py blueprints/la-grille-3x3        # XLSX
 node scripts/svg2png.mjs blueprints/la-grille-3x3/assets/identite/logo-inverse.svg blueprints/la-grille-3x3/assets/identite/logo-inverse.png 1200

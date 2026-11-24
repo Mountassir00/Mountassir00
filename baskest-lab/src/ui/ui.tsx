@@ -14,7 +14,7 @@ export function Status({ s }: { s: FeatureStatus }) {
 
 export function Page({ title, intro, status, children, actions }: { title: string; intro: string; status: FeatureStatus; children: ReactNode; actions?: ReactNode }) {
   useEffect(() => {
-    document.title = `${title} — Bask’Est Lab`;
+    document.title = `${title} — EVENT LAB`;
   }, [title]);
   return (
     <>
@@ -105,7 +105,7 @@ export function Table({ head, rows, numeric = [], onRowClick, selected }: { head
         <thead>
           <tr>
             {head.map((h, i) => (
-              <th key={i} className={numeric.includes(i) ? 'num' : ''}>
+              <th key={i} scope="col" className={numeric.includes(i) ? 'num' : ''}>
                 {h}
               </th>
             ))}

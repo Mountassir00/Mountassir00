@@ -41,22 +41,27 @@ flowchart LR
   E -. même code .- G
 ```
 
-### 2.1 Modules du moteur (`app/engine/`)
+### 2.1 Modules du moteur (`baskest-lab/src/core/eventlab/`)
+
+> **v0.3 (fusion, voir `11-fusion-et-application.md`)** : le moteur JavaScript `app/engine/` est retiré ; il est porté à l'identique en **TypeScript** dans le cœur de l'application (`baskest-lab/src/core/eventlab/`). L'application React (`baskest-lab/`) et les scripts d'EVENT LAB (`scripts/build-blueprint.ts`, `scripts/validate.ts`, exécutés avec `tsx` depuis `baskest-lab/`) importent ce même module : il n'existe plus qu'une implémentation. Les sections 1 et 2 ci-dessus décrivent l'architecture MVP d'origine (SPA sans build) ; l'interface v0.3 est l'application React/Vite de `baskest-lab/`.
 
 | Module | Rôle | Référence |
 |---|---|---|
-| `scoring.js` | Score /100, grade, confiance, portes, recommandations | 07 §1 |
-| `generator.js` | Filtrage des briques, squelettes par direction, tirage reproductible, diversité | 07 §2–3 |
-| `competition.js` | Durée des étapes de compétition | 07 §4 |
-| `flows.js` | Files d'attente, occupation, densités | 07 §5 |
-| `staffing.js` | Besoins en personnel, chemin critique du montage | 07 §6 |
-| `finance.js` | Scénarios, seuil, trésorerie, sensibilité | 07 §7 |
-| `incidents.js` | Transformations d'incident et ré-simulation | 07 §8 |
-| `versioning.js` | Création de version, clonage, adaptation, diff, immutabilité | §5 ci-dessous |
-| `blueprint.js` | Rendu Markdown des sections générées | 08 |
-| `validate.js` | Contrôle minimal des objets contre les schémas (champs requis, énumérations) | 03 |
+| `types.ts` | Types dérivés des schémas (`EventConfig`, `Evaluation`, `BuildingBlock`, `WatchEntry`, `ErrorEntry`, `Venue`…) | 03, `schemas/` |
+| `scoring.ts` | Score /100, grade, confiance, portes, recommandations | 07 §1 |
+| `generator.ts` | Filtrage des briques, squelettes par direction, tirage reproductible, diversité | 07 §2–3 |
+| `competition.ts` | Durée des étapes de compétition | 07 §4 |
+| `flows.ts` | Files d'attente, occupation, densités | 07 §5 |
+| `staffing.ts` | Besoins en personnel, chemin critique du montage | 07 §6 |
+| `finance.ts` | Scénarios, seuil, trésorerie, sensibilité | 07 §7 |
+| `incidents.ts` | Transformations d'incident et ré-simulation | 07 §8 |
+| `variants.ts` | Application des variantes (économique, premium, secours…) | 03 |
+| `versioning.ts` | Création de version, clonage, adaptation, diff, immutabilité | §5 ci-dessous |
+| `blueprint.ts` | Rendu Markdown des sections générées, assemblage de `BLUEPRINT.md`, analyses structurées (flux, trésorerie par jour, incidents types) réutilisées par l'application | 08 |
+| `validate.ts` | Contrôle minimal des objets contre les schémas (champs requis, énumérations) | 03 |
+| `index.ts` | Point d'entrée unique (réexporte les modules) | — |
 
-Toutes les fonctions sont **pures** (entrée → sortie, sans effet de bord), donc testables en Node (`node --test`) et utilisables à l'identique par les scripts de génération documentaire. C'est ce qui garantit que les chiffres d'un blueprint et ceux de l'application sont les mêmes.
+Toutes les fonctions sont **pures** (entrée → sortie, sans effet de bord), donc testables (Vitest : `cd baskest-lab && npx vitest run`) et utilisables à l'identique par les scripts de génération documentaire. C'est ce qui garantit que les chiffres d'un blueprint et ceux de l'application sont les mêmes.
 
 ### 2.2 Persistance MVP
 - **Dépôt git** : seule source de vérité partagée. Une version validée = un fichier JSON nommé `<id>@<version>.json` (ou `event.json` dans un dossier de blueprint versionné) + entrée dans `history[]`.
@@ -155,8 +160,8 @@ Règles implémentées par `versioning.js` :
 
 ## 6. Qualité et tests
 
-- Tests unitaires du moteur (`node --test app/engine/tests/`) sur chaque formule de `07-algorithmes.md`, avec cas chiffrés calculés à la main.
-- Validation des JSON du dépôt contre les schémas avant chaque version (`scripts/validate.mjs`).
+- Tests unitaires du moteur (`baskest-lab/tests/eventlab-*.test.ts`, Vitest : `cd baskest-lab && npx vitest run`) sur chaque formule de `07-algorithmes.md`, avec cas chiffrés calculés à la main, et test de non-régression du blueprint LA GRILLE 3x3 (chiffres de `generated/summary.json` et `BLUEPRINT.md` reproduits à l'identique).
+- Validation des JSON du dépôt contre les schémas avant chaque version (`cd baskest-lab && npm run eventlab:validate`, script `scripts/validate.ts`).
 - Un blueprint n'est versionné que si ses tableaux générés sont reproductibles (régénération à l'identique).
 
 ## 7. Statut réel des fonctionnalités

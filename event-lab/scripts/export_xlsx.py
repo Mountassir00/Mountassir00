@@ -2,7 +2,7 @@
 """EVENT LAB — export XLSX d'un blueprint : modèle financier À FORMULES + tableaux opérationnels.
 
 Usage : python3 scripts/export_xlsx.py blueprints/<id>
-Entrées : <dir>/event.json, <dir>/generated/summary.json (produit par build-blueprint.mjs)
+Entrées : <dir>/event.json, <dir>/generated/summary.json (produit par scripts/build-blueprint.ts, moteur TypeScript)
 Sortie  : <dir>/exports/<id>-v<version>.xlsx
 
 Le modèle financier reproduit les formules de docs/07-algorithmes.md §7 : l'utilisateur peut modifier

@@ -3,33 +3,38 @@
 > Hypothèse de travail : une association bénévole, peu de temps disponible, budget très limité. La feuille de route privilégie ce qui **produit des résultats réels** (données, tests terrain, partenaires) avant ce qui produit de la technique.
 > Les efforts sont exprimés en **jours de travail** (développement ou organisation) ; les coûts sont des **estimations** à vérifier. Si le développement est confié à un prestataire, compter un tarif journalier de marché (ordre de grandeur : plusieurs centaines d'euros par jour — estimation) ; s'il est fait par un bénévole compétent, le coût est surtout du temps.
 
-## 1. Matrice de statut des fonctionnalités (au 24/11/2026)
+## 1. Matrice de statut des fonctionnalités (au 24/11/2026, v0.3 EVENT LAB en cours)
 
-Source de vérité : `src/ui/features.ts` (affichée dans l'interface).
+Source de vérité : `src/ui/features.ts` (affichée dans l'interface). Depuis la v0.3, l'application s'intitule **EVENT LAB** et compte deux espaces (Basket — Bask'Est ; Multisectoriel) et des modules communs.
 
-| Module | Groupe | Statut | Ce qui manque pour l'étape suivante |
+| Module | Espace / groupe | Statut | Ce qui manque pour l'étape suivante |
 |---|---|---|---|
-| Tableau de bord | Pilotage | Opérationnel | Données réelles 2026 |
-| Tableau de notation | Pilotage | Opérationnel | Surcharges partagées (base commune) |
-| Projets et calendrier | Pilotage | Prototype | Base partagée + authentification |
-| Analyse post-événement | Pilotage | Opérationnel | Saisie des chiffres réels des éditions |
-| Observatoire des tendances | Veille | Prototype | Actualisation planifiée |
-| Veille basket et multisport | Veille | Prototype | Ingestion RSS/API, synthèses planifiées |
-| Bibliothèque des innovations | Veille | Opérationnel | Mise à jour trimestrielle |
-| Registre des erreurs | Veille | Opérationnel | Incidents réels de Bask'Est |
-| Générateur de concepts | Création | Opérationnel | Enrichissement des bibliothèques |
-| Laboratoire créatif | Création | Opérationnel | — |
-| Studio de design | Création | Prototype | Charte validée + gabarits d'impression |
-| Configurateur de salles | Simulation | Opérationnel | Relevés réels des lieux (accès, jauges) |
-| Simulateur sportif | Simulation | Opérationnel | Calibrage sur matchs réels Bask'Est |
-| Simulateur financier | Simulation | Opérationnel | Devis réels |
-| Programmation sportive | Simulation | Opérationnel | Publication réelle (connecteur) |
-| Bibliothèque des dossiers | Production | Opérationnel | — |
-| Intégrations et validations | Écosystème | Dépend d'une intégration | Premier connecteur réel |
-| Notifications | Écosystème | Prototype | Push / e-mail |
-| Espaces collaboratifs | Écosystème | Dépend d'une intégration | Base partagée + rôles |
+| Tableau de bord | Commun | Opérationnel | Données réelles 2026 |
+| Registre des erreurs (unifié : 45 cas BASK'EST + 28 fiches EVENT LAB → 59 entrées) | Commun | Opérationnel | Incidents réels de Bask'Est |
+| Veille et sources (unifiée : 50 + 70 sources → 111 domaines) | Commun | Prototype | Ingestion RSS/API, synthèses planifiées (v0.4) |
+| Application mobile (PWA) | Commun | Prototype | Tests sur téléphones réels ; enveloppe Android/iOS (Capacitor), comptes développeur, fiches magasin |
+| Tableau de notation | Basket — Pilotage | Opérationnel | Surcharges partagées (base commune) |
+| Projets et calendrier | Basket — Pilotage | Prototype | Base partagée + authentification |
+| Analyse post-événement | Basket — Pilotage | Opérationnel | Saisie des chiffres réels des éditions |
+| Observatoire des tendances | Basket — Veille | Prototype | Actualisation planifiée |
+| Bibliothèque des innovations | Basket — Veille | Opérationnel | Mise à jour trimestrielle |
+| Générateur de concepts | Basket — Création | Opérationnel | Enrichissement des bibliothèques |
+| Laboratoire créatif | Basket — Création | Opérationnel | — |
+| Studio de design | Basket — Création | Prototype | Charte validée + gabarits d'impression |
+| Configurateur de salles | Basket — Simulation | Opérationnel | Relevés réels des lieux (accès, jauges) |
+| Simulateur sportif | Basket — Simulation | Opérationnel | Calibrage sur matchs réels Bask'Est |
+| Simulateur financier | Basket — Simulation | Opérationnel | Devis réels |
+| Programmation sportive | Basket — Simulation | Opérationnel | Publication réelle (connecteur) |
+| Bibliothèque des dossiers | Basket — Production | Opérationnel | — |
+| Intégrations et validations | Basket — Écosystème | Dépend d'une intégration | Premier connecteur réel |
+| Notifications | Basket — Écosystème | Prototype | Push / e-mail |
+| Espaces collaboratifs | Basket — Écosystème | Dépend d'une intégration | Base partagée + rôles |
+| Portefeuille multisectoriel | Multisectoriel | Opérationnel | Données réelles (confiance actuelle 0,30 à 0,37) |
+| Studio de configuration | Multisectoriel | Prototype | Versions partagées (base commune), édition de tous les champs, porte « pic d'occupation > effectif autorisé » (07 §1.5) |
+| Générateur multisectoriel | Multisectoriel | Prototype | Contrôles de cohérence et réparation (07 §2.6), couche rédactionnelle (07 §2.9) |
+| Bibliothèque de briques | Multisectoriel | Opérationnel | Enrichissement par la veille |
 
-Bilan : **12 opérationnels, 5 prototypes, 2 dépendant d'une intégration**.
+Bilan : **14 opérationnels, 8 prototypes, 2 dépendant d'une intégration** (24 modules). Avant la v0.3 : 12 opérationnels, 5 prototypes, 2 dépendant d'une intégration (19 modules).
 
 ## 2. P0 — Livré (aujourd'hui)
 

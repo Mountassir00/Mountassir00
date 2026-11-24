@@ -1,0 +1,1130 @@
+[
+  {
+    "route": "accueil",
+    "width": 1440,
+    "theme": "light",
+    "file": "accueil-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 1440,
+    "theme": "light",
+    "file": "portefeuille-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Trésorerie et sensibilité",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-tresorerie-et-sensibilite-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Compétition et flux",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-competition-et-flux-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Incidents",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-incidents-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Notation et portes",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-notation-et-portes-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Versions",
+    "width": 1440,
+    "theme": "light",
+    "file": "studio-config-versions-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 1440,
+    "theme": "light",
+    "file": "generateur-multi-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 1440,
+    "theme": "light",
+    "file": "briques-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 1440,
+    "theme": "light",
+    "file": "erreurs-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 1440,
+    "theme": "light",
+    "file": "veille-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 1440,
+    "theme": "light",
+    "file": "application-1440-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 1440,
+    "theme": "dark",
+    "file": "accueil-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 1440,
+    "theme": "dark",
+    "file": "portefeuille-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Trésorerie et sensibilité",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-tresorerie-et-sensibilite-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Compétition et flux",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-competition-et-flux-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Incidents",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-incidents-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Notation et portes",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-notation-et-portes-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Versions",
+    "width": 1440,
+    "theme": "dark",
+    "file": "studio-config-versions-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 1440,
+    "theme": "dark",
+    "file": "generateur-multi-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 1440,
+    "theme": "dark",
+    "file": "briques-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 1440,
+    "theme": "dark",
+    "file": "erreurs-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 1440,
+    "theme": "dark",
+    "file": "veille-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 1440,
+    "theme": "dark",
+    "file": "application-1440-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 400,
+    "theme": "light",
+    "file": "accueil-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 400,
+    "theme": "light",
+    "file": "portefeuille-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 400,
+    "theme": "light",
+    "file": "studio-config-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 400,
+    "theme": "light",
+    "file": "generateur-multi-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 400,
+    "theme": "light",
+    "file": "briques-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 400,
+    "theme": "light",
+    "file": "erreurs-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 400,
+    "theme": "light",
+    "file": "veille-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 400,
+    "theme": "light",
+    "file": "application-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "menu mobile",
+    "width": 400,
+    "theme": "light",
+    "file": "menu-400-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 400,
+    "theme": "dark",
+    "file": "accueil-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 400,
+    "theme": "dark",
+    "file": "portefeuille-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Trésorerie et sensibilité",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-tresorerie-et-sensibilite-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Compétition et flux",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-competition-et-flux-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Incidents",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-incidents-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Notation et portes",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-notation-et-portes-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Versions",
+    "width": 400,
+    "theme": "dark",
+    "file": "studio-config-versions-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 400,
+    "theme": "dark",
+    "file": "generateur-multi-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 400,
+    "theme": "dark",
+    "file": "briques-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 400,
+    "theme": "dark",
+    "file": "erreurs-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 400,
+    "theme": "dark",
+    "file": "veille-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 400,
+    "theme": "dark",
+    "file": "application-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "menu mobile",
+    "width": 400,
+    "theme": "dark",
+    "file": "menu-400-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 360,
+    "theme": "light",
+    "file": "accueil-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 360,
+    "theme": "light",
+    "file": "portefeuille-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Trésorerie et sensibilité",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-tresorerie-et-sensibilite-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Compétition et flux",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-competition-et-flux-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Incidents",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-incidents-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Notation et portes",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-notation-et-portes-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config › Versions",
+    "width": 360,
+    "theme": "light",
+    "file": "studio-config-versions-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 360,
+    "theme": "light",
+    "file": "generateur-multi-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 360,
+    "theme": "light",
+    "file": "briques-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 360,
+    "theme": "light",
+    "file": "erreurs-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 360,
+    "theme": "light",
+    "file": "veille-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 360,
+    "theme": "light",
+    "file": "application-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "menu mobile",
+    "width": 360,
+    "theme": "light",
+    "file": "menu-360-light.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 360,
+    "theme": "dark",
+    "file": "accueil-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "portefeuille",
+    "width": 360,
+    "theme": "dark",
+    "file": "portefeuille-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "studio-config",
+    "width": 360,
+    "theme": "dark",
+    "file": "studio-config-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "generateur-multi",
+    "width": 360,
+    "theme": "dark",
+    "file": "generateur-multi-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "briques",
+    "width": 360,
+    "theme": "dark",
+    "file": "briques-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "erreurs",
+    "width": 360,
+    "theme": "dark",
+    "file": "erreurs-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "veille",
+    "width": 360,
+    "theme": "dark",
+    "file": "veille-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "application",
+    "width": 360,
+    "theme": "dark",
+    "file": "application-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "menu mobile",
+    "width": 360,
+    "theme": "dark",
+    "file": "menu-360-dark.jpg",
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": []
+  },
+  {
+    "route": "accueil",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "notation",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "projets",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "post-evenement",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "tendances",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "veille",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "innovations",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "erreurs",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "generateur",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "labo",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "studio",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "salles",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "simulateur-sportif",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "simulateur-financier",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "programmation",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "dossiers",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "ecosysteme",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "notifications",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "collaboratif",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "portefeuille",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "studio-config",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "generateur-multi",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "briques",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "application",
+    "width": 1440,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "accueil",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "notation",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "projets",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "post-evenement",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "tendances",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "veille",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "innovations",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "erreurs",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "generateur",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "labo",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "studio",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "salles",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "simulateur-sportif",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "simulateur-financier",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "programmation",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "dossiers",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "ecosysteme",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "notifications",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "collaboratif",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "portefeuille",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "studio-config",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "generateur-multi",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "briques",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  },
+  {
+    "route": "application",
+    "width": 360,
+    "theme": "light",
+    "file": null,
+    "overflowPx": 0,
+    "smallTargets": [],
+    "errors": [],
+    "regression": true
+  }
+]

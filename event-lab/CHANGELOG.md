@@ -25,6 +25,93 @@ Légende des statuts de fonctionnalités :
 | 0.0.0 | 2026-11-24 | Socle de versionnement | `archives/event-lab-v0.0.0.zip` |
 | 0.1.0 | 2026-11-24 | Fondations (livrables 1 à 10) | `archives/event-lab-v0.1.0.zip` |
 | 0.2.0 | 2026-11-24 | Moteur, portefeuille, connaissances, premier blueprint | `archives/event-lab-v0.2.0.zip` |
+| 0.3.0 | 2026-11-24 | Application fusionnée EVENT LAB × BASK'EST LAB, installable | `archives/event-lab-v0.3.0.zip` |
+
+---
+
+## [0.3.0] — 2026-11-24 — Application fusionnée EVENT LAB × BASK'EST LAB, installable sur téléphone
+
+### Ajouté
+- **Fusion** avec BASK'EST LAB (branche intégrée, 31 tests d'origine conservés) : un seul outil nommé EVENT LAB, avec trois blocs de navigation (Commun, Basket — Bask'Est, Multisectoriel). Conception : `docs/11-fusion-et-application.md`.
+- **Moteur EVENT LAB porté en TypeScript** (`baskest-lab/src/core/eventlab/`, 11 modules + types). Les 28 tests portés gardent les mêmes valeurs attendues. **4 tests de non-régression** comparent le moteur au blueprint v0.2.0 : 3 scénarios, 4 variantes, notation, trésorerie, sensibilité, compétition, 24 sections, `BLUEPRINT.md`, et les 10 scores du portefeuille. 5 tests portent sur les données. **Total : 68 tests.**
+- **Quatre modules multisectoriels** :
+  - Portefeuille (opérationnel).
+  - Studio de configuration (prototype) : variantes, scénarios, trésorerie, tornade, compétition et flux, incidents en direct, versions locales immuables, différences entre versions.
+  - Générateur sur 70 briques (prototype).
+  - Bibliothèque de briques (opérationnel).
+- **Connaissances unifiées** :
+  - Registre des erreurs : 59 entrées. Les 45 + 28 entrées d'origine contiennent 14 recoupements, fusionnés sans perte de source (contrôle automatique).
+  - Catalogue de veille : 120 fiches, soit 111 domaines.
+- **Application installable (PWA)** :
+  - manifeste, icônes originales, service worker hors ligne, méta-balises iOS ;
+  - navigation pensée d'abord pour le téléphone : menu repliable, cibles de 44 px, contrastes AA, marges d'encoche ;
+  - module « Application mobile » qui indique l'état de l'installation.
+- **Démo en un seul fichier** `baskest-lab/docs/demo/event-lab-demo.html` (1,3 Mo, fonctionne hors ligne en local). Elle remplace l'ancienne démo BASK'EST.
+- **Documents** :
+  - `docs/12-plan-pilote-la-grille-nancy.md` : test en 7 jours, 30 jours, tableau de bord, écarts avec la porte G1 ;
+  - `docs/13-saas-et-mobile.md` : architecture SaaS, offres à tester, séquencement v0.3 → v0.6, obligations des stores et du RGPD, risques.
+
+### Modifié
+- Scripts : `scripts/build-blueprint.ts` et `scripts/validate.ts` remplacent les versions `.mjs` et s'exécutent depuis `baskest-lab/` (`npm run eventlab:blueprint`, `npm run eventlab:validate`).
+- `scripts/release.sh` : l'archive d'une version contient maintenant `event-lab/` **et** l'application `baskest-lab/`. Les captures d'écran en sont exclues, car on les régénère avec `npm run screenshots`.
+- `docs/02` et `docs/07` : le contrat du moteur désigne désormais l'implémentation TypeScript.
+- Couleurs d'état assombries en thème clair et éclaircies en thème sombre, pour respecter le contraste AA. Le changement s'applique aussi aux pages basket existantes.
+
+### Supprimé
+- `app/engine/` (moteur JavaScript et ses tests), `app/package.json`, `scripts/build-blueprint.mjs`, `scripts/validate.mjs`. **Il ne reste qu'une implémentation de chaque moteur.**
+
+### Décisions du porteur
+- **Fusion** : un seul outil. EVENT LAB fournit la méthode et le moteur générique ; BASK'EST LAB devient la verticale basket et la base applicative. Le dossier applicatif ne sera renommé que lorsque la structure sera stable.
+- **Produit** : EVENT LAB sera un **SaaS** et une **application mobile téléchargeable**, emballée avec **Capacitor** à partir du même code React.
+- **Calendrier** : on construit le socle maintenant sur des offres gratuites. Les comptes stores, les offres payantes et le paiement en ligne attendront le premier client payant.
+- **Pilote terrain** : LA GRILLE 3x3 avec l'association Bask'Est (Nancy).
+
+### Décision en attente
+- **Porte G1** : remplacer le critère « budget 10 à 30 k€ » par « budget conforme à la configuration retenue au go/no-go de J-60 » (la configuration recommandée coûte environ 7,7 k€). Je le recommande, mais il faut l'accord du porteur, et la modification sera tracée dans une nouvelle version. Le seuil de 65/100 est maintenu : LA GRILLE (62) doit le franchir avec des recettes signées, pas par une nouvelle notation.
+
+### Contrôles réalisés
+- `tsc --noEmit` : 0 erreur. `vitest` : 68/68. `vite build` et `build:demo` : OK.
+- `eventlab:validate` : 109 objets, 0 invalide.
+- Régénération du blueprint LA GRILLE : diff vide sur `BLUEPRINT.md` et `generated/`. Les exports XLSX et PPTX régénérés sur une copie sont identiques, à l'horodatage près.
+- Contrôle automatisé des pages : 8 pages nouvelles ou modifiées et les 24 modules, en 1440, 400 et 360 px, thèmes clair et sombre. Résultat : 0 erreur console, 0 débordement horizontal, 0 cible tactile sous 44 px. On conserve les captures en 1440 et 360 px (`baskest-lab/docs/screenshots/v0.3/`) ; `rapport.json` cite aussi celles en 400 px, qui n'ont pas été gardées.
+- Parcours complet scripté sans erreur :
+  - modification, version, soumission, approbation ;
+  - refus de modifier une version validée, puis nouvelle version et différences ;
+  - rechargement et export ;
+  - générateur ;
+  - incident météo et bascule sur la variante de secours.
+
+### Statut réel
+- **Opérationnel** : moteur TypeScript et tests, scripts de génération et de validation, application web, installation PWA en local, démo hors ligne, portefeuille, bibliothèque de briques, registre unifié. Bilan : 14 modules opérationnels sur 24.
+- **Simulé** :
+  - données de LA GRILLE et des concepts ;
+  - versions du studio enregistrées **dans le navigateur seulement** (pas de compte ni de synchronisation) ;
+  - au total, 8 modules sont des prototypes.
+- **Externe requis** :
+  - backend (v0.4 : le porteur crée le projet) ;
+  - emballage Android / iOS (v0.5) ;
+  - comptes stores et publication (après le premier client payant) ;
+  - collecte automatique de veille (v0.6) ;
+  - 2 modules basket qui dépendent d'une intégration.
+
+### Limites connues
+- **Écarts entre le moteur et `docs/07`**, portés à l'identique depuis v0.2 et signalés dans l'interface :
+  - la porte « pic d'occupation supérieur à l'effectif autorisé » n'est pas implémentée ;
+  - les contrôles de cohérence et la couche rédactionnelle du générateur (§2.6 et §2.9) sont absents ;
+  - le générateur s'arrête à 7 briques, sans tenir compte du budget ni des heures (§2.5) ;
+  - à l'approbation, `approved_by` est inscrit sur la ligne « soumission » de l'historique.
+- Six incidents documentés dans les deux registres (Stade de France 2022, Wembley 2021, Astroworld, Love Parade, Fyre, Woodstock 99) sont fusionnés à partir d'une **liste fermée** (`SAME_INCIDENT_PAIRS` dans `src/core/knowledge/unify.ts`). Vider cette liste annule ces fusions.
+- Dans la veille, le dédoublonnage par domaine regroupe aussi des rubriques différentes d'un même site. Aucune adresse n'est perdue.
+- Le blueprint v0.2.0 n'a pas été modifié, pour que sa régénération reste identique :
+  - `narrative.md` cite encore les anciens scripts `.mjs` ;
+  - le tableau de trésorerie affiche « -0 € ».
+
+  Ces deux points seront corrigés dans la prochaine version du blueprint. L'application, elle, affiche déjà la valeur corrigée.
+- `npm audit` : 2 alertes critiques existaient déjà (vitest / tinypool) ; 4 alertes modérées arrivent avec `vite-plugin-pwa` et ne concernent que la construction.
+- Aucun test sur un vrai téléphone : uniquement de l'émulation.
+- Les polices viennent de Google Fonts. Pour un fonctionnement hors ligne complet et pour le RGPD, il faudra les héberger localement (prévu en v0.5).
+- La PR #3 (BASK'EST LAB seul) fait doublon : son contenu est intégré ici.
+- Les tags git restent locaux, car le proxy refuse leur envoi. L'archive zip sur la branche fait référence.
 
 ---
 

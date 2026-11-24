@@ -1,4 +1,20 @@
-# BASK'EST LAB — Basketball Event Intelligence & Innovation System
+# EVENT LAB (application) — espace Basket : BASK'EST LAB
+
+> **v0.3 (fusion, en cours, non publiée).** Ce dossier contient l'application unique **EVENT LAB** (conception : [event-lab/docs/11](../event-lab/docs/11-fusion-et-application.md)). Elle a deux espaces : *Basket — Bask'Est* (les modules d'origine décrits ci-dessous) et *Multisectoriel* (portefeuille, studio de configuration, générateur sur 70 briques, bibliothèque de briques), plus des modules communs (tableau de bord, registre des erreurs unifié, veille unifiée, application mobile). Le moteur générique d'EVENT LAB est porté en TypeScript dans [src/core/eventlab/](src/core/eventlab/) et lit les données d'`../event-lab/` sans copie ([src/data/eventlab.ts](src/data/eventlab.ts)). Le renommage du dossier (`baskest-lab/` → `event-lab/app/`) est reporté.
+>
+> ```bash
+> npx vitest run                 # tests : moteurs basket, moteur EVENT LAB (28 tests portés), non-régression du blueprint LA GRILLE 3x3, données unifiées
+> npm run eventlab:validate      # JSON d'event-lab/ contre les schémas (109 objets)
+> npm run eventlab:blueprint -- ../event-lab/blueprints/la-grille-3x3   # régénère le blueprint (identique à la v0.2.0)
+> npx vite build                 # application installable (PWA : manifeste, icônes, service worker hors ligne) dans dist/
+> npm run build:demo             # démo en un seul fichier HTML (dist-demo/index.html, sans service worker)
+> node scripts/screenshots.cjs docs/screenshots/v0.3 1 --matrix   # captures 1440/400/360 px, thèmes clair et sombre, contrôles (après `npx vite preview --port 4173`)
+> node scripts/make-icons.cjs    # régénère les icônes de l'application
+> ```
+>
+> Application mobile : installable depuis le navigateur quand `dist/` est servi en HTTPS. Pour les magasins Android/iOS, voir le module « Application mobile (PWA) » et le rapport de v0.3 (enveloppe Capacitor non réalisée).
+
+## BASK'EST LAB — Basketball Event Intelligence & Innovation System
 
 Le laboratoire de recherche et développement événementiel de **Bask'Est**, association de basket créée à Nancy le 19 octobre 2024 (SIREN 940 128 069). Il sert à créer, tester, améliorer, documenter et dupliquer des formats d'événements de basketball, de l'idée jusqu'au dossier complet.
 
@@ -8,7 +24,7 @@ Le laboratoire de recherche et développement événementiel de **Bask'Est**, as
 cd baskest-lab
 npm install
 npm run dev          # dashboard sur http://localhost:5173
-npm test             # 31 tests des moteurs
+npm test             # tests des moteurs (31 basket + moteur EVENT LAB et non-régression)
 npm run blueprint    # régénère le Blueprint phare (MD, HTML, PDF, JSON, SVG, PNG)
 npm run exports      # Word, Excel (budget modifiable), PowerPoint, kit opérationnel
 npm run build:demo   # dashboard en un seul fichier HTML (dist-demo/index.html)
@@ -41,9 +57,9 @@ Prérequis : Node 20+, Python 3 avec `python-docx`, `openpyxl`, `python-pptx` po
 
 Compléments : observatoire des erreurs ([docs/07](docs/07-observatoire-erreurs.md)), recherche sourcée ([docs/research/](docs/research/)) : données publiques Bask'Est et salles de Nancy (R1), benchmark mondial 2025-2026 (R2), cadre réglementaire et financements (R3).
 
-## Le dashboard (19 modules)
+## Le dashboard (24 modules en v0.3, dont 19 d'origine)
 
-Pilotage (tableau de bord, notation, projets et calendrier, analyse post-événement) · Veille (tendances, veille basket et multisport, innovations, erreurs) · Création (générateur, laboratoire, studio) · Simulation (salles, sportif, financier, programmation) · Production (bibliothèque des dossiers) · Écosystème (intégrations et validations, notifications, collaboratif). Statut de chaque module : [docs/01-architecture.md §5](docs/01-architecture.md).
+Commun (tableau de bord, registre des erreurs unifié, veille et sources unifiée, application mobile) · Espace Basket : Pilotage (notation, projets et calendrier, analyse post-événement) · Veille (tendances, innovations) · Création (générateur, laboratoire, studio) · Simulation (salles, sportif, financier, programmation) · Production (bibliothèque des dossiers) · Écosystème (intégrations et validations, notifications, collaboratif) · Espace Multisectoriel (portefeuille, studio de configuration, générateur multisectoriel, bibliothèque de briques). Statut réel de chaque module : [src/ui/features.ts](src/ui/features.ts) et [docs/16-roadmap.md §1](docs/16-roadmap.md).
 
 ## Règles du système
 

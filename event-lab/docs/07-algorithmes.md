@@ -1,6 +1,6 @@
 # 07 — Algorithmes de génération, d'évaluation et de simulation
 
-> Ce document est le **contrat** du moteur (`app/engine/`). Toute formule implémentée doit correspondre à ce texte ; toute modification de formule passe par une nouvelle version du document et du journal.
+> Ce document est le **contrat** du moteur (`baskest-lab/src/core/eventlab/`, TypeScript, depuis v0.3 ; auparavant `app/engine/` en JavaScript). Toute formule implémentée doit correspondre à ce texte ; toute modification de formule passe par une nouvelle version du document et du journal.
 > Les paramètres numériques par défaut (taux de réalisation, débits, ratios) sont des **hypothèses de modélisation configurables**, pas des normes. Ils sont signalés `[param]`.
 
 ## Sommaire

@@ -20,7 +20,10 @@ Studio de recherche et développement événementiel, multisectoriel : veille in
 | 10 | Coûts de développement et d'exploitation | [docs/10](docs/10-couts.md) | 0.1.0 |
 | 11 | Portefeuille de dix concepts | [portfolio/](portfolio/README.md) | 0.2.0 |
 | 12 | Premier EVENT BLUEPRINT (LA GRILLE 3x3) | [blueprints/la-grille-3x3/](blueprints/la-grille-3x3/README.md) | 0.2.0 |
-| — | Moteur (notation, simulations, générateur) + 28 tests | [app/engine/](app/engine/) | 0.2.0 |
+| — | Moteur TypeScript (notation, simulations, générateur) + 28 tests portés + tests de non-régression | [baskest-lab/src/core/eventlab/](../baskest-lab/src/core/eventlab/) | 0.3.0 |
+| — | Application EVENT LAB (espaces Basket — Bask'Est et Multisectoriel) | [baskest-lab/](../baskest-lab/README.md) | 0.3.0 |
+| — | Démo hors ligne en un seul fichier | [baskest-lab/docs/demo/event-lab-demo.html](../baskest-lab/docs/demo/event-lab-demo.html) | 0.3.0 |
+| — | Fusion, plan du pilote LA GRILLE, SaaS et mobile | [docs/11](docs/11-fusion-et-application.md), [docs/12](docs/12-plan-pilote-la-grille-nancy.md), [docs/13](docs/13-saas-et-mobile.md) | 0.3.0 |
 | — | Registre de 28 erreurs, 70 briques | [knowledge/](knowledge/) | 0.2.0 |
 
 ## Arborescence
@@ -33,16 +36,19 @@ Studio de recherche et développement événementiel, multisectoriel : veille in
 | `knowledge/` | Base de connaissances : veille (sources, fiches), briques, registre des erreurs |
 | `portfolio/` | Portefeuille de concepts notés |
 | `blueprints/` | Dossiers EVENT BLUEPRINT (configuration, documents, exports) |
-| `app/` | Moteur et application MVP |
+| `../baskest-lab/` | Application EVENT LAB et moteur TypeScript (`src/core/eventlab/`) ; l'ancien dossier `app/` (moteur JavaScript) est retiré en v0.3, le renommage du dossier applicatif est reporté (docs/11 §2) |
 | `scripts/` | Outils : versionnement, génération et exports |
 | `archives/` | Versions figées (zip + empreintes SHA-256) |
 
 ## Commandes
 
+Le moteur est en TypeScript (`baskest-lab/src/core/eventlab/`) ; les scripts `scripts/*.ts` s'exécutent avec `tsx` depuis `baskest-lab/` (`npm ci` une fois) :
+
 ```bash
-node --test app/engine/tests/*.test.js   # tests du moteur
-node scripts/validate.mjs                # validation des JSON contre les schémas
-node scripts/build-blueprint.mjs blueprints/la-grille-3x3
+cd ../baskest-lab
+npx vitest run                                                   # tests (application + moteur EVENT LAB + non-régression du blueprint)
+npm run eventlab:validate                                        # validation des JSON contre les schémas
+npm run eventlab:blueprint -- ../event-lab/blueprints/la-grille-3x3   # tableaux, summary.json, CSV, BLUEPRINT.md
 ```
 
 ## Versionnement

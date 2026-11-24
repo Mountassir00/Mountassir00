@@ -14,7 +14,9 @@
     "blueprint": "tsx scripts/generate-blueprint.ts",
     "exports": "python3 scripts/export_office.py",
     "check:concepts": "tsx scripts/check-concepts.ts",
-    "screenshots": "node scripts/screenshots.cjs docs/screenshots 2"
+    "screenshots": "node scripts/screenshots.cjs docs/screenshots 2",
+    "eventlab:blueprint": "tsx ../event-lab/scripts/build-blueprint.ts",
+    "eventlab:validate": "tsx ../event-lab/scripts/validate.ts"
   },
   "dependencies": {
     "react": "19.2.9",
@@ -28,6 +30,7 @@
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vite": "7.3.8",
+    "vite-plugin-pwa": "1.2.0",
     "vite-plugin-singlefile": "2.3.4",
     "vitest": "3.2.7"
   }
