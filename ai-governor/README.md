@@ -2,7 +2,7 @@
 
 Couche de présentation du système de gouvernance IA : plusieurs interfaces graphiques interchangeables, alimentées par un même journal d'événements, les mêmes permissions et les mêmes commandes.
 
-5 présentations, celles retenues en favori. Ajouter un dossier `src/experiences/<id>/` avec son `manifest.ts` ajoute une vue ; supprimer le dossier la retire (les 16 autres vues construites restent dans le tag git `ai-governor-v0.3`, voir `docs/AUDIT.md`, A13).
+5 présentations, celles retenues en favori. Ajouter un dossier `src/experiences/<id>/` avec son `manifest.ts` ajoute une vue ; supprimer le dossier la retire (les 16 autres vues construites restent dans la branche `archive/ai-governor-v0.3`, voir `docs/AUDIT.md`, A13).
 
 | Vue | Rendu | Rôle |
 |---|---|---|
