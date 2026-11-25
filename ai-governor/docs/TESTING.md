@@ -3,7 +3,7 @@
 ## Lancer
 
 ```bash
-npm run check                 # TypeScript strict + 35 tests unitaires + build
+npm run check                 # TypeScript strict + 37 tests unitaires + build
 npm run build && npm run test:e2e   # Playwright (Chromium) + axe-core
 ```
 
