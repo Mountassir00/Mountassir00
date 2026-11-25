@@ -1,0 +1,108 @@
+/* Isometric kit styles. Motion is gated by html[data-motion] and paused by html[data-anim=paused]. */
+
+.iso-svg { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; }
+.iso-svg[data-dragging='true'] { cursor: grabbing; }
+.iso-edge { stroke: color-mix(in oklab, var(--c-ink) 62%, transparent); stroke-width: var(--stroke); stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.iso-floorline { stroke: color-mix(in oklab, var(--c-ink) 12%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.iso-ink-line { stroke: color-mix(in oklab, var(--c-ink) 55%, transparent); stroke-width: 1.2; stroke-linecap: round; vector-effect: non-scaling-stroke; fill: none; }
+.iso-needle { stroke: var(--st-error); stroke-width: 1.6; stroke-linecap: round; }
+.iso-mast { stroke: var(--c-ink-soft); stroke-width: 2; }
+.iso-screen { stroke: none; }
+.iso-screen--on { fill: color-mix(in oklab, var(--st-working) 55%, var(--c-raised)) !important; }
+.iso-led { fill: var(--c-line); }
+.iso-led--on { fill: var(--st-validating); }
+.iso-liquid { fill: color-mix(in oklab, var(--st-researching) 35%, var(--c-raised)); }
+.iso-waves path { fill: none; stroke: var(--c-ink-muted); stroke-width: 1.4; stroke-linecap: round; opacity: 0.25; }
+.iso-waves--on path { stroke: var(--st-researching); opacity: 0.9; }
+.iso-belt { stroke: var(--c-ink-muted); stroke-width: 2; stroke-dasharray: 6 5; }
+
+.iso-label { font: 600 var(--iso-label-size, 11px)/1 var(--font-ui); font-stretch: 84%; fill: var(--c-ink); paint-order: stroke; stroke: var(--c-paper); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
+.iso-label--room { font-size: 12.5px; font-weight: 680; font-stretch: 80%; }
+.iso-label--muted { fill: var(--c-ink-muted); font-weight: 520; }
+.iso-label--small { font-size: 10px; }
+
+/* characters */
+.iso-figure { cursor: pointer; outline: none; }
+.iso-figure__hit { fill: transparent; }
+.iso-figure__shadow { fill: color-mix(in oklab, var(--c-ink) 16%, transparent); }
+.iso-figure__ring { fill: none; stroke: var(--c-accent); stroke-width: 2; stroke-dasharray: 4 3; }
+.iso-figure:focus-visible .iso-figure__ring, .iso-figure:focus-visible .iso-figure__shadow { stroke: var(--c-focus); stroke-width: 2.5; }
+.iso-figure[data-dimmed] { opacity: 0.32; }
+.iso-figure__badge-bg { fill: var(--c-raised); stroke: var(--sc); stroke-width: 1.5; }
+.iso-figure__glyph { stroke: var(--sc); fill: var(--sc); stroke-linecap: round; stroke-linejoin: round; }
+.iso-figure__screen { fill: var(--c-sunken); }
+.iso-figure__led { fill: var(--c-line); }
+.iso-acc { stroke: var(--c-ink); stroke-width: 1.4; stroke-linecap: round; fill: none; }
+.iso-acc-fill { fill: var(--c-ink-soft); }
+.iso-acc-human { fill: var(--c-accent); }
+.iso-figure[data-kind='human'] .iso-figure__body path { stroke-width: 1.6; }
+.iso-figure[data-status='working'] { --sc: var(--st-working); }
+.iso-figure[data-status='waiting'] { --sc: var(--st-waiting); }
+.iso-figure[data-status='collaborating'] { --sc: var(--st-collaborating); }
+.iso-figure[data-status='researching'] { --sc: var(--st-researching); }
+.iso-figure[data-status='validating'] { --sc: var(--st-validating); }
+.iso-figure[data-status='error'] { --sc: var(--st-error); }
+.iso-figure[data-status='paused'] { --sc: var(--st-paused); }
+.iso-figure[data-status='idle'], .iso-figure[data-status='offline'] { --sc: var(--st-idle); }
+.iso-figure[data-status='offline'] .iso-figure__body { opacity: 0.45; }
+.iso-figure[data-status='working'] .iso-figure__screen, .iso-figure[data-status='validating'] .iso-figure__screen, .iso-figure[data-status='researching'] .iso-figure__screen { fill: color-mix(in oklab, var(--sc) 60%, var(--c-raised)); }
+.iso-figure[data-status='working'] .iso-figure__led, .iso-figure[data-status='researching'] .iso-figure__led, .iso-figure[data-status='validating'] .iso-figure__led { fill: var(--st-validating); }
+.iso-figure[data-status='error'] .iso-figure__led { fill: var(--st-error); }
+
+/* Ambient status motion — only when the quality level allows it. Motion encodes the recorded state. */
+html[data-motion='ambient'] .iso-figure[data-status='working'] .iso-figure__body { animation: iso-work 1.6s ease-in-out infinite; }
+html[data-motion='ambient'] .iso-figure[data-status='researching'] .iso-figure__glyph { animation: iso-scan 2.4s ease-in-out infinite; }
+/* 'subtle' (standard quality) animates only the status pictograms, in coarse steps. */
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle { animation: iso-dots 1.4s steps(3, jump-none) infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(2) { animation-delay: 0.2s; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='waiting'] .iso-figure__glyph circle:nth-child(3) { animation-delay: 0.4s; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='collaborating'] .iso-figure__glyph { animation: iso-pulse 1.8s steps(4, jump-none) infinite; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-figure[data-status='validating'] .iso-figure__glyph { animation: iso-pulse 2.2s steps(4, jump-none) infinite; }
+html[data-motion='ambient'] .iso-figure[data-kind='script'][data-status='working'] .iso-figure__led,
+html[data-motion='ambient'] .iso-figure[data-kind='service'][data-status='working'] .iso-figure__led { animation: iso-blink 0.9s steps(2, jump-none) infinite; }
+html[data-motion='ambient'] .iso-led--on { animation: iso-blink 1.2s steps(2, jump-none) infinite; }
+html[data-motion='ambient'] .iso-belt--on { animation: iso-belt 1s linear infinite; }
+html[data-motion='ambient'] .iso-waves--on path { animation: iso-fade 1.6s ease-in-out infinite; }
+html[data-motion='ambient'] .iso-waves--on path:nth-child(2) { animation-delay: 0.3s; }
+/* State transitions (allowed in eco and reduced motion): a single short cue on change. */
+html:not([data-motion='none']) .iso-figure[data-status='error'] .iso-figure__glyph { animation: iso-pop 0.5s ease-out 1; transform-box: fill-box; transform-origin: center; }
+
+@keyframes iso-work { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@keyframes iso-scan { 0%, 100% { transform: translateX(-1.5px); } 50% { transform: translateX(1.5px); } }
+@keyframes iso-dots { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@keyframes iso-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes iso-blink { 0% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes iso-fade { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.9; } }
+@keyframes iso-belt { to { stroke-dashoffset: -11; } }
+@keyframes iso-pop { 0% { transform: scale(1.6); } 100% { transform: scale(1); } }
+
+/* flows */
+.iso-flow { cursor: pointer; outline: none; }
+.iso-flow__hit { fill: none; stroke: transparent; stroke-width: 14; }
+.iso-flow__base { fill: none; stroke: color-mix(in oklab, var(--c-ink) 28%, transparent); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.iso-flow__dash { fill: none; stroke: var(--fc, var(--st-working)); stroke-width: 2.5; stroke-dasharray: 2 9; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.iso-flow[data-state='active'] .iso-flow__base { stroke: color-mix(in oklab, var(--fc, var(--st-working)) 55%, transparent); }
+.iso-flow[data-state='error'] { --fc: var(--st-error); }
+.iso-flow[data-state='error'] .iso-flow__base { stroke: color-mix(in oklab, var(--st-error) 60%, transparent); stroke-dasharray: 5 4; }
+.iso-flow[data-state='dim'] { opacity: 0.25; }
+.iso-flow[data-selected] .iso-flow__base { stroke: var(--c-accent); stroke-width: 3; }
+.iso-flow:focus-visible .iso-flow__base { stroke: var(--c-focus); stroke-width: 3; }
+html:is([data-motion='ambient'], [data-motion='subtle']) .iso-flow[data-state='active'] .iso-flow__dash { animation: iso-flow 0.9s linear infinite; }
+html[data-motion='subtle'] .iso-flow[data-state='active'] .iso-flow__dash { animation-timing-function: steps(6, jump-none); }
+html[data-quality='minimal'] .iso-flow__dash, html[data-quality='eco'] .iso-flow__dash { stroke-dasharray: none; stroke-width: 2; }
+@keyframes iso-flow { to { stroke-dashoffset: -11; } }
+
+/* rooms / platforms interaction */
+.iso-room { cursor: pointer; outline: none; }
+.iso-room:focus-visible .iso-room__outline, .iso-room[data-selected] .iso-room__outline { stroke: var(--c-accent); stroke-width: 2.5; stroke-dasharray: 6 4; fill: none; }
+.iso-room__outline { fill: none; stroke: transparent; vector-effect: non-scaling-stroke; }
+.iso-room[data-dimmed] { opacity: 0.38; }
+html[data-quality='minimal'] .iso-floorline { display: none; }
+
+/* zoom/pan chrome */
+.zp-controls { position: absolute; left: 12px; bottom: 14px; z-index: 5; display: flex; flex-direction: column; gap: 4px; }
+.zp-controls .btn { background: var(--c-raised); box-shadow: var(--shadow); }
+.minimap { position: absolute; right: 14px; top: 12px; z-index: 5; width: 168px; height: 112px; background: color-mix(in oklab, var(--c-raised) 92%, transparent); border: var(--stroke) solid var(--c-line); border-radius: var(--radius); overflow: hidden; cursor: pointer; }
+.minimap svg { width: 100%; height: 100%; display: block; }
+.minimap__view { fill: color-mix(in oklab, var(--c-accent) 10%, transparent); stroke: var(--c-accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+@media (max-width: 719px) { .minimap { display: none; } .zp-controls { bottom: 10px; left: 8px; } }
