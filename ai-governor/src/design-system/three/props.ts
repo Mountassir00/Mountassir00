@@ -5,7 +5,7 @@
  * Parts that change at runtime (glass board content, status LEDs) are not static.
  */
 import {
-  CanvasTexture, Color, DoubleSide, Group, LinearFilter, LineSegments, BufferGeometry, Float32BufferAttribute, Mesh, MeshBasicMaterial, Object3D,
+  CanvasTexture, Color, DoubleSide, Group, LinearFilter, BufferGeometry, Mesh, MeshBasicMaterial, Object3D,
   PlaneGeometry, ShaderMaterial, SRGBColorSpace, type Material,
 } from 'three';
 import type { ColorLike, MaterialKit } from './materials';
@@ -635,14 +635,6 @@ export function createRoom(kit: MaterialKit, opts: RoomOptions): Group {
   }
   g.userData.size = { width: W, depth: D, height: H };
   return g;
-}
-
-/** Simple line segments helper (e.g. dimension marks). */
-export function createLines(kit: MaterialKit, points: Array<[V3, V3]>, color: ColorLike, opacity = 1): LineSegments {
-  const geo = new BufferGeometry();
-  geo.setAttribute('position', new Float32BufferAttribute(points.flatMap(([a, b]) => [...a, ...b]), 3));
-  geo.userData.owned = true;
-  return new LineSegments(geo, kit.line(color, opacity));
 }
 
 /** "Model room": three glossy columns with tone light strips around a glowing core. */

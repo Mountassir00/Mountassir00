@@ -114,5 +114,3 @@ function isShown(o: Object3D | null): boolean {
   }
   return true;
 }
-
-export const sameSelection = (a: PickSelection | null | undefined, b: PickSelection | null | undefined) => !!a && !!b && a.kind === b.kind && a.id === b.id;

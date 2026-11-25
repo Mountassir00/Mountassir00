@@ -90,9 +90,7 @@ export const IconLive = make(
     <path d="M5.5 5.5a6.4 6.4 0 0 0 0 9M14.5 5.5a6.4 6.4 0 0 1 0 9" />
   </>,
 );
-export const IconRewind = make(<path d="M10 5 4 10l6 5M16 5l-6 5 6 5" />);
 export const IconFilter = make(<path d="M3 5h14M6 10h8M8.5 15h3" />);
-export const IconFullscreen = make(<path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4" />);
 export const IconPresent = make(
   <>
     <rect x="3" y="3.5" width="14" height="10" rx="1" />
@@ -162,13 +160,6 @@ export const IconMinimap = make(
     <rect x="9" y="9" width="6" height="5" rx="0.5" />
   </>,
 );
-export const IconGroup = make(
-  <>
-    <rect x="3" y="3" width="6" height="6" rx="1" />
-    <rect x="11" y="11" width="6" height="6" rx="1" />
-    <path d="M9 6h3a1 1 0 0 1 1 1v4" />
-  </>,
-);
 export const IconMenu = make(<path d="M4 6h12M4 10h12M4 14h8" />);
 export const IconBell = make(
   <>
@@ -191,8 +182,6 @@ export const IconSidebar = make(
     <path d="M8 3.5v13" />
   </>,
 );
-export const IconArrowUpRight = make(<path d="M6 14 14 6M7.5 6H14v6.5" />);
-export const IconArrowDownLeft = make(<path d="M14 6 6 14M12.5 14H6V7.5" />);
 export const IconReplay = make(
   <>
     <path d="M4.5 8A6 6 0 1 1 4 11" />

@@ -395,8 +395,3 @@ export class MaterialKit {
     this.themed = [];
   }
 }
-
-/** Utility: a mesh part descriptor used by factories before merging. */
-export function paintKey(c: ColorLike) {
-  return key(c);
-}

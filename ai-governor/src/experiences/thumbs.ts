@@ -33,16 +33,6 @@ export const THUMB_SYSTEM_MAP = wrap(
   `<path d="M98 70 L132 88 M188 88 L222 70 M160 122 L160 112" stroke="#1f74d6" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>`,
 );
 
-export const THUMB_MODULAR = wrap(
-  box(80, 36, 90, 8, '#cdebdc', '#bcdacb', '#abc9ba') + box(240, 36, 90, 8, '#f9dec7', '#e8cdb6', '#d7bca5') + box(160, 96, 90, 8, '#e1daf7', '#d0c9e6', '#bfb8d5') +
-  box(80, 48, 26, 10, '#fbfcfd', '#e6eaee', '#d7dde3') + box(240, 48, 26, 10, '#fbfcfd', '#e6eaee', '#d7dde3') + box(160, 108, 26, 10, '#fbfcfd', '#e6eaee', '#d7dde3') +
-  `<path d="M118 76 L136 96 M202 76 L184 96 M125 60 L195 60" stroke="#5a6580" stroke-width="1.5" stroke-dasharray="4 3"/>`,
-);
-
-export const THUMB_LEDGER = wrap(
-  Array.from({ length: 7 }, (_, i) => `<rect x="20" y="${18 + i * 22}" width="280" height="16" rx="3" fill="#fbfcfd" stroke="#dde4eb"/><circle cx="32" cy="${26 + i * 22}" r="4" fill="${['#1f74d6', '#2b8048', '#b2700f', '#1f74d6', '#cf2f3c', '#2b8048', '#8a45c8'][i]}"/><rect x="44" y="${23 + i * 22}" width="${120 + ((i * 53) % 90)}" height="6" rx="3" fill="#5a6580"/><rect x="262" y="${23 + i * 22}" width="28" height="6" rx="3" fill="#bfc9d6"/>`).join(''),
-);
-
 /** Neutral placeholder used until a view draws its own thumbnail. */
 export const placeholder = (label: string) =>
   wrap(`<rect x="60" y="50" width="200" height="80" rx="16" fill="#ffffff" stroke="#d6d6dd"/><text x="160" y="96" text-anchor="middle" font-family="system-ui" font-size="15" font-weight="600" fill="#3f3f46">${label}</text>`);

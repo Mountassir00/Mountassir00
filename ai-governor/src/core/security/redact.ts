@@ -23,10 +23,6 @@ export function redactString(value: string): string {
   return out;
 }
 
-export function containsSecret(value: string): boolean {
-  return redactString(value) !== value;
-}
-
 /** Deep-redacts every string in a JSON-like value (returns a new value). */
 export function redactDeep<T>(value: T): T {
   if (typeof value === 'string') return redactString(value) as unknown as T;
