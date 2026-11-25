@@ -33,7 +33,7 @@ function MaVue({ host, quality }: ExperienceProps) {
   }, [stage, layout, catalog]);
 
   return (
-    <ThreeStage quality={quality} label="Bureau 3D" onStage={setStage}
+    <ThreeStage quality={quality} label="Espace spatial" onStage={setStage}
       onClick={(hit) => hit && host.select(hit.selection)}>
       {(st) => <SceneLabels stage={st} labels={…} onSelect={(sel) => host.select(sel)} />}
     </ThreeStage>

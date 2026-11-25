@@ -23,7 +23,8 @@ describe('experience manifests', () => {
       expect(ids.has(d.manifest.id)).toBe(false);
       ids.add(d.manifest.id);
     }
-    expect(ids.size).toBeGreaterThanOrEqual(20);
+    // The retained set (the user's favourites); adding a folder adds a view.
+    for (const id of ['control-center', 'spatial-workspace', 'kanban', 'ai-office', 'system-map']) expect(ids.has(id)).toBe(true);
   });
   it('registry refuses an invalid manifest', () => {
     const r = new ExperienceRegistry();
@@ -65,10 +66,10 @@ describe('registry lifecycle (pure ops on preferences)', () => {
     const r = reg();
     let p = fresh();
     p = ops.setDefault(p, 'system-map', { device: 'mobile' });
-    p = ops.setDefault(p, 'ledger', { project: 'Governor' });
+    p = ops.setDefault(p, 'kanban', { project: 'Governor' });
     const e = r.entries(p);
     expect(pickExperience(e, p, 'mobile')).toBe('system-map');
-    expect(pickExperience(e, p, 'mobile', 'Governor')).toBe('ledger');
+    expect(pickExperience(e, p, 'mobile', 'Governor')).toBe('kanban');
     expect(pickExperience(e, p, 'desktop')).toBe('control-center');
   });
 });

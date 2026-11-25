@@ -6,8 +6,8 @@ MOUNTASSIR AI GOVERNOR sépare strictement ce qui **fonctionne** (moteur opérat
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│ experiences/   Control Center · AI Office · System Map · Modular ·   │  ← rendus interchangeables
-│                Journal (5e, ajoutée sans toucher au reste)           │     (chargés à la demande)
+│ experiences/   Control Center · Espace spatial · Kanban · AI Office  │  ← rendus interchangeables
+│                · AI System Map (un dossier = une vue)                │     (chargés à la demande)
 ├──────────────────────────────────────────────────────────────────────┤
 │ sdk/           hooks en lecture seule + capacité `host`              │  ← SEULE surface visible
 │ design-system/ jetons, primitives, graphiques, kit isométrique       │     par une expérience

@@ -55,7 +55,7 @@ Ne jamais déclencher `host.request` depuis un glisser, un double-clic ou un ges
 
 ### 4. Déclarer le manifeste
 
-Dans `src/experiences/ma-vue/manifest.ts` (aucune autre inscription : `src/experiences/index.ts` découvre tout dossier qui contient un `manifest.ts`). Un même dossier peut déclarer plusieurs vues qui partagent le code (ex. `modular-office` déclare la grille et le hub via le paramètre `arrangement`).
+Dans `src/experiences/ma-vue/manifest.ts` (aucune autre inscription : `src/experiences/index.ts` découvre tout dossier qui contient un `manifest.ts`). Un même dossier peut déclarer plusieurs vues qui partagent le code (deux entrées dans `definitions`, distinguées par un paramètre de configuration).
 
 ```ts
 import type { ExperienceDefinition } from '@sdk';
@@ -76,7 +76,7 @@ export const definitions: ExperienceDefinition[] = [{
     accessibility: { keyboard: true, screenReaderSummary: true, reducedMotion: 'full', contrast: 'AA' },
     dependencies: { sdk: '^1.0.0', libraries: [] },
     performance: { cost: 'medium', maxNodes: 300, targetFps: 30, animated: true },
-    devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'ledger' },
+    devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'control-center' },
     createdAt: '2026-11-24',
   },
   load: () => import('./MaVue'),            // chunk séparé, chargé seulement si la vue est active
@@ -91,7 +91,7 @@ Rien d'autre à modifier : le lanceur (touche G), la galerie, le studio, l'inspe
 
 ### 5. Respecter la sobriété
 
-**Scènes 3D.** Three.js n'est accessible que par le kit `@ds/three` (`import { THREE, ThreeStage, … } from '@ds/three'`) ; importer `three` directement fait échouer le test de frontières. Le kit rend **à la demande** (`stage.invalidate()`), plafonne le ratio de pixels et les images/s selon la qualité, coupe ombres et carte d'environnement en `minimal`/`eco`, s'arrête quand l'onglet est masqué et affiche un repli si WebGL manque. Mode d'emploi complet : `src/design-system/three/README.md`. La disposition de l'espace (`useSpatialLayout(host)`) est partagée entre l'Espace spatial, le Bureau 3D et l'Éditeur spatial ; elle est réactive : une modification publiée dans l'éditeur apparaît aussitôt dans les autres vues. Le QG 3D calcule son propre plan de bâtiment à partir du catalogue (une aile par pôle) et ne lit pas cette disposition. Pour toute autre donnée de présentation partagée : `useShared(host, clé, défaut)`.
+**Scènes 3D.** Three.js n'est accessible que par le kit `@ds/three` (`import { THREE, ThreeStage, … } from '@ds/three'`) ; importer `three` directement fait échouer le test de frontières. Le kit rend **à la demande** (`stage.invalidate()`), plafonne le ratio de pixels et les images/s selon la qualité, coupe ombres et carte d'environnement en `minimal`/`eco`, s'arrête quand l'onglet est masqué et affiche un repli si WebGL manque. Mode d'emploi complet : `src/design-system/three/README.md`. La disposition de l'espace (`useSpatialLayout(host)`) est partagée et réactive : toute vue 3D qui la lit (aujourd'hui l'Espace spatial) se met à jour dès qu'une autre la publie avec `setLayout`. Pour toute autre donnée de présentation partagée : `useShared(host, clé, défaut)`.
 
 **Horloge partagée.** `useAnimationFrame` ne tourne qu'aux niveaux `subtle` (standard, 30 i/s max) et `ambient` (élevé, 60 i/s max), et seulement tant qu'une vue y est abonnée. À `subtle`, n'animez que des indicateurs d'état et des flux réels ; réservez les mouvements décoratifs (corps, rotation lente) à `ambient`.
 

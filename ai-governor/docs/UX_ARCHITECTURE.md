@@ -4,7 +4,7 @@
 
 ```
 MOUNTASSIR AI GOVERNOR
-├─ Vue (expérience active) ─────────── Control Center · AI Office · AI System Map · AI Modular Office · Journal · variantes
+├─ Vue (expérience active) ─────────── Control Center · Espace spatial · Kanban des tâches · AI Office · AI System Map · variantes
 │   ├─ Inspecteur (tiroir) ─────────── agent · département · composant · flux · tâche
 │   ├─ Décisions GO / NO GO / TEST ──── en attente · historique
 │   └─ Chronologie & Replay ────────── direct · 1 h · 24 h · 7 j · 30 j · personnalisée
@@ -66,29 +66,14 @@ MOUNTASSIR AI GOVERNOR
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 04 — AI Modular Office
-```
-┌ [Réorganiser] [Réinitialiser] ──────────────────────────────── mini-carte ┐
-│   ▱▱▱ plateforme ── pont ── ▱▱▱ plateforme ── ▱▱▱                          │
-│   (bureaux, agents, indicateurs, jetons de tâches)                          │
-│   regroupement automatique en grappes quand le système grandit             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-### 05 — Journal opérationnel (preuve d'extensibilité)
-```
-┌ Journal opérationnel ─────────────────────────────────┐
-│ mar. 24 nov. 15 h                                      │
-│ 15:42  Tâche terminée   Contrôle qualité…   Auditrice ▣│
-│ 15:40  Arbitrage        GO : …              Vous      ▣│
-└────────────────────────────────────────────────────────┘
-```
+### 04–05 — Retirées en v0.4
+AI Modular Office et le Journal opérationnel ont été retirés : seules les 5 vues en favori sont conservées (voir `AUDIT.md`, A13). L'Espace spatial et le Kanban des tâches sont montrés dans `SCREENS.md`.
 
 ### Mobile (390 px)
 ```
 ┌ ≡ [Vue ▾]  Démo  ⚲ ┐
 │                     │
-│   scène / liste     │   AI Office et Modular s'ouvrent en mode adapté (2 colonnes,
+│   scène / liste     │   AI Office s'ouvre en mode adapté (2 colonnes,
 │                     │   liste accessible) ; System Map en rangées verticales.
 ├ chronologie compacte┤
 ├ Vue Gal. Don. Rég. Déc.┤  navigation en bas · inspecteur en feuille glissante

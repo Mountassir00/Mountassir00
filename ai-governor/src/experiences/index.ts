@@ -13,10 +13,7 @@ const modules = import.meta.glob<{ definitions: ExperienceDefinition[] }>('./*/m
 
 /** Preferred order (registry order, Gallery order). Unknown folders follow alphabetically. */
 const ORDER = [
-  'control-center', 'ai-office', 'system-map', 'modular-office', 'ledger',
-  'spatial-workspace', 'kanban', 'whiteboard', 'agents-board', 'inbox',
-  'office-3d', 'hq-3d', 'tower', 'spatial-editor', 'vision',
-  'loop', 'brief', 'constellation', 'assistant',
+  'control-center', 'spatial-workspace', 'kanban', 'ai-office', 'system-map',
 ];
 const folderOf = (path: string) => path.split('/')[1];
 const rank = (path: string) => {

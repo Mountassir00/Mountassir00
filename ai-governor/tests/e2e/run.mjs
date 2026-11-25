@@ -68,7 +68,7 @@ try {
   EXPERIENCES = (await page.evaluate(() => window.__mag.views())).map((v) => [v.id, v.name, v.renderer]);
   check('Vues installées découvertes', EXPERIENCES.length >= 5, `${EXPERIENCES.length} vues`);
 
-  check('Seul le moteur de rendu actif est chargé au démarrage', !chunks.some((c) => /AiOffice|SystemMap|ModularOffice|Ledger|Kanban|Whiteboard|SpatialWorkspace|three/i.test(c)), `chunks: ${[...new Set(chunks)].join(', ')}`);
+  check('Seul le moteur de rendu actif est chargé au démarrage', !chunks.some((c) => /AiOffice|SystemMap|Kanban|SpatialWorkspace|three/i.test(c)), `chunks: ${[...new Set(chunks)].join(', ')}`);
 
   // Establish context: period 7 j, a filter, a selected agent.
   await page.locator('.timeline').getByRole('button', { name: '7 j', exact: true }).click();

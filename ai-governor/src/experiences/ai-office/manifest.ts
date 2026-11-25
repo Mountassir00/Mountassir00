@@ -25,7 +25,7 @@ export const definitions: ExperienceDefinition[] = [
       accessibility: { keyboard: true, screenReaderSummary: true, reducedMotion: 'full', contrast: 'AA', notes: 'Chaque agent est focusable ; une liste textuelle résume la scène.' },
       dependencies: { sdk: '^1.0.0', libraries: [] },
       performance: { cost: 'medium', maxNodes: 400, targetFps: 30, animated: true },
-      devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'ledger' },
+      devices: { desktop: 'full', tablet: 'full', mobile: 'adapted', fallbackId: 'control-center' },
       createdAt: '2026-11-24',
     },
     load: () => import('./AiOffice'),

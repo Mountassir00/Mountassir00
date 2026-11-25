@@ -72,7 +72,9 @@ export function Launcher({ entries, activeId }: { entries: RegistryEntry[]; acti
       const fav = favorites.map((id) => list.find((e) => e.id === id)).filter(Boolean) as RegistryEntry[];
       if (fav.length) m.set('favorites', fav);
     }
+    // Pinned views appear once, under Favoris; the family groups list the others.
     for (const e of list) {
+      if (favorites.includes(e.id)) continue;
       const f = e.manifest.family ?? 'other';
       if (!m.has(f)) m.set(f, []);
       m.get(f)!.push(e);

@@ -5,7 +5,7 @@ Chaque point : exigence, problème, conséquences, alternative, bénéfice, comp
 ---
 
 ### A1. « Analyse les deux vidéos de référence » (§ 4, § 22)
-- **Mise à jour v0.3** : 9 vidéos et 12 images reçues ensuite. Chaque vidéo a été découpée en planches d'images (ffmpeg, local) et chaque *type de présentation* (IDE spatial, bureau 3D, kanban, tableau blanc, immeuble, verre flottant, boucle d'équipe, brief, constellation, sphère de nœuds, assistant, QG 3D) est devenu une vue. Les noms, logos et visuels propriétaires des produits de référence ne sont **pas** repris.
+- **Mise à jour v0.3** : 9 vidéos et 12 images reçues ensuite. Chaque vidéo a été découpée en planches d'images (ffmpeg, local) et chaque *type de présentation* (IDE spatial, bureau 3D, kanban, tableau blanc, immeuble, verre flottant, boucle d'équipe, brief, constellation, sphère de nœuds, assistant, QG 3D) est devenu une vue. Les noms, logos et visuels propriétaires des produits de référence ne sont **pas** repris. **v0.4** : seules les 5 vues en favori sont conservées (voir A13).
 - **Décision demandée** : **TEST** — essayer les vues sur vos usages réels, puis GO / NO GO vue par vue.
 
 ### A2. « Ne présente jamais de statistiques fictives » vs « données réelles » inexistantes (§ 5, § 18)
@@ -58,8 +58,9 @@ Chaque point : exigence, problème, conséquences, alternative, bénéfice, comp
 - **Constat** : le seul dépôt disponible est votre dépôt de profil GitHub (`Mountassir00/Mountassir00`). Le projet est isolé dans `ai-governor/` pour ne pas toucher au README du profil.
 - **Recommandation** : **GO** pour déplacer le projet dans un dépôt dédié (privé) avant d'y brancher des données réelles.
 
-### A13. Nombre de vues (v0.3 : 21 vues installées)
+### A13. Nombre de vues (v0.3 : 21 vues ; v0.4 : 5 vues retenues)
 - **Problème** : 21 présentations des mêmes données, c'est un coût de maintenance réel (chaque évolution du modèle de données touche 21 rendus) et un risque de dispersion : on passe d'une vue à l'autre au lieu de décider.
 - **Appliqué** : (1) toutes les vues lisent le même journal via le SDK, donc un changement de données ne casse aucune vue tant que le SDK reste stable ; (2) lanceur (touche G) + favoris : seules 5 vues apparaissent dans l'en-tête et la barre latérale ; (3) ajouter ou supprimer une vue = ajouter ou supprimer un dossier, sans toucher au cœur ; (4) les tests de bout en bout découvrent les vues automatiquement.
 - **Recommandation** : après une semaine d'usage, gardez 4 à 6 vues (une par question réelle : « combien ça coûte », « qui fait quoi maintenant », « qu'est-ce qui bloque », « qu'est-ce que je dois arbitrer », « que s'est-il passé ») et désactivez le reste dans la Galerie. Les vues désactivées ne coûtent rien à l'exécution (jamais chargées).
-- **Décision demandée** : **TEST** puis **GO / NO GO** par vue.
+- **Décision prise (v0.4)** : seules les vues en favori sont conservées : Control Center, Espace spatial, Kanban des tâches, AI Office, AI System Map. Les 16 autres dossiers ont été supprimés (AI Modular Office et Hub central, Journal opérationnel, Tableau blanc, Équipe d'agents, Boîte de réception, Bureau 3D, QG 3D, Siège, Éditeur spatial, Vision, Boucle d'équipe, Brief du matin, Constellation et Sphère réseau, Assistant). Ils restent dans l'historique git (dernier état complet : commit `ed39849`) : restaurer une vue = restaurer son dossier.
+- **Conséquences assumées** : AI Modular Office faisait partie des quatre interfaces du cahier des charges initial ; le Journal servait de preuve d'extensibilité (la preuve reste : 16 vues ajoutées puis retirées sans toucher au cœur). Sans l'Éditeur spatial, la disposition de l'Espace spatial n'est plus modifiable depuis l'interface (disposition par défaut, modifiable par code via `setLayout`).
