@@ -1,0 +1,22 @@
+# Ce dépôt ne doit JAMAIS contenir de données personnelles, de secrets ni de configuration réelle.
+# Données, mémoire, configuration locale et secrets restent hors dépôt.
+data/
+local/
+config/local/
+secrets/
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+.env
+.env.*
+*.key
+*.pem
+
+# Artefacts
+build/
+dist/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.venv/
